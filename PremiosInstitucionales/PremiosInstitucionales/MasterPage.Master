@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="PremiosInstitucionales.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css"/>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+         <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Conocenos</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Premios<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Page 1-1</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span>Registrate</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Inicia sesion</a></li>
+                </ul>
+          </div>
+        </nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <script src="scripts/jquery-1.9.1.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
+    </div>
+    </form>
+</body>
+</html>
