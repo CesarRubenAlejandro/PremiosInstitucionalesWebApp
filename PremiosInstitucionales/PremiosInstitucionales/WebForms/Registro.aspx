@@ -12,5 +12,7 @@
         <asp:HyperLink ID="HyperLink1" NavigateUrl="~/WebForms/Login.aspx" runat="server" >¿Ya tienes cuenta? Inicia sesión</asp:HyperLink>
         <br />
         
+        <asp:Label runat="server" ID="ConfirmacionLbl" 
+            Text="Se envió un mail al correo electronico registrado. Favor de confirmar cuenta." Visible="false"></asp:Label><br /><br />
     </div>
 </asp:Content>
