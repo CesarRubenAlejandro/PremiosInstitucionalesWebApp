@@ -1,10 +1,6 @@
 ﻿using PremiosInstitucionales.DBServices.Login;
+using PremiosInstitucionales.Values;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -24,34 +20,37 @@ namespace PremiosInstitucionales.WebForms
             var tipoUsuario = LoginService.GetUsuario(user, password);
 
             //Crear sesion o decir que no existe
-            if (tipoUsuario == "incorrect")
+            if (tipoUsuario == StringValues.RolIncorrecto)
             {
                 Label1.Text = "Usuario/Contraseña incorrectos";
                 Label1.Visible = true;
             }
-            else if (tipoUsuario == "notFound")
+            else if (tipoUsuario == StringValues.RolNotFound)
             {
                 Label1.Text = "Usuario no encontrado";
                 Label1.Visible = true;
             }
             else
             {
-                if (tipoUsuario == "candidato")
+                if (tipoUsuario == StringValues.RolCandidato)
                 {
                     var candidato = LoginService.GetCandidato(user);
-                    Session["correo"] = candidato.Correo;
+                    Session[StringValues.CorreoSesion] = candidato.Correo;
+                    Session[StringValues.RolSesion] = StringValues.RolCandidato;
                     Response.Redirect("InicioCandidato.aspx");
                 }
-                else if (tipoUsuario == "juez")
+                else if (tipoUsuario == StringValues.RolJuez)
                 {
                     var juez = LoginService.GetJuez(user);
-                    Session["correo"] = juez.Correo;
+                    Session[StringValues.CorreoSesion] = juez.Correo;
+                    Session[StringValues.RolSesion] = StringValues.RolJuez;
                     Response.Redirect("InicioJuez.aspx");
                 }
-                else if (tipoUsuario == "administrador")
+                else if (tipoUsuario == StringValues.RolAdmin)
                 {
                     var administrador = LoginService.GetAdministrador(user);
-                    Session["correo"] = administrador.Correo;
+                    Session[StringValues.CorreoSesion] = administrador.Correo;
+                    Session[StringValues.RolSesion] = StringValues.RolAdmin;
                     Response.Redirect("InicioAdministrador.aspx");
                 }
 

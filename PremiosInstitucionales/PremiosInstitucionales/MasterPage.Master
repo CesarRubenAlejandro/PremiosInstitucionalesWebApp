@@ -27,8 +27,11 @@
                     <li><a href="#">Contacto</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span>Registrate</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Inicia sesion</a></li>
+                    <li><a href="/WebForms/Registro.aspx"><span class="glyphicon glyphicon-user"></span>Registrate</a></li>
+                    <li runat="server" id="loginItem"><a href="/WebForms/Login.aspx"><span class="glyphicon glyphicon-log-in"></span>Inicia sesion</a></li>
+                    <li runat="server" visible="false" id="logoutItem">
+                        <asp:Button runat="server" Text="Logout" Id="LogoutBttn" OnClick="LogoutBttn_Click"/>
+                    </li>
                 </ul>
           </div>
         </nav>
