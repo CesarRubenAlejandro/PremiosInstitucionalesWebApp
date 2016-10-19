@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.Entities.Models;
+using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace PremiosInstitucionales.DBServices.Login
             {
                 user = candidato.Correo;
                 password = candidato.Password;
-                tipo = "candidato";
+                tipo = StringValues.RolCandidato;
             }
             else
             {
@@ -54,7 +55,7 @@ namespace PremiosInstitucionales.DBServices.Login
                 {
                     user = juez.Correo;
                     password = juez.Password;
-                    tipo = "juez";
+                    tipo = StringValues.RolJuez;
                 }
                 else
                 {
@@ -64,22 +65,22 @@ namespace PremiosInstitucionales.DBServices.Login
                     {
                         user = administrador.Correo;
                         password = administrador.Password;
-                        tipo = "administrador";
+                        tipo = StringValues.RolAdmin;
                     }
                     else
                     {
-                        user = "notFound";
-                        password = "notFound";
-                        tipo = "notFound";
+                        user = StringValues.RolNotFound;
+                        password = StringValues.RolNotFound;
+                        tipo = StringValues.RolNotFound;
                     }
                 }
             }
 
-            if (user != "notFound")
+            if (user != StringValues.RolNotFound)
             {
                 if (password != givenPassword)
                 {
-                    return "incorrect";
+                    return StringValues.RolIncorrecto;
                 }
                 else
                 {

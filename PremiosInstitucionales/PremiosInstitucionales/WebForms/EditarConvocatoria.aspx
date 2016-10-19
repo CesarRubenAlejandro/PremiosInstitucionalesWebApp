@@ -1,10 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditarConvocatoria.aspx.cs" Inherits="PremiosInstitucionales.WebForms.EditarConvocatoria" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditarConvocatoria.aspx.cs" 
+    Inherits="PremiosInstitucionales.WebForms.EditarConvocatoria" MasterPageFile="~/MasterPage.Master"%>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <style>
         .imgHeader {
             width:100%;
@@ -19,10 +15,6 @@
             font-size:large;
         }
     </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-        
         <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader"/>
 
         <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">
@@ -82,7 +74,4 @@
             <ajaxToolkit:TabPanel runat="server" ID="AplicacionesTab" HeaderText="Gestión de aplicaciones de candidatos">
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
-
-    </form>
-</body>
-</html>
+</asp:Content>

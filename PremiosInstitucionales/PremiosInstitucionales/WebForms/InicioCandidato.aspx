@@ -1,17 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioCandidato" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" 
+    Inherits="PremiosInstitucionales.WebForms.InicioCandidato" MasterPageFile="~/MasterPage.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <div>
         <h1>Inicio Candidato</h1>
     
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
