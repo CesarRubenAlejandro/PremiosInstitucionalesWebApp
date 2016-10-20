@@ -148,7 +148,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="WebForms\EditarConvocatoria.aspx" />
+    <Content Include="WebForms\PremioEspecificoAdmin.aspx" />
     <Content Include="WebForms\InicioAdministrador.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
@@ -250,12 +250,12 @@
     <Compile Include="WebForms\ConfirmaCuenta.aspx.designer.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\EditarConvocatoria.aspx.cs">
-      <DependentUpon>EditarConvocatoria.aspx</DependentUpon>
+    <Compile Include="WebForms\PremioEspecificoAdmin.aspx.cs">
+      <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\EditarConvocatoria.aspx.designer.cs">
-      <DependentUpon>EditarConvocatoria.aspx</DependentUpon>
+    <Compile Include="WebForms\PremioEspecificoAdmin.aspx.designer.cs">
+      <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\InicioAdministrador.aspx.cs">
       <DependentUpon>InicioAdministrador.aspx</DependentUpon>

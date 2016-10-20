@@ -36,5 +36,12 @@ namespace PremiosInstitucionales.DBServices.Registro
             return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
         }
 
+        public static void ConfirmarCandidato(String codigoConfirmacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var candidato = dbContext.PI_BA_Candidato.Where(c => c.CodigoConfirmacion.Equals(codigoConfirmacion)).FirstOrDefault();
+            candidato.Confirmado = true;
+            dbContext.SaveChanges();
+        }
     }
 }

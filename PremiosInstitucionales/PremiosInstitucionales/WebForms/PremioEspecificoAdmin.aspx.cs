@@ -62,7 +62,7 @@ namespace PremiosInstitucionales.WebForms
             // cambiar el tab seleccionado
             TabContainer1.ActiveTabIndex = 0;
             // forzar el refresh de la pagina para traer los cambios
-            Response.Redirect("EditarConvocatoria.aspx?premio=" + premioActual.cvePremio);
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
 
         protected void EditarConvocatoriaActualBttn_Click(object sender, EventArgs e)
@@ -109,7 +109,7 @@ namespace PremiosInstitucionales.WebForms
             // desplegar vista read only
             CancelarCambios();
             // forzar refresh para actualizar informacion
-            Response.Redirect("EditarConvocatoria.aspx?premio=" + premioActual.cvePremio);
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
     }
 }

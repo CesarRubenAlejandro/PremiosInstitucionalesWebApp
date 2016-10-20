@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PremiosInstitucionales.DBServices.Registro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,13 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.QueryString["codigo"] != null)
+            {
+                String codigoConfirmacion = Request.QueryString["codigo"].ToString();
+                RegistroService.ConfirmarCandidato(codigoConfirmacion);
+                MensajeLbl.Visible = true;
+                LoginHL.Visible = true;
+            }
         }
     }
 }
