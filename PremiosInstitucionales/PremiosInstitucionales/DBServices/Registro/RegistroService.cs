@@ -10,7 +10,7 @@ namespace PremiosInstitucionales.DBServices.Registro
     {
         private static wPremiosInstitucionalesdbEntities dbContext;
 
-        public static bool Registrar(String email, String password)
+        public static bool Registrar(String email, String password, String codigoConfirmacion)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             if (!exists(email))
@@ -20,6 +20,7 @@ namespace PremiosInstitucionales.DBServices.Registro
                 candidato.cveCandidato = Guid.NewGuid().ToString();
                 candidato.Correo = email;
                 candidato.Password = password;
+                candidato.CodigoConfirmacion = codigoConfirmacion;
                 dbContext.PI_BA_Candidato.Add(candidato);
                 dbContext.SaveChanges();
                 return true;
@@ -35,5 +36,12 @@ namespace PremiosInstitucionales.DBServices.Registro
             return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
         }
 
+        public static void ConfirmarCandidato(String codigoConfirmacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var candidato = dbContext.PI_BA_Candidato.Where(c => c.CodigoConfirmacion.Equals(codigoConfirmacion)).FirstOrDefault();
+            candidato.Confirmado = true;
+            dbContext.SaveChanges();
+        }
     }
 }
