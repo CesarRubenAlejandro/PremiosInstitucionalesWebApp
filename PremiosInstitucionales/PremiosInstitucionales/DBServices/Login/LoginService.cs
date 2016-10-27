@@ -15,7 +15,7 @@ namespace PremiosInstitucionales.DBServices.Login
         public static PI_BA_Candidato GetCandidato(String correoCandidato)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Candidato.Where(c => c.Correo == correoCandidato)
+            return dbContext.PI_BA_Candidato.Where(c => (c.Correo == correoCandidato) && (c.Confirmado == true))
                     .FirstOrDefault();
         }
 
