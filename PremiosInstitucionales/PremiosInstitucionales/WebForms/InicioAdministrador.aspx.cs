@@ -35,7 +35,7 @@ namespace PremiosInstitucionales.WebForms
 
                 var imgButton = new ImageButton();
                 imgButton.ImageUrl = "/img/" + premio.NombreImagen;
-                imgButton.PostBackUrl = "EditarConvocatoria.aspx?premio=" + premio.cvePremio;
+                imgButton.PostBackUrl = "PremioEspecificoAdmin.aspx?premio=" + premio.cvePremio;
                 imgButton.CssClass = "premioImgButton";
 
                 panelNuevo.Controls.Add(imgButton);

@@ -27,6 +27,7 @@ namespace PremiosInstitucionales.Entities.Models
         public string Apellido { get; set; }
         public Nullable<bool> Confirmado { get; set; }
         public string Correo { get; set; }
+        public string CodigoConfirmacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_Aplicacion> PI_BA_Aplicacion { get; set; }
