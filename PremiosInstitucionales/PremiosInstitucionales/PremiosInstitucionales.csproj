@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\Registro.aspx" />
@@ -147,7 +148,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="WebForms\EditarConvocatoria.aspx" />
+    <Content Include="WebForms\PremioEspecificoAdmin.aspx" />
     <Content Include="WebForms\InicioAdministrador.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
@@ -242,12 +243,19 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values\StringValues.cs" />
-    <Compile Include="WebForms\EditarConvocatoria.aspx.cs">
-      <DependentUpon>EditarConvocatoria.aspx</DependentUpon>
+    <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
+      <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\EditarConvocatoria.aspx.designer.cs">
-      <DependentUpon>EditarConvocatoria.aspx</DependentUpon>
+    <Compile Include="WebForms\ConfirmaCuenta.aspx.designer.cs">
+      <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\PremioEspecificoAdmin.aspx.cs">
+      <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\PremioEspecificoAdmin.aspx.designer.cs">
+      <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\InicioAdministrador.aspx.cs">
       <DependentUpon>InicioAdministrador.aspx</DependentUpon>
