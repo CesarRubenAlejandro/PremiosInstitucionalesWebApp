@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditarConvocatoria.aspx.cs" 
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PremioEspecificoAdmin.aspx.cs" 
     Inherits="PremiosInstitucionales.WebForms.EditarConvocatoria" MasterPageFile="~/MasterPage.Master"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <style>
