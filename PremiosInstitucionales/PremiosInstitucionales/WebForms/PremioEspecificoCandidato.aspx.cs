@@ -1,6 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.Aplicacion;
 using PremiosInstitucionales.Values;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -8,6 +9,7 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class PremioEspecificoCandidato : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,26 +25,28 @@ namespace PremiosInstitucionales.WebForms
                 {
                     Response.Redirect("Login.aspx");
                 }
-            }
-            // obtener lista de categorias con el id del premio
-            String idPremio = Request.QueryString["premio"];
-            var categorias = AplicacionService.GetCategoriasByPremio(idPremio);
-            if (categorias != null)
-            {
-                // asignar el datasource al DropDown de categorias
-                CategoriasDDL.DataSource = categorias;
-                CategoriasDDL.DataTextField = "Nombre";
-                CategoriasDDL.DataValueField = "cveCategoria";
-                CategoriasDDL.DataBind();
+                // obtener lista de categorias con el id del premio
+                String idPremio = Request.QueryString["premio"];
+                var categorias = AplicacionService.GetCategoriasByPremio(idPremio);
+                if (categorias != null)
+                {
+                    // asignar el datasource al DropDown de categorias
+                    CategoriasDDL.DataSource = categorias;
+                    CategoriasDDL.DataTextField = "Nombre";
+                    CategoriasDDL.DataValueField = "cveCategoria";
+                    CategoriasDDL.DataBind();
 
-                // desplegar formulario para categoria seleccionada por default
-                CrearFormulario();
-            } else
-            {
-                // desplegar mensaje de error
-                ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
-                ErrorLbl.Visible = true;
+                    // desplegar formulario para categoria seleccionada por default
+                    CrearFormulario();
+                }
+                else
+                {
+                    // desplegar mensaje de error
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Visible = true;
+                }
             }
+            
         }
 
         protected void CategoriasDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,6 +56,13 @@ namespace PremiosInstitucionales.WebForms
 
         private void CrearFormulario()
         {
+            // vaciar coleccion de preguntas para evitar IDs repetidos
+            if (PanelFormulario.Controls.Count > 0)
+            {
+                PanelFormulario.Controls.Clear();
+            }
+            
+            
             // obtener lista de preguntas para la categoria y desplegar el formulario
             var preguntas = AplicacionService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
             foreach(var pregunta in preguntas)
