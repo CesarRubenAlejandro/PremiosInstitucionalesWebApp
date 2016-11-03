@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.Aplicacion;
+using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,7 @@ namespace PremiosInstitucionales.WebForms
                     // desplegar mensaje de error
                     ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
                     ErrorLbl.Visible = true;
+                    EnviarBttn.Visible = false;
                 }
             }
             
@@ -56,31 +58,94 @@ namespace PremiosInstitucionales.WebForms
 
         private void CrearFormulario()
         {
-            // vaciar coleccion de preguntas para evitar IDs repetidos
-            if (PanelFormulario.Controls.Count > 0)
+            String emailCandidato = Session[StringValues.CorreoSesion].ToString();
+            if (AplicacionService.CheckCandidatoInCategoria(emailCandidato, CategoriasDDL.SelectedValue.ToString())) {
+                // el candidato actual ya tiene una aplicacion en esta categoria
+                // desplegar msj de error
+                ErrorLbl.Text = "Ya se realizó una aplicación a esta categoría.";
+                ErrorLbl.Visible = true;
+                EnviarBttn.Visible = false;
+            } else
             {
-                PanelFormulario.Controls.Clear();
+                // esconder mensaje de error
+                ErrorLbl.Visible = false;
+                // mostrar boton
+                EnviarBttn.Visible = true;
+                // vaciar coleccion de preguntas para evitar IDs repetidos
+                if (PanelFormulario.Controls.Count > 0)
+                {
+                    PanelFormulario.Controls.Clear();
+                }
+
+
+                // obtener lista de preguntas para la categoria y desplegar el formulario
+                var preguntas = AplicacionService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
+                foreach (var pregunta in preguntas)
+                {
+                    // crear lbl con el texto de la pregunta
+                    Label lbl = new Label();
+                    lbl.Text = pregunta.Texto;
+                    PanelFormulario.Controls.Add(lbl);
+
+                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+
+                    TextBox tb = new TextBox();
+                    tb.ID = pregunta.IdentificadorObjeto;
+                    RequiredFieldValidator validator = new RequiredFieldValidator();
+                    validator.ControlToValidate = pregunta.IdentificadorObjeto;
+                    validator.ErrorMessage = "Campo requerido";
+                    validator.ForeColor = System.Drawing.Color.Red;
+                    
+                    PanelFormulario.Controls.Add(tb);
+                    PanelFormulario.Controls.Add(validator);
+                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                }
             }
+
             
-            
-            // obtener lista de preguntas para la categoria y desplegar el formulario
+        }
+
+        protected void EnviarBttn_Click(object sender, EventArgs e)
+        {
+            // crear el objeto aplicacion
+            PI_BA_Aplicacion aplicacionNueva = new PI_BA_Aplicacion();
+            aplicacionNueva.cveAplicacion = Guid.NewGuid().ToString();
+            aplicacionNueva.Status = StringValues.FormularioEnviado;
+            aplicacionNueva.cveCandidato = AplicacionService.GetCveCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            aplicacionNueva.cveCategoria = CategoriasDDL.SelectedValue.ToString();
+
+            List<PI_BA_Respuesta> respuestas = new List<PI_BA_Respuesta>();
+
+            // obtener string con controles en Request
+            string[] ctrls = Request.Form.ToString().Split('&');
+            // obtener la lista de preguntas para la categoria y obtener los controles en base a su ID
             var preguntas = AplicacionService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
             foreach(var pregunta in preguntas)
             {
-                // crear lbl con el texto de la pregunta
-                Label lbl = new Label();
-                lbl.Text = pregunta.Texto;
-                PanelFormulario.Controls.Add(lbl);
-
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-
-                TextBox tb = new TextBox();
-                tb.ID = pregunta.IdentificadorObjeto;
-                PanelFormulario.Controls.Add(tb);
-
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                for (int i = 0; i < ctrls.Length; i++)
+                {
+                    if (ctrls[i].Contains(pregunta.IdentificadorObjeto))
+                    {
+                        // obtener el valor del control
+                        string ctrlValue = ctrls[i].Split('=')[1];
+                        //Decode the Value
+                        ctrlValue = Server.UrlDecode(ctrlValue);
+                        // crear un objeto respuesta y guardarlo en la lista
+                        PI_BA_Respuesta respActual = new PI_BA_Respuesta();
+                        respActual.cveRespuesta = Guid.NewGuid().ToString();
+                        respActual.cvePregunta = pregunta.cvePregunta;
+                        respActual.cveAplicacion = aplicacionNueva.cveAplicacion;
+                        respActual.Valor = ctrlValue;
+                        respuestas.Add(respActual);
+                    }
+                }
             }
+            // crear la aplicacion nueva
+            AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
+            Response.Redirect("InicioCandidato.aspx");
         }
+
+// endclass
     }
 }
