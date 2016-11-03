@@ -13,6 +13,7 @@
           <Property Name="Ganador" Type="bit" />
           <Property Name="Status" Type="varchar" MaxLength="20" />
           <Property Name="cveCandidato" Type="varchar" MaxLength="50" />
+          <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PI_BA_Candidato">
           <Key>
@@ -133,6 +134,18 @@
             </Principal>
             <Dependent Role="PI_BA_Aplicacion">
               <PropertyRef Name="cveCandidato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCategoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -286,6 +299,10 @@
             <End Role="PI_BA_Candidato" EntitySet="PI_BA_Candidato" />
             <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
           </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
           <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Convocatoria" Association="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria">
             <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
             <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
@@ -345,6 +362,8 @@
           <Property Name="cveCandidato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PI_BA_Candidato" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Candidato" />
           <NavigationProperty Name="PI_BA_Respuesta" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Respuesta" />
+          <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Categoria" Relationship="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Categoria" />
         </EntityType>
         <EntityType Name="PI_BA_Candidato">
           <Key>
@@ -370,6 +389,7 @@
           <NavigationProperty Name="PI_BA_Convocatoria" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Convocatoria" />
           <NavigationProperty Name="PI_BA_Forma" Relationship="Self.FK_PI_BA_Forma_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Forma" />
           <NavigationProperty Name="PI_BA_JuezPorCategoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_JuezPorCategoria" />
+          <NavigationProperty Name="PI_BA_Aplicacion" Relationship="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Aplicacion" />
         </EntityType>
         <EntityType Name="PI_BA_Convocatoria">
           <Key>
@@ -684,7 +704,23 @@
             <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
             <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
           </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
+          <End Type="wPremiosInstitucionalesdbModel.PI_BA_Categoria" Role="PI_BA_Categoria" Multiplicity="0..1" />
+          <End Type="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion" Role="PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -694,6 +730,7 @@
           <EntitySetMapping Name="PI_BA_Aplicacion">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion">
               <MappingFragment StoreEntitySet="PI_BA_Aplicacion">
+                <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
                 <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
                 <ScalarProperty Name="Ganador" ColumnName="Ganador" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

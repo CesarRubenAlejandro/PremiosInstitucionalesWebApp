@@ -1,7 +1,9 @@
-﻿using PremiosInstitucionales.DBServices.Convocatoria;
+﻿using AjaxControlToolkit;
+using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -25,6 +27,7 @@ namespace PremiosInstitucionales.WebForms
                 {
                     Response.Redirect("InicioCandidato.aspx");
                 }
+
             }
 
             // obtener el premio usando el query string de su id
@@ -42,7 +45,79 @@ namespace PremiosInstitucionales.WebForms
                 TituloConvocatoriaActualLbl.Text = convoActual.TituloConvocatoria;
                 TextoConvocatoriaActualLbl.Text = convoActual.Descripcion;
                 EditarConvocatoriaActualBttn.Visible = true;
-            }   
+            }
+
+            //obtener categorias para el premio
+            var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
+            if (categorias != null)
+            {
+                // asignar el datasource al DropDown de categorias
+                CategoriasDDL.DataSource = categorias;
+                CategoriasDDL.DataTextField = "Nombre";
+                CategoriasDDL.DataValueField = "cveCategoria";
+                CategoriasDDL.DataBind();
+
+                // desplegar los candidatos para la categoria correspondiente
+                CrearListaDeAplicantes();
+            }
+            else
+            {
+                // desplegar mensaje de error
+                ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                ErrorLbl.Visible = true;
+            }
+        }
+
+        protected void CategoriasDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CrearListaDeAplicantes();
+        }
+
+        private void CrearListaDeAplicantes()
+        {
+
+            // obtener aplicaciones para cierta categoria
+            var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(CategoriasDDL.SelectedValue.ToString());
+
+            // obtener candidatos ligados a estas aplicaciones
+            var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+
+            Accordion ContenedorDeCandidatos = new Accordion();
+
+            foreach (var candidato in listaCandidatos)
+            {
+                AccordionPane panelIndividual = new AccordionPane();
+                Label nombreCandidato = new Label();
+                nombreCandidato.Text = candidato.Nombre + " " + candidato.Apellido;
+
+                // Encabezado incluye nombre y apellido del candidato, seguido de opciones
+                panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
+
+                MyAccordion.Panes.Add(panelIndividual);
+             
+            }
+
+
+
+            /*
+            // obtener lista de preguntas para la categoria y desplegar el formulario
+            var preguntas = ConvocatoriaService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
+            foreach (var pregunta in preguntas)
+            {
+                // crear lbl con el texto de la pregunta
+                Label lbl = new Label();
+                lbl.Text = pregunta.Texto;
+                PanelFormulario.Controls.Add(lbl);
+
+                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+
+                TextBox tb = new TextBox();
+                tb.ID = pregunta.IdentificadorObjeto;
+                PanelFormulario.Controls.Add(tb);
+
+                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+            }*/
         }
 
         protected void GuardarNuevaBttn_Click(object sender, EventArgs e)
@@ -110,6 +185,11 @@ namespace PremiosInstitucionales.WebForms
             CancelarCambios();
             // forzar refresh para actualizar informacion
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
+
+        protected void ObtenerCandidatos()
+        {
+            //var listaUsuarios = ConvocatoriaService.ObtenerCandidatosPorAplicaciones("aplicacion");
         }
     }
 }
