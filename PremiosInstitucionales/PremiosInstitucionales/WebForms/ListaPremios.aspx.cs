@@ -5,22 +5,24 @@ using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
-    public partial class InicioAdministrador : System.Web.UI.Page
+    public partial class ListaPremios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
+                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin o candidato
                 if (Session[StringValues.RolSesion] != null)
                 {
-                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
-                        // si no es admin, redireccionar a inicio general
-                        Response.Redirect("InicioCandidato.aspx");
+                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin && Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
+                    {    
+                        // si no es admin ni candidato, redireccionar a inicio general
+                        Response.Redirect("Login.aspx");
+                    }
                 }
                 else
                 {
-                    Response.Redirect("InicioCandidato.aspx");
+                    Response.Redirect("Login.aspx");
                 }
             }
 
@@ -35,7 +37,15 @@ namespace PremiosInstitucionales.WebForms
 
                 var imgButton = new ImageButton();
                 imgButton.ImageUrl = "/img/" + premio.NombreImagen;
-                imgButton.PostBackUrl = "PremioEspecificoAdmin.aspx?premio=" + premio.cvePremio;
+                if (Session[StringValues.RolSesion].ToString() == StringValues.RolAdmin)
+                { 
+                    //Si es admin
+                    imgButton.PostBackUrl = "PremioEspecificoAdmin.aspx?premio=" + premio.cvePremio;
+                } else
+                {
+                    //Si es candidato
+                    imgButton.PostBackUrl = "PremioEspecificoCandidato.aspx?premio=" + premio.cvePremio;
+                }
                 imgButton.CssClass = "premioImgButton";
 
                 panelNuevo.Controls.Add(imgButton);
