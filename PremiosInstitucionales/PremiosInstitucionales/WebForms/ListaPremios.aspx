@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioAdministrador.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.InicioAdministrador" MasterPageFile="~/MasterPage.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaPremios.aspx.cs" 
+    Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MasterPage.Master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <style>
