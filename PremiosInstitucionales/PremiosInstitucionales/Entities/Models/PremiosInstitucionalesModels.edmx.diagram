@@ -30,6 +30,7 @@
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" ManuallyRouted="false" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" ManuallyRouted="false" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Respuesta_PI_BA_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

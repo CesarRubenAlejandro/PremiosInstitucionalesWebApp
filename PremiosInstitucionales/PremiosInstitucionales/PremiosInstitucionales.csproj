@@ -142,6 +142,8 @@
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
+    <Content Include="WebForms\RecuperaCuenta.aspx" />
+    <Content Include="WebForms\Recuperar.aspx" />
     <Content Include="WebForms\Registro.aspx" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -176,6 +178,7 @@
   <ItemGroup>
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
+    <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,6 +287,20 @@
     </Compile>
     <Compile Include="WebForms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\RecuperaCuenta.aspx.cs">
+      <DependentUpon>RecuperaCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\RecuperaCuenta.aspx.designer.cs">
+      <DependentUpon>RecuperaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Recuperar.aspx.cs">
+      <DependentUpon>Recuperar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Recuperar.aspx.designer.cs">
+      <DependentUpon>Recuperar.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
