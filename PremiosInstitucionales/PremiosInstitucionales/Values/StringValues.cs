@@ -17,5 +17,8 @@ namespace PremiosInstitucionales.Values
         // valores para variables a guardar en sesion
         public static readonly String CorreoSesion = "correo";
         public static readonly String RolSesion = "rol";
+
+        // valores para status de aplicacion
+        public static readonly String FormularioEnviado = "0";
     }
 }

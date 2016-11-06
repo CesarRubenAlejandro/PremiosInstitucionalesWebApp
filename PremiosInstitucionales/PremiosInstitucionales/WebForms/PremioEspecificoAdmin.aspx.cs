@@ -19,11 +19,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("InicioCandidato.aspx");
+                        Response.Redirect("Login.aspx");
                 }
                 else
                 {
-                    Response.Redirect("InicioCandidato.aspx");
+                    Response.Redirect("Login.aspx");
                 }
             }
 
