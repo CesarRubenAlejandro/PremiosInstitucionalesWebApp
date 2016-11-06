@@ -149,7 +149,7 @@
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="WebForms\PremioEspecificoAdmin.aspx" />
-    <Content Include="WebForms\InicioAdministrador.aspx" />
+    <Content Include="WebForms\ListaPremios.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -257,12 +257,12 @@
     <Compile Include="WebForms\PremioEspecificoAdmin.aspx.designer.cs">
       <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\InicioAdministrador.aspx.cs">
-      <DependentUpon>InicioAdministrador.aspx</DependentUpon>
+    <Compile Include="WebForms\ListaPremios.aspx.cs">
+      <DependentUpon>ListaPremios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\InicioAdministrador.aspx.designer.cs">
-      <DependentUpon>InicioAdministrador.aspx</DependentUpon>
+    <Compile Include="WebForms\ListaPremios.aspx.designer.cs">
+      <DependentUpon>ListaPremios.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\InicioCandidato.aspx.cs">
       <DependentUpon>InicioCandidato.aspx</DependentUpon>
