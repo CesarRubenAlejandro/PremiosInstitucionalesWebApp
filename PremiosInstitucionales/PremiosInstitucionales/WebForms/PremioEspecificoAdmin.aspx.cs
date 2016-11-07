@@ -28,43 +28,45 @@ namespace PremiosInstitucionales.WebForms
                     Response.Redirect("InicioCandidato.aspx");
                 }
 
-            }
 
-            // obtener el premio usando el query string de su id
-            String idPremio = Request.QueryString["premio"];
-            premioActual = ConvocatoriaService.GetPremioById(idPremio);
-            // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
-            convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
-            if (premioActual != null)
-            {
-                // declarar fuente de la imagen del premio seleccionado
-                ImageHeader.ImageUrl = "/img/" + premioActual.NombreImagen;
-            }
-            if (convoActual != null)
-            {
-                TituloConvocatoriaActualLbl.Text = convoActual.TituloConvocatoria;
-                TextoConvocatoriaActualLbl.Text = convoActual.Descripcion;
-                EditarConvocatoriaActualBttn.Visible = true;
-            }
 
-            //obtener categorias para el premio
-            var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
-            if (categorias != null)
-            {
-                // asignar el datasource al DropDown de categorias
-                CategoriasDDL.DataSource = categorias;
-                CategoriasDDL.DataTextField = "Nombre";
-                CategoriasDDL.DataValueField = "cveCategoria";
-                CategoriasDDL.DataBind();
+                // obtener el premio usando el query string de su id
+                String idPremio = Request.QueryString["premio"];
+                premioActual = ConvocatoriaService.GetPremioById(idPremio);
+                // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
+                convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
+                if (premioActual != null)
+                {
+                    // declarar fuente de la imagen del premio seleccionado
+                    ImageHeader.ImageUrl = "/img/" + premioActual.NombreImagen;
+                }
+                if (convoActual != null)
+                {
+                    TituloConvocatoriaActualLbl.Text = convoActual.TituloConvocatoria;
+                    TextoConvocatoriaActualLbl.Text = convoActual.Descripcion;
+                    EditarConvocatoriaActualBttn.Visible = true;
+                }
 
-                // desplegar los candidatos para la categoria correspondiente
-                CrearListaDeAplicantes();
-            }
-            else
-            {
-                // desplegar mensaje de error
-                ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
-                ErrorLbl.Visible = true;
+                //obtener categorias para el premio
+                var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
+                if (categorias != null)
+                {
+                    // asignar el datasource al DropDown de categorias
+                    CategoriasDDL.DataSource = categorias;
+                    CategoriasDDL.DataTextField = "Nombre";
+                    CategoriasDDL.DataValueField = "cveCategoria";
+                    CategoriasDDL.DataBind();
+
+                    // desplegar los candidatos para la categoria correspondiente
+                    CrearListaDeAplicantes();
+                }
+                else
+                {
+                    // desplegar mensaje de error
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Visible = true;
+                }
+
             }
         }
 
@@ -76,6 +78,8 @@ namespace PremiosInstitucionales.WebForms
         private void CrearListaDeAplicantes()
         {
 
+            MyAccordion.Panes.Clear();
+
             // obtener aplicaciones para cierta categoria
             var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(CategoriasDDL.SelectedValue.ToString());
 
@@ -84,40 +88,47 @@ namespace PremiosInstitucionales.WebForms
 
             Accordion ContenedorDeCandidatos = new Accordion();
 
-            foreach (var candidato in listaCandidatos)
+            foreach (var aplicacionCandidato in listaCandidatos)
             {
                 AccordionPane panelIndividual = new AccordionPane();
+
+                // Salto de linea para agregar donde se ocupe
+                Label salto = new Label();
+                salto.Text = "<br />";
+
                 Label nombreCandidato = new Label();
-                nombreCandidato.Text = candidato.Nombre + " " + candidato.Apellido;
+                nombreCandidato.Text = aplicacionCandidato.Value.Nombre + " " + aplicacionCandidato.Value.Apellido;
+                nombreCandidato.Font.Bold = true;
 
                 // Encabezado incluye nombre y apellido del candidato, seguido de opciones
                 panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
 
+                // Agregar datos del candidato
+                Label usuario = new Label();
+                Label correo = new Label();
+
+                usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
+                correo.Text = "<b>Correo: </b>" + aplicacionCandidato.Value.Correo + "<br /><br />";
+
+                panelIndividual.ContentContainer.Controls.Add(salto);
+                panelIndividual.ContentContainer.Controls.Add(usuario);
+                panelIndividual.ContentContainer.Controls.Add(correo);
+
+                // Obtengo preguntas de la aplicacion con sus respectivas respuestas
+                var preguntasYrespuestas = ConvocatoriaService.ObtenerPreguntasConRespuestasPorAplicacion(aplicacionCandidato.Key);
+
+                foreach (var pregunta in preguntasYrespuestas)
+                {
+                    Label textoPregunta = new Label();
+                    textoPregunta.Text = "<b>" + pregunta.Value[0] + "</b><br />" + pregunta.Value[1] + "<br />";
+
+                    panelIndividual.ContentContainer.Controls.Add(textoPregunta);
+                }
+                panelIndividual.ContentContainer.Controls.Add(salto);
+
                 MyAccordion.Panes.Add(panelIndividual);
              
             }
-
-
-
-            /*
-            // obtener lista de preguntas para la categoria y desplegar el formulario
-            var preguntas = ConvocatoriaService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
-            foreach (var pregunta in preguntas)
-            {
-                // crear lbl con el texto de la pregunta
-                Label lbl = new Label();
-                lbl.Text = pregunta.Texto;
-                PanelFormulario.Controls.Add(lbl);
-
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-
-                TextBox tb = new TextBox();
-                tb.ID = pregunta.IdentificadorObjeto;
-                PanelFormulario.Controls.Add(tb);
-
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-                PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-            }*/
         }
 
         protected void GuardarNuevaBttn_Click(object sender, EventArgs e)
@@ -187,9 +198,5 @@ namespace PremiosInstitucionales.WebForms
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
 
-        protected void ObtenerCandidatos()
-        {
-            //var listaUsuarios = ConvocatoriaService.ObtenerCandidatosPorAplicaciones("aplicacion");
-        }
     }
 }
