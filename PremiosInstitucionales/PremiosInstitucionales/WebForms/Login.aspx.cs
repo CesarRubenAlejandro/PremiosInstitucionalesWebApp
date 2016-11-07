@@ -51,7 +51,7 @@ namespace PremiosInstitucionales.WebForms
                     var administrador = LoginService.GetAdministrador(user);
                     Session[StringValues.CorreoSesion] = administrador.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolAdmin;
-                    Response.Redirect("InicioAdministrador.aspx");
+                    Response.Redirect("ListaPremios.aspx");
                 }
 
             }
