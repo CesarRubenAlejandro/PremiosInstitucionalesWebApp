@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class InicioAdministrador {
+    public partial class ListaPremios {
         
         /// <summary>
         /// PanelesPremios control.
