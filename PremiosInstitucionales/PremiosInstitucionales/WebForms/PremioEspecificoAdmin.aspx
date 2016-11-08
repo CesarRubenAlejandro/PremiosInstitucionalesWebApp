@@ -14,6 +14,25 @@
             font: bold;
             font-size:large;
         }
+
+        .accordionContent {
+            background-color: rgb(180,180,180);
+        }
+
+        .accordionHeader {
+            border: 1px solid #dddddd;
+            background-color: rgb(180,180,180);
+            padding: 3px 3px 3px 18px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .accordionHeaderSelected {
+            background-color: rgb(180,180,180);
+            padding: 3px 3px 3px 18px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
     </style>
         <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader"/>
 

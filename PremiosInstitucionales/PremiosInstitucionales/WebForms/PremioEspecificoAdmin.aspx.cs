@@ -91,7 +91,7 @@ namespace PremiosInstitucionales.WebForms
             foreach (var aplicacionCandidato in listaCandidatos)
             {
                 AccordionPane panelIndividual = new AccordionPane();
-
+                panelIndividual.CssClass = "accordionPane";
                 // Salto de linea para agregar donde se ocupe
                 Label salto = new Label();
                 salto.Text = "<br />";
