@@ -72,6 +72,34 @@
             </ajaxToolkit:TabPanel>
 
             <ajaxToolkit:TabPanel runat="server" ID="AplicacionesTab" HeaderText="Gestión de aplicaciones de candidatos">
+                <ContentTemplate>
+                    <asp:Label runat="server" Text="Aplicaciones recibidas"></asp:Label>
+                    <hr></hr>
+                    <asp:DropDownList runat="server" ID="CategoriasDDL" AutoPostBack="true"
+                        OnSelectedIndexChanged="CategoriasDDL_SelectedIndexChanged"></asp:DropDownList>
+                    <br />
+                    <br />
+                    <asp:Label ID="ErrorLbl" runat="server" Visible="false"></asp:Label>
+                    
+                        <ajaxToolkit:Accordion
+                        ID="MyAccordion"
+                        runat="Server"
+                        SelectedIndex="-1"
+                        HeaderCssClass="accordionHeader"
+                        HeaderSelectedCssClass="accordionHeaderSelected"
+                        ContentCssClass="accordionContent"
+                        AutoSize="None"
+                        FadeTransitions="true"
+                        TransitionDuration="250"
+                        FramesPerSecond="40"
+                        RequireOpenedPane="false"
+                        SuppressHeaderPostbacks="true">
+         
+                        <HeaderTemplate>...</HeaderTemplate>
+                        <ContentTemplate>...</ContentTemplate>
+                    </ajaxToolkit:Accordion>
+
+                </ContentTemplate>
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
 </asp:Content>

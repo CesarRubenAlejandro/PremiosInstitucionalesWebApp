@@ -24,9 +24,11 @@ namespace PremiosInstitucionales.Entities.Models
         public Nullable<bool> Ganador { get; set; }
         public string Status { get; set; }
         public string cveCandidato { get; set; }
+        public string cveCategoria { get; set; }
     
         public virtual PI_BA_Candidato PI_BA_Candidato { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_Respuesta> PI_BA_Respuesta { get; set; }
+        public virtual PI_BA_Categoria PI_BA_Categoria { get; set; }
     }
 }
