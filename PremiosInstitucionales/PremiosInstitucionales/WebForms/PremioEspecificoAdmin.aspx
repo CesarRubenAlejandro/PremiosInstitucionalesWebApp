@@ -1,39 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PremioEspecificoAdmin.aspx.cs" 
     Inherits="PremiosInstitucionales.WebForms.EditarConvocatoria" MasterPageFile="~/MasterPage.Master"%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
-    <style>
-        .imgHeader {
-            width:100%;
-            height: 180px;
-        }
-        .htmlEditor {
-            padding-bottom:15px;
-        }
-        .convocatoriaTitle {
-            display:block;
-            font: bold;
-            font-size:large;
-        }
-
-        .accordionContent {
-            background-color: rgb(180,180,180);
-        }
-
-        .accordionHeader {
-            border: 1px solid #dddddd;
-            background-color: rgb(180,180,180);
-            padding: 3px 3px 3px 18px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-
-        .accordionHeaderSelected {
-            background-color: rgb(180,180,180);
-            padding: 3px 3px 3px 18px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-    </style>
         <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader"/>
 
         <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">
