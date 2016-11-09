@@ -14,6 +14,11 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // obtener el premio usando el query string de su id
+            String idPremio = Request.QueryString["premio"];
+            premioActual = ConvocatoriaService.GetPremioById(idPremio);
+            // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
+            convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
@@ -28,13 +33,6 @@ namespace PremiosInstitucionales.WebForms
                     Response.Redirect("Login.aspx");
                 }
 
-
-
-                // obtener el premio usando el query string de su id
-                String idPremio = Request.QueryString["premio"];
-                premioActual = ConvocatoriaService.GetPremioById(idPremio);
-                // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
-                convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
                 if (premioActual != null)
                 {
                     // declarar fuente de la imagen del premio seleccionado
@@ -104,14 +102,14 @@ namespace PremiosInstitucionales.WebForms
                 panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
 
                 // Agregar datos del candidato
-                Label usuario = new Label();
+                //Label usuario = new Label();
                 Label correo = new Label();
 
-                usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
+                //usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
                 correo.Text = "<b>Correo: </b>" + aplicacionCandidato.Value.Correo + "<br /><br />";
 
                 panelIndividual.ContentContainer.Controls.Add(salto);
-                panelIndividual.ContentContainer.Controls.Add(usuario);
+                //panelIndividual.ContentContainer.Controls.Add(usuario);
                 panelIndividual.ContentContainer.Controls.Add(correo);
 
                 // Obtengo preguntas de la aplicacion con sus respectivas respuestas
