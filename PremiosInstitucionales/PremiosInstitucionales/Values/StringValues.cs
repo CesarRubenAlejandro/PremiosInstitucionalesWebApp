@@ -20,5 +20,8 @@ namespace PremiosInstitucionales.Values
 
         // valores para status de aplicacion
         public static readonly String FormularioEnviado = "0";
+
+        // valores para columnas de reporte para jueces
+        public static readonly String ColumnaReporteJuecesNombreCandidato = "Nombre candidato";
     }
 }

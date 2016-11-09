@@ -11,3 +11,35 @@
         width: inherit;
     }
 
+    .accordionContent {
+        background-color: rgb(180,180,180);
+    }
+
+    .accordionHeader {
+        border: 1px solid #dddddd;
+        background-color: rgb(180,180,180);
+        padding: 3px 3px 3px 18px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    .accordionHeaderSelected {
+        background-color: rgb(180,180,180);
+        padding: 3px 3px 3px 18px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    .imgHeader {
+        width:100%;
+        height: 180px;
+    }
+    .htmlEditor {
+        padding-bottom:15px;
+    }
+    .convocatoriaTitle {
+        display:block;
+        font: bold;
+        font-size:large;
+    }
+
