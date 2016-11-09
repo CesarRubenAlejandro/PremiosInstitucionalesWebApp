@@ -6,7 +6,9 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="Content/premiosinstitucionales.css" type="text/css"/>
 </head>
+
 <body>
     <form id="form1" runat="server">
     <div>
@@ -78,6 +80,20 @@
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
         </asp:ContentPlaceHolder>
+
+        <footer>
+            <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    <p class="navbar-text">Av. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P.64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8328-4232</p>
+                    <br />
+                    <p class="navbar-text">D.R. &copy; Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2016</p>
+                    <br />
+                    <p class="navbar-text"> Aviso legal | Políticas de privacidad | Aviso de privacidad | Sobre el sitio </p>                   
+                    
+                </div>
+            </nav>
+        </footer>
+
         <script src="scripts/jquery-1.9.1.min.js"></script>
         <script src="scripts/bootstrap.min.js"></script>
     </div>

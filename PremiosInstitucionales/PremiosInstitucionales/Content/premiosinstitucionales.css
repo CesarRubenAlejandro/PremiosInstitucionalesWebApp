@@ -1,0 +1,13 @@
+﻿    
+    #footer, #footer .container{
+        height: 80px;
+        padding: 5px;
+    }
+
+    .navbar-text{
+        font-size: 12px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        width: inherit;
+    }
+
