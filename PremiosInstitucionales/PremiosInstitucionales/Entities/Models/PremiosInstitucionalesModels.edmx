@@ -211,13 +211,13 @@
         </Association>
         <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
           <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="1" />
-          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="0..1" />
+          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PI_BA_Categoria">
               <PropertyRef Name="cveCategoria" />
             </Principal>
             <Dependent Role="PI_BA_JuezPorCategoria">
-              <PropertyRef Name="cveJuezPorCategoria" />
+              <PropertyRef Name="cveCategoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -390,6 +390,7 @@
           <NavigationProperty Name="PI_BA_Forma" Relationship="Self.FK_PI_BA_Forma_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Forma" />
           <NavigationProperty Name="PI_BA_JuezPorCategoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_JuezPorCategoria" />
           <NavigationProperty Name="PI_BA_Aplicacion" Relationship="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Aplicacion" />
+          <NavigationProperty Name="PI_BA_JuezPorCategoria1" Relationship="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1" FromRole="PI_BA_Categoria" ToRole="PI_BA_JuezPorCategoria" />
         </EntityType>
         <EntityType Name="PI_BA_Convocatoria">
           <Key>
@@ -446,6 +447,7 @@
           <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" FromRole="PI_BA_JuezPorCategoria" ToRole="PI_BA_Categoria" />
           <NavigationProperty Name="PI_BA_Juez" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" FromRole="PI_BA_JuezPorCategoria" ToRole="PI_BA_Juez" />
+          <NavigationProperty Name="PI_BA_Categoria1" Relationship="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1" FromRole="PI_BA_JuezPorCategoria" ToRole="PI_BA_Categoria" />
         </EntityType>
         <EntityType Name="PI_BA_Pregunta">
           <Key>
@@ -708,6 +710,10 @@
             <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
             <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
           </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1" Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
           <End Type="wPremiosInstitucionalesdbModel.PI_BA_Categoria" Role="PI_BA_Categoria" Multiplicity="0..1" />
@@ -717,6 +723,18 @@
               <PropertyRef Name="cveCategoria" />
             </Principal>
             <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1">
+          <End Type="wPremiosInstitucionalesdbModel.PI_BA_Categoria" Role="PI_BA_Categoria" Multiplicity="1" />
+          <End Type="wPremiosInstitucionalesdbModel.PI_BA_JuezPorCategoria" Role="PI_BA_JuezPorCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_JuezPorCategoria">
               <PropertyRef Name="cveCategoria" />
             </Dependent>
           </ReferentialConstraint>

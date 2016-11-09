@@ -20,5 +20,6 @@ namespace PremiosInstitucionales.Entities.Models
     
         public virtual PI_BA_Categoria PI_BA_Categoria { get; set; }
         public virtual PI_BA_Juez PI_BA_Juez { get; set; }
+        public virtual PI_BA_Categoria PI_BA_Categoria1 { get; set; }
     }
 }
