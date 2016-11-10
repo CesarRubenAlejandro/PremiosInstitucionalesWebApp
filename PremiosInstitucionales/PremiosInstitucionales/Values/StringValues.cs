@@ -19,6 +19,10 @@ namespace PremiosInstitucionales.Values
         public static readonly String RolSesion = "rol";
 
         // valores para status de aplicacion
-        public static readonly String FormularioEnviado = "0";
+        public static readonly String Solicitado = "solicitada";
+        public static readonly String Rechazado = "rechazada";
+        public static readonly String Modificado = "modificada";
+        public static readonly String Aceptado = "aceptada";
+
     }
 }

@@ -83,5 +83,15 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                        select c.cveCandidato).First().ToString();
             return cve;
         }
+
+        public static List<PI_BA_Aplicacion> GetAplicacionesByCorreo(String correo)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Candidato candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(correo)).FirstOrDefault();
+            var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.cveCandidato.Equals(candidato.cveCandidato)).ToList();
+
+            return aplicaciones;
+
+        }
     }
 }
