@@ -63,7 +63,7 @@ namespace PremiosInstitucionales.WebForms
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
-                            "<li class=\"edoactual\"><a href = \"#5\"> Fin </a></li>" +
+                            "<li class=\"edoactual\"><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/>" + 
                             StringValues.ExplicacionFin + "<br/> <br/> <br/>";
             } else if (ap.Status == StringValues.Solicitado)
@@ -71,27 +71,27 @@ namespace PremiosInstitucionales.WebForms
                 return "<ul>" +
                             "<li class=\"edoactual\"><a href = \"#1\"> Solicitada </a></li>" +
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
-                            "<li><a href = \"#5\"> Fin </a></li>" +
+                            "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/> " +
                             StringValues.ExplicacionSolicitado + "<br/> <br/> <br/>";
             } else if (ap.Status == StringValues.Rechazado)
             {
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
-                            "<li class=\"edoactual\"><a href = \"#2\"> Rechazada </a></li>" +
+                            "<li class=\"edoactual\"><a href = \"#2\"> Requiere cambios </a></li>" +
                             "<li><a href = \"#3\"> Modificada </a></li>" +
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
-                            "<li><a href = \"#5\"> Fin </a></li>" +
+                            "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/> " +
                             StringValues.ExplicacionRechazado + "<br/> <br/> <br/>";
             } else if (ap.Status == StringValues.Modificado)
             {
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
-                            "<li><a href = \"#2\"> Rechazada </a></li>" +
+                            "<li><a href = \"#2\"> Requiere cambios </a></li>" +
                             "<li class=\"edoactual\"><a href = \"#3\"> Modificada </a></li>" +
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
-                            "<li><a href = \"#5\"> Fin </a></li>" +
+                            "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/>" +
                             StringValues.ExplicacionModificado + "<br/> <br/> <br/>"; ;
             } else if (ap.Status == StringValues.Aceptado)
@@ -99,7 +99,7 @@ namespace PremiosInstitucionales.WebForms
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
                             "<li class=\"edoactual\"><a href = \"#4\"> Aceptada </a></li>" +
-                            "<li><a href = \"#5\"> Fin </a></li>" +
+                            "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/>" +
                             StringValues.ExplicacionAceptado + "<br/> <br/> <br/>";
             }
