@@ -31,5 +31,7 @@ namespace PremiosInstitucionales.Values
         public static readonly String ExplicacionAceptado = "Tu solicitud ha sido revisada y aceptada. ¡Mucha suerte!";
         public static readonly String ExplicacionFin = "El veredicto final ya ha sido dado. ¡Gracias por participar!";
 
+        // valores para columnas de reporte para jueces
+        public static readonly String ColumnaReporteJuecesNombreCandidato = "Nombre candidato";
     }
 }

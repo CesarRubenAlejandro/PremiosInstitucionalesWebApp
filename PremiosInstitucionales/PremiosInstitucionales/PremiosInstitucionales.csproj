@@ -180,6 +180,7 @@
   <ItemGroup>
     <Compile Include="DBServices\Aplicacion\AplicacionService.cs" />
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
+    <Compile Include="DBServices\Evaluacion\EvaluacionService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
     <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
