@@ -87,11 +87,30 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
         public static List<PI_BA_Aplicacion> GetAplicacionesByCorreo(String correo)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
-            PI_BA_Candidato candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(correo)).FirstOrDefault();
-            var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.cveCandidato.Equals(candidato.cveCandidato)).ToList();
+            PI_BA_Candidato candidato = dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(correo)).FirstOrDefault();
+            try { 
+                var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.cveCandidato.Equals(candidato.cveCandidato)).ToList();
+                return aplicaciones;
+            } catch (Exception e)
+            {
+                return null;
+            }
+        }
 
-            return aplicaciones;
+        public static String GetPremioCategoriaByClaveCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
+            PI_BA_Premio premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(convocatoria.cvePremio)).FirstOrDefault();
 
+            return "Premio " + premio.Nombre.ToString() + " - Categoría " + categoria.Nombre.ToString();
+        }
+
+        public static Boolean GetHasEndedByCategoria(String idCategoria)
+        {
+            //TODO
+            return false;
         }
     }
 }

@@ -111,7 +111,7 @@ namespace PremiosInstitucionales.WebForms
             // crear el objeto aplicacion
             PI_BA_Aplicacion aplicacionNueva = new PI_BA_Aplicacion();
             aplicacionNueva.cveAplicacion = Guid.NewGuid().ToString();
-            aplicacionNueva.Status = StringValues.FormularioEnviado;
+            aplicacionNueva.Status = StringValues.Solicitado;
             aplicacionNueva.cveCandidato = AplicacionService.GetCveCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
             aplicacionNueva.cveCategoria = CategoriasDDL.SelectedValue.ToString();
 
