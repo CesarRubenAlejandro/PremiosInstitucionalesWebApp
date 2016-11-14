@@ -9,7 +9,7 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
     public class InformacionPersonalCandidatoService
     {
         private static wPremiosInstitucionalesdbEntities dbContext;
-
+        //Comentario
         public static Tuple<string, string> GetNombre(string correo)
         {
             string nombres = "";
