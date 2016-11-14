@@ -143,6 +143,8 @@
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
+    <Content Include="WebForms\ListaPremios.aspx" />
+    <Content Include="WebForms\PremioEspecificoCandidato.aspx" />
     <Content Include="WebForms\RecuperaCuenta.aspx" />
     <Content Include="WebForms\Recuperar.aspx" />
     <Content Include="WebForms\Registro.aspx" />
@@ -176,6 +178,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBServices\Aplicacion\AplicacionService.cs" />
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\InformacionPersonalCandidato\InformacionPersonalCandidatoService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
@@ -260,6 +263,13 @@
     </Compile>
     <Compile Include="WebForms\InformacionPersonalCandidato.aspx.designer.cs">
       <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>
+	</Compile>
+    <Compile Include="WebForms\ListaPremios.aspx.cs">
+      <DependentUpon>ListaPremios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ListaPremios.aspx.designer.cs">
+      <DependentUpon>ListaPremios.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\PremioEspecificoAdmin.aspx.cs">
       <DependentUpon>PremioEspecificoAdmin.aspx</DependentUpon>
@@ -288,6 +298,13 @@
     </Compile>
     <Compile Include="WebForms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\PremioEspecificoCandidato.aspx.cs">
+      <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\PremioEspecificoCandidato.aspx.designer.cs">
+      <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\RecuperaCuenta.aspx.cs">
       <DependentUpon>RecuperaCuenta.aspx</DependentUpon>

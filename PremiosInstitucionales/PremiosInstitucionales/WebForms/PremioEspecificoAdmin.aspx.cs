@@ -1,7 +1,9 @@
-﻿using PremiosInstitucionales.DBServices.Convocatoria;
+﻿using AjaxControlToolkit;
+using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -25,24 +27,108 @@ namespace PremiosInstitucionales.WebForms
                 {
                     Response.Redirect("Login.aspx");
                 }
-            }
 
-            // obtener el premio usando el query string de su id
-            String idPremio = Request.QueryString["premio"];
-            premioActual = ConvocatoriaService.GetPremioById(idPremio);
-            // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
-            convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
-            if (premioActual != null)
-            {
-                // declarar fuente de la imagen del premio seleccionado
-                ImageHeader.ImageUrl = "/img/" + premioActual.NombreImagen;
+
+
+                // obtener el premio usando el query string de su id
+                String idPremio = Request.QueryString["premio"];
+                premioActual = ConvocatoriaService.GetPremioById(idPremio);
+                // obtener la convocatoria mas reciente en base al premio y desplegar sus datos
+                convoActual = ConvocatoriaService.GetMostRecentConvocatoria(idPremio);
+                if (premioActual != null)
+                {
+                    // declarar fuente de la imagen del premio seleccionado
+                    ImageHeader.ImageUrl = "/img/" + premioActual.NombreImagen;
+                }
+                if (convoActual != null)
+                {
+                    TituloConvocatoriaActualLbl.Text = convoActual.TituloConvocatoria;
+                    TextoConvocatoriaActualLbl.Text = convoActual.Descripcion;
+                    EditarConvocatoriaActualBttn.Visible = true;
+                }
+
+                //obtener categorias para el premio
+                var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
+                if (categorias != null)
+                {
+                    // asignar el datasource al DropDown de categorias
+                    CategoriasDDL.DataSource = categorias;
+                    CategoriasDDL.DataTextField = "Nombre";
+                    CategoriasDDL.DataValueField = "cveCategoria";
+                    CategoriasDDL.DataBind();
+
+                    // desplegar los candidatos para la categoria correspondiente
+                    CrearListaDeAplicantes();
+                }
+                else
+                {
+                    // desplegar mensaje de error
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Visible = true;
+                }
+
             }
-            if (convoActual != null)
+        }
+
+        protected void CategoriasDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CrearListaDeAplicantes();
+        }
+
+        private void CrearListaDeAplicantes()
+        {
+
+            MyAccordion.Panes.Clear();
+
+            // obtener aplicaciones para cierta categoria
+            var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(CategoriasDDL.SelectedValue.ToString());
+
+            // obtener candidatos ligados a estas aplicaciones
+            var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+
+            Accordion ContenedorDeCandidatos = new Accordion();
+
+            foreach (var aplicacionCandidato in listaCandidatos)
             {
-                TituloConvocatoriaActualLbl.Text = convoActual.TituloConvocatoria;
-                TextoConvocatoriaActualLbl.Text = convoActual.Descripcion;
-                EditarConvocatoriaActualBttn.Visible = true;
-            }   
+                AccordionPane panelIndividual = new AccordionPane();
+
+                // Salto de linea para agregar donde se ocupe
+                Label salto = new Label();
+                salto.Text = "<br />";
+
+                Label nombreCandidato = new Label();
+                nombreCandidato.Text = aplicacionCandidato.Value.Nombre + " " + aplicacionCandidato.Value.Apellido;
+                nombreCandidato.Font.Bold = true;
+
+                // Encabezado incluye nombre y apellido del candidato, seguido de opciones
+                panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
+
+                // Agregar datos del candidato
+                Label usuario = new Label();
+                Label correo = new Label();
+
+                usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
+                correo.Text = "<b>Correo: </b>" + aplicacionCandidato.Value.Correo + "<br /><br />";
+
+                panelIndividual.ContentContainer.Controls.Add(salto);
+                panelIndividual.ContentContainer.Controls.Add(usuario);
+                panelIndividual.ContentContainer.Controls.Add(correo);
+
+                // Obtengo preguntas de la aplicacion con sus respectivas respuestas
+                var preguntasYrespuestas = ConvocatoriaService.ObtenerPreguntasConRespuestasPorAplicacion(aplicacionCandidato.Key);
+
+                foreach (var pregunta in preguntasYrespuestas)
+                {
+                    Label textoPregunta = new Label();
+                    textoPregunta.Text = "<b>" + pregunta.Value[0] + "</b><br />" + pregunta.Value[1] + "<br />";
+
+                    panelIndividual.ContentContainer.Controls.Add(textoPregunta);
+                }
+                panelIndividual.ContentContainer.Controls.Add(salto);
+
+                MyAccordion.Panes.Add(panelIndividual);
+             
+            }
         }
 
         protected void GuardarNuevaBttn_Click(object sender, EventArgs e)
@@ -111,5 +197,6 @@ namespace PremiosInstitucionales.WebForms
             // forzar refresh para actualizar informacion
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
+
     }
 }
