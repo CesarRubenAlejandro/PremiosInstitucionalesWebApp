@@ -71,13 +71,20 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
         public static List<PI_BA_Aplicacion> ObtenerAplicacionesPorCategoria(string cve_categoria)
         {// Obtengo lista de aplicaciones dada una categoria
             dbContext = new wPremiosInstitucionalesdbEntities();
-            var categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(cve_categoria))
+            try
+            {
+                var categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(cve_categoria))
                 .First();
 
-            if (categoria.PI_BA_Aplicacion != null)
-                return categoria.PI_BA_Aplicacion.ToList();
-            else
+                if (categoria.PI_BA_Aplicacion != null)
+                    return categoria.PI_BA_Aplicacion.ToList();
+                else
+                    return null;
+            } catch (Exception e)
+            {
                 return null;
+            }
+            
 
         }
 

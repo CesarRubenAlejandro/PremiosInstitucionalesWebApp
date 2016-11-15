@@ -47,7 +47,7 @@ namespace PremiosInstitucionales.WebForms
 
                 //obtener categorias para el premio
                 var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
-                if (categorias != null)
+                if (categorias != null && categorias.Count > 0)
                 {
                     // asignar el datasource al DropDown de categorias
                     CategoriasDDL.DataSource = categorias;
@@ -61,7 +61,7 @@ namespace PremiosInstitucionales.WebForms
                 else
                 {
                     // desplegar mensaje de error
-                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento o no hay categorías registradas";
                     ErrorLbl.Visible = true;
                 }
 
@@ -102,14 +102,14 @@ namespace PremiosInstitucionales.WebForms
                 panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
 
                 // Agregar datos del candidato
-                //Label usuario = new Label();
+                Label status = new Label();
                 Label correo = new Label();
 
-                //usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
+                status.Text = "<b>Estado: </b>" + aplicacionCandidato.Key.Status + "<br />";
                 correo.Text = "<b>Correo: </b>" + aplicacionCandidato.Value.Correo + "<br /><br />";
 
                 panelIndividual.ContentContainer.Controls.Add(salto);
-                //panelIndividual.ContentContainer.Controls.Add(usuario);
+                panelIndividual.ContentContainer.Controls.Add(status);
                 panelIndividual.ContentContainer.Controls.Add(correo);
 
                 // Obtengo preguntas de la aplicacion con sus respectivas respuestas
