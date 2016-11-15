@@ -123,6 +123,7 @@
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
       <LastGenOutput>PremiosInstitucionalesModels.cs</LastGenOutput>
     </Content>
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
@@ -141,6 +142,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
+    <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\ListaPremios.aspx" />
@@ -181,6 +183,7 @@
     <Compile Include="DBServices\Aplicacion\AplicacionService.cs" />
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\Evaluacion\EvaluacionService.cs" />
+    <Compile Include="DBServices\InformacionPersonalCandidato\InformacionPersonalCandidatoService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
     <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
@@ -256,6 +259,13 @@
     </Compile>
     <Compile Include="WebForms\ConfirmaCuenta.aspx.designer.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalCandidato.aspx.cs">
+      <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalCandidato.aspx.designer.cs">
+      <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ListaPremios.aspx.cs">
       <DependentUpon>ListaPremios.aspx</DependentUpon>

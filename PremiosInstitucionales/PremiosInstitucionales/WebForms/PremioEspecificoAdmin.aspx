@@ -51,8 +51,13 @@
                             <ajaxToolkit:Indent /><ajaxToolkit:Outdent /><ajaxToolkit:InsertHorizontalRule /><ajaxToolkit:HorizontalSeparator /><ajaxToolkit:InsertImage />
                         </Toolbar>
                     </ajaxToolkit:HtmlEditorExtender>
-                    <asp:Calendar ID="FechaInicioNuevaConvo" runat="server" Caption="Fecha inicio"></asp:Calendar>
-                    <asp:Calendar ID="FechaFinNuevaConvo" runat="server" Caption="Fecha fin"></asp:Calendar>
+                    <div>
+                        <asp:Calendar ID="FechaInicioNuevaConvo" runat="server" Caption="Fecha inicio"></asp:Calendar>
+                    </div>
+                    <div style="position: relative; left: 300px; margin-top: -163px;">
+                        <asp:Calendar ID="FechaFinNuevaConvo" runat="server" Caption="Fecha fin"></asp:Calendar>
+                    </div>
+                    
                     <asp:Button runat="server" ID="GuardarNuevaBttn" OnClick="GuardarNuevaBttn_Click" Text="Guardar nuevo"/>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
