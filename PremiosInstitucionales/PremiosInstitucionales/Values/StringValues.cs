@@ -18,8 +18,18 @@ namespace PremiosInstitucionales.Values
         public static readonly String CorreoSesion = "correo";
         public static readonly String RolSesion = "rol";
 
-        // valores para status de aplicacion
-        public static readonly String FormularioEnviado = "0";
+        // valores para status de aplicacion - asi estan en BD
+        public static readonly String Solicitado = "solicitada";
+        public static readonly String Rechazado = "rechazada";
+        public static readonly String Modificado = "modificada";
+        public static readonly String Aceptado = "aceptada";
+
+        //explicacion de valores para status a mostrar al usuario
+        public static readonly String ExplicacionSolicitado = "Tu solicitud ha sido enviada y se encuentra en espera de revisión. Vuelve más tarde.";
+        public static readonly String ExplicacionRechazado = "Tu solicitud ha sido revisada y rechazada. Haz clic aquí para corregirla.";
+        public static readonly String ExplicacionModificado = "Tu modificación ha sido enviada y se encuentra en espera de revisión. Vuelve más tarde.";
+        public static readonly String ExplicacionAceptado = "Tu solicitud ha sido revisada y aceptada. ¡Mucha suerte!";
+        public static readonly String ExplicacionFin = "El veredicto final ya ha sido dado. ¡Gracias por participar!";
 
         // valores para columnas de reporte para jueces
         public static readonly String ColumnaReporteJuecesNombreCandidato = "Nombre candidato";
