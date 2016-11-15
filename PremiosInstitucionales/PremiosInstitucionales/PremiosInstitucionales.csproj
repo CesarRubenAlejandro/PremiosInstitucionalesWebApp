@@ -123,6 +123,7 @@
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
       <LastGenOutput>PremiosInstitucionalesModels.cs</LastGenOutput>
     </Content>
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
