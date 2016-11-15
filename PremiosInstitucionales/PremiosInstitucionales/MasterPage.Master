@@ -36,7 +36,7 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a href="/WebForms/InicioCandidato.aspx">Inicio</a></li>
-                    <li><a href="#">Mis Datos Personales</a></li>
+                    <li><a href="/WebForms/InformacionPersonalCandidato.aspx">Mis Datos Personales</a></li>
                     <li><a href="/WebForms/ListaPremios.aspx">Premios Institucionales</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -78,7 +78,7 @@
                 </ul>
           </div>
         </nav>
-        <div ID="masterContent" style="margin-bottom:90px;">
+        <div id="masterContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
             </asp:ContentPlaceHolder>

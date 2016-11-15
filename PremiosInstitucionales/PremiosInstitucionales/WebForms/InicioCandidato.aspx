@@ -3,7 +3,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <div>
-        <h1>Inicio Candidato</h1>
+        <h1>Mis aplicaciones vigentes</h1>
+        <div runat="server" id="contenidoiniciocandidato">
 
+        </div>
     </div>
 </asp:Content>

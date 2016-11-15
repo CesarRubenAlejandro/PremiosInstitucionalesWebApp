@@ -4,6 +4,16 @@
         padding: 5px;
     }
 
+    #masterContent {
+        margin-bottom:90px;
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+
+    .navbar {
+        padding: 10px 120px 0 120px;
+    }
+
     .navbar-text{
         font-size: 12px;
         margin-top: 2px;
