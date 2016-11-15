@@ -33,14 +33,14 @@ namespace PremiosInstitucionales.WebForms
                 {
                     //desplegar categoria
                     Literal lit = new Literal();
-                    lit.Text = @"<h3>" + AplicacionService.GetPremioCategoriaByClaveCategoria(ap.cveCategoria).ToString() + "</h3> <br/>";   
-                    this.Controls.Add(lit);
+                    lit.Text = @"<h3>" + AplicacionService.GetPremioCategoriaByClaveCategoria(ap.cveCategoria).ToString() + "</h3> <br/>";
+                    contenidoiniciocandidato.Controls.Add(lit);
 
                     //desplegar mapa de estados
                     HtmlControl divControl = new HtmlGenericControl("div");
                     divControl.Attributes.Add("class", "crumbs");
                     divControl.Visible = true; // Not really necessary
-                    this.Controls.Add(divControl);
+                    contenidoiniciocandidato.Controls.Add(divControl);
 
                     divControl.Controls.Add(new LiteralControl(obtenerHtmlMapaEstados(ap)));
                }
@@ -49,7 +49,7 @@ namespace PremiosInstitucionales.WebForms
                 //desplegar letrero de no aplicaciones
                 HtmlControl divControl = new HtmlGenericControl("div");
                 divControl.Visible = true; // Not really necessary
-                this.Controls.Add(divControl);
+                contenidoiniciocandidato.Controls.Add(divControl);
 
                 divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
             }
