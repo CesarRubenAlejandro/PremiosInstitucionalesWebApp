@@ -28,8 +28,13 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                              where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
                              select convo).FirstOrDefault();
                 // regresar las categorias de la convocatoria
-                return convocatoria.PI_BA_Categoria.ToList();
-
+                try
+                {
+                    return convocatoria.PI_BA_Categoria.ToList();
+                } catch (Exception e)
+                {
+                    return null;
+                }
             } else
             {
                 return null;
@@ -56,12 +61,20 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
         public static List<PI_BA_Pregunta>GetFormularioByCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
-            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
-            PI_BA_Forma forma = categoria.PI_BA_Forma.First();
-            var preguntas = (from fp in forma.PI_BA_PreguntasPorForma
-                             join p in dbContext.PI_BA_Pregunta on fp.cvePregunta equals p.cvePregunta
-                             select p).ToList();
-            return preguntas;       
+            try
+            {
+                PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+                PI_BA_Forma forma = categoria.PI_BA_Forma.First();
+                var preguntas = (from fp in forma.PI_BA_PreguntasPorForma
+                                 join p in dbContext.PI_BA_Pregunta on fp.cvePregunta equals p.cvePregunta
+                                 orderby p.Texto
+                                 select p).ToList();
+                return preguntas;
+            } catch (Exception e)
+            {
+                return null;
+            }
+                 
         }
 
         public static void CrearAplicacion(PI_BA_Aplicacion aplicacion, List<PI_BA_Respuesta> respuestas)

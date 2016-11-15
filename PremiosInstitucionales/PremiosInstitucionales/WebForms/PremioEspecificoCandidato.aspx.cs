@@ -43,7 +43,7 @@ namespace PremiosInstitucionales.WebForms
                 else
                 {
                     // desplegar mensaje de error
-                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento o no se ha definido un formulario.";
                     ErrorLbl.Visible = true;
                     EnviarBttn.Visible = false;
                 }
@@ -80,27 +80,36 @@ namespace PremiosInstitucionales.WebForms
 
                 // obtener lista de preguntas para la categoria y desplegar el formulario
                 var preguntas = AplicacionService.GetFormularioByCategoria(CategoriasDDL.SelectedValue.ToString());
-                foreach (var pregunta in preguntas)
+                if (preguntas != null)
                 {
-                    // crear lbl con el texto de la pregunta
-                    Label lbl = new Label();
-                    lbl.Text = pregunta.Texto;
-                    PanelFormulario.Controls.Add(lbl);
+                    foreach (var pregunta in preguntas)
+                    {
+                        // crear lbl con el texto de la pregunta
+                        Label lbl = new Label();
+                        lbl.Text = pregunta.Texto;
+                        PanelFormulario.Controls.Add(lbl);
 
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                        PanelFormulario.Controls.Add(new LiteralControl("<br />"));
 
-                    TextBox tb = new TextBox();
-                    tb.ID = pregunta.IdentificadorObjeto;
-                    RequiredFieldValidator validator = new RequiredFieldValidator();
-                    validator.ControlToValidate = pregunta.IdentificadorObjeto;
-                    validator.ErrorMessage = "Campo requerido";
-                    validator.ForeColor = System.Drawing.Color.Red;
-                    
-                    PanelFormulario.Controls.Add(tb);
-                    PanelFormulario.Controls.Add(validator);
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                        TextBox tb = new TextBox();
+                        tb.ID = pregunta.IdentificadorObjeto;
+                        RequiredFieldValidator validator = new RequiredFieldValidator();
+                        validator.ControlToValidate = pregunta.IdentificadorObjeto;
+                        validator.ErrorMessage = "Campo requerido";
+                        validator.ForeColor = System.Drawing.Color.Red;
+
+                        PanelFormulario.Controls.Add(tb);
+                        PanelFormulario.Controls.Add(validator);
+                        PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                        PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                    }
                 }
+                else
+                {
+                    // esconder control EnviarBttn para evitar incongruencias
+                    EnviarBttn.Visible = false;
+                }
+                
             }
 
             

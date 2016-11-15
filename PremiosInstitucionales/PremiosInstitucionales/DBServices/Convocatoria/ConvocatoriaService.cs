@@ -129,8 +129,13 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                                     where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
                                     select convo).FirstOrDefault();
                 // regresar las categorias de la convocatoria
-                return convocatoria.PI_BA_Categoria.ToList();
-
+                try
+                {
+                    return convocatoria.PI_BA_Categoria.ToList();
+                } catch (Exception e)
+                {
+                    return null;
+                }
             }
             else
             {
