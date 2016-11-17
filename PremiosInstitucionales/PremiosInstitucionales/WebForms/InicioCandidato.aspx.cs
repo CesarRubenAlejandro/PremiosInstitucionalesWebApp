@@ -58,7 +58,7 @@ namespace PremiosInstitucionales.WebForms
         public static String obtenerHtmlMapaEstados(PI_BA_Aplicacion ap)
         {
             //regresar codigo html del mapa pertinente segun el estado actual de la aplicacion
-            if (AplicacionService.GetHasEndedByCategoria(ap.cveCategoria.ToString()))
+            if (AplicacionService.HasEndedByCategoria(ap.cveCategoria.ToString()))
             {
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
