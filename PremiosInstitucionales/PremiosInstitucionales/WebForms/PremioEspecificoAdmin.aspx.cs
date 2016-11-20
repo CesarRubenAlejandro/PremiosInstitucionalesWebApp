@@ -123,6 +123,12 @@ namespace PremiosInstitucionales.WebForms
                     panelIndividual.ContentContainer.Controls.Add(textoPregunta);
                 }
                 panelIndividual.ContentContainer.Controls.Add(salto);
+                // AGREGAR BOTON RECHAZAR
+                Button btn1 = new Button();
+                btn1.ID = Guid.NewGuid().ToString();
+                btn1.Text = "rechazar";
+                btn1.OnClientClick = "return ShowModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
+                panelIndividual.ContentContainer.Controls.Add(btn1);
 
                 MyAccordion.Panes.Add(panelIndividual);
              
@@ -193,6 +199,19 @@ namespace PremiosInstitucionales.WebForms
             // desplegar vista read only
             CancelarCambios();
             // forzar refresh para actualizar informacion
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
+
+        protected void bttnEnviarRechazo_Click(object sender, EventArgs e)
+        {
+            String aplicacionID = IdAppHidden.Value.ToString();
+            String razonRechazo = razonTB.Text.ToString();
+            // cambiar el status de la aplicacion a Rechazado
+
+            // enviar correo notificando al candidato de la aplicacion
+
+            // cargar nuevamente el acordeon de respuestas forzando un postback
+            razonTB.Text = "";
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
 
