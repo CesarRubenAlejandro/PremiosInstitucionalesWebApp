@@ -117,6 +117,14 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             return result;
         }
 
+        public static String GetCorreoCandidatoByAplicacion(String cveAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var app = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveAplicacion)).First();
+            var result = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(app.cveCandidato)).First().Correo;
+            return result;
+        }
+
         public static List<PI_BA_Categoria> GetCategoriasByPremio(String idPremio)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
