@@ -13,6 +13,12 @@ namespace PremiosInstitucionales.WebForms
             btn1.Text = "abrir popup";
             btn1.OnClientClick = "return ShowModalPopup(\"abc\")";
             panel.Controls.Add(btn1);
+
+            Button btn2 = new Button();
+            btn2.ID = "btn2";
+            btn2.Text = "abrir popup 2";
+            btn2.OnClientClick = "return ShowModalPopup(\"abc\")";
+            panel.Controls.Add(btn2);
         }
 
         protected void bttnEnviarRechazo_Click(object sender, EventArgs e)
