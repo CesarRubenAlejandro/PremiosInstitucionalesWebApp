@@ -10,276 +10,213 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class EditarConvocatoria {
+    public partial class InformacionPersonalCandidato {
         
         /// <summary>
-        /// IdAppHidden control.
+        /// Mensaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField IdAppHidden;
+        protected global::System.Web.UI.WebControls.Label Mensaje;
         
         /// <summary>
-        /// lnkDummy control.
+        /// EditarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDummy;
+        protected global::System.Web.UI.WebControls.Button EditarBtn;
         
         /// <summary>
-        /// ModalPopupExtender1 control.
+        /// NombresLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
+        protected global::System.Web.UI.WebControls.Label NombresLabel;
         
         /// <summary>
-        /// pnlPopup control.
+        /// NombresTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPopup;
+        protected global::System.Web.UI.WebControls.TextBox NombresTextBox;
         
         /// <summary>
-        /// razonTB control.
+        /// ApellidosLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox razonTB;
+        protected global::System.Web.UI.WebControls.Label ApellidosLabel;
         
         /// <summary>
-        /// btnHide control.
+        /// ApellidosTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHide;
+        protected global::System.Web.UI.WebControls.TextBox ApellidosTextBox;
         
         /// <summary>
-        /// bttnEnviarRechazo control.
+        /// CorreoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttnEnviarRechazo;
+        protected global::System.Web.UI.WebControls.Label CorreoLabel;
         
         /// <summary>
-        /// ImageHeader control.
+        /// CorreoTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageHeader;
+        protected global::System.Web.UI.WebControls.TextBox CorreoTextBox;
         
         /// <summary>
-        /// TabContainer1 control.
+        /// DomicilioLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TabContainer1;
+        protected global::System.Web.UI.WebControls.Label DomicilioLabel;
         
         /// <summary>
-        /// ConvocatoriaActualTab control.
+        /// DomicilioTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ConvocatoriaActualTab;
+        protected global::System.Web.UI.WebControls.TextBox DomicilioTextBox;
         
         /// <summary>
-        /// TituloConvocatoriaActualLbl control.
+        /// CiudadLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TituloConvocatoriaActualLbl;
+        protected global::System.Web.UI.WebControls.Label CiudadLabel;
         
         /// <summary>
-        /// TextoConvocatoriaActualLbl control.
+        /// CiudadTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextoConvocatoriaActualLbl;
+        protected global::System.Web.UI.WebControls.TextBox CiudadTextBox;
         
         /// <summary>
-        /// EditarConvocatoriaActualBttn control.
+        /// EstadoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditarConvocatoriaActualBttn;
+        protected global::System.Web.UI.WebControls.Label EstadoLabel;
         
         /// <summary>
-        /// TituloConvocatoriaActualTB control.
+        /// EstadoTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TituloConvocatoriaActualTB;
+        protected global::System.Web.UI.WebControls.TextBox EstadoTextBox;
         
         /// <summary>
-        /// TextoConvocatoriaActualTB control.
+        /// CodigoPostalLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextoConvocatoriaActualTB;
+        protected global::System.Web.UI.WebControls.Label CodigoPostalLabel;
         
         /// <summary>
-        /// HtmlEditorExtender2 control.
+        /// CodigoPostalTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.HtmlEditorExtender HtmlEditorExtender2;
+        protected global::System.Web.UI.WebControls.TextBox CodigoPostalTextBox;
         
         /// <summary>
-        /// GuardarCambiosBttn control.
+        /// TelefonoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarCambiosBttn;
+        protected global::System.Web.UI.WebControls.Label TelefonoLabel;
         
         /// <summary>
-        /// CancelarCambiosBttn control.
+        /// TelefonoTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelarCambiosBttn;
+        protected global::System.Web.UI.WebControls.TextBox TelefonoTextBox;
         
         /// <summary>
-        /// ConvocatoriaNuevaTab control.
+        /// PuestoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ConvocatoriaNuevaTab;
+        protected global::System.Web.UI.WebControls.Label PuestoLabel;
         
         /// <summary>
-        /// TituloNuevaConvocatoriaTB control.
+        /// PuestoTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TituloNuevaConvocatoriaTB;
+        protected global::System.Web.UI.WebControls.TextBox PuestoTextBox;
         
         /// <summary>
-        /// TextoNuevaConvocatoriaTB control.
+        /// InstitucionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextoNuevaConvocatoriaTB;
+        protected global::System.Web.UI.WebControls.Label InstitucionLabel;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// InstitucionTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox InstitucionTextBox;
         
         /// <summary>
-        /// HtmlEditorExtender1 control.
+        /// EnviarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.HtmlEditorExtender HtmlEditorExtender1;
-        
-        /// <summary>
-        /// FechaInicioNuevaConvo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar FechaInicioNuevaConvo;
-        
-        /// <summary>
-        /// FechaFinNuevaConvo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar FechaFinNuevaConvo;
-        
-        /// <summary>
-        /// GuardarNuevaBttn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarNuevaBttn;
-        
-        /// <summary>
-        /// AplicacionesTab control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel AplicacionesTab;
-        
-        /// <summary>
-        /// CategoriasDDL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CategoriasDDL;
-        
-        /// <summary>
-        /// ErrorLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorLbl;
-        
-        /// <summary>
-        /// MyAccordion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.Accordion MyAccordion;
+        protected global::System.Web.UI.WebControls.Button EnviarBtn;
     }
 }

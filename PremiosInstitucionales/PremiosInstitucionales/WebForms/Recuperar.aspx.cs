@@ -23,37 +23,51 @@ namespace PremiosInstitucionales.WebForms
             String id = RecuperarService.GetID(email);
             if (id != null)
             {
-                EnviarCorreoRecuperacion(email, id);
+                if (EnviarCorreoRecuperacion(email, id))
+                {
+                    Info.Text = "Se envió un correo para la recuperación de la contraseña";
+                    EnviarBoton.Visible = false;
+                    EmailTextBox.Visible = false;
+                }
+                else
+                {
+                    Info.Text = "Dirección de correo no válida";
+                }
             }
             else
             {
-                Mensaje.Text = "Usuario no existe";
+                Info.Text = "Usuario no existe";
             }
-            Mensaje.Visible = true;
+            Info.Visible = true;
         }
 
-        private void EnviarCorreoRecuperacion(String destinatario, String id)
+        private bool EnviarCorreoRecuperacion(String destinatario, String id)
         {
             String correoSender = "empresa.ejemplo.mail@gmail.com";
             String pswSender = "proyectointegrador";
             // enviando correo
-            using (MailMessage mm = new MailMessage(correoSender, destinatario))
+            try
             {
-                mm.Subject = "Recuperación de contraseña para el sistema Premios Institucionales del Tec de Monterrey";
-                mm.Body = "Para recuperar tu contraseña, haz click en el siguiente link: http://localhost:2943/WebForms/RecuperaCuenta.aspx?codigo=" + id;
-                mm.IsBodyHtml = false; 
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = NetworkCred;
-                smtp.Port = 587;
-                smtp.Send(mm);
+                using (MailMessage mm = new MailMessage(correoSender, destinatario))
+                {
+                    mm.Subject = "Recuperación de contraseña para el sistema Premios Institucionales del Tec de Monterrey";
+                    mm.Body = "Para recuperar tu contraseña, haz click en el siguiente link: http://localhost:2943/WebForms/RecuperaCuenta.aspx?codigo=" + id;
+                    mm.IsBodyHtml = false;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+                return true;
             }
-            Mensaje.Text = "Se envió un correo a " + destinatario + " para la recuperación de la contraseña";
-            EmailTextBox.Enabled = false;
-            EnviarBoton.Enabled = false;
+            catch (System.FormatException sfe)
+            {
+                return false;
+            }
         }
     }
 }

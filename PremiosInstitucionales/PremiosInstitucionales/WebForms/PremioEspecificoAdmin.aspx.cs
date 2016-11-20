@@ -47,7 +47,7 @@ namespace PremiosInstitucionales.WebForms
 
                 //obtener categorias para el premio
                 var categorias = ConvocatoriaService.GetCategoriasByPremio(idPremio);
-                if (categorias != null)
+                if (categorias != null && categorias.Count > 0)
                 {
                     // asignar el datasource al DropDown de categorias
                     CategoriasDDL.DataSource = categorias;
@@ -61,7 +61,7 @@ namespace PremiosInstitucionales.WebForms
                 else
                 {
                     // desplegar mensaje de error
-                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento";
+                    ErrorLbl.Text = "No hay convocatorias abiertas por el momento o no hay categorías registradas";
                     ErrorLbl.Visible = true;
                 }
 
@@ -102,14 +102,14 @@ namespace PremiosInstitucionales.WebForms
                 panelIndividual.HeaderContainer.Controls.Add(nombreCandidato);
 
                 // Agregar datos del candidato
-                //Label usuario = new Label();
+                Label status = new Label();
                 Label correo = new Label();
 
-                //usuario.Text = "<b>Usuario: </b>" + aplicacionCandidato.Value.UserName + "<br />";
+                status.Text = "<b>Estado: </b>" + aplicacionCandidato.Key.Status + "<br />";
                 correo.Text = "<b>Correo: </b>" + aplicacionCandidato.Value.Correo + "<br /><br />";
 
                 panelIndividual.ContentContainer.Controls.Add(salto);
-                //panelIndividual.ContentContainer.Controls.Add(usuario);
+                panelIndividual.ContentContainer.Controls.Add(status);
                 panelIndividual.ContentContainer.Controls.Add(correo);
 
                 // Obtengo preguntas de la aplicacion con sus respectivas respuestas
@@ -123,6 +123,12 @@ namespace PremiosInstitucionales.WebForms
                     panelIndividual.ContentContainer.Controls.Add(textoPregunta);
                 }
                 panelIndividual.ContentContainer.Controls.Add(salto);
+                // AGREGAR BOTON RECHAZAR
+                Button btn1 = new Button();
+                btn1.ID = Guid.NewGuid().ToString();
+                btn1.Text = "rechazar";
+                btn1.OnClientClick = "return ShowModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
+                panelIndividual.ContentContainer.Controls.Add(btn1);
 
                 MyAccordion.Panes.Add(panelIndividual);
              
@@ -193,6 +199,19 @@ namespace PremiosInstitucionales.WebForms
             // desplegar vista read only
             CancelarCambios();
             // forzar refresh para actualizar informacion
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
+
+        protected void bttnEnviarRechazo_Click(object sender, EventArgs e)
+        {
+            String aplicacionID = IdAppHidden.Value.ToString();
+            String razonRechazo = razonTB.Text.ToString();
+            // cambiar el status de la aplicacion a Rechazado
+
+            // enviar correo notificando al candidato de la aplicacion
+
+            // cargar nuevamente el acordeon de respuestas forzando un postback
+            razonTB.Text = "";
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
         }
 
