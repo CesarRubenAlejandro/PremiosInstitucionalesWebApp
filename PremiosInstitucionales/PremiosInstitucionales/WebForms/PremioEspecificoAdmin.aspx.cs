@@ -1,8 +1,11 @@
 ﻿using AjaxControlToolkit;
 using PremiosInstitucionales.DBServices.Convocatoria;
+using PremiosInstitucionales.DBServices.Aplicacion;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Net;
+using System.Net.Mail;
 using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
@@ -124,9 +127,9 @@ namespace PremiosInstitucionales.WebForms
                 }
                 panelIndividual.ContentContainer.Controls.Add(salto);
                 // AGREGAR BOTON RECHAZAR
-                Button btn1 = new Button();
+                LinkButton btn1 = new LinkButton();
                 btn1.ID = Guid.NewGuid().ToString();
-                btn1.Text = "rechazar";
+                btn1.Text = "Rechazar Aplicacion";
                 btn1.OnClientClick = "return ShowModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
                 panelIndividual.ContentContainer.Controls.Add(btn1);
 
@@ -206,13 +209,47 @@ namespace PremiosInstitucionales.WebForms
         {
             String aplicacionID = IdAppHidden.Value.ToString();
             String razonRechazo = razonTB.Text.ToString();
+            
             // cambiar el status de la aplicacion a Rechazado
+            AplicacionService.RechazarAplicacion(aplicacionID);
 
             // enviar correo notificando al candidato de la aplicacion
+            string razon = razonTB.Text.ToString();
+            EnviarCorreoConfirmacion(razon, aplicacionID);
 
             // cargar nuevamente el acordeon de respuestas forzando un postback
             razonTB.Text = "";
             Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
+
+        private bool EnviarCorreoConfirmacion(String razon, String claveAplicacion)
+        {
+            var aplicacion = AplicacionService.ObtenerAplicacionDeClave(claveAplicacion);
+
+            String correoSender = "empresa.ejemplo.mail@gmail.com";
+            String pswSender = "proyectointegrador";
+            try
+            {
+                using (MailMessage mm = new MailMessage(correoSender, aplicacion.PI_BA_Candidato.Correo))
+                {
+                    mm.Subject = "Rechazo de aplicacion de candidato " + aplicacion.PI_BA_Candidato.Nombre + " " + aplicacion.PI_BA_Candidato.Apellido + " en el sistema Premios Institucionales del Tec de Monterrey";
+                    mm.Body = "Se ha rechazado su aplicación para la categoría " + aplicacion.PI_BA_Categoria.Nombre + " del premio " + aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre + " por las siguientes razones: " + razon;
+                    mm.IsBodyHtml = false;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+                return true;
+            }
+            catch (System.FormatException sfe)
+            {
+                return false;
+            }
         }
 
     }
