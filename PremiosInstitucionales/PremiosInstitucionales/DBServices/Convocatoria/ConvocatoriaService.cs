@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.Entities.Models;
+using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,29 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             dbContext.SaveChanges();
         }
 
-        public static Dictionary<PI_BA_Aplicacion, PI_BA_Candidato> ObtenerCandidatosPorAplicaciones(List<PI_BA_Aplicacion> listaAplicaciones)
+        public static Dictionary<PI_BA_Aplicacion, PI_BA_Candidato> JuezObtenerCandidatosPorAplicaciones(List<PI_BA_Aplicacion> listaAplicaciones)
+        {// Obtengo lista de aplicaciones, regreso diccionario de aplicaciones con candidatos
+
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var lista = new Dictionary<PI_BA_Aplicacion, PI_BA_Candidato>();
+
+            foreach (var aplicacion in listaAplicaciones)
+            {
+                var candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato == aplicacion.cveCandidato)
+                    .FirstOrDefault<PI_BA_Candidato>();
+
+                // Se despliegan las aplicaciones aceptadas unicamente
+                if (aplicacion.Status == Values.StringValues.Aceptado)
+                {
+                    lista.Add(aplicacion, candidato);
+                }
+
+            }
+
+            return lista;
+        }
+
+        public static Dictionary<PI_BA_Aplicacion, PI_BA_Candidato> AdminObtenerCandidatosPorAplicaciones(List<PI_BA_Aplicacion> listaAplicaciones)
         {// Obtengo lista de aplicaciones, regreso diccionario de aplicaciones con candidatos
 
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -92,6 +115,25 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             }          
         }
 
+        public static List<PI_BA_Aplicacion> JuezObtenerAplicacionesPorCategoria(string cve_categoria)
+        {// Obtengo lista de aplicaciones dada una categoria
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(cve_categoria))
+                .First();
+
+                if (categoria.PI_BA_Aplicacion != null)
+                    return categoria.PI_BA_Aplicacion.Where(a=> a.Status.Equals(StringValues.Aceptado)).ToList();
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static Dictionary<string, string[]> ObtenerPreguntasConRespuestasPorAplicacion(PI_BA_Aplicacion aplicacion)
         { //Se obtiene un diccionario de preguntas y respuestas por aplicacion, ordenado por clave aplicacion
 
@@ -118,6 +160,14 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             dbContext = new wPremiosInstitucionalesdbEntities();
             var app = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveAplicacion)).First();
             var result = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(app.cveCandidato)).First().Nombre;
+            return result;
+        }
+
+        public static String GetCorreoCandidatoByAplicacion(String cveAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var app = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveAplicacion)).First();
+            var result = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(app.cveCandidato)).First().Correo;
             return result;
         }
 
