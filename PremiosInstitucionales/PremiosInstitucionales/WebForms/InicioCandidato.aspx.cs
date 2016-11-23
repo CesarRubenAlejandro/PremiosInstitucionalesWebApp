@@ -84,7 +84,8 @@ namespace PremiosInstitucionales.WebForms
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
                             "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/> " +
-                            StringValues.ExplicacionRechazado + "<br/> <br/> <br/>";
+                            StringValues.ExplicacionRechazado + "<a href=\"CorrigeAplicacion.aspx?aplicacion=" + ap.cveAplicacion + "\">Corrige</a>" 
+                            +  "<br/> <br/> <br/>";
             } else if (ap.Status == StringValues.Modificado)
             {
                 return "<ul>" +
