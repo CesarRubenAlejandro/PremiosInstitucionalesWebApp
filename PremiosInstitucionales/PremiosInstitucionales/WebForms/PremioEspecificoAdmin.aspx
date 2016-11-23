@@ -1,6 +1,64 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PremioEspecificoAdmin.aspx.cs" 
     Inherits="PremiosInstitucionales.WebForms.EditarConvocatoria" MasterPageFile="~/MasterPage.Master"%>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
+    <script type="text/javascript">
+        function ShowAcceptModalPopup(idApp) {
+            $find("mpeAccept").show();
+            document.getElementById('<%=IdAppHidden.ClientID%>').value = idApp;
+            return false;
+        }
+        function HideAcceptModalPopup() {
+            $find("mpeAccept").hide();
+            return false;
+        }
+
+        function ShowModalPopup(idApp) {
+            $find("mpe").show();
+            document.getElementById('<%=IdAppHidden.ClientID%>').value = idApp;
+            return false;
+        }
+        function HideModalPopup() {
+            $find("mpe").hide();
+            return false;
+        }
+    </script>
+    <asp:hiddenfield id="IdAppHidden" value="" runat="server"/>
+    <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
+    <cc1:ModalPopupExtender ID="ModalPopupExtender1" BehaviorID="mpe" runat="server"
+            PopupControlID="pnlPopup" TargetControlID="lnkDummy" >
+    </cc1:ModalPopupExtender>
+    <asp:Panel ID="pnlPopup" runat="server" Style="display: none; border: 1px dashed">
+            <div class="header">
+                <asp:Label ID="headerRechazo" runat="server" Font-Bold="true">Rechazar Aplicación</asp:Label>
+            </div>
+            <div class="body">
+                Motivo de rechazo
+                <br />
+                <asp:TextBox ID="razonTB" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <br />
+                <asp:Button ID="btnHide" runat="server" Text="Cancelar" OnClientClick="return HideModalPopup()" />
+                <asp:Button ID="bttnEnviarRechazo" text="Enviar" runat="server" onclick="bttnEnviarRechazo_Click"/>
+            </div>
+        </asp:Panel>
+
+    <cc1:ModalPopupExtender ID="ModalPopupExtender2" BehaviorID="mpeAccept" runat="server"
+            PopupControlID="pnlPopupAccept" TargetControlID="lnkDummy" >
+    </cc1:ModalPopupExtender>
+    <asp:Panel ID="pnlPopupAccept" runat="server" Style="display: none; border: 1px dashed">
+            <div class="header">
+                <asp:Label ID="Label1" runat="server" Font-Bold="true">Aceptar Aplicación</asp:Label>
+            </div>
+            <div class="body">
+                Se aceptará la aplicación. ¿Continuar?
+                <br />
+                <asp:Button ID="Button1" runat="server" Text="Cancelar" OnClientClick="return HideAcceptModalPopup()" />
+                <asp:Button ID="bttnAceptarAplicacion" text="Aceptar" runat="server" onclick="bttnAceptarAplicacion_Click"/>
+            </div>
+        </asp:Panel>
+
+
         <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader"/>
 
         <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">

@@ -14,6 +14,7 @@ namespace PremiosInstitucionales.WebForms
         {
             if (!IsPostBack)
             {
+                
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
                 if (Session[StringValues.RolSesion] != null)
                 {
