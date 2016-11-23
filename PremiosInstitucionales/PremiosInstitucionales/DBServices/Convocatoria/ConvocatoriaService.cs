@@ -62,7 +62,13 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             {
                 var candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato == aplicacion.cveCandidato)
                     .FirstOrDefault<PI_BA_Candidato>();
-                lista.Add(aplicacion, candidato);
+
+                // No se despliegan las aplicaciones rechazadas
+                if(aplicacion.Status!= Values.StringValues.Rechazado)
+                {
+                    lista.Add(aplicacion, candidato);
+                }
+                
             }
 
             return lista;  
@@ -83,9 +89,7 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             } catch (Exception e)
             {
                 return null;
-            }
-            
-
+            }          
         }
 
         public static Dictionary<string, string[]> ObtenerPreguntasConRespuestasPorAplicacion(PI_BA_Aplicacion aplicacion)

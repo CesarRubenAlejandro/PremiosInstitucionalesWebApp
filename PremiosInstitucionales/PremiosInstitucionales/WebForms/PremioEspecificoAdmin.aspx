@@ -21,12 +21,13 @@
     </cc1:ModalPopupExtender>
     <asp:Panel ID="pnlPopup" runat="server" Style="display: none; border: 1px dashed">
             <div class="header">
-                Modal Popup
+                <asp:Label ID="headerRechazo" runat="server" Font-Bold="true">Rechazar Aplicación</asp:Label>
             </div>
             <div class="body">
                 Motivo de rechazo
                 <br />
-                <asp:TextBox ID="razonTB" runat="server"></asp:TextBox>
+                <asp:TextBox ID="razonTB" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <br />
                 <asp:Button ID="btnHide" runat="server" Text="Cancelar" OnClientClick="return HideModalPopup()" />
                 <asp:Button ID="bttnEnviarRechazo" text="Enviar" runat="server" onclick="bttnEnviarRechazo_Click"/>
             </div>
