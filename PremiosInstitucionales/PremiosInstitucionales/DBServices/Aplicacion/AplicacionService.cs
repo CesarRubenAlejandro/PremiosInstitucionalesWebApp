@@ -131,6 +131,16 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             dbContext.SaveChanges();         
         }
 
+        public static void AceptarAplicacion(String claveAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(claveAplicacion)).FirstOrDefault();
+
+            aplicacion.Status = Values.StringValues.Aceptado;
+
+            dbContext.SaveChanges();
+        }
+
         public static PI_BA_Aplicacion ObtenerAplicacionDeClave(String claveAplicacion)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

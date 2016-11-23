@@ -85,7 +85,7 @@ namespace PremiosInstitucionales.WebForms
             var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(CategoriasDDL.SelectedValue.ToString());
 
             // obtener candidatos ligados a estas aplicaciones
-            var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+            var listaCandidatos = ConvocatoriaService.AdminObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
 
             Accordion ContenedorDeCandidatos = new Accordion();
 
@@ -132,6 +132,17 @@ namespace PremiosInstitucionales.WebForms
                 btn1.Text = "Rechazar Aplicacion";
                 btn1.OnClientClick = "return ShowModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
                 panelIndividual.ContentContainer.Controls.Add(btn1);
+
+                Label separador = new Label();
+                separador.Text = "|";
+                panelIndividual.ContentContainer.Controls.Add(separador);
+
+                // AGREGAR BOTON ACEPTAR
+                LinkButton btnAceptar = new LinkButton();
+                btnAceptar.ID = Guid.NewGuid().ToString();
+                btnAceptar.Text = "Aceptar Aplicacion";
+                btnAceptar.OnClientClick = "return ShowAcceptModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
+                panelIndividual.ContentContainer.Controls.Add(btnAceptar);
 
                 MyAccordion.Panes.Add(panelIndividual);
              
@@ -252,5 +263,13 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
+        protected void bttnAceptarAplicacion_Click(object sender, EventArgs e)
+        {
+            String aplicacionID = IdAppHidden.Value.ToString();
+            // cambiar el status de la aplicacion a Aceptado
+            AplicacionService.AceptarAplicacion(aplicacionID);
+            // cargar nuevamente el acordeon de respuestas forzando un postback
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
     }
 }

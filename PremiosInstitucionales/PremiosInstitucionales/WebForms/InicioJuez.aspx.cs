@@ -54,7 +54,7 @@ namespace PremiosInstitucionales.WebForms
                 var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(categoria.cveCategoria);
 
                 // obtener candidatos ligados a estas aplicaciones
-                var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+                var listaCandidatos = ConvocatoriaService.JuezObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
                 // crear acordeon nuevo
                 Accordion acordeonNuevo = new Accordion();
                 acordeonNuevo.ID = "acordeon" + aux;
@@ -127,7 +127,7 @@ namespace PremiosInstitucionales.WebForms
                 var cveCategoria = categorias[TabContainer1.ActiveTabIndex];
                 // obtener preguntas y respuestas, y crear un DataTable
                 DataTable dt = new DataTable();
-                var aplicaciones = ConvocatoriaService.ObtenerAplicacionesPorCategoria(cveCategoria);
+                var aplicaciones = ConvocatoriaService.JuezObtenerAplicacionesPorCategoria(cveCategoria);
                 for (int i = 0; i < aplicaciones.Count; i++)
                 {
                     var diccionarioRespuestas = ConvocatoriaService.ObtenerPreguntasConRespuestasPorAplicacion(aplicaciones[i]);
