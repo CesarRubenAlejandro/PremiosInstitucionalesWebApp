@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PremiosInstitucionales.Values;
 using System.Web;
 
 namespace PremiosInstitucionales.DBServices.Aplicacion
@@ -120,10 +121,125 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             return "Premio " + premio.Nombre.ToString() + " - Categoría " + categoria.Nombre.ToString();
         }
 
-        public static Boolean GetHasEndedByCategoria(String idCategoria)
+        public static void RechazarAplicacion(String claveAplicacion)
         {
-            //TODO
-            return false;
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(claveAplicacion)).FirstOrDefault();
+
+            aplicacion.Status = Values.StringValues.Rechazado;
+
+            dbContext.SaveChanges();         
+        }
+
+        public static void AceptarAplicacion(String claveAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(claveAplicacion)).FirstOrDefault();
+
+            aplicacion.Status = Values.StringValues.Aceptado;
+
+            dbContext.SaveChanges();
+        }
+
+        public static PI_BA_Aplicacion ObtenerAplicacionDeClave(String claveAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(claveAplicacion)).FirstOrDefault();
+
+            return aplicacion;
+        }
+
+        public static Boolean HasEndedByCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
+
+            DateTime fechaactual = DateTime.Now;
+            DateTime fechafin = Convert.ToDateTime(convocatoria.FechaFin);
+            int result = DateTime.Compare(fechaactual, fechafin);
+
+            if (result < 0)
+                return false;
+            else if (result == 0)
+                return false;
+            else
+                return true;
+        }
+
+        public static Boolean GetEsRechazadoByAplicacion(String idAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(idAplicacion)).FirstOrDefault();
+                return aplicacion.Status.Equals(StringValues.Rechazado);
+
+            } catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static String GetCveCategoriaByAplicacion(String idAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(idAplicacion)).FirstOrDefault();
+                var result = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(aplicacion.cveCategoria)).FirstOrDefault().cveCategoria;
+                return result;
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
+        public static PI_BA_Respuesta GetRespuestaByPreguntaAndAplicacion(String idPregunta, String idAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var result = dbContext.PI_BA_Respuesta.Where(r => r.cveAplicacion.Equals(idAplicacion) && r.cvePregunta
+                .Equals(idPregunta)).FirstOrDefault();
+                return result;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static void SetAplicacionModificada(String idAplicacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(idAplicacion)).FirstOrDefault();
+                aplicacion.Status = StringValues.Modificado;
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public static void SaveRespuestaModificada(String idAplicacion, String idPregunta, String valorModificado)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var resp = dbContext.PI_BA_Respuesta.Where(r => r.cveAplicacion.Equals(idAplicacion) && r.cvePregunta
+                .Equals(idPregunta)).FirstOrDefault();
+                resp.Valor = valorModificado;
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

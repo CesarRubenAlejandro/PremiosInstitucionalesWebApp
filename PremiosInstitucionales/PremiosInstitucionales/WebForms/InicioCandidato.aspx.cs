@@ -14,6 +14,7 @@ namespace PremiosInstitucionales.WebForms
         {
             if (!IsPostBack)
             {
+                
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
                 if (Session[StringValues.RolSesion] != null)
                 {
@@ -39,7 +40,7 @@ namespace PremiosInstitucionales.WebForms
                     //desplegar mapa de estados
                     HtmlControl divControl = new HtmlGenericControl("div");
                     divControl.Attributes.Add("class", "crumbs");
-                    divControl.Visible = true; // Not really necessary
+                    divControl.Visible = true; 
                     contenidoiniciocandidato.Controls.Add(divControl);
 
                     divControl.Controls.Add(new LiteralControl(obtenerHtmlMapaEstados(ap)));
@@ -48,7 +49,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 //desplegar letrero de no aplicaciones
                 HtmlControl divControl = new HtmlGenericControl("div");
-                divControl.Visible = true; // Not really necessary
+                divControl.Visible = true; 
                 contenidoiniciocandidato.Controls.Add(divControl);
 
                 divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
@@ -58,7 +59,7 @@ namespace PremiosInstitucionales.WebForms
         public static String obtenerHtmlMapaEstados(PI_BA_Aplicacion ap)
         {
             //regresar codigo html del mapa pertinente segun el estado actual de la aplicacion
-            if (AplicacionService.GetHasEndedByCategoria(ap.cveCategoria.ToString()))
+            if (AplicacionService.HasEndedByCategoria(ap.cveCategoria.ToString()))
             {
                 return "<ul>" +
                             "<li><a href = \"#1\"> Solicitada </a></li>" +
@@ -83,7 +84,8 @@ namespace PremiosInstitucionales.WebForms
                             "<li><a href = \"#4\"> Aceptada </a></li>" +
                             "<li><a href = \"#5\"> Convocatoria cerrada </a></li>" +
                             "</ul> <br/> <br/> <br/> " +
-                            StringValues.ExplicacionRechazado + "<br/> <br/> <br/>";
+                            StringValues.ExplicacionRechazado + "<a href=\"CorrigeAplicacion.aspx?aplicacion=" + ap.cveAplicacion + "\">Haz clic aquí para modificarla.</a>"
+                            +  "<br/> <br/> <br/>";
             } else if (ap.Status == StringValues.Modificado)
             {
                 return "<ul>" +

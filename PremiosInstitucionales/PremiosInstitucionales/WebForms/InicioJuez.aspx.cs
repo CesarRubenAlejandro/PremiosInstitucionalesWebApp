@@ -40,6 +40,11 @@ namespace PremiosInstitucionales.WebForms
             int aux = 0;
             // obtener las categorias asociadas al juez actual
             var listaCategorias = EvaluacionService.GetCategoriaByJuez(Session[StringValues.CorreoSesion].ToString());
+            // desactivar boton de exportar si no hay categorias asignadas al juez
+            if (listaCategorias.Count == 0)
+            {
+                ExportarBttn.Visible = false;
+            }
             // crear un TabPanel por cada categoria
             foreach (var categoria in listaCategorias)
             {
@@ -49,7 +54,7 @@ namespace PremiosInstitucionales.WebForms
                 var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(categoria.cveCategoria);
 
                 // obtener candidatos ligados a estas aplicaciones
-                var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+                var listaCandidatos = ConvocatoriaService.JuezObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
                 // crear acordeon nuevo
                 Accordion acordeonNuevo = new Accordion();
                 acordeonNuevo.ID = "acordeon" + aux;
@@ -122,7 +127,7 @@ namespace PremiosInstitucionales.WebForms
                 var cveCategoria = categorias[TabContainer1.ActiveTabIndex];
                 // obtener preguntas y respuestas, y crear un DataTable
                 DataTable dt = new DataTable();
-                var aplicaciones = ConvocatoriaService.ObtenerAplicacionesPorCategoria(cveCategoria);
+                var aplicaciones = ConvocatoriaService.JuezObtenerAplicacionesPorCategoria(cveCategoria);
                 for (int i = 0; i < aplicaciones.Count; i++)
                 {
                     var diccionarioRespuestas = ConvocatoriaService.ObtenerPreguntasConRespuestasPorAplicacion(aplicaciones[i]);
@@ -134,6 +139,11 @@ namespace PremiosInstitucionales.WebForms
                         columnNombre.ColumnName = StringValues.ColumnaReporteJuecesNombreCandidato;
                         columnNombre.DataType = typeof(string);
                         dt.Columns.Add(columnNombre);
+                        // crear columna de correo de candidato
+                        DataColumn columnCorreo = new DataColumn();
+                        columnCorreo.ColumnName = StringValues.ColumnaReporteJuecesCorreo;
+                        columnCorreo.DataType = typeof(string);
+                        dt.Columns.Add(columnCorreo);
 
                         foreach (var pregunta in diccionarioRespuestas)
                         {
@@ -151,6 +161,8 @@ namespace PremiosInstitucionales.WebForms
                     }
                     // agregar nombre de candidato a renglon
                     row[StringValues.ColumnaReporteJuecesNombreCandidato] = ConvocatoriaService.GetNombreCandidatoByAplicacion(aplicaciones[i].cveAplicacion);
+                    // agregar correo de candidato a renglon
+                    row[StringValues.ColumnaReporteJuecesCorreo] = ConvocatoriaService.GetCorreoCandidatoByAplicacion(aplicaciones[i].cveAplicacion);
                     dt.Rows.Add(row);
 
                 }
