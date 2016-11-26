@@ -34,5 +34,9 @@ namespace PremiosInstitucionales.Values
         // valores para columnas de reporte para jueces
         public static readonly String ColumnaReporteJuecesNombreCandidato = "Nombre candidato";
         public static readonly String ColumnaReporteJuecesCorreo = "Correo candidato";
+
+        // labels de boton en InformacionPersonal
+        public static readonly String InfoPersonalCancelar = "Cancelar cambios";
+        public static readonly String InfoPersonalEditar = "Editar datos";
     }
 }

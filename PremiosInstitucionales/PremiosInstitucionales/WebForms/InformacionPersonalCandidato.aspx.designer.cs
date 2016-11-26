@@ -103,60 +103,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox DomicilioTextBox;
         
         /// <summary>
-        /// CiudadLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CiudadLabel;
-        
-        /// <summary>
-        /// CiudadTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CiudadTextBox;
-        
-        /// <summary>
-        /// EstadoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EstadoLabel;
-        
-        /// <summary>
-        /// EstadoTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EstadoTextBox;
-        
-        /// <summary>
-        /// CodigoPostalLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CodigoPostalLabel;
-        
-        /// <summary>
-        /// CodigoPostalTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CodigoPostalTextBox;
-        
-        /// <summary>
         /// TelefonoLabel control.
         /// </summary>
         /// <remarks>
@@ -175,40 +121,40 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox TelefonoTextBox;
         
         /// <summary>
-        /// PuestoLabel control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PuestoLabel;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// PuestoTextBox control.
+        /// RFCTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PuestoTextBox;
+        protected global::System.Web.UI.WebControls.TextBox RFCTextBox;
         
         /// <summary>
-        /// InstitucionLabel control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label InstitucionLabel;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// InstitucionTextBox control.
+        /// NacionalidadTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InstitucionTextBox;
+        protected global::System.Web.UI.WebControls.TextBox NacionalidadTextBox;
         
         /// <summary>
         /// EnviarBtn control.
