@@ -149,10 +149,22 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             return aplicacion;
         }
 
-        public static Boolean GetHasEndedByCategoria(String idCategoria)
+        public static Boolean HasEndedByCategoria(String idCategoria)
         {
-            //TODO
-            return false;
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
+
+            DateTime fechaactual = DateTime.Now;
+            DateTime fechafin = Convert.ToDateTime(convocatoria.FechaFin);
+            int result = DateTime.Compare(fechaactual, fechafin);
+
+            if (result < 0)
+                return false;
+            else if (result == 0)
+                return false;
+            else
+                return true;
         }
 
         public static Boolean GetEsRechazadoByAplicacion(String idAplicacion)
