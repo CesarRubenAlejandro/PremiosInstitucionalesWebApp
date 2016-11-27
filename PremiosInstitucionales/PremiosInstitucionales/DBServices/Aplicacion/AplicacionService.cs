@@ -68,7 +68,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 PI_BA_Forma forma = categoria.PI_BA_Forma.First();
                 var preguntas = (from fp in forma.PI_BA_PreguntasPorForma
                                  join p in dbContext.PI_BA_Pregunta on fp.cvePregunta equals p.cvePregunta
-                                 orderby p.Texto
+                                 orderby p.Orden
                                  select p).ToList();
                 return preguntas;
             } catch (Exception e)

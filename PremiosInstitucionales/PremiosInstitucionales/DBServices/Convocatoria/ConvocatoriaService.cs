@@ -140,15 +140,20 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             dbContext = new wPremiosInstitucionalesdbEntities();
 
             var respuestas = dbContext.PI_BA_Respuesta.Where(c => c.cveAplicacion == aplicacion.cveAplicacion).ToList();
-
+            var query = (from resp in dbContext.PI_BA_Respuesta
+                         where resp.cveAplicacion.Equals(aplicacion.cveAplicacion)
+                         join pr in dbContext.PI_BA_Pregunta on resp.cvePregunta equals pr.cvePregunta
+                         orderby pr.Orden
+                         select new
+                         {
+                             idResp = resp.cveRespuesta,
+                             txtPreg = pr.Texto,
+                             valorResp = resp.Valor
+                         }).ToList();
             var diccionarioPregResp = new Dictionary<string,string[]>();
-
-            foreach (var respuesta in respuestas)
+            foreach (var auxPregResp in query)
             {
-                var obtengoPregunta = dbContext.PI_BA_Pregunta.Where(c => c.cvePregunta == respuesta.cvePregunta)
-                    .FirstOrDefault<PI_BA_Pregunta>();
-
-                diccionarioPregResp.Add(respuesta.cveRespuesta, new string[] {obtengoPregunta.Texto, respuesta.Valor});
+                diccionarioPregResp.Add(auxPregResp.idResp, new string[] { auxPregResp.txtPreg, auxPregResp.valorResp });
             }
 
             return diccionarioPregResp;
