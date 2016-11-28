@@ -155,9 +155,39 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
             PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
 
-            DateTime fechaactual = DateTime.Now;
-            DateTime fechafin = Convert.ToDateTime(convocatoria.FechaFin);
-            int result = DateTime.Compare(fechaactual, fechafin);
+            int result;
+            try { 
+                DateTime fechaactual = DateTime.Now;
+                DateTime fechafin = Convert.ToDateTime(convocatoria.FechaFin);
+                result = DateTime.Compare(fechaactual, fechafin);
+            } catch (Exception e)
+            {
+                result = -1;
+            }
+
+            if (result < 0)
+                return false;
+            else if (result == 0)
+                return false;
+            else
+                return true;
+        }
+
+        public static Boolean HasWinnersByCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
+
+            int result;
+            try { 
+                DateTime fechaactual = DateTime.Now;
+                DateTime fechaveredicto = Convert.ToDateTime(convocatoria.FechaVeredicto);
+                result = DateTime.Compare(fechaactual, fechaveredicto);
+            } catch (Exception e)
+            {
+                result = -1;
+            }
 
             if (result < 0)
                 return false;
