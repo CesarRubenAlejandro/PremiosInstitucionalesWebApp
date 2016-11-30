@@ -38,5 +38,10 @@ namespace PremiosInstitucionales.Values
         // labels de boton en InformacionPersonal
         public static readonly String InfoPersonalCancelar = "Cancelar cambios";
         public static readonly String InfoPersonalEditar = "Editar datos";
+
+        // valores de correos
+        public static readonly String ContenidoCorreoFecha = "%FECHA%";
+        public static readonly String ContenidoCorreoMail = "%CORREO%";
+        public static readonly String ContenidoCorreoConfirmacion = "%CONFIRMACION%";
     }
 }

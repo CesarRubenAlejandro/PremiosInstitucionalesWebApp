@@ -1,5 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.Registro;
+using PremiosInstitucionales.Values;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
@@ -60,17 +62,35 @@ namespace PremiosInstitucionales.WebForms
             {
                 using (MailMessage mm = new MailMessage(correoSender, EmailTextBox.Text.ToString()))
                 {
-                    mm.Subject = "Confirmación de cuenta para el sistema Premios Institucionales del Tec de Monterrey";
-                    mm.Body = "Para confirmar esta cuenta, haz click en el siguiente link: http://localhost:2943/WebForms/ConfirmaCuenta.aspx?codigo=" + codigoConfirmacion;
-                    mm.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
+                    mm.Subject = "Confirma tu cuenta para Premios Institucionales del Tec de Monterrey.";
+                    mm.IsBodyHtml = true;
+                    var bodyContent = "";
+                    try
+                    {
+                        bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoConfirmaCuenta.txt"));
+                        // formatear contenidos de string
+                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoMail, EmailTextBox.Text.ToString());
+                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoConfirmacion, codigoConfirmacion);
+                        // agregar imagen inline
+
+                        
+                        // enviar
+                        mm.Body = bodyContent;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+                    }
+                    catch (Exception e)
+                    {
+                        return false;
+                    }
+                    
                 }
                 return true;
             }
