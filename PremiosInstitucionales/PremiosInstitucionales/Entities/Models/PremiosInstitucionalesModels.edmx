@@ -20,13 +20,16 @@
             <PropertyRef Name="cveCandidato" />
           </Key>
           <Property Name="cveCandidato" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="100" />
           <Property Name="Password" Type="varchar" MaxLength="100" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Apellido" Type="varchar" MaxLength="100" />
           <Property Name="Confirmado" Type="bit" />
           <Property Name="Correo" Type="varchar" MaxLength="100" />
           <Property Name="CodigoConfirmacion" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="RFC" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -46,6 +49,7 @@
           <Property Name="FechaFin" Type="date" />
           <Property Name="cvePremio" Type="varchar" MaxLength="50" />
           <Property Name="TituloConvocatoria" Type="varchar" MaxLength="100" />
+          <Property Name="FechaVeredicto" Type="date" />
         </EntityType>
         <EntityType Name="PI_BA_Evaluacion">
           <Key>
@@ -90,6 +94,7 @@
           <Property Name="Texto" Type="varchar" MaxLength="100" />
           <Property Name="IdentificadorObjeto" Type="varchar" MaxLength="100" />
           <Property Name="TipoCampo" Type="char" MaxLength="5" />
+          <Property Name="Orden" Type="int" />
         </EntityType>
         <EntityType Name="PI_BA_PreguntasPorForma">
           <Key>
@@ -370,7 +375,6 @@
             <PropertyRef Name="cveCandidato" />
           </Key>
           <Property Name="cveCandidato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -378,6 +382,10 @@
           <NavigationProperty Name="PI_BA_Aplicacion" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato" FromRole="PI_BA_Candidato" ToRole="PI_BA_Aplicacion" />
           <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CodigoConfirmacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -404,6 +412,7 @@
           <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria" FromRole="PI_BA_Convocatoria" ToRole="PI_BA_Categoria" />
           <NavigationProperty Name="PI_BA_Premio" Relationship="Self.FK_PI_BA_Convocatoria_PI_BA_Premio" FromRole="PI_BA_Convocatoria" ToRole="PI_BA_Premio" />
           <Property Name="TituloConvocatoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVeredicto" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="PI_BA_Evaluacion">
           <Key>
@@ -459,6 +468,7 @@
           <Property Name="TipoCampo" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="PI_BA_PreguntasPorForma" Relationship="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" FromRole="PI_BA_Pregunta" ToRole="PI_BA_PreguntasPorForma" />
           <NavigationProperty Name="PI_BA_Respuesta" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta" FromRole="PI_BA_Pregunta" ToRole="PI_BA_Respuesta" />
+          <Property Name="Orden" Type="Int32" />
         </EntityType>
         <EntityType Name="PI_BA_PreguntasPorForma">
           <Key>
@@ -759,10 +769,13 @@
           <EntitySetMapping Name="PI_BA_Candidato">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
               <MappingFragment StoreEntitySet="PI_BA_Candidato">
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="CodigoConfirmacion" ColumnName="CodigoConfirmacion" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
@@ -782,6 +795,7 @@
           <EntitySetMapping Name="PI_BA_Convocatoria">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
               <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
+                <ScalarProperty Name="FechaVeredicto" ColumnName="FechaVeredicto" />
                 <ScalarProperty Name="TituloConvocatoria" ColumnName="TituloConvocatoria" />
                 <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -833,6 +847,7 @@
           <EntitySetMapping Name="PI_BA_Pregunta">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Pregunta">
               <MappingFragment StoreEntitySet="PI_BA_Pregunta">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
                 <ScalarProperty Name="Texto" ColumnName="Texto" />
                 <ScalarProperty Name="IdentificadorObjeto" ColumnName="IdentificadorObjeto" />
