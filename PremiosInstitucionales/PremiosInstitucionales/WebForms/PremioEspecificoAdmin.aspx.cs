@@ -7,6 +7,8 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Web.UI.WebControls;
+using System.IO;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -243,9 +245,18 @@ namespace PremiosInstitucionales.WebForms
             {
                 using (MailMessage mm = new MailMessage(correoSender, aplicacion.PI_BA_Candidato.Correo))
                 {
-                    mm.Subject = "Rechazo de aplicacion de candidato " + aplicacion.PI_BA_Candidato.Nombre + " " + aplicacion.PI_BA_Candidato.Apellido + " en el sistema Premios Institucionales del Tec de Monterrey";
-                    mm.Body = "Se ha rechazado su aplicación para la categoría " + aplicacion.PI_BA_Categoria.Nombre + " del premio " + aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre + " por las siguientes razones: " + razon;
-                    mm.IsBodyHtml = false;
+                    mm.Subject = "Requiere cambios la solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey.";
+                    var bodyContent = "";
+                    bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoSolicitudCambio.txt"));
+                    // formatear contenidos de string
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre, aplicacion.PI_BA_Candidato.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoPremio, aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoCategoria, aplicacion.PI_BA_Categoria.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoRazon, razon);
+                    // enviar
+                    mm.Body = bodyContent;
+                    mm.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;

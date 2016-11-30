@@ -129,6 +129,7 @@
     <Content Include="img\jdbgmgr.jpg" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
+    <Content Include="img\teclogo.jpg" />
     <Content Include="img\teclogo.PNG" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -143,6 +144,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
+    <Content Include="Values\CorreoRecuperaPassword.txt" />
+    <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
