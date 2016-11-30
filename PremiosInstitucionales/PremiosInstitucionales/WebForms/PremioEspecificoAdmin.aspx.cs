@@ -160,6 +160,7 @@ namespace PremiosInstitucionales.WebForms
             nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
             nuevaConvo.FechaInicio = FechaInicioNuevaConvo.SelectedDate.Date;
             nuevaConvo.FechaFin = FechaFinNuevaConvo.SelectedDate.Date;
+            nuevaConvo.FechaVeredicto = FechaVeredicto.SelectedDate.Date;
             // guardar nueva convocatoria
             ConvocatoriaService.SaveNewConvocatoria(premioActual.cvePremio, nuevaConvo);
             // limpiar campos de nueva convocatoria
