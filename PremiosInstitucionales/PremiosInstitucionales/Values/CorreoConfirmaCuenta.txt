@@ -1,0 +1,18 @@
+﻿<html>
+<body>
+<img src="../img/teclogo.png">
+<p style="text-align:left">%FECHA%</p>
+<p>Hola %CORREO%</p>
+<p>Hemos recibido una solicitud para registrar una cuenta y continuar con tu proceso de inscripción a 
+Premio Institucionales Tec de Monterrey. </p>
+<p>Haz clic en el botón que aparece a continuación para confirmar tu cuenta.</p>
+<a href="http://localhost:2943/WebForms/ConfirmaCuenta.aspx?codigo=%CONFIRMACION%">Confirma tu cuenta</a>
+<br>
+<br>
+<hr>
+<div style="text-align:center">
+<p>Premios institucionales</p>
+<p>Tec de Monterrey</p>
+</div>
+</body>
+</html>

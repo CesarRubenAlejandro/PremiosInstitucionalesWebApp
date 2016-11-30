@@ -69,7 +69,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 // esconder mensaje de error
                 ErrorLbl.Visible = false;
-                // mostrar boton
+                // mostrar boton de enviar
                 EnviarBttn.Visible = true;
                 // vaciar coleccion de preguntas para evitar IDs repetidos
                 if (PanelFormulario.Controls.Count > 0)
