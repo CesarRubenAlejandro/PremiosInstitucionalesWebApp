@@ -24,12 +24,21 @@ namespace PremiosInstitucionales.Values
         public static readonly String Modificado = "modificada";
         public static readonly String Aceptado = "aceptada";
 
+        //titulo de valores para status a mostrar al usuario
+        public static readonly String TituloSolicitado = "Solicitud registrada";
+        public static readonly String TituloRechazado = "Requiere cambios";
+        public static readonly String TituloModificado = "Solicitud modificada";
+        public static readonly String TituloAceptado = "Solicitud aceptada";
+        public static readonly String TituloCerrado = "Convocatoria cerrada";
+        public static readonly String TituloVeredicto = "Veredicto final";
+
         //explicacion de valores para status a mostrar al usuario
-        public static readonly String ExplicacionSolicitado = "Tu solicitud ha sido enviada y se encuentra en espera de revisión. Vuelve más tarde.";
-        public static readonly String ExplicacionRechazado = "Tu solicitud ha sido revisada y rechazada. Haz clic a continuación para corregirla.";
-        public static readonly String ExplicacionModificado = "Tu modificación ha sido enviada y se encuentra en espera de revisión. Vuelve más tarde.";
-        public static readonly String ExplicacionAceptado = "Tu solicitud ha sido revisada y aceptada. ¡Mucha suerte!";
-        public static readonly String ExplicacionFin = "El veredicto final ya ha sido dado. ¡Gracias por participar!";
+        public static readonly String ExplicacionSolicitado = "Tu solicitud ha sido registrada y se encuentra en espera de revisión, te llegará una notificación más adelante.";
+        public static readonly String ExplicacionRechazado = "Tu solicitud ha sido revisada y encontramos que requiere más información. ";
+        public static readonly String ExplicacionModificado = "Tu registro modificado ha sido enviado y se encuentra en espera de revisión, te llegará una notificación más adelante.";
+        public static readonly String ExplicacionAceptado = "Tu registro de solicitud ha sido revisado y aceptado. ¡Mucha suerte!";
+        public static readonly String ExplicacionCerrado = "Tu registro se encuentra fuera de la fecha vigente de la convocatoria.Te invitamos a estar pendiente de la nueva convocatoria.";
+        public static readonly String ExplicacionVeredicto = "Ya se tiene el ganador, espera el anuncio en la página oficial del Premio. ¡Gracias por participar!";
 
         // valores para columnas de reporte para jueces
         public static readonly String ColumnaReporteJuecesNombreCandidato = "Nombre candidato";
