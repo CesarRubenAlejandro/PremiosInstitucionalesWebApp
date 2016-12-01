@@ -25,6 +25,41 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
             return new Tuple<string, string>(nombres, apellidos);
         }
 
+        public static PI_BA_Candidato GetCandidatoByCorreo(String correo)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(correo)).FirstOrDefault();
+            } catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static bool GuardarCambios(PI_BA_Candidato container, string correo)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var candidato = dbContext.PI_BA_Candidato.Where(c => c.Correo == correo)
+                    .FirstOrDefault();
+                candidato.Apellido = container.Apellido;
+                candidato.Direccion = container.Direccion;
+                candidato.Nacionalidad = container.Nacionalidad;
+                candidato.Nombre = container.Nombre;
+                candidato.RFC = container.RFC;
+                candidato.Telefono = container.Telefono;
+                dbContext.SaveChanges();
+                return true;
+            } catch (Exception e)
+            {
+                return false;
+            }
+            
+
+        }
+
         public static bool Set(string correoAntiguo, string nombres, string apellidos, string correoNuevo)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

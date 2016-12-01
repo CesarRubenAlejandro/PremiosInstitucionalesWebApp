@@ -25,6 +25,7 @@ namespace PremiosInstitucionales.Entities.Models
         public string Texto { get; set; }
         public string IdentificadorObjeto { get; set; }
         public string TipoCampo { get; set; }
+        public Nullable<int> Orden { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_PreguntasPorForma> PI_BA_PreguntasPorForma { get; set; }

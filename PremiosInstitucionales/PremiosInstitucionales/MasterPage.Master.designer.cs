@@ -13,6 +13,15 @@ namespace PremiosInstitucionales {
     public partial class MasterPage {
         
         /// <summary>
+        /// head control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogoutAdmin;
         
         /// <summary>
-        /// Button1 control.
+        /// LogoutAdminBttn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button LogoutAdminBttn;
         
         /// <summary>
         /// NavJuez control.
@@ -103,13 +112,13 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogoutJuez;
         
         /// <summary>
-        /// Button2 control.
+        /// LogoutJuezBttn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button LogoutJuezBttn;
         
         /// <summary>
         /// ContentPlaceHolderBody control.

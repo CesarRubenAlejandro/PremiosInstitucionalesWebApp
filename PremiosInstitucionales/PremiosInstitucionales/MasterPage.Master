@@ -5,9 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" href="Content/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="Content/premiosinstitucionales.css" type="text/css"/>
-    <link rel="shortcut icon" href="favicon.ico" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+        <link href='<%= ResolveUrl("~/Content/premiosinstitucionales.css")%>'  rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="favicon.ico" />
+    </asp:ContentPlaceHolder>
 </head>
 
 <body>
@@ -17,7 +19,8 @@
         <nav id="NavDefault" visible="true" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
                     
@@ -32,16 +35,17 @@
          <nav id="NavCandidato" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="/WebForms/InicioCandidato.aspx">Inicio</a></li>
-                    <li><a href="/WebForms/InformacionPersonalCandidato.aspx">Mis Datos Personales</a></li>
-                    <li><a href="/WebForms/ListaPremios.aspx">Premios Institucionales</a></li>
+                <ul class="nav navbar-nav ">
+                    <li><a class="navbar-text" href="/WebForms/InicioCandidato.aspx">Inicio</a></li>
+                    <li><a class="navbar-text" href="/WebForms/InformacionPersonalCandidato.aspx">Mis Datos Personales</a></li>
+                    <li><a class="navbar-text" href="/WebForms/ListaPremios.aspx">Premios Institucionales</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li runat="server" visible="false" id="LogoutCandidato">
-                        <asp:Button runat="server" Text="Logout" Id="LogoutBttn" OnClick="LogoutBttn_Click"/>
+                        <asp:Button runat="server" Text="Cerrar sesión" Id="LogoutBttn" OnClick="LogoutBttn_Click"/>
                     </li>
                 </ul>
           </div>
@@ -50,14 +54,15 @@
         <nav id="NavAdmin" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/WebForms/ListaPremios.aspx">Inicio</a></li>
+                    <li><a class="navbar-text" href="/WebForms/ListaPremios.aspx">Inicio</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li runat="server" visible="false" id="LogoutAdmin">
-                        <asp:Button runat="server" Text="Logout" Id="Button1" OnClick="LogoutBttn_Click"/>
+                        <asp:Button runat="server" Text="Logout" Id="LogoutAdminBttn" OnClick="LogoutBttn_Click"/>
                     </li>
                 </ul>
           </div>
@@ -66,26 +71,27 @@
         <nav id="NavJuez" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li runat="server" visible="false" id="LogoutJuez">
-                        <asp:Button runat="server" Text="Logout" Id="Button2" OnClick="LogoutBttn_Click"/>
+                        <asp:Button runat="server" Text="Logout" Id="LogoutJuezBttn" OnClick="LogoutBttn_Click"/>
                     </li>
                 </ul>
           </div>
         </nav>
-        <div id="masterContent">
+        <div id="MasterContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
             </asp:ContentPlaceHolder>
         </div>
 
         <footer>
-            <nav id="footer" class="navbar navbar-default navbar-fixed-bottom">
+            <nav id="Footer" class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
                     <p class="navbar-text">Av. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P.64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8328-4232</p>
                     <br />

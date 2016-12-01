@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PaginasIniciales.master.cs" Inherits="PremiosInstitucionales.PaginasIniciales" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+    <link href='<%= ResolveUrl("~/Content/premiosinstitucionales.css")%>'  rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="contentpaginasiniciales">
+
+        <asp:Image class="logoiniciales" runat="server" ImageUrl="/img/premiostec3.png"/>
+        <br/> 
+        <asp:Image class="logoiniciales" runat="server" ImageUrl="/img/tec.png"/>
+        <br/> 
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+        <script src="scripts/jquery-1.9.1.min.js"></script>
+        <script src="scripts/bootstrap.min.js"></script>
+    </div>
+    </form>
+</body>
+</html>

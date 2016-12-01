@@ -125,8 +125,10 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\fondotecazul2.jpg" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
+    <Content Include="img\premiostec3.png" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
     <Content Include="packages.config" />
@@ -141,6 +143,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
@@ -151,6 +154,7 @@
     <Content Include="WebForms\RecuperaCuenta.aspx" />
     <Content Include="WebForms\Recuperar.aspx" />
     <Content Include="WebForms\Registro.aspx" />
+    <Content Include="PaginasIniciales.Master" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -251,6 +255,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PaginasIniciales.Master.cs">
+      <DependentUpon>PaginasIniciales.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginasIniciales.Master.designer.cs">
+      <DependentUpon>PaginasIniciales.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values\StringValues.cs" />
