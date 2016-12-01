@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <script type="text/javascript">
     </script>
-
-    <asp:Label ID="ErrorLbl" runat="server" Visible="false" Text="Esta aplicación no ha sido rechazada."></asp:Label>
+    <h1>Modificación de solicitud de registro</h1>
+    <asp:Label class="appLabel" ID="ErrorLbl" runat="server" Visible="false" Text="Esta aplicación no requiere cambios."></asp:Label>
     <div runat="server" id="PanelFormulario">
 
     </div>

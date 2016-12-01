@@ -2,18 +2,13 @@
     Inherits="PremiosInstitucionales.WebForms.PremioEspecificoCandidato" MasterPageFile="~/MasterPage.Master"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
-    <style>
-        .ApplicationButton{
-            border-radius:5px;
-        }
-    </style>
     
     <h1>Formulario de aplicación</h1>
-    <asp:Label runat="server" Text="Seleccione una categoría"></asp:Label>
+    <asp:Label class="appLabel" runat="server" Text="Seleccione una categoría"></asp:Label>
     <asp:DropDownList runat="server" ID="CategoriasDDL" AutoPostBack="true"
         OnSelectedIndexChanged="CategoriasDDL_SelectedIndexChanged"></asp:DropDownList>
     <br /><br />
-    <asp:Label ID="ErrorLbl" runat="server" Visible="false"></asp:Label>
+    <asp:Label class="appLabel" ID="ErrorLbl" runat="server" Visible="false"></asp:Label>
     <div runat="server" id="PanelFormulario">
 
     </div>

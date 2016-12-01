@@ -1,10 +1,19 @@
-﻿    
-    #footer, #footer .container{
-        height: 80px;
-        padding: 5px;
+﻿    /* Master y CSS general*/
+
+    h1, h2, h3 {
+        color: rgb(0,0,139);
     }
 
-    #masterContent {
+    p {
+        color: black;
+    }
+
+    .appLabel {
+        color: rgb(51, 130, 198);
+        font-weight: bold;
+    }
+
+    #MasterContent {
         margin-bottom:90px;
         padding-left: 120px;
         padding-right: 120px;
@@ -12,15 +21,56 @@
 
     .navbar {
         padding: 10px 120px 0 120px;
+        background: white;
+
+        -webkit-box-shadow: 0px 13px 9px -9px rgba(0,0,0,0.24);
+        -moz-box-shadow: 0px 13px 9px -9px rgba(0,0,0,0.24);
+        box-shadow: 0px 13px 9px -9px rgba(0,0,0,0.24);
     }
 
-    .navbar-text{
-        font-size: 12px;
+    .navbar-text {
         margin-top: 2px;
         margin-bottom: 2px;
         width: inherit;
+        color: darkblue !important;
     }
 
+    #LogoTec {
+        margin-right: 10px;
+        margin-left: -5px;
+    }
+
+    #LogoPremios {
+        margin-right: 50px;
+    }
+
+    #LogoutBttn {
+        background-color: rgb(51, 130, 198);
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        border: none;
+        padding: 4px 8px 4px 8px;
+        margin-top: 10px;
+    }
+
+    #Footer {
+        -webkit-box-shadow: 0px -7px 9px -9px rgba(0,0,0,0.24);
+        -moz-box-shadow: 0px -7px 9px -9px rgba(0,0,0,0.24);
+        box-shadow: 0px -7px 9px -9px rgba(0,0,0,0.24);
+    }
+
+    #Footer .navbar-text {
+        font-size: 11px;
+    }
+    
+    #Footer, #Footer .container{
+        height: 80px;
+        padding: 5px;
+    }
+
+    /* Inicia CSS Crumbs de Mapa de Estados en InicioCandidato*/
     .crumbs ul li {
         display: block;
         float: left;
@@ -35,8 +85,8 @@
     .crumbs ul li a {
         
             text-align: center;
-            padding: 0 40px 0 40px;    
-            font-size: 20px;            
+            padding: 0 25px 0 35px;    
+            font-size: 16px;            
 	        
 	        text-decoration: none;
 	        color: #fff;
@@ -44,18 +94,18 @@
 
     .crumbs ul li a::before {
 	    content: "";  
-	    border-top: 25px solid transparent;
-	    border-bottom: 25px solid transparent;
-	    border-left: 25px solid white;
+	    border-top: 22px solid transparent;
+	    border-bottom: 22px solid transparent;
+	    border-left: 22px solid white;
 	    position: absolute; left: 0; top: 0;
     }
 
     .crumbs ul li a::after {
 	    content: "";
-	    border-top: 25px solid transparent;
-	    border-bottom: 25px solid transparent;
-	    border-left: 25px solid #13167e;
-	    position: absolute; right: -25px; top: 0; z-index: 1;
+	    border-top: 22px solid transparent;
+	    border-bottom: 22px solid transparent;
+	    border-left: 22px solid #13167e;
+	    position: absolute; right: -22px; top: 0; z-index: 1;
     }
 
     .crumbs ul li:first-child  {
@@ -68,7 +118,6 @@
     }
 
     .crumbs ul li:last-child  {
-	    padding-right: 5px;
 	    border-top-right-radius: 10px; 
         border-bottom-right-radius: 10px;
     }
@@ -78,13 +127,15 @@
     } 
 
     .edoactual {
-        background: #005fee !important;
+        background: rgb(51, 130, 198) !important;
     }
 
     .edoactual a::after {
-        border-left: 25px solid #005fee !important;
+        border-left: 22px solid rgb(51, 130, 198) !important;
     }
 
+
+    /*CSS de Accordions*/
     .accordionContent {
         background-color: rgb(180,180,180);
     }
@@ -108,12 +159,103 @@
         width:100%;
         height: 180px;
     }
+
     .htmlEditor {
         padding-bottom:15px;
     }
+
     .convocatoriaTitle {
         display:block;
         font: bold;
         font-size:large;
     }
 
+    /* CSS Paginas Iniciales: Inicio, Registro, Recuperar contraseña, Confirmar cuenta*/
+    .paginasIniciales h2, .contentpaginasiniciales h3 {
+        color: white;
+        margin: 5px 5px 5px 5px;
+        margin-top: 30px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .contentpaginasiniciales {
+        text-align:center;
+
+        background-image: url('../img/fondotecazul2.jpg');
+        background-color: cornflowerblue;
+        padding-top: 5%;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: auto;
+
+    }
+
+    .contentpaginasiniciales .logoiniciales {
+        text-align:center;
+        margin-bottom: 10px;
+    }
+
+    .contentpaginasiniciales .textboxiniciales {
+        padding: 5px 5px 5px 5px;
+        margin-bottom: 5px;
+        color: darkblue;
+    }
+    
+    .contentpaginasiniciales .labeliniciales {
+        color:  darkblue;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+        margin: 5px 5px 5px 5px;
+    }
+
+
+    .contentpaginasiniciales .linkiniciales {
+        color: white;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    /*CSS de la mayoria de los botones*/
+    #ContentPlaceHolderBody_EditarBtn, #ContentPlaceHolderBody_EnviarBtn, #ContentPlaceHolderBody_EnviarBttn, .contentpaginasiniciales .buttoniniciales{
+        background-color: darkblue;
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
+        border: none;
+        padding: 4px 8px 4px 8px;
+    }
+
+    #ContentPlaceHolderBody_EnviarBtn:disabled {
+        visibility:hidden;
+    }
+
+    #ContentPlaceHolderBody_EnviarBtn:enabled {
+        visibility:visible;
+    }
+
+    /*CSS de Lista Premios*/
+    .premioPanel{
+            width: 300px;
+            height: 180px;
+            display:inline-block;
+            border-style: solid;
+            border-width:3px;
+            margin-right:10px;
+            margin-bottom:10px;
+            border-color: rgb(51, 130, 198);
+        }
+        .premioLabel{
+            text-align:center;
+        }
+        .premioImgButton{
+            width:100%;
+            height:100%;
+        }
+
+        /*Premio Especifico Candidato*/
+        .ApplicationButton{
+            border-radius:5px;
+        }
