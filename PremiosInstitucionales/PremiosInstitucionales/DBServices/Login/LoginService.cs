@@ -19,6 +19,18 @@ namespace PremiosInstitucionales.DBServices.Login
                     .FirstOrDefault();
         }
 
+        public static PI_BA_Candidato GetCandidatoByConfirmacion(String codigo)
+        {
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                return dbContext.PI_BA_Candidato.Where(c => c.CodigoConfirmacion == codigo).FirstOrDefault();
+            } catch (Exception e)
+            {
+                return null;
+            } 
+        }
+
         public static PI_BA_Juez GetJuez(String correoJuez)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
