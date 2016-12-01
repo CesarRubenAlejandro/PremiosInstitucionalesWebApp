@@ -91,7 +91,7 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (System.FormatException sfe)
+            catch (Exception sfe)
             {
                 return false;
             }
