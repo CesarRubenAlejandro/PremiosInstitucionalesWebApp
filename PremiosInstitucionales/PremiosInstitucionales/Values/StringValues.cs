@@ -52,5 +52,10 @@ namespace PremiosInstitucionales.Values
         public static readonly String ContenidoCorreoFecha = "%FECHA%";
         public static readonly String ContenidoCorreoMail = "%CORREO%";
         public static readonly String ContenidoCorreoConfirmacion = "%CONFIRMACION%";
+        public static readonly String ContenidoCorreoNombre = "%NOMBRE%";
+        public static readonly String ContenidoCorreoId = "%ID%";
+        public static readonly String ContenidoCorreoPremio = "%PREMIO%";
+        public static readonly String ContenidoCorreoCategoria = "%CATEGORIA%";
+        public static readonly String ContenidoCorreoRazon = "%RAZON%";
     }
 }

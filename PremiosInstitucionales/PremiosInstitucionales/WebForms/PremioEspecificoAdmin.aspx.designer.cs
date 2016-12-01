@@ -292,6 +292,15 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Calendar FechaFinNuevaConvo;
         
         /// <summary>
+        /// FechaVeredicto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar FechaVeredicto;
+        
+        /// <summary>
         /// GuardarNuevaBttn control.
         /// </summary>
         /// <remarks>

@@ -2,11 +2,10 @@
 <body>
 <img src="http://expresotec.mty.itesm.mx/web/imagenes/logo_ITESM.gif">
 <p style="text-align:left">%FECHA%</p>
-<p>Hola %CORREO%</p>
-<p>Hemos recibido una solicitud para registrar una cuenta y continuar con tu proceso de inscripción a 
-Premio Institucionales Tec de Monterrey. </p>
-<p>Haz clic en el botón que aparece a continuación para confirmar tu cuenta.</p>
-<a href="http://localhost:2943/WebForms/ConfirmaCuenta.aspx?codigo=%CONFIRMACION%">Confirma tu cuenta</a>
+<p>Hola %NOMBRE%</p>
+<p>La solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey requiere cambios.</p>
+<p>El registro al premio  %PREMIO% en la categoria %CATEGORIA% requiere ser modificada por las siguiente razón: %RAZON%.</p>
+<p>Por favor, realice los cambios necesarios en la sección Mis aplicaciones vigentes.</p>
 <br>
 <br>
 <hr>

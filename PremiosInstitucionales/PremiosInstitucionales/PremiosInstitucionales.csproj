@@ -125,12 +125,15 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="img\fondotecazul2.jpg" />
+    <Content Include="img\elizondo.png" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
-    <Content Include="img\premiostec3.png" />
+    <Content Include="img\mater.jpg" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
+    <Content Include="img\teclogo.jpg" />
+    <Content Include="img\fondotecazul2.jpg" />
+    <Content Include="img\premiostec3.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -144,6 +147,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
+    <Content Include="Values\CorreoRecuperaPassword.txt" />
+    <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />

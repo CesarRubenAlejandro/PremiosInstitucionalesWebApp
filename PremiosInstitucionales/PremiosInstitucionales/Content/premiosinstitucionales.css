@@ -296,6 +296,7 @@
         #ContentPlaceHolderBody_razonTB {
             border-radius: 4px;
             margin-bottom: 10px;
+            color: black !important;
         }
 
         #ContentPlaceHolderBody_btnHideR, #ContentPlaceHolderBody_bttnEnviarRechazo, #ContentPlaceHolderBody_btnHideA, #ContentPlaceHolderBody_bttnAceptarAplicacion {
