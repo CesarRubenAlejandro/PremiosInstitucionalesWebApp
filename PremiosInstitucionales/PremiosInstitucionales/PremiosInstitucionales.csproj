@@ -125,8 +125,10 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="img\elizondo.png" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
+    <Content Include="img\mater.jpg" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
     <Content Include="img\teclogo.jpg" />
