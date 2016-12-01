@@ -49,24 +49,6 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NavCandidato;
         
         /// <summary>
-        /// LogoTec control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image LogoTec;
-        
-        /// <summary>
-        /// LogoPremios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image LogoPremios;
-        
-        /// <summary>
         /// LogoutCandidato control.
         /// </summary>
         /// <remarks>
@@ -103,13 +85,13 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogoutAdmin;
         
         /// <summary>
-        /// Button1 control.
+        /// LogoutAdminBttn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button LogoutAdminBttn;
         
         /// <summary>
         /// NavJuez control.
@@ -130,13 +112,13 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogoutJuez;
         
         /// <summary>
-        /// Button2 control.
+        /// LogoutJuezBttn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button LogoutJuezBttn;
         
         /// <summary>
         /// ContentPlaceHolderBody control.

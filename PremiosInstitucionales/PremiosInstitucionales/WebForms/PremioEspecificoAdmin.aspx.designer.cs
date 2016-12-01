@@ -67,13 +67,13 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox razonTB;
         
         /// <summary>
-        /// btnHide control.
+        /// btnHideR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHide;
+        protected global::System.Web.UI.WebControls.Button btnHideR;
         
         /// <summary>
         /// bttnEnviarRechazo control.
@@ -103,22 +103,22 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Panel pnlPopupAccept;
         
         /// <summary>
-        /// Label1 control.
+        /// headerAceptar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label headerAceptar;
         
         /// <summary>
-        /// Button1 control.
+        /// btnHideA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnHideA;
         
         /// <summary>
         /// bttnAceptarAplicacion control.

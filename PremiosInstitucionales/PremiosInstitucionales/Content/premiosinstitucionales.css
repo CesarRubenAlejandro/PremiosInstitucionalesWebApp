@@ -35,16 +35,16 @@
         color: darkblue !important;
     }
 
-    #LogoTec {
+    .logoTec {
         margin-right: 10px;
         margin-left: -5px;
     }
 
-    #LogoPremios {
+    .logoPremios {
         margin-right: 50px;
     }
 
-    #LogoutBttn {
+    #LogoutBttn, #LogoutJuezBttn, #LogoutAdminBttn {
         background-color: rgb(51, 130, 198);
         color: white;
         border-radius: 4px;
@@ -137,22 +137,33 @@
 
     /*CSS de Accordions*/
     .accordionContent {
-        background-color: rgb(180,180,180);
+        background-color: white;
+        border: 2px solid darkblue;
+        border-radius: 8px;
+        border-top: none;
+        padding: 10px;
+    }
+
+    .accordionContent > a {
+        color: darkblue !important;
     }
 
     .accordionHeader {
-        border: 1px solid #dddddd;
-        background-color: rgb(180,180,180);
+        border: 1px solid black;
+        background-color: white;
         padding: 3px 3px 3px 18px;
         margin-top: 5px;
         cursor: pointer;
+        border-radius: 8px;
     }
 
     .accordionHeaderSelected {
-        background-color: rgb(180,180,180);
+        background-color: darkblue;
         padding: 3px 3px 3px 18px;
         margin-top: 5px;
         cursor: pointer;
+        border-radius: 8px;
+        color: white;
     }
 
     .imgHeader {
@@ -218,7 +229,8 @@
     }
 
     /*CSS de la mayoria de los botones*/
-    #ContentPlaceHolderBody_EditarBtn, #ContentPlaceHolderBody_EnviarBtn, #ContentPlaceHolderBody_EnviarBttn, .contentpaginasiniciales .buttoniniciales{
+    #ContentPlaceHolderBody_EditarBtn, #ContentPlaceHolderBody_EnviarBtn, #ContentPlaceHolderBody_EnviarBttn, 
+    .contentpaginasiniciales .buttoniniciales, #ContentPlaceHolderBody_ExportarBttn {
         background-color: darkblue;
         color: white;
         border-radius: 4px;
@@ -258,4 +270,87 @@
         /*Premio Especifico Candidato*/
         .ApplicationButton{
             border-radius:5px;
+        }
+
+        /*Premio Especifico Admin*/
+        /*Pop ups*/
+        #ContentPlaceHolderBody_pnlPopup, #ContentPlaceHolderBody_pnlPopupAccept{
+            border: 1px solid white;
+            border-radius: 12px;
+            background-color: darkblue;
+            text-align:center;
+            padding: 10px 10px 10px 10px;
+        }
+
+        #ContentPlaceHolderBody_headerRechazo, #ContentPlaceHolderBody_headerAceptar {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .popuptext {
+            color: white;
+        }
+
+        #ContentPlaceHolderBody_razonTB {
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        #ContentPlaceHolderBody_btnHideR, #ContentPlaceHolderBody_bttnEnviarRechazo, #ContentPlaceHolderBody_btnHideA, #ContentPlaceHolderBody_bttnAceptarAplicacion {
+            background-color: darkblue;
+            border: 1px solid white;
+            border-radius: 4px;
+            color: white;
+        }
+
+        #ContentPlaceHolderBody_TabContainer1 a {
+            color: white;
+        }
+
+        #ContentPlaceHolderBody_TabContainer1_body {
+            padding: 20px 20px 20px 20px;
+        }
+
+        .ajax__tab {
+            background-color: darkblue;
+            border: 1px solid #999999;
+            border-radius: 8px 8px 0px 0px;
+            border-bottom:none;
+            color: darkblue !important;
+        } 
+        
+        .ajax__tab_active {
+            background-color: white;
+        }
+
+        .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_outer > a,
+        .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_inner > a{
+            color: darkblue !important;
+         }
+
+        .ajax__tab_xp .ajax__tab_header .ajax__tab_tab, .ajax__tab_xp .ajax__tab_header .ajax__tab_outer, .ajax__tab_xp .ajax__tab_header .ajax__tab_inner,
+        .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_tab, .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_outer,
+        .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_inner {
+            background-image: none !important;
+        }
+
+        /*Botones en secciones del panel*/
+        #ContentPlaceHolderBody_TabContainer1_ConvocatoriaActualTab_EditarConvocatoriaActualBttn, #ContentPlaceHolderBody_TabContainer1_ConvocatoriaActualTab_GuardarCambiosBttn,
+        #ContentPlaceHolderBody_TabContainer1_ConvocatoriaActualTab_CancelarCambiosBttn, #ContentPlaceHolderBody_TabContainer1_ConvocatoriaNuevaTab_GuardarNuevaBttn  {
+            background-color: darkblue;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: none;
+            border: none;
+            padding: 4px 8px 4px 8px;
+            margin-top: 10px;
+        }
+
+        .accordionContent > a {
+        color: darkblue !important;
+        margin-left: 10px;
+        margin-right: 10px;
         }

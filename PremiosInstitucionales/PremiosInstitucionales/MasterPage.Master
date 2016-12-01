@@ -19,7 +19,8 @@
         <nav id="NavDefault" visible="true" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
                     
@@ -34,8 +35,8 @@
          <nav id="NavCandidato" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image ID="LogoTec" runat="server" ImageUrl="/img/tec.png"/>
-                  <asp:Image ID="LogoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav ">
                     <li><a class="navbar-text" href="/WebForms/InicioCandidato.aspx">Inicio</a></li>
@@ -53,14 +54,15 @@
         <nav id="NavAdmin" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/WebForms/ListaPremios.aspx">Inicio</a></li>
+                    <li><a class="navbar-text" href="/WebForms/ListaPremios.aspx">Inicio</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li runat="server" visible="false" id="LogoutAdmin">
-                        <asp:Button runat="server" Text="Logout" Id="Button1" OnClick="LogoutBttn_Click"/>
+                        <asp:Button runat="server" Text="Logout" Id="LogoutAdminBttn" OnClick="LogoutBttn_Click"/>
                     </li>
                 </ul>
           </div>
@@ -69,14 +71,15 @@
         <nav id="NavJuez" visible="false" runat="server" class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                  <asp:Image runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
+                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
                 </div>
                 <ul class="nav navbar-nav">
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li runat="server" visible="false" id="LogoutJuez">
-                        <asp:Button runat="server" Text="Logout" Id="Button2" OnClick="LogoutBttn_Click"/>
+                        <asp:Button runat="server" Text="Logout" Id="LogoutJuezBttn" OnClick="LogoutBttn_Click"/>
                     </li>
                 </ul>
           </div>
