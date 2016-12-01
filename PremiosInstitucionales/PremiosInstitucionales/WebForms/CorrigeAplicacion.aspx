@@ -4,39 +4,20 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <script type="text/javascript">
-        function ShowModalPopup(idApp) {
-            $find("mpe").show();
-            document.getElementById('<%=IdAppHidden.ClientID%>').value = idApp;
-            return false;
-        }
-        function HideModalPopup() {
-            $find("mpe").hide();
-            return false;
-        }
     </script>
+    <h1>Modificación de solicitud de registro</h1>
+    <asp:Label class="appLabel" ID="ErrorLbl" runat="server" Visible="false" Text="Esta aplicación no requiere cambios."></asp:Label>
+    <div runat="server" id="PanelFormulario">
+
+    </div>
 
 
-    <asp:Panel runat="server" ID="panel">
-        <asp:hiddenfield id="IdAppHidden" value="" runat="server"/>
-
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        
-        <asp:LinkButton ID="lnkDummy" runat="server"></asp:LinkButton>
-        
-        <cc1:ModalPopupExtender ID="ModalPopupExtender1" BehaviorID="mpe" runat="server"
-            PopupControlID="pnlPopup" TargetControlID="lnkDummy" >
-        </cc1:ModalPopupExtender>
-
-        <asp:Panel ID="pnlPopup" runat="server" Style="display: none; border: 1px dashed">
-            <div class="header">
-                Modal Popup
-            </div>
-            <div class="body">
-                This is a Modal Popup.
-                <br />
-                <asp:Button ID="btnHide" runat="server" Text="Hide Modal Popup" OnClientClick="return HideModalPopup()" />
-                <asp:Button ID="bttnEnviarRechazo" text="prueba" runat="server" onclick="bttnEnviarRechazo_Click"/>
-            </div>
-        </asp:Panel>
-    </asp:Panel>
+    <table style="width:100%">
+        <tr>
+            <td style="width: 100%" align="center">
+                <asp:Button id="EnviarBttn" runat="server" onclick="EnviarBttn_Click" 
+                    CssClass="ApplicationButton" Text="Enviar aplicación" Visible="false"/>
+            </td>
+        </tr>
+    </table>
 </asp:Content>

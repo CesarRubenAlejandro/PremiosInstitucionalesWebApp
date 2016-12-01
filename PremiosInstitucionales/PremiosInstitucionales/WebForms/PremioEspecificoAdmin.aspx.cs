@@ -7,6 +7,8 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Web.UI.WebControls;
+using System.IO;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -85,7 +87,7 @@ namespace PremiosInstitucionales.WebForms
             var aplicacionesACategoria = ConvocatoriaService.ObtenerAplicacionesPorCategoria(CategoriasDDL.SelectedValue.ToString());
 
             // obtener candidatos ligados a estas aplicaciones
-            var listaCandidatos = ConvocatoriaService.ObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
+            var listaCandidatos = ConvocatoriaService.AdminObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
 
             Accordion ContenedorDeCandidatos = new Accordion();
 
@@ -133,6 +135,17 @@ namespace PremiosInstitucionales.WebForms
                 btn1.OnClientClick = "return ShowModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
                 panelIndividual.ContentContainer.Controls.Add(btn1);
 
+                Label separador = new Label();
+                separador.Text = "|";
+                panelIndividual.ContentContainer.Controls.Add(separador);
+
+                // AGREGAR BOTON ACEPTAR
+                LinkButton btnAceptar = new LinkButton();
+                btnAceptar.ID = Guid.NewGuid().ToString();
+                btnAceptar.Text = "Aceptar Aplicacion";
+                btnAceptar.OnClientClick = "return ShowAcceptModalPopup(\"" + aplicacionCandidato.Key.cveAplicacion + "\")";
+                panelIndividual.ContentContainer.Controls.Add(btnAceptar);
+
                 MyAccordion.Panes.Add(panelIndividual);
              
             }
@@ -147,6 +160,7 @@ namespace PremiosInstitucionales.WebForms
             nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
             nuevaConvo.FechaInicio = FechaInicioNuevaConvo.SelectedDate.Date;
             nuevaConvo.FechaFin = FechaFinNuevaConvo.SelectedDate.Date;
+            nuevaConvo.FechaVeredicto = FechaVeredicto.SelectedDate.Date;
             // guardar nueva convocatoria
             ConvocatoriaService.SaveNewConvocatoria(premioActual.cvePremio, nuevaConvo);
             // limpiar campos de nueva convocatoria
@@ -232,9 +246,18 @@ namespace PremiosInstitucionales.WebForms
             {
                 using (MailMessage mm = new MailMessage(correoSender, aplicacion.PI_BA_Candidato.Correo))
                 {
-                    mm.Subject = "Rechazo de aplicacion de candidato " + aplicacion.PI_BA_Candidato.Nombre + " " + aplicacion.PI_BA_Candidato.Apellido + " en el sistema Premios Institucionales del Tec de Monterrey";
-                    mm.Body = "Se ha rechazado su aplicación para la categoría " + aplicacion.PI_BA_Categoria.Nombre + " del premio " + aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre + " por las siguientes razones: " + razon;
-                    mm.IsBodyHtml = false;
+                    mm.Subject = "Requiere cambios la solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey.";
+                    var bodyContent = "";
+                    bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoSolicitudCambio.txt"));
+                    // formatear contenidos de string
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre, aplicacion.PI_BA_Candidato.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoPremio, aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoCategoria, aplicacion.PI_BA_Categoria.Nombre);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoRazon, razon);
+                    // enviar
+                    mm.Body = bodyContent;
+                    mm.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;
@@ -246,11 +269,19 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (System.FormatException sfe)
+            catch (Exception e)
             {
                 return false;
             }
         }
 
+        protected void bttnAceptarAplicacion_Click(object sender, EventArgs e)
+        {
+            String aplicacionID = IdAppHidden.Value.ToString();
+            // cambiar el status de la aplicacion a Aceptado
+            AplicacionService.AceptarAplicacion(aplicacionID);
+            // cargar nuevamente el acordeon de respuestas forzando un postback
+            Response.Redirect("PremioEspecificoAdmin.aspx?premio=" + premioActual.cvePremio);
+        }
     }
 }

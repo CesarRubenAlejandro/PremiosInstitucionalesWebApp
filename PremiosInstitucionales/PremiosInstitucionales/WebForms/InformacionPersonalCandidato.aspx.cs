@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
+using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
@@ -21,60 +22,61 @@ namespace PremiosInstitucionales.WebForms
 
         private void MostrarCampos()
         {
-            Tuple<string, string> nombres = InformacionPersonalCandidatoService.GetNombre(Session[StringValues.CorreoSesion].ToString());
-            NombresTextBox.Text = nombres.Item1;
-            ApellidosTextBox.Text = nombres.Item2;
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            NombresTextBox.Text = candidato.Nombre;
+            ApellidosTextBox.Text = candidato.Apellido;
             CorreoTextBox.Text = Session[StringValues.CorreoSesion].ToString();
+            DomicilioTextBox.Text = candidato.Direccion;
+            RFCTextBox.Text = candidato.RFC;
+            TelefonoTextBox.Text = candidato.Telefono;
+            NacionalidadTextBox.Text = candidato.Nacionalidad;
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
-            string nombres = NombresTextBox.Text;
-            string apellidos = ApellidosTextBox.Text;
-            string correo = CorreoTextBox.Text;
-            string domicilio = DomicilioTextBox.Text.ToString();
-            string ciudad = CiudadTextBox.Text.ToString();
-            string estado = EstadoTextBox.Text.ToString();
-            string cp = CodigoPostalTextBox.Text.ToString();
-            string telefono = TelefonoTextBox.Text.ToString();
-            string puesto = PuestoTextBox.Text.ToString();
-            string institucion = InstitucionTextBox.Text.ToString();
-            if (InformacionPersonalCandidatoService.Set(Session[StringValues.CorreoSesion].ToString(), nombres, apellidos, correo))
+            PI_BA_Candidato aux = new PI_BA_Candidato();
+            aux.Nombre = NombresTextBox.Text;
+            aux.Apellido = ApellidosTextBox.Text;
+            aux.Direccion = DomicilioTextBox.Text.ToString();
+            aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
+            aux.RFC = RFCTextBox.Text.ToString();
+            aux.Telefono = TelefonoTextBox.Text.ToString();
+            
+            if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
             {
                 Mensaje.Text = "Tus cambios han sido guardados";
-                Session[StringValues.CorreoSesion] = correo;
             }
             else
             {
                 Mensaje.Text = "Hubo un error al guardar tus cambios";
                 MostrarCampos();
             }
-            EditarBtn_Click(sender, e);
+            Enable();
+        }
+
+        private void Enable()
+        {
+            if (EditarBtn.Text.ToString() == StringValues.InfoPersonalEditar)
+            {
+                EditarBtn.Text = StringValues.InfoPersonalCancelar;
+            }
+            else
+            {
+                EditarBtn.Text = StringValues.InfoPersonalEditar;
+                MostrarCampos();
+            }
+            EnviarBtn.Enabled = !EnviarBtn.Enabled;
+            NombresTextBox.Enabled = !NombresTextBox.Enabled;
+            ApellidosTextBox.Enabled = !ApellidosTextBox.Enabled;
+            DomicilioTextBox.Enabled = !DomicilioTextBox.Enabled;
+            TelefonoTextBox.Enabled = !TelefonoTextBox.Enabled;
+            RFCTextBox.Enabled = !RFCTextBox.Enabled;
+            NacionalidadTextBox.Enabled = !NacionalidadTextBox.Enabled;
         }
 
         protected void EditarBtn_Click(object sender, EventArgs e)
         {
-            if (EditarBtn.Text.ToString() == "Editar datos")
-            {
-                EditarBtn.Text = "Cancelar cambios";
-            }
-            else
-            {
-                EditarBtn.Text = "Editar datos";
-                MostrarCampos();
-            }
-
-            EnviarBtn.Enabled = !EnviarBtn.Enabled;
-            NombresTextBox.Enabled = !NombresTextBox.Enabled;
-            ApellidosTextBox.Enabled = !ApellidosTextBox.Enabled;
-            CorreoTextBox.Enabled = !CorreoTextBox.Enabled;
-            DomicilioTextBox.Enabled = !DomicilioTextBox.Enabled;
-            CiudadTextBox.Enabled = !CiudadTextBox.Enabled;
-            EstadoTextBox.Enabled = !EstadoTextBox.Enabled;
-            CodigoPostalTextBox.Enabled = !CodigoPostalTextBox.Enabled;
-            TelefonoTextBox.Enabled = !TelefonoTextBox.Enabled;
-            PuestoTextBox.Enabled = !PuestoTextBox.Enabled;
-            InstitucionTextBox.Enabled = !InstitucionTextBox.Enabled;
+            Enable();
         }
     }
 }

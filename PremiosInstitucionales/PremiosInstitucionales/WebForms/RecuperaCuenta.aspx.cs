@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,21 +24,32 @@ namespace PremiosInstitucionales.WebForms
             bool contrasenas = false;
             if (password1.Equals(password2))
             {
-                contrasenas = true;
-                String cve = Request.QueryString["codigo"];
-                char tipo = cve[0];
-                if (tipo == 'c')
+                Regex regexNumero = new Regex(@".*\d.*");
+                Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                Match matchNumero = regexNumero.Match(password1);
+                Match matchLetra = regexLetra.Match(password1);
+                if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
-                    sePudo = RecuperarService.CambiarContrasenaCandidato(cve.Substring(1), password1);
+                    Mensaje.Text = "La contraseña debe ser de al menos 6 caracteres <br/> y contener al menos un número y una letra.";
                 }
-                else if (tipo == 'j')
+                else
                 {
-                    sePudo = RecuperarService.CambiarContrasenaJuez(cve.Substring(1), password1);
-                }
-                else if (tipo == 'a')
-                {
-                    sePudo = RecuperarService.CambiarContrasenaAdministrador(cve.Substring(1), password1);
-                }
+                    contrasenas = true;
+                    String cve = Request.QueryString["codigo"];
+                    char tipo = cve[0];
+                    if (tipo == 'c')
+                    {
+                        sePudo = RecuperarService.CambiarContrasenaCandidato(cve.Substring(1), password1);
+                    }
+                    else if (tipo == 'j')
+                    {
+                        sePudo = RecuperarService.CambiarContrasenaJuez(cve.Substring(1), password1);
+                    }
+                    else if (tipo == 'a')
+                    {
+                        sePudo = RecuperarService.CambiarContrasenaAdministrador(cve.Substring(1), password1);
+                    }
+                }      
             }
             else
             {
@@ -46,14 +58,14 @@ namespace PremiosInstitucionales.WebForms
             if (sePudo)
             {
                 Mensaje.Text = "Contraseña cambiada exitosamente";
-                PasswordTextBox.Enabled = false;
-                ConfirmPasswordTextBox.Enabled = false;
-                Boton.Enabled = false;
+                PasswordTextBox.Visible = false;
+                ConfirmPasswordTextBox.Visible = false;
+                Boton.Visible = false;
                 HyperLinkRegresar.Visible = true;
             }
             else if (contrasenas)
             {
-                Mensaje.Text = "Error";
+                Mensaje.Text = "Error interno.";
             }
             Mensaje.Visible = true;
         }

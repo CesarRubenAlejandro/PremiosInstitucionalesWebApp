@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PremiosInstitucionales.WebForms {
+namespace PremiosInstitucionales {
     
     
-    public partial class CorrigeAplicacion {
+    public partial class PaginasIniciales {
         
         /// <summary>
-        /// ErrorLbl control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorLbl;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// PanelFormulario control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelFormulario;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// EnviarBttn control.
+        /// ContentPlaceHolderBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EnviarBttn;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolderBody;
     }
 }

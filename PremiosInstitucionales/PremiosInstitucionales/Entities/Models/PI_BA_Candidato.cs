@@ -21,13 +21,16 @@ namespace PremiosInstitucionales.Entities.Models
         }
     
         public string cveCandidato { get; set; }
-        public string UserName { get; set; }
         public string Password { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public Nullable<bool> Confirmado { get; set; }
         public string Correo { get; set; }
         public string CodigoConfirmacion { get; set; }
+        public string Telefono { get; set; }
+        public string Nacionalidad { get; set; }
+        public string RFC { get; set; }
+        public string Direccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_Aplicacion> PI_BA_Aplicacion { get; set; }

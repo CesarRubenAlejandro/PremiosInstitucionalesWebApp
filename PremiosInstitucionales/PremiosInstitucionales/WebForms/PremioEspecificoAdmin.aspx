@@ -4,6 +4,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <script type="text/javascript">
+        function ShowAcceptModalPopup(idApp) {
+            $find("mpeAccept").show();
+            document.getElementById('<%=IdAppHidden.ClientID%>').value = idApp;
+            return false;
+        }
+        function HideAcceptModalPopup() {
+            $find("mpeAccept").hide();
+            return false;
+        }
+
         function ShowModalPopup(idApp) {
             $find("mpe").show();
             document.getElementById('<%=IdAppHidden.ClientID%>').value = idApp;
@@ -19,28 +29,48 @@
     <cc1:ModalPopupExtender ID="ModalPopupExtender1" BehaviorID="mpe" runat="server"
             PopupControlID="pnlPopup" TargetControlID="lnkDummy" >
     </cc1:ModalPopupExtender>
-    <asp:Panel ID="pnlPopup" runat="server" Style="display: none; border: 1px dashed">
+    <asp:Panel ID="pnlPopup" runat="server" style="display:none;">
             <div class="header">
-                <asp:Label ID="headerRechazo" runat="server" Font-Bold="true">Rechazar Aplicación</asp:Label>
+                <asp:Label ID="headerRechazo" runat="server">Rechazo de Aplicación</asp:Label>
             </div>
-            <div class="body">
-                Motivo de rechazo
+            <div class="body popuptext">
+                Estas por rechazar una solicitud. <br />
+                Un correo de notificación será enviado <br />
+                al aplicante, ¿cuál es el motivo del rechazo?
+                <br />
                 <br />
                 <asp:TextBox ID="razonTB" runat="server" TextMode="MultiLine"></asp:TextBox>
                 <br />
-                <asp:Button ID="btnHide" runat="server" Text="Cancelar" OnClientClick="return HideModalPopup()" />
+                <asp:Button ID="btnHideR" runat="server" Text="Cancelar" OnClientClick="return HideModalPopup()" />
                 <asp:Button ID="bttnEnviarRechazo" text="Enviar" runat="server" onclick="bttnEnviarRechazo_Click"/>
             </div>
         </asp:Panel>
 
+    <cc1:ModalPopupExtender ID="ModalPopupExtender2" BehaviorID="mpeAccept" runat="server"
+            PopupControlID="pnlPopupAccept" TargetControlID="lnkDummy" >
+    </cc1:ModalPopupExtender>
+    <asp:Panel ID="pnlPopupAccept" runat="server" Style="display: none; border: 1px dashed">
+            <div class="header">
+                <asp:Label ID="headerAceptar" runat="server" Font-Bold="true">Aceptar Aplicación</asp:Label>
+            </div>
+            <div class="body popuptext">
+                Se aceptará la solicitud de registro. ¿Desea continuar?
+                <br />
+                <br />
+                <asp:Button ID="btnHideA" runat="server" Text="Cancelar" OnClientClick="return HideAcceptModalPopup()" />
+                <asp:Button ID="bttnAceptarAplicacion" text="Aceptar" runat="server" onclick="bttnAceptarAplicacion_Click"/>
+            </div>
+        </asp:Panel>
 
-        <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader"/>
+
+        <asp:Image ID="ImageHeader" runat="server" CssClass="imgHeader" Visible="false"/>
 
         <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">
             <ajaxToolkit:TabPanel runat="server" ID="ConvocatoriaActualTab" HeaderText="Convocatoria actual">
                 <ContentTemplate>
                     <asp:Label runat="server" ID="TituloConvocatoriaActualLbl" CssClass="convocatoriaTitle"></asp:Label>
                     <asp:Label runat="server" ID="TextoConvocatoriaActualLbl"></asp:Label>
+                    <br />
                     <asp:Button runat="server" ID="EditarConvocatoriaActualBttn" Visible="false"
                         OnClick="EditarConvocatoriaActualBttn_Click" Text="Editar convocatoria"/>
 
@@ -66,7 +96,7 @@
 
             <ajaxToolkit:TabPanel runat="server" ID="ConvocatoriaNuevaTab" HeaderText="Nueva convocatoria">
                 <ContentTemplate>
-                    <asp:Label runat="server" Text="Titulo"></asp:Label>
+                    <asp:Label class="appLabel" runat="server" Text="Titulo"></asp:Label>
                     <asp:TextBox runat="server" ID="TituloNuevaConvocatoriaTB"></asp:TextBox>
 
                     <asp:TextBox ID="TextoNuevaConvocatoriaTB" TextMode="multiline" CssClass="htmlEditor" 
@@ -87,10 +117,12 @@
                     <div>
                         <asp:Calendar ID="FechaInicioNuevaConvo" runat="server" Caption="Fecha inicio"></asp:Calendar>
                     </div>
-                    <div style="position: relative; left: 300px; margin-top: -163px;">
+                    <div style="position: relative; left: 300px; margin-top: -189px;">
                         <asp:Calendar ID="FechaFinNuevaConvo" runat="server" Caption="Fecha fin"></asp:Calendar>
                     </div>
-                    
+                    <div style="position: relative; left: 600px; margin-top: -189px;">
+                        <asp:Calendar ID="FechaVeredicto" runat="server" Caption="Fecha veredicto"></asp:Calendar>
+                    </div>
                     <asp:Button runat="server" ID="GuardarNuevaBttn" OnClick="GuardarNuevaBttn_Click" Text="Guardar nuevo"/>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>

@@ -1,10 +1,5 @@
-﻿    using PremiosInstitucionales.DBServices.Registro;
+﻿using PremiosInstitucionales.DBServices.Registro;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {

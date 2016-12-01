@@ -1,6 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.Values;
 using System;
+using System.IO;
 using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
@@ -36,7 +37,15 @@ namespace PremiosInstitucionales.WebForms
                 panelNuevo.CssClass = "premioPanel";
 
                 var imgButton = new ImageButton();
-                imgButton.ImageUrl = "/img/" + premio.NombreImagen;
+                if (File.Exists(Server.MapPath("~/img/" + premio.NombreImagen)))
+                {
+                    imgButton.ImageUrl = "/img/" + premio.NombreImagen;
+                }
+                else
+                {
+                    imgButton.AlternateText = premio.Nombre;
+                }
+                
                 if (Session[StringValues.RolSesion].ToString() == StringValues.RolAdmin)
                 { 
                     //Si es admin

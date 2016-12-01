@@ -67,13 +67,13 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox razonTB;
         
         /// <summary>
-        /// btnHide control.
+        /// btnHideR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHide;
+        protected global::System.Web.UI.WebControls.Button btnHideR;
         
         /// <summary>
         /// bttnEnviarRechazo control.
@@ -83,6 +83,51 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttnEnviarRechazo;
+        
+        /// <summary>
+        /// ModalPopupExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender2;
+        
+        /// <summary>
+        /// pnlPopupAccept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPopupAccept;
+        
+        /// <summary>
+        /// headerAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label headerAceptar;
+        
+        /// <summary>
+        /// btnHideA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHideA;
+        
+        /// <summary>
+        /// bttnAceptarAplicacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bttnAceptarAplicacion;
         
         /// <summary>
         /// ImageHeader control.
@@ -245,6 +290,15 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar FechaFinNuevaConvo;
+        
+        /// <summary>
+        /// FechaVeredicto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar FechaVeredicto;
         
         /// <summary>
         /// GuardarNuevaBttn control.
