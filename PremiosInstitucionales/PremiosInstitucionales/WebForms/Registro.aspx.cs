@@ -72,9 +72,6 @@ namespace PremiosInstitucionales.WebForms
                         bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
                         bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoMail, EmailTextBox.Text.ToString());
                         bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoConfirmacion, codigoConfirmacion);
-                        // agregar imagen inline
-
-                        
                         // enviar
                         mm.Body = bodyContent;
                         SmtpClient smtp = new SmtpClient();
@@ -94,7 +91,7 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (System.FormatException sfe)
+            catch (Exception sfe)
             {
                 return false;
             }

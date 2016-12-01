@@ -7,6 +7,7 @@
         <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">
                 
         </ajaxToolkit:TabContainer>
+        <br />
         <asp:Button runat="server" ID="ExportarBttn" OnClick="ExportarBttn_Click" Text="Exportar"/>
     </div>
 </asp:Content>

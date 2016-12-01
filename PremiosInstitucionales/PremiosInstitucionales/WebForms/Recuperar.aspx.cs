@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using PremiosInstitucionales.DBServices.Recuperar;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
+using PremiosInstitucionales.Values;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -51,8 +54,16 @@ namespace PremiosInstitucionales.WebForms
                 using (MailMessage mm = new MailMessage(correoSender, destinatario))
                 {
                     mm.Subject = "Recuperación de contraseña para el sistema Premios Institucionales del Tec de Monterrey";
-                    mm.Body = "Para recuperar tu contraseña, haz click en el siguiente link: http://localhost:2943/WebForms/RecuperaCuenta.aspx?codigo=" + id;
-                    mm.IsBodyHtml = false;
+                    mm.IsBodyHtml = true;
+                    var bodyContent = "";
+                    bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoRecuperaPassword.txt"));
+                    // formatear contenidos de string
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre, 
+                        InformacionPersonalCandidatoService.GetNombre(destinatario).Item1);
+                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoId, id);
+                    mm.Body = bodyContent;
+                    // enviar
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;
@@ -64,7 +75,7 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (System.FormatException sfe)
+            catch (Exception sfe)
             {
                 return false;
             }

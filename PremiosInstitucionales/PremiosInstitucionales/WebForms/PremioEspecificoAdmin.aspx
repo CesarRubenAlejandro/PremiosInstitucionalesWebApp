@@ -70,6 +70,7 @@
                 <ContentTemplate>
                     <asp:Label runat="server" ID="TituloConvocatoriaActualLbl" CssClass="convocatoriaTitle"></asp:Label>
                     <asp:Label runat="server" ID="TextoConvocatoriaActualLbl"></asp:Label>
+                    <br />
                     <asp:Button runat="server" ID="EditarConvocatoriaActualBttn" Visible="false"
                         OnClick="EditarConvocatoriaActualBttn_Click" Text="Editar convocatoria"/>
 
@@ -119,7 +120,9 @@
                     <div style="position: relative; left: 300px; margin-top: -189px;">
                         <asp:Calendar ID="FechaFinNuevaConvo" runat="server" Caption="Fecha fin"></asp:Calendar>
                     </div>
-                    
+                    <div style="position: relative; left: 600px; margin-top: -189px;">
+                        <asp:Calendar ID="FechaVeredicto" runat="server" Caption="Fecha veredicto"></asp:Calendar>
+                    </div>
                     <asp:Button runat="server" ID="GuardarNuevaBttn" OnClick="GuardarNuevaBttn_Click" Text="Guardar nuevo"/>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
