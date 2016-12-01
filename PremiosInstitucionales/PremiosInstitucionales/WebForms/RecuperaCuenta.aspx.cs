@@ -30,7 +30,7 @@ namespace PremiosInstitucionales.WebForms
                 Match matchLetra = regexLetra.Match(password1);
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
-                    Mensaje.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra";
+                    Mensaje.Text = "La contraseña debe ser de al menos 6 caracteres <br/> y contener al menos un número y una letra.";
                 }
                 else
                 {
