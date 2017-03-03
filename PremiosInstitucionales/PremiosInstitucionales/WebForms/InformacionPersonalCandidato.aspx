@@ -2,6 +2,7 @@
     Inherits="PremiosInstitucionales.WebForms.InformacionPersonalCandidato" MasterPageFile="~/MasterPage.Master"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
+    <!--
     <h1>Mis datos personales</h1>
     <asp:Label class="appLabel" ID="Mensaje" runat="server"></asp:Label>
     <br />
@@ -31,4 +32,10 @@
     <br /><br />
     
     <asp:Button ID="EnviarBtn" runat="server" Enabled="false" Text="Enviar" OnClick="EnviarBtn_Click" />
+
+    <hr />
+    --> 
+
+    <asp:FileUpload ID="FileUpload1" runat="server" />
+    <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
 </asp:Content>

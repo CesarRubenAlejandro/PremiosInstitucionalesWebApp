@@ -10,6 +10,8 @@
         <link href='<%= ResolveUrl("~/Content/premiosinstitucionales.css")%>'  rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" />
     </asp:ContentPlaceHolder>
+    <script src="../scripts/jquery-1.9.1.min.js"></script>
+    <script src="../scripts/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -103,8 +105,7 @@
             </nav>
         </footer>
 
-        <script src="scripts/jquery-1.9.1.min.js"></script>
-        <script src="scripts/bootstrap.min.js"></script>
+        
     </div>
     </form>
 </body>

@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="wPremiosInstitucionalesdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PI_BA_Aplicacion">
+    <Key>
+      <PropertyRef Name="cveAplicacion" />
+    </Key>
+    <Property Name="cveAplicacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ganador" Type="bit" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="cveCandidato" Type="varchar" MaxLength="50" />
+    <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Candidato">
+    <Key>
+      <PropertyRef Name="cveCandidato" />
+    </Key>
+    <Property Name="cveCandidato" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" />
+    <Property Name="Confirmado" Type="bit" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="CodigoConfirmacion" Type="varchar" MaxLength="50" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" />
+    <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
+    <Property Name="RFC" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="50" />
+    <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Categoria">
+    <Key>
+      <PropertyRef Name="cveCategoria" />
+    </Key>
+    <Property Name="cveCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Convocatoria">
+    <Key>
+      <PropertyRef Name="cveConvocatoria" />
+    </Key>
+    <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+    <Property Name="FechaInicio" Type="date" />
+    <Property Name="FechaFin" Type="date" />
+    <Property Name="cvePremio" Type="varchar" MaxLength="50" />
+    <Property Name="TituloConvocatoria" Type="varchar" MaxLength="100" />
+    <Property Name="FechaVeredicto" Type="date" />
+  </EntityType>
+  <EntityType Name="PI_BA_Evaluacion">
+    <Key>
+      <PropertyRef Name="cveEvaluacion" />
+    </Key>
+    <Property Name="cveEvaluacion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Calificacion" Type="smallint" />
+    <Property Name="cveRespuesta" Type="varchar" MaxLength="50" />
+    <Property Name="cveJuez" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Forma">
+    <Key>
+      <PropertyRef Name="cveForma" />
+    </Key>
+    <Property Name="cveForma" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Juez">
+    <Key>
+      <PropertyRef Name="cveJuez" />
+    </Key>
+    <Property Name="cveJuez" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Apellido" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PI_BA_JuezPorCategoria">
+    <Key>
+      <PropertyRef Name="cveJuezPorCategoria" />
+    </Key>
+    <Property Name="cveJuezPorCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cveJuez" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cveCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PI_BA_Pregunta">
+    <Key>
+      <PropertyRef Name="cvePregunta" />
+    </Key>
+    <Property Name="cvePregunta" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Texto" Type="varchar" MaxLength="100" />
+    <Property Name="IdentificadorObjeto" Type="varchar" MaxLength="100" />
+    <Property Name="TipoCampo" Type="char" MaxLength="5" />
+    <Property Name="Orden" Type="int" />
+  </EntityType>
+  <EntityType Name="PI_BA_PreguntasPorForma">
+    <Key>
+      <PropertyRef Name="cvePreguntaPorForma" />
+    </Key>
+    <Property Name="cvePreguntaPorForma" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cveForma" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cvePregunta" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PI_BA_Premio">
+    <Key>
+      <PropertyRef Name="cvePremio" />
+    </Key>
+    <Property Name="cvePremio" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_BA_Respuesta">
+    <Key>
+      <PropertyRef Name="cveRespuesta" />
+    </Key>
+    <Property Name="cveRespuesta" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Valor" Type="varchar" MaxLength="200" />
+    <Property Name="cvePregunta" Type="varchar" MaxLength="50" />
+    <Property Name="cveAplicacion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PI_SE_Administrador">
+    <Key>
+      <PropertyRef Name="CveAdministrador" />
+    </Key>
+    <Property Name="CveAdministrador" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
+    <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
+    <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Candidato">
+        <PropertyRef Name="cveCandidato" />
+      </Principal>
+      <Dependent Role="PI_BA_Aplicacion">
+        <PropertyRef Name="cveCandidato" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
+    <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+    <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Categoria">
+        <PropertyRef Name="cveCategoria" />
+      </Principal>
+      <Dependent Role="PI_BA_Aplicacion">
+        <PropertyRef Name="cveCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Categoria_PI_BA_Convocatoria">
+    <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="0..1" />
+    <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Convocatoria">
+        <PropertyRef Name="cveConvocatoria" />
+      </Principal>
+      <Dependent Role="PI_BA_Categoria">
+        <PropertyRef Name="cveConvocatoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Convocatoria_PI_BA_Premio">
+    <End Role="PI_BA_Premio" Type="Self.PI_BA_Premio" Multiplicity="0..1" />
+    <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Premio">
+        <PropertyRef Name="cvePremio" />
+      </Principal>
+      <Dependent Role="PI_BA_Convocatoria">
+        <PropertyRef Name="cvePremio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Evaluacion_PI_BA_Juez">
+    <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="1" />
+    <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Juez">
+        <PropertyRef Name="cveJuez" />
+      </Principal>
+      <Dependent Role="PI_BA_Evaluacion">
+        <PropertyRef Name="cveEvaluacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Evaluacion_PI_BA_Respuesta">
+    <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="1" />
+    <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Respuesta">
+        <PropertyRef Name="cveRespuesta" />
+      </Principal>
+      <Dependent Role="PI_BA_Evaluacion">
+        <PropertyRef Name="cveEvaluacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Forma_PI_BA_Categoria">
+    <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+    <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Categoria">
+        <PropertyRef Name="cveCategoria" />
+      </Principal>
+      <Dependent Role="PI_BA_Forma">
+        <PropertyRef Name="cveCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+    <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="1" />
+    <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Categoria">
+        <PropertyRef Name="cveCategoria" />
+      </Principal>
+      <Dependent Role="PI_BA_JuezPorCategoria">
+        <PropertyRef Name="cveCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+    <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="1" />
+    <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Juez">
+        <PropertyRef Name="cveJuez" />
+      </Principal>
+      <Dependent Role="PI_BA_JuezPorCategoria">
+        <PropertyRef Name="cveJuez" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+    <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="1" />
+    <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Forma">
+        <PropertyRef Name="cveForma" />
+      </Principal>
+      <Dependent Role="PI_BA_PreguntasPorForma">
+        <PropertyRef Name="cveForma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+    <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="1" />
+    <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Pregunta">
+        <PropertyRef Name="cvePregunta" />
+      </Principal>
+      <Dependent Role="PI_BA_PreguntasPorForma">
+        <PropertyRef Name="cvePregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+    <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+    <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Aplicacion">
+        <PropertyRef Name="cveAplicacion" />
+      </Principal>
+      <Dependent Role="PI_BA_Respuesta">
+        <PropertyRef Name="cveAplicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Respuesta_PI_BA_Pregunta">
+    <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="0..1" />
+    <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Pregunta">
+        <PropertyRef Name="cvePregunta" />
+      </Principal>
+      <Dependent Role="PI_BA_Respuesta">
+        <PropertyRef Name="cvePregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="wPremiosInstitucionalesdbModelStoreContainer">
+    <EntitySet Name="PI_BA_Aplicacion" EntityType="Self.PI_BA_Aplicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Candidato" EntityType="Self.PI_BA_Candidato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Categoria" EntityType="Self.PI_BA_Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Convocatoria" EntityType="Self.PI_BA_Convocatoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Evaluacion" EntityType="Self.PI_BA_Evaluacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Forma" EntityType="Self.PI_BA_Forma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Juez" EntityType="Self.PI_BA_Juez" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_JuezPorCategoria" EntityType="Self.PI_BA_JuezPorCategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Pregunta" EntityType="Self.PI_BA_Pregunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_PreguntasPorForma" EntityType="Self.PI_BA_PreguntasPorForma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Premio" EntityType="Self.PI_BA_Premio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_BA_Respuesta" EntityType="Self.PI_BA_Respuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_SE_Administrador" EntityType="Self.PI_SE_Administrador" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Candidato" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato">
+      <End Role="PI_BA_Candidato" EntitySet="PI_BA_Candidato" />
+      <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria">
+      <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+      <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Convocatoria" Association="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria">
+      <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+      <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Convocatoria_PI_BA_Premio" Association="Self.FK_PI_BA_Convocatoria_PI_BA_Premio">
+      <End Role="PI_BA_Premio" EntitySet="PI_BA_Premio" />
+      <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Juez" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Juez">
+      <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+      <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Respuesta" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Respuesta">
+      <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+      <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Forma_PI_BA_Categoria" Association="Self.FK_PI_BA_Forma_PI_BA_Categoria">
+      <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+      <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+      <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+      <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+      <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+      <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+      <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+      <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+      <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+      <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+      <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+      <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Pregunta" Association="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta">
+      <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+      <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

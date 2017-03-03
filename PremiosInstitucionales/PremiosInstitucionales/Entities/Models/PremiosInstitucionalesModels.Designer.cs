@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Cesar\Documents\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\Entities\Models\PremiosInstitucionalesModels.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\tony-\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\Entities\Models\PremiosInstitucionalesModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

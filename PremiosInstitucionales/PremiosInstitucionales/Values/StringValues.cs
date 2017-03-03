@@ -23,6 +23,7 @@ namespace PremiosInstitucionales.Values
         public static readonly String Rechazado = "rechazada";
         public static readonly String Modificado = "modificada";
         public static readonly String Aceptado = "aceptada";
+        // borradorRespuesta
 
         //titulo de valores para status a mostrar al usuario
         public static readonly String TituloSolicitado = "Solicitud registrada";
