@@ -56,7 +56,7 @@ namespace PremiosInstitucionales.WebForms
         }
 
         private void Enable()
-        {
+        {/*
             if (EditarBtn.Text.ToString() == StringValues.InfoPersonalEditar)
             {
                 EditarBtn.Text = StringValues.InfoPersonalCancelar;
@@ -72,7 +72,7 @@ namespace PremiosInstitucionales.WebForms
             DomicilioTextBox.Enabled = !DomicilioTextBox.Enabled;
             TelefonoTextBox.Enabled = !TelefonoTextBox.Enabled;
             RFCTextBox.Enabled = !RFCTextBox.Enabled;
-            NacionalidadTextBox.Enabled = !NacionalidadTextBox.Enabled;
+            NacionalidadTextBox.Enabled = !NacionalidadTextBox.Enabled;*/
         }
 
         protected void EditarBtn_Click(object sender, EventArgs e)
@@ -118,7 +118,6 @@ namespace PremiosInstitucionales.WebForms
                 }
 
                 // Response.Redirect(Request.Url.AbsoluteUri);
-
             }
         }
     }

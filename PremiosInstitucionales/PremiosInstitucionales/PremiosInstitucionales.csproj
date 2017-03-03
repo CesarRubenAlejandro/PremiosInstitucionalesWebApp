@@ -146,6 +146,21 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Resources\css\bootstrap.min.css" />
+    <Content Include="Resources\css\stylec.css" />
+    <Content Include="Resources\js\bootstrap.min.js" />
+    <Content Include="Resources\js\global.js" />
+    <Content Include="Resources\js\InformacionPersonalCandidato.js" />
+    <Content Include="Resources\js\jquery.min.js" />
+    <Content Include="Resources\img\logotec.png" />
+    <Content Include="Resources\img\logotec2.png" />
+    <Content Include="Resources\svg\badgebg.svg" />
+    <Content Include="Resources\svg\checkmark.svg" />
+    <Content Include="Resources\svg\clipboard.svg" />
+    <Content Include="Resources\svg\juez.svg" />
+    <Content Include="Resources\svg\learning.svg" />
+    <Content Include="Resources\svg\logout.svg" />
+    <Content Include="Resources\svg\proponer.svg" />
     <Content Include="scripts\prueba.js" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
@@ -177,6 +192,7 @@
     </Content>
     <Content Include="MasterPage.Master" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="mp-Candidato.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -270,6 +286,13 @@
       <DependentUpon>PaginasIniciales.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="mp-Candidato.Master.cs">
+      <DependentUpon>mp-Candidato.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mp-Candidato.Master.designer.cs">
+      <DependentUpon>mp-Candidato.Master</DependentUpon>
+    </Compile>
     <Compile Include="Values\StringValues.cs" />
     <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>

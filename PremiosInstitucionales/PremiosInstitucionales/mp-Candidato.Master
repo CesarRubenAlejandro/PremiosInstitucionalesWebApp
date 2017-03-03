@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mp-Candidato.Master.cs" Inherits="PremiosInstitucionales.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
+        <link href='<%= ResolveUrl("~/Resources/css/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+        <link href='<%= ResolveUrl("~/Resources/css/stylec.css")%>'  rel="stylesheet" type="text/css" />
+
+        <!-- Load scripts at the bottom for faster loading -->
+        <script src='<%= ResolveUrl("~/Resources/js/jquery.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Resources/js/bootstrap.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Resources/js/global.js") %>'></script>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <!-- Navigation bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<img src='<%= ResolveUrl("~/Resources/img/logotec2.png") %>' style="max-width: 24px; margin-top: 13px; float: left; margin-right: 8px;"/>
+				<a class="navbar-brand" href="/WebForms/InicioCandidato.aspx">Premios TEC</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Cerrar sesión</a></li>
+					<img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle" alt="avatar" style="max-width: 28px; margin-top: 12px;"/>
+					<!--li><img src="svg/logout.svg" class="logout"></li-->
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <!-- Invite candidate -->
+	<div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">		
+				<div class="modal-header text-center">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">Proponer Candidato</h3>
+					<hr class="shorthr">
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+						<label class="col-lg-3 control-label">Nombre(s):</label>
+						<div class="col-lg-8">
+							<input class="form-control" value="Rubén Eugenio" type="text">
+						</div>
+						</div>
+						<div class="form-group">
+						<label class="col-lg-3 control-label">Apellido(s):</label>
+						<div class="col-lg-8">
+							<input class="form-control" value="Cantú Vota" type="text">
+						</div>
+						</div>
+						<div class="form-group">
+						<label class="col-lg-3 control-label">Correo eléctronico:</label>
+						<div class="col-lg-8">
+							<input class="form-control" value="rubencv@hollowlife.com" type="text">
+						</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Invitar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

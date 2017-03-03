@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<svg width="505" height="505" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <circle id="svg_1" fill="#FFD05B" r="252.5" cy="252.5" cx="252.5"/>
+  <path id="svg_2" fill="#324A5E" d="m379.9,427l-254.8,0c-2.6,0 -4.7,-2.1 -4.7,-4.7l0,-323c0,-2.6 2.1,-4.7 4.7,-4.7l254.9,0c2.6,0 4.7,2.1 4.7,4.7l0,323c-0.1,2.6 -2.2,4.7 -4.8,4.7z"/>
+  <polygon id="svg_3" fill="#FFFFFF" points="146.4,113.7 146.4,376.5 321.6,376.5 321.6,339.5 358.6,339.5 358.6,113.7 "/>
+  <polygon id="svg_4" fill="#E6E9EE" points="321.6,376.5 358.6,339.5 321.6,339.5 "/>
+  <path id="svg_5" fill="#FF7058" d="m273.3,84l0,-7.3c0,-11.5 -9.3,-20.8 -20.8,-20.8c-11.5,0 -20.8,9.3 -20.8,20.8l0,7.3l-36.7,0l0,42.6l115.1,0l0,-42.6l-36.8,0z"/>
+  <circle id="svg_6" fill="#FFD05B" r="10.4" cy="76.8" cx="252.5"/>
+  <rect id="svg_7" fill="#84DBFF" height="11" width="23.8" y="180.4" x="175.7"/>
+  <rect id="svg_8" fill="#E6E9EE" height="11" width="115" y="180.4" x="214.3"/>
+  <rect id="svg_9" fill="#84DBFF" height="11" width="23.8" y="214.7" x="175.7"/>
+  <rect id="svg_10" fill="#E6E9EE" height="11" width="115" y="214.7" x="214.3"/>
+  <rect id="svg_11" fill="#84DBFF" height="11" width="23.8" y="249" x="175.7"/>
+  <rect id="svg_12" fill="#E6E9EE" height="11" width="115" y="249" x="214.3"/>
+  <rect id="svg_13" fill="#84DBFF" height="11" width="23.8" y="283.3" x="175.7"/>
+  <rect id="svg_14" fill="#E6E9EE" height="11" width="115" y="283.3" x="214.3"/>
+  <g id="svg_15"/>
+  <g id="svg_16"/>
+  <g id="svg_17"/>
+  <g id="svg_18"/>
+  <g id="svg_19"/>
+  <g id="svg_20"/>
+  <g id="svg_21"/>
+  <g id="svg_22"/>
+  <g id="svg_23"/>
+  <g id="svg_24"/>
+  <g id="svg_25"/>
+  <g id="svg_26"/>
+  <g id="svg_27"/>
+  <g id="svg_28"/>
+  <g id="svg_29"/>
+ </g>
+</svg>
