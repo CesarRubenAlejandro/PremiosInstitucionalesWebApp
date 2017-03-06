@@ -74,6 +74,11 @@ function changePassword() {
     }, 1340);
 
 }
+
+function uploadImage() {
+    var x = document.getElementById("ContentPlaceHolder_FileUploadImage").click();
+}
+
 /*
 $(function () {
     $("[id*=EnviarBtn]").bind("click", function () {

@@ -62,6 +62,23 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
 
         }
 
+        public static bool GuardaNuevaContrasena(PI_BA_Candidato container, string correo)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var candidato = dbContext.PI_BA_Candidato.Where(c => c.Correo == correo)
+                    .FirstOrDefault();
+                candidato.Password = container.Password;
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public static bool CambiaImagen(PI_BA_Candidato container, string correo)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

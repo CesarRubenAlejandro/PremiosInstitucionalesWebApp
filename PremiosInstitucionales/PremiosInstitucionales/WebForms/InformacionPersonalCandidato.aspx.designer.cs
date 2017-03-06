@@ -31,6 +31,15 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// FileUploadImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadImage;
+        
+        /// <summary>
         /// NombresTextBox control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,42 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Button EnviarBtn;
         
         /// <summary>
+        /// currentPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox currentPwdTextBox;
+        
+        /// <summary>
+        /// newPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox newPwdTextBox;
+        
+        /// <summary>
+        /// confirmNewPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirmNewPwdTextBox;
+        
+        /// <summary>
+        /// ButtonChangePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonChangePassword;
+        
+        /// <summary>
         /// Mensaje control.
         /// </summary>
         /// <remarks>
@@ -119,15 +164,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button EditarBtn;
-        
-        /// <summary>
-        /// FileUpload1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
         /// btnUpload control.

@@ -22,7 +22,17 @@ namespace PremiosInstitucionales.WebForms
             if (!IsPostBack)
             {
                 MostrarCampos();
+            } else
+            {
+                ResetPasswordFields();
             }
+        }
+
+        private void ResetPasswordFields ()
+        {
+            currentPwdTextBox.Text = "";
+            newPwdTextBox.Text = "";
+            confirmNewPwdTextBox.Text = "";
         }
 
         private void MostrarCampos()
@@ -40,7 +50,11 @@ namespace PremiosInstitucionales.WebForms
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
             ActualizarDatosGenerales();
-            Enable();
+        }
+
+        protected void CambiarContrasena_Click(object sender, EventArgs e)
+        {
+            ActualizarContrasena();
         }
 
         public class ajax_Candidato
@@ -83,6 +97,31 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
+        protected void ActualizarContrasena ()
+        {
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+
+            string sCurrentPassword = currentPwdTextBox.Text;
+            if (candidato.Password == sCurrentPassword)
+            {
+                if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
+                {
+                    PI_BA_Candidato aux = new PI_BA_Candidato();
+                    aux.Password = newPwdTextBox.Text;
+                    if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(aux, Session[StringValues.CorreoSesion].ToString()))
+                    {
+                        Mensaje.Text = "Tus cambios han sido guardados";
+                    }
+                    else
+                    {
+                        Mensaje.Text = "Hubo un error al guardar tus cambios";
+                    }
+                }
+                
+            }
+
+        }
+
         protected void ActualizarDatosGenerales ()
         {
             
@@ -105,29 +144,9 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private void Enable()
-        {/*
-            if (EditarBtn.Text.ToString() == StringValues.InfoPersonalEditar)
-            {
-                EditarBtn.Text = StringValues.InfoPersonalCancelar;
-            }
-            else
-            {
-                EditarBtn.Text = StringValues.InfoPersonalEditar;
-                MostrarCampos();
-            }
-            EnviarBtn.Enabled = !EnviarBtn.Enabled;
-            NombresTextBox.Enabled = !NombresTextBox.Enabled;
-            ApellidosTextBox.Enabled = !ApellidosTextBox.Enabled;
-            DomicilioTextBox.Enabled = !DomicilioTextBox.Enabled;
-            TelefonoTextBox.Enabled = !TelefonoTextBox.Enabled;
-            RFCTextBox.Enabled = !RFCTextBox.Enabled;
-            NacionalidadTextBox.Enabled = !NacionalidadTextBox.Enabled;*/
-        }
-
         protected void EditarBtn_Click(object sender, EventArgs e)
         {
-            Enable();
+
         }
 
         protected void Upload(object sender, EventArgs e)

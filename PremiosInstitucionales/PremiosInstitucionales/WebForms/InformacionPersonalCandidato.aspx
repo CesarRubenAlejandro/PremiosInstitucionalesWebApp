@@ -18,7 +18,8 @@
                 <div class="col-md-4 col-sm-6 col-xs-12" style="height: 100%;">
                     <div class="text-center">
                         <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle img-thumbnail avatar-upload" alt="avatar" style="max-width: 264px;" onclick="uploadImage();">
-                        <input type="file" id="upImage" class="text-center center-block well well-sm" style="display: none;">
+                        
+                        <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" style="display: none;"/>
                     </div>
                     <div class="form-group">
                         <div class="btn-group-mid">
@@ -108,25 +109,26 @@
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Contraseña actual:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="password" />
+                                    <asp:TextBox ID="currentPwdTextBox" runat="server" class="form-control" type="password" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Contraseña nueva:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="password" />
+                                    <asp:TextBox ID="newPwdTextBox" runat="server" class="form-control" type="password" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-4 control-label">Confirmar contraseña:</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" type="password" />
+                                    <asp:TextBox ID="confirmNewPwdTextBox" runat="server" class="form-control" type="password" />
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="changePassword()">Cambiar</button>
+                            <!-- <button type="button" class="btn btn-primary" onclick="changePassword()">Cambiar</button> -->
+                            <asp:Button ID="ButtonChangePassword" class="btn btn-primary" runat="server" Text="Cambiar" OnClick="CambiarContrasena_Click" />
                         </div>
                     </div>
                     <div class="sp sp-circle" id="loadingspinner"></div>
@@ -146,7 +148,7 @@
         <hr />
 
 
-        <asp:FileUpload ID="FileUpload1" runat="server" />
+        
         <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
     </form>
 
