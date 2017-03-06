@@ -13,7 +13,8 @@
         <!-- Load scripts at the bottom for faster loading -->
         <script src='<%= ResolveUrl("~/Resources/js/jquery.min.js") %>'></script>
         <script src='<%= ResolveUrl("~/Resources/js/bootstrap.min.js") %>'></script>
-        <script src='<%= ResolveUrl("~/Resources/js/global.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Resources/js/global.js") %>' defer="defer"></script>
+        <script src='<%= ResolveUrl("~/Resources/js/InformacionPersonalCandidato.js") %>'></script>
     </asp:ContentPlaceHolder>
 </head>
 <body>

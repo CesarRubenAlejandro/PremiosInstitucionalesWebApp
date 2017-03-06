@@ -22,6 +22,15 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// NombresTextBox control.
         /// </summary>
         /// <remarks>
@@ -29,42 +38,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox NombresTextBox;
-        
-        /// <summary>
-        /// Mensaje control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mensaje;
-        
-        /// <summary>
-        /// EditarBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditarBtn;
-        
-        /// <summary>
-        /// NombresLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombresLabel;
-        
-        /// <summary>
-        /// ApellidosLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ApellidosLabel;
         
         /// <summary>
         /// ApellidosTextBox control.
@@ -76,15 +49,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox ApellidosTextBox;
         
         /// <summary>
-        /// CorreoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CorreoLabel;
-        
-        /// <summary>
         /// CorreoTextBox control.
         /// </summary>
         /// <remarks>
@@ -92,15 +56,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CorreoTextBox;
-        
-        /// <summary>
-        /// DomicilioLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DomicilioLabel;
         
         /// <summary>
         /// DomicilioTextBox control.
@@ -112,15 +67,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox DomicilioTextBox;
         
         /// <summary>
-        /// TelefonoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TelefonoLabel;
-        
-        /// <summary>
         /// TelefonoTextBox control.
         /// </summary>
         /// <remarks>
@@ -130,15 +76,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox TelefonoTextBox;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// RFCTextBox control.
         /// </summary>
         /// <remarks>
@@ -146,15 +83,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox RFCTextBox;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// NacionalidadTextBox control.
@@ -173,6 +101,24 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button EnviarBtn;
+        
+        /// <summary>
+        /// Mensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Mensaje;
+        
+        /// <summary>
+        /// EditarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EditarBtn;
         
         /// <summary>
         /// FileUpload1 control.

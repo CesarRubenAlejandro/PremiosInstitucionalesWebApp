@@ -8,13 +8,17 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
+using System.Web.Script.Services;
 
 namespace PremiosInstitucionales.WebForms
 {
     public partial class InformacionPersonalCandidato : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
             if (!IsPostBack)
             {
                 MostrarCampos();
@@ -35,6 +39,53 @@ namespace PremiosInstitucionales.WebForms
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
+            ActualizarDatosGenerales();
+            Enable();
+        }
+
+        public class ajax_Candidato
+        {
+            public string Nombre { get; set; }
+            public string Apellido { get; set; }
+            public string Direccion { get; set; }
+            public string Nacionalidad { get; set; }
+            public string RFC { get; set; }
+            public string Telefono { get; set; }
+        }
+
+        [WebMethod]
+        [ScriptMethod]
+        public static void MyMethod(ajax_Candidato cand)
+        {
+            try
+            {
+                PI_BA_Candidato aux = new PI_BA_Candidato();
+                aux.Nombre = cand.Nombre;
+                aux.Apellido = cand.Apellido;
+                aux.Direccion = cand.Direccion;
+                aux.Nacionalidad = cand.Nacionalidad;
+                aux.RFC = cand.RFC;
+                aux.Telefono = cand.Telefono;
+
+                if (InformacionPersonalCandidatoService.GuardarCambios(aux, HttpContext.Current.Session[StringValues.CorreoSesion].ToString()))
+                {
+                    System.Diagnostics.Debug.WriteLine("Tus cambios han sido guardados");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Hubo un error al guardar tus cambios");
+                }
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Debug.WriteLine("??? why tho");
+                throw;
+            }
+        }
+
+        protected void ActualizarDatosGenerales ()
+        {
+            
             PI_BA_Candidato aux = new PI_BA_Candidato();
             aux.Nombre = NombresTextBox.Text;
             aux.Apellido = ApellidosTextBox.Text;
@@ -42,7 +93,7 @@ namespace PremiosInstitucionales.WebForms
             aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
             aux.RFC = RFCTextBox.Text.ToString();
             aux.Telefono = TelefonoTextBox.Text.ToString();
-            
+
             if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
             {
                 Mensaje.Text = "Tus cambios han sido guardados";
@@ -52,7 +103,6 @@ namespace PremiosInstitucionales.WebForms
                 Mensaje.Text = "Hubo un error al guardar tus cambios";
                 MostrarCampos();
             }
-            Enable();
         }
 
         private void Enable()
