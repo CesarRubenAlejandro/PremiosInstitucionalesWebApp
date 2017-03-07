@@ -76,7 +76,20 @@ function changePassword() {
 }
 
 function uploadImage() {
-    var x = document.getElementById("ContentPlaceHolder_FileUploadImage").click();
+    var prefix = "ContentPlaceHolder_";
+    var x = document.getElementById(prefix + "FileUploadImage").click();
+}
+
+function ShowImagePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#avatarImage').prop('src', e.target.result)
+                .width(264)
+                .height(254);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 /*

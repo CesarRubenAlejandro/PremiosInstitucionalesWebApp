@@ -151,10 +151,10 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Upload(object sender, EventArgs e)
         {
-            if (FileUpload1.HasFile)
+            if (FileUploadImage.HasFile)
             {
                 // Get filename
-                string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+                string fileName = Path.GetFileName(FileUploadImage.PostedFile.FileName);
 
                 // Get logged in candidate
                 var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
@@ -171,7 +171,7 @@ namespace PremiosInstitucionales.WebForms
                 string sNombreImagen = candidato.cveCandidato + sFormat;
 
                 // Upload image to server
-                FileUpload1.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
+                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
 
                 // Update data in database
                 PI_BA_Candidato aux = new PI_BA_Candidato();

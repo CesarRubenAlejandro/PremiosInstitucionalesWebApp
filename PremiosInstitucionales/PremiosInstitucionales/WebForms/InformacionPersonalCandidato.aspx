@@ -17,9 +17,9 @@
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12" style="height: 100%;">
                     <div class="text-center">
-                        <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle img-thumbnail avatar-upload" alt="avatar" style="max-width: 264px;" onclick="uploadImage();">
                         
-                        <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" style="display: none;"/>
+                        <img id="avatarImage" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle img-thumbnail avatar-upload" style="max-width: 264px; max-height: 264px;" alt="avatar" onclick="uploadImage();">
+                        <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" style="display: none;" onchange="ShowImagePreview(this);"/>
                     </div>
                     <div class="form-group">
                         <div class="btn-group-mid">
