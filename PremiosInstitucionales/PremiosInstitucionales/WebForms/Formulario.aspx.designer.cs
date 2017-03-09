@@ -10,33 +10,24 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class InicioCandidato {
+    public partial class Formulario {
         
         /// <summary>
-        /// tituloPremio control.
+        /// litTituloPremio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal tituloPremio;
+        protected global::System.Web.UI.WebControls.Literal litTituloPremio;
         
         /// <summary>
-        /// tituloCategoria control.
+        /// litTituloCategoria control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal tituloCategoria;
-        
-        /// <summary>
-        /// PanelFormulario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelFormulario;
+        protected global::System.Web.UI.WebControls.Literal litTituloCategoria;
     }
 }

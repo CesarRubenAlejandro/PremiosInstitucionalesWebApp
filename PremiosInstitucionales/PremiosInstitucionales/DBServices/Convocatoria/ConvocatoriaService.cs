@@ -21,7 +21,14 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             return dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
-                    .FirstOrDefault(); 
+                    .FirstOrDefault();
+        }
+
+        public static PI_BA_Categoria GetCategoriaById(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            return dbContext.PI_BA_Categoria.Where(p => p.cveCategoria == idCategoria)
+                    .FirstOrDefault();
         }
 
         public static void SaveNewConvocatoria(string idPremio, PI_BA_Convocatoria nuevaConvocatoria)

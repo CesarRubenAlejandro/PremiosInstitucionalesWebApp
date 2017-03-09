@@ -276,6 +276,7 @@ hr{
 
 .avatar-upload {
 	cursor: pointer;
+
 }
 
 .dt-profile-pic{
@@ -293,3 +294,26 @@ table.dataTable tbody tr:hover {
 	cursor: pointer;
 }
 
+div.userHeader{
+	width: 264px;
+	height: 264px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	vertical-align: middle;
+}
+.userClass{
+	height: 100%;
+	width: 100%;
+	max-width: 254px;
+	max-height: 254px;
+	display: block;
+	margin: auto;
+	border-radius: 50%;
+	background-image: url('../img/default-pp.jpg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	vertical-align: bottom;
+	cursor: pointer;
+}

@@ -74,3 +74,11 @@ C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucional
 C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\obj\Debug\PremiosInstitucionales.csprojResolveAssemblyReference.cache
 C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\obj\Debug\PremiosInstitucionales.dll
 C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\obj\Debug\PremiosInstitucionales.pdb
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Newtonsoft.Json.dll
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Net.Http.Formatting.dll
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Web.Http.dll
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Web.Http.WebHost.dll
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Newtonsoft.Json.xml
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Net.Http.Formatting.xml
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Web.Http.xml
+C:\Users\Tony\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\System.Web.Http.WebHost.xml

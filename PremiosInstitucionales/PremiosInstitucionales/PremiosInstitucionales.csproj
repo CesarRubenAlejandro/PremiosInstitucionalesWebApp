@@ -88,6 +88,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -99,6 +108,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -148,6 +165,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\stylec.css" />
+    <Content Include="Resources\img\default-pp.jpg" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\global.js" />
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
@@ -167,6 +185,7 @@
     <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
+    <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
@@ -307,6 +326,13 @@
     </Compile>
     <Compile Include="WebForms\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Formulario.aspx.cs">
+      <DependentUpon>Formulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Formulario.aspx.designer.cs">
+      <DependentUpon>Formulario.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\InformacionPersonalCandidato.aspx.cs">
       <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>

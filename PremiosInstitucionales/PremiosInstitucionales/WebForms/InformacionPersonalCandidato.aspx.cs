@@ -18,14 +18,11 @@ namespace PremiosInstitucionales.WebForms
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
-            if (!IsPostBack)
-            {
-                MostrarCampos();
-            } else
-            {
-                ResetPasswordFields();
-            }
+            MostrarCampos();
+            ResetPasswordFields();
+
         }
 
         private void ResetPasswordFields ()
@@ -45,11 +42,21 @@ namespace PremiosInstitucionales.WebForms
             RFCTextBox.Text = candidato.RFC;
             TelefonoTextBox.Text = candidato.Telefono;
             NacionalidadTextBox.Text = candidato.Nacionalidad;
+
+            if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+            {
+                if (File.Exists(Server.MapPath("~/ProfilePictures/" + candidato.NombreImagen)))
+                {
+                    avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + candidato.NombreImagen + ")");
+                }
+            }
+            
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
             ActualizarDatosGenerales();
+            Upload(sender, e);
         }
 
         protected void CambiarContrasena_Click(object sender, EventArgs e)
@@ -110,11 +117,11 @@ namespace PremiosInstitucionales.WebForms
                     aux.Password = newPwdTextBox.Text;
                     if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(aux, Session[StringValues.CorreoSesion].ToString()))
                     {
-                        Mensaje.Text = "Tus cambios han sido guardados";
+                        
                     }
                     else
                     {
-                        Mensaje.Text = "Hubo un error al guardar tus cambios";
+                        
                     }
                 }
                 
@@ -135,11 +142,9 @@ namespace PremiosInstitucionales.WebForms
 
             if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
             {
-                Mensaje.Text = "Tus cambios han sido guardados";
             }
             else
             {
-                Mensaje.Text = "Hubo un error al guardar tus cambios";
                 MostrarCampos();
             }
         }
@@ -158,7 +163,7 @@ namespace PremiosInstitucionales.WebForms
 
                 // Get logged in candidate
                 var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
-                if(candidato.NombreImagen.Length > 0)
+                if(candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
                 {
                     // Delete previous image...
                     File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
@@ -168,7 +173,7 @@ namespace PremiosInstitucionales.WebForms
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
                 string sFormat = fileName.Substring(startIndex, endIndex);
-                string sNombreImagen = candidato.cveCandidato + sFormat;
+                string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
 
                 // Upload image to server
                 FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
@@ -179,14 +184,14 @@ namespace PremiosInstitucionales.WebForms
                 
                 if (InformacionPersonalCandidatoService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString()))
                 {
-                    Mensaje.Text = "Tus cambios han sido guardados";
+                    
                 }
                 else
                 {
-                    Mensaje.Text = "Hubo un error al guardar tus cambios";
+                    
                 }
 
-                // Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
         }
     }

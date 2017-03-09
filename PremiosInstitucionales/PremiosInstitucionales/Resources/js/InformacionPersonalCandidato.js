@@ -81,14 +81,15 @@ function uploadImage() {
 }
 
 function ShowImagePreview(input) {
+    console.log('helo');
     if (input.files && input.files[0]) {
+        console.log('helox2');
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#avatarImage').prop('src', e.target.result)
-                .width(264)
-                .height(254);
+            $('#ContentPlaceHolder_avatarImage').css('background-image', 'url(' + e.target.result + ')');
         };
         reader.readAsDataURL(input.files[0]);
+        
     }
 }
 

@@ -16,14 +16,15 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12" style="height: 100%;">
+                    <div class="userHeader avatar img-circle img-thumbnail">
+	                    <asp:Panel runat="server" class="userClass" id="avatarImage" onclick="uploadImage();"></asp:Panel>
+                    </div>
                     <div class="text-center">
-                        
-                        <img id="avatarImage" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle img-thumbnail avatar-upload" style="max-width: 264px; max-height: 264px;" alt="avatar" onclick="uploadImage();">
                         <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" style="display: none;" onchange="ShowImagePreview(this);"/>
                     </div>
                     <div class="form-group">
                         <div class="btn-group-mid">
-                            <button onclick="uploadImage();" type="button" class="btn btn-default">Cambiar imagen de perfil</button>
+                            <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Cambiar imagen de perfil" OnClick="Upload" />
                         </div>
                     </div>
                 </div>
@@ -137,19 +138,6 @@
             </div>
         </div>
 
-
-        <h1>Mis datos personales</h1>
-        <asp:Label class="appLabel" ID="Mensaje" runat="server"></asp:Label>
-        <br />
-        <asp:Button ID="EditarBtn" runat="server" Text="Editar datos" />
-        <%-- 
-    <asp:Button ID="EnviarBtn" runat="server" Enabled="false" Text="Enviar" OnClick="EnviarBtn_Click" />
-        --%>
-        <hr />
-
-
-        
-        <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
     </form>
 
 
