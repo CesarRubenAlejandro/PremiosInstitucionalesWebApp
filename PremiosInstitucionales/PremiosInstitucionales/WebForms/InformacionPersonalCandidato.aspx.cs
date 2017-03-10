@@ -18,11 +18,9 @@ namespace PremiosInstitucionales.WebForms
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
             ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
             MostrarCampos();
             ResetPasswordFields();
-
         }
 
         private void ResetPasswordFields ()

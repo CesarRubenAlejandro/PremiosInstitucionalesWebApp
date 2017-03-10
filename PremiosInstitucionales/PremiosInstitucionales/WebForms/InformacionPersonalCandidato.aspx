@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <div class="btn-group-mid">
-                            <asp:Button ID="Button1" class="btn btn-default" runat="server" Text="Cambiar imagen de perfil" OnClick="Upload" />
+                            <button type="button" ID="Button1" class="btn btn-default" Text="Cambiar imagen de perfil" onclick="uploadImage();">Cambiar imagen de perfil</button>
                         </div>
                     </div>
                 </div>
