@@ -10,17 +10,18 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class Formulario : System.Web.UI.Page
     {
+        private int iMaxCharacters = 500;
+        private string sCharactersRemainingMessage = "caracteres restantes";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string sPremioID = Request.QueryString["p"];
                 string sCategoriaID = Request.QueryString["c"];
-                if (sPremioID != null && sCategoriaID != null)
+                if (sCategoriaID != null)
                 {
-                    var premio = ConvocatoriaService.GetPremioById(sPremioID);
+                    var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
                     var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
-
+                    
                     if (premio != null && categoria != null)
                     {
                         SetForm(premio, categoria);
@@ -68,21 +69,30 @@ namespace PremiosInstitucionales.WebForms
                 
                 if (preguntas != null)
                 {
+                    short iNumber = 1;
                     foreach (var pregunta in preguntas)
                     {
-                        Panel p = new Panel();
-                        p.CssClass = "col-lg-12 text-center";
-                        
-                        LiteralControl h1 = new LiteralControl()
-                        Label lbl = new Label();
-                        lbl.Text = pregunta.Texto;
-                        PanelFormulario.Controls.Add(lbl);
+                        Panel panel = new Panel();
+                        panel.CssClass = "question-box";
 
-                        
+                        LiteralControl h5 = new LiteralControl("<h5>" + iNumber + ". " + pregunta.Texto + "</h5>");
+                        panel.Controls.Add(h5);
+                        LiteralControl p = new LiteralControl("<p>" + iMaxCharacters + " " + sCharactersRemainingMessage + "</p>");
+                        panel.Controls.Add(p);
+
                         TextBox tb = new TextBox();
-                        PanelFormulario.Controls.Add(tb);
+                        tb.TextMode = TextBoxMode.MultiLine;
+                        tb.Rows = 4;
+                        tb.MaxLength = iMaxCharacters;
+                        tb.CssClass = "form-control form-text-area scrollbar-custom";
+                        tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this)");
+                        tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
+                        tb.Attributes.Remove("cols");
+                        panel.Controls.Add(tb);
 
-                        System.Diagnostics.Debug.WriteLine(pregunta.Texto);
+                        PanelFormulario.Controls.Add(panel);
+
+                        iNumber++;
                     }
                 }
                 /*

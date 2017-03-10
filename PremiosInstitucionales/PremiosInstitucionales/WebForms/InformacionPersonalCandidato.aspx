@@ -79,7 +79,8 @@
                                     <a data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
                                         <button type="button" class="btn btn-default">Cambiar contraseña</button>
                                     </a>
-                                    <asp:Button class="btn btn-primary" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click"/>
+                                    <button type="button" class="btn btn-primary" onclick="saveChangesAux();">Guardar Cambios</button>
+                                    <asp:Button style="display: none;" type="button" class="btn btn-primary" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click"/>
                                 </div>
                             </div>
                         </div>

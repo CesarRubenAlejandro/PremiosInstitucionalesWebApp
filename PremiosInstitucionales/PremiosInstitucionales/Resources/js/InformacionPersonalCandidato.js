@@ -186,6 +186,10 @@ function MyFunction() {
     return false;*/
 }  
 
+function saveChangesAux() {
+    var prefix = "ContentPlaceHolder_";
+    var x = document.getElementById(prefix + "EnviarBtn").click();
+}
 
 function saveChanges() {
     changeAlert.style.transition = 'opacity .40s ease-in';
