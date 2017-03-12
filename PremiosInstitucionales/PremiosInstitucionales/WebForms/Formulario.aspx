@@ -9,10 +9,12 @@
 				<hr class="shorthr"/>
 			</div>
 		</div>
-        <form runat="server">
-        <asp:Panel runat="server" id="PanelFormulario" class="row question-form">
-        </asp:Panel>
+        <form runat="server" id="FormFormulario">
+            <asp:Panel runat="server" id="PanelFormulario" class="row question-form">
+            </asp:Panel>
+            <asp:Button id="EnviarBttn" runat="server" onclick="EnviarAplicacion" Text="Enviar aplicación"/>
         </form>
+        
     </div>
     
 

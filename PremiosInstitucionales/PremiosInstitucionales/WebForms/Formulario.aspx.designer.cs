@@ -31,6 +31,15 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Literal litTituloCategoria;
         
         /// <summary>
+        /// FormFormulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm FormFormulario;
+        
+        /// <summary>
         /// PanelFormulario control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,14 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PanelFormulario;
+        
+        /// <summary>
+        /// EnviarBttn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EnviarBttn;
     }
 }
