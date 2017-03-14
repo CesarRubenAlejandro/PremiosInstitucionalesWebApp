@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class InicioCandidato {
+    public partial class AplicacionesCandidato {
         
         /// <summary>
         /// contenidoiniciocandidato control.

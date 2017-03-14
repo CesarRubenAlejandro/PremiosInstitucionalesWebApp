@@ -34,7 +34,7 @@
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
 					    <div class="service-box">
-						    <a href="aplicaciones.html"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
+						    <a href="/WebForms/AplicacionesCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
 						    <h3>Mis Aplicaciones Vigentes</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
 						    <p class="text-muted">Guaranteed to use the same fucking template that every other bootstrap website uses, downloaded straight from The Web™</p>

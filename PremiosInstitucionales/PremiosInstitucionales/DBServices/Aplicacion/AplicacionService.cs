@@ -121,6 +121,24 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             return "Premio " + premio.Nombre.ToString() + " - Categoría " + categoria.Nombre.ToString();
         }
 
+        public static PI_BA_Premio GetPremioByClaveCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
+            PI_BA_Premio premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(convocatoria.cvePremio)).FirstOrDefault();
+
+            return premio;
+        }
+
+        public static PI_BA_Categoria GetCategoriaByClaveCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+
+            return categoria;
+        }
+
         public static void RechazarAplicacion(String claveAplicacion)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
