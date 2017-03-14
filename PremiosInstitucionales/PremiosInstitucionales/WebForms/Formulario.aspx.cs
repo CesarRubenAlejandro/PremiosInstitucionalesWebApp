@@ -50,22 +50,13 @@ namespace PremiosInstitucionales.WebForms
             String emailCandidato = Session[StringValues.CorreoSesion].ToString();
             if (AplicacionService.CheckCandidatoInCategoria(emailCandidato, categoria.cveCategoria))
             {
-                // el candidato actual ya tiene una aplicacion en esta categoria
-                // desplegar msj de error
-                /*
-                ErrorLbl.Text = "Ya se realizó una aplicación a esta categoría.";
-                ErrorLbl.Visible = true;
-                EnviarBttn.Visible = false;*/
+                // mostrar error y ocultar boton de enviar
+                alreadySubmittedLabel.Visible = true;
+                EnviarBttn.Visible = false;
             }
             else
             {
-                /*
-                // esconder mensaje de error
-                ErrorLbl.Visible = false;
-                // mostrar boton de enviar
-                EnviarBttn.Visible = true;*/
                 // vaciar coleccion de preguntas para evitar IDs repetidos
-
                 PanelFormulario.Controls.Clear();
 
                 // obtener lista de preguntas para la categoria y desplegar el formulario
@@ -102,16 +93,6 @@ namespace PremiosInstitucionales.WebForms
                         iNumber++;
                     }
                 }
-                /*
-                else
-                {
-                    // esconder control EnviarBttn para evitar incongruencias
-                    // EnviarBttn.Visible = false;
-                }
-
-            }*/
-
-
             }
         }
 
@@ -147,7 +128,6 @@ namespace PremiosInstitucionales.WebForms
 
                     ltRespuestas.Add(sRespuesta);
                 }
-
             }
 
             if (ltRespuestas.Count == preguntas.Count)
