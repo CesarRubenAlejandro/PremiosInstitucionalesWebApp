@@ -53,33 +53,25 @@ namespace PremiosInstitucionales.WebForms
         }
 
 
-        public static String crearHtmlMapaEstados(PI_BA_Aplicacion ap, String estados, bool editar)
+        public static String crearHtmlMapaEstados(PI_BA_Aplicacion ap, String estados)
         {
-            String ret = "<div class=\"panel-heading\">" +
-                                    "<h3 class=\"panel-title\" style=\"display: inline-block;\">" +
-                                        "<strong> Premio " + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).Nombre.ToString() + "</strong>" +
-                                        " - Categoria " + AplicacionService.GetCategoriaByClaveCategoria(ap.cveCategoria).Nombre.ToString() +
-                                    "</h3>";
-            if (editar)
-            {
-                ret +=              "<div style = \"display: inline-block; float:right;\" >" +
-                                        "<button type = \"button\" class=\"btn btn-sm btn-info\" style=\"margin-top: -3px;\">Editar</button>" +
-                                    "</div>";
-            }
-
-            ret +=          "</div>" +
-                            "<div class=\"row\">" +
-                                "<div class=\"panel-body\">" +
-                                   "<div class=\"col-sm-2\">" +
-                                        "<img src = /img/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-premio\"/>" +
-                                    "</div>" +
-                                    "<div class=\"col-sm-10\">" +
-                                        "Estado de la solicitud:" +
-                                        estados +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>";
-            return ret;
+            return "<div class=\"panel-heading\">" +
+                        "<h3 class=\"panel-title\" style=\"display: inline-block;\">" +
+                            "<strong> Premio " + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).Nombre.ToString() + "</strong>" +
+                            " - Categoria " + AplicacionService.GetCategoriaByClaveCategoria(ap.cveCategoria).Nombre.ToString() +
+                        "</h3>" +
+                    "</div>" +
+                    "<div class=\"row\">" +
+                        "<div class=\"panel-body\">" +
+                            "<div class=\"col-sm-2\">" +
+                                "<img src = /img/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-premio\"/>" +
+                            "</div>" +
+                            "<div class=\"col-sm-10\">" +
+                                "Estado de la solicitud:" +
+                                estados +
+                            "</div>" +
+                        "</div>" +
+                    "</div>";
         }
        
 
@@ -107,7 +99,7 @@ namespace PremiosInstitucionales.WebForms
                                             "<li><a><div class=\"step\">" + StringValues.TituloAceptado + "</div></a></li>" +
                                             "<li><a><div class=\"step\">" + StringValues.TituloVeredicto + "</div></a></li>" +
                                         "</ul>" +
-                                        StringValues.ExplicacionSolicitado, false) +
+                                        StringValues.ExplicacionSolicitado) +
                         "</div>";
             }
             else if (ap.Status == StringValues.Aceptado && veredicto)
@@ -120,7 +112,7 @@ namespace PremiosInstitucionales.WebForms
                                             "<li><a><div class=\"step\">" + StringValues.TituloAceptado + "</div></a></li>" +
                                             "<li class=\"active\"><a><div class=\"step\">" + StringValues.TituloVeredicto + "</div></a></li>" +
                                         "</ul>" +
-                                        StringValues.ExplicacionVeredicto, false) +
+                                        StringValues.ExplicacionVeredicto) +
                         "</div>";
             }
             else if (ap.Status == StringValues.Aceptado && !veredicto)
@@ -133,7 +125,7 @@ namespace PremiosInstitucionales.WebForms
                                             "<li class=\"active\"><a><div class=\"step\">" + StringValues.TituloAceptado + "</div></a></li>" +
                                             "<li><a><div class=\"step\">" + StringValues.TituloVeredicto + "</div></a></li>" +
                                         "</ul>" +
-                                        StringValues.ExplicacionAceptado, false) +
+                                        StringValues.ExplicacionAceptado) +
                         "</div>";
             }
             else if (ap.Status == StringValues.Rechazado && cierre)
@@ -146,7 +138,7 @@ namespace PremiosInstitucionales.WebForms
                                             "<li><a><div class=\"step\">" + StringValues.TituloRechazado + "</div></a></li>" +
                                             "<li class=\"active\"><a><div class=\"step\">" + StringValues.TituloCerrado + "</div></a></li>" +
                                         "</ul>" +
-                                        StringValues.ExplicacionCerrado, false) +
+                                        StringValues.ExplicacionCerrado) +
                         "</div>";
             }
             else if (ap.Status == StringValues.Rechazado && !cierre)
@@ -164,7 +156,7 @@ namespace PremiosInstitucionales.WebForms
                                         StringValues.ExplicacionRechazado +
                                         "<a href=\"CorrigeAplicacion.aspx?aplicacion=" +
                                             ap.cveAplicacion +
-                                        "\">Haz clic aquí para modificarla.</a>", true) +
+                                        "\">Haz clic aquí para modificarla.</a>") +
                         "</div>";
             }
             else if (ap.Status == StringValues.Modificado)
@@ -179,7 +171,7 @@ namespace PremiosInstitucionales.WebForms
                                             "<li><a><div class=\"step\">" + StringValues.TituloAceptado + "</div></a></li>" +
                                             "<li><a><div class=\"step\">" + StringValues.TituloVeredicto + "</div></a></li>" +
                                         "</ul>" +
-                                        StringValues.ExplicacionModificado, false) +
+                                        StringValues.ExplicacionModificado) +
                         "</div>";
             }
             else
