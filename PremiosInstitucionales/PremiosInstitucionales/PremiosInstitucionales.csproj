@@ -312,6 +312,7 @@
     <Compile Include="mp-Candidato.Master.designer.cs">
       <DependentUpon>mp-Candidato.Master</DependentUpon>
     </Compile>
+    <Compile Include="Values\NumericValues.cs" />
     <Compile Include="Values\StringValues.cs" />
     <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>

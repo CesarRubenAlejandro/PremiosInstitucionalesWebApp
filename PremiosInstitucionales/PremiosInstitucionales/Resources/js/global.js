@@ -12,8 +12,6 @@ $(document).ready(function() {
 	}
 });
 
-
-
 function updateCharactersLeft (textarea) {
 	var charactersMessage = textarea.parentElement.getElementsByTagName("p")[0];
 	var actualCharacters = textarea.value.length;
@@ -22,4 +20,9 @@ function updateCharactersLeft (textarea) {
 	var result = maxCharacters - actualCharacters;
 
 	charactersMessage.innerHTML = result + ' caracteres restantes.';
+}
+
+function sendFormAux() {
+    var prefix = "ContentPlaceHolder_";
+    var x = document.getElementById(prefix + "EnviarBtn").click();
 }

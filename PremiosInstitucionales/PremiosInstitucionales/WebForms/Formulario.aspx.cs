@@ -12,8 +12,8 @@ namespace PremiosInstitucionales.WebForms
     public partial class Formulario : System.Web.UI.Page
     {
 
-        private int iMaxCharacters = 500;
-        private string sCharactersRemainingMessage = "caracteres restantes";
+        private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
+        private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
         private string sCategoriaID;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,7 +52,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 // mostrar error y ocultar boton de enviar
                 alreadySubmittedLabel.Visible = true;
-                EnviarBttn.Visible = false;
+                EnviarBtn.Visible = false;
             }
             else
             {
@@ -129,7 +129,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 PI_BA_Pregunta pregunta = preguntas[i];
                 int iIndex = GetIndexFromArray(ctrls, "textbox_" + pregunta.cvePregunta);
-                System.Diagnostics.Debug.Print(pregunta.cvePregunta + " " + iIndex);
+
                 if (iIndex > -1)
                 {
                     String sRespuesta = ctrls[iIndex].Split('=')[1];

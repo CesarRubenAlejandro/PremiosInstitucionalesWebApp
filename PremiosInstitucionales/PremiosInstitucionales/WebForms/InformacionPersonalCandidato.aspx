@@ -17,14 +17,14 @@
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12" style="height: 100%;">
                     <div class="userHeader avatar img-circle img-thumbnail">
-	                    <asp:Panel runat="server" class="userClass" id="avatarImage" onclick="uploadImage();"></asp:Panel>
+                        <asp:Panel runat="server" class="userClass" ID="avatarImage" onclick="uploadImage();"></asp:Panel>
                     </div>
                     <div class="text-center">
-                        <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" style="display: none;" onchange="ShowImagePreview(this);"/>
+                        <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" Style="display: none;" onchange="ShowImagePreview(this);" />
                     </div>
                     <div class="form-group">
                         <div class="btn-group-mid">
-                            <button type="button" ID="Button1" class="btn btn-default" Text="Cambiar imagen de perfil" onclick="uploadImage();">Cambiar imagen de perfil</button>
+                            <button type="button" id="Button1" class="btn btn-default" text="Cambiar imagen de perfil" onclick="uploadImage();">Cambiar imagen de perfil</button>
                         </div>
                     </div>
                 </div>
@@ -76,17 +76,24 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
-                                        <button type="button" class="btn btn-default">Cambiar contraseña</button>
+                                    <a href="/WebForms/InicioCandidato.aspx" class="no-underline">
+                                        <button type="button" class="btn btn-default"> Cancelar
+                                        </button>
                                     </a>
-                                    <button type="button" class="btn btn-primary" onclick="saveChangesAux();">Guardar Cambios</button>
-                                    <asp:Button style="display: none;" type="button" class="btn btn-primary" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click"/>
+                                    <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
+                                        <button type="button" class="btn btn-default"> Cambiar contraseña
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-primary" onclick="sendFormAux();">Guardar Cambios</button>
+                                    <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Alerta de cambios guardados... -->
             <div class="row" id="changealert" style="margin-top: 20px; opacity: 0;">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="alert alert-info alert-dismissable">
@@ -129,7 +136,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <!-- <button type="button" class="btn btn-primary" onclick="changePassword()">Cambiar</button> -->
                             <asp:Button ID="ButtonChangePassword" class="btn btn-primary" runat="server" Text="Cambiar" OnClick="CambiarContrasena_Click" />
                         </div>
                     </div>

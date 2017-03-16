@@ -122,14 +122,19 @@ hr{
 
 .btn {
 	font-family: 'Open Sans', sans-serif;
+
+}
+
+.no-underline:hover {
+    text-decoration: none;
 }
 
 .question-form {
-	margin-bottom: 20px;
+	
 }
 
 div .question-box {
-	margin-bottom: 24px;
+	margin-bottom: 12px;
 }
 
 .question-box p{

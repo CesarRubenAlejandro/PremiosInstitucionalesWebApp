@@ -3,71 +3,110 @@ using PremiosInstitucionales.DBServices.Convocatoria;
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PremiosInstitucionales.Entities.Models;
+using PremiosInstitucionales.Values;
 
 namespace PremiosInstitucionales.WebForms
 {
     public partial class CorrigeAplicacion : System.Web.UI.Page
     {
+        private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
+        private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
         protected void Page_Load(object sender, EventArgs e)
         {
             // confirmar que la aplicacion haya sido rechazada
             String idApp = Request.QueryString["aplicacion"];
-            if (AplicacionService.GetEsRechazadoByAplicacion(idApp))
-            {
-                CrearFormulario();
-            } else
-            {
-                ErrorLbl.Visible = true;
-            }        
-        }
 
-        private void CrearFormulario()
-        {
-           
-            // esconder mensaje de error
-            ErrorLbl.Visible = false;
-            // mostrar boton
-            EnviarBttn.Visible = true;
-            // vaciar coleccion de preguntas para evitar IDs repetidos
-            if (PanelFormulario.Controls.Count > 0)
+            String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
+
+            if (sCategoriaID != null)
             {
-                PanelFormulario.Controls.Clear();
+                var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
+                var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
+
+                if (premio != null && categoria != null)
+                {
+                    if (AplicacionService.GetEsRechazadoByAplicacion(idApp))
+                    {
+                        CrearFormulario(sCategoriaID, premio, categoria);
+                    }
+                    else
+                    {
+                        Response.Redirect("inicioCandidato.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("inicioCandidato.aspx");
+                }
+
+            }
+            else
+            {
+                Response.Redirect("inicioCandidato.aspx");
             }
 
+
+        }
+
+        private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
+        {
+            // vaciar coleccion de preguntas para evitar IDs repetidos
+            PanelFormulario.Controls.Clear();
+
+            litTituloPremio.Text = "Premio " + premio.Nombre;
+            litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
+
             // obtener lista de preguntas y respuestas para la aplicacion
-            var preguntas = AplicacionService.GetFormularioByCategoria(AplicacionService.GetCveCategoriaByAplicacion(Request.QueryString["aplicacion"]));
+            var preguntas = AplicacionService.GetFormularioByCategoria(sCategoriaID);
+
             if (preguntas != null)
             {
+                short iNumber = 0;
                 foreach (var pregunta in preguntas)
                 {
-                    // crear lbl con el texto de la pregunta
-                    Label lbl = new Label();
-                    lbl.Text = pregunta.Texto;
-                    PanelFormulario.Controls.Add(lbl);
+                    Panel panel = new Panel();
+                    panel.CssClass = "question-box";
+                    panel.Attributes.Add("runat", "server");
 
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                    LiteralControl h5 = new LiteralControl("<h5>" + (iNumber + 1) + ". " + pregunta.Texto + "</h5>");
+                    panel.Controls.Add(h5);
+                    LiteralControl p = new LiteralControl("<p>" + iMaxCharacters + " " + sCharactersRemainingMessage + "</p>");
+                    panel.Controls.Add(p);
 
                     TextBox tb = new TextBox();
-                    tb.ID = pregunta.IdentificadorObjeto;
-                    // obtener respuesta y asignar el valor al textbox
+                    tb.ID = "textbox_" + pregunta.cvePregunta;
+                    tb.TextMode = TextBoxMode.MultiLine;
+                    tb.Rows = 4;
+                    tb.MaxLength = iMaxCharacters;
+                    tb.CssClass = "form-control form-text-area scrollbar-custom";
+                    tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this)");
+                    tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
+                    tb.Attributes.Add("runat", "server");
+                    tb.Attributes.Add("onvalid", "this.setCustomValidity('Por favor, responde la pregunta')");
+                    tb.Attributes.Remove("cols");
+
                     var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, Request.QueryString["aplicacion"]);
                     tb.Text = respuesta.Valor;
 
                     RequiredFieldValidator validator = new RequiredFieldValidator();
-                    validator.ControlToValidate = pregunta.IdentificadorObjeto;
-                    validator.ErrorMessage = "Campo requerido";
-                    validator.ForeColor = System.Drawing.Color.Red;
+                    validator.ControlToValidate = tb.ID;
 
-                    PanelFormulario.Controls.Add(tb);
-                    PanelFormulario.Controls.Add(validator);
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
-                    PanelFormulario.Controls.Add(new LiteralControl("<br />"));
+                    Panel pAlert = new Panel();
+                    pAlert.CssClass = "alert alert-danger alert-no-answer";
+
+                    LiteralControl lcText = new LiteralControl("<strong>Error:</strong> Por favor rellene este campo.");
+                    pAlert.Controls.Add(lcText);
+
+                    validator.Controls.Add(pAlert);
+
+                    panel.Controls.Add(tb);
+                    panel.Controls.Add(validator);
+
+                    PanelFormulario.Controls.Add(panel);
+
+                    iNumber++;
                 }
-            }
-            else
-            {
-                // esconder control EnviarBttn para evitar incongruencias
-                EnviarBttn.Visible = false;
             }
 
         }
@@ -81,17 +120,16 @@ namespace PremiosInstitucionales.WebForms
             var preguntas = AplicacionService.GetFormularioByCategoria(AplicacionService.GetCveCategoriaByAplicacion(Request.QueryString["aplicacion"]));
             foreach (var pregunta in preguntas)
             {
-                for (int i = 0; i < ctrls.Length; i++)
+                int iIndex = GetIndexFromArray(ctrls, "textbox_" + pregunta.cvePregunta);
+
+                if (iIndex > -1)
                 {
-                    if (ctrls[i].Contains(pregunta.IdentificadorObjeto))
-                    {
-                        // obtener el valor del control
-                        string ctrlValue = ctrls[i].Split('=')[1];
-                        //Decode the Value
-                        ctrlValue = Server.UrlDecode(ctrlValue);
-                        // guardar cambios en la respuesta
-                        AplicacionService.SaveRespuestaModificada(Request.QueryString["aplicacion"], pregunta.cvePregunta, ctrlValue);
-                    }
+                    // obtener el valor del control
+                    string ctrlValue = ctrls[iIndex].Split('=')[1];
+                    //Decode the Value
+                    ctrlValue = Server.UrlDecode(ctrlValue);
+                    // guardar cambios en la respuesta
+                    AplicacionService.SaveRespuestaModificada(Request.QueryString["aplicacion"], pregunta.cvePregunta, ctrlValue);
                 }
             }
 
@@ -99,6 +137,19 @@ namespace PremiosInstitucionales.WebForms
             AplicacionService.SetAplicacionModificada(Request.QueryString["aplicacion"]);
             // redireccionar a inicio
             Response.Redirect("InicioCandidato.aspx");
+        }
+
+        private int GetIndexFromArray(String[] arr, String value)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                string sRow = arr[i];
+                if (sRow.Contains(value))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
