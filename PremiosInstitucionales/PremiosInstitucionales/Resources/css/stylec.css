@@ -128,6 +128,10 @@ hr{
 	margin-bottom: 20px;
 }
 
+div .question-box {
+	margin-bottom: 24px;
+}
+
 .question-box p{
 	margin: 0px;
 }
@@ -316,4 +320,9 @@ div.userHeader{
 	background-size: cover;
 	vertical-align: bottom;
 	cursor: pointer;
+}
+
+.alert-no-answer {
+	margin-bottom: 0px;
+	padding: 10px
 }

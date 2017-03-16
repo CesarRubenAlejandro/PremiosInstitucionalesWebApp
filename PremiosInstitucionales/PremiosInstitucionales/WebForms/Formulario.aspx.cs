@@ -86,7 +86,21 @@ namespace PremiosInstitucionales.WebForms
                         tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
                         tb.Attributes.Remove("cols");
                         tb.Attributes.Add("runat", "server");
+                        tb.Attributes.Add("onvalid", "this.setCustomValidity('Por favor, responde la pregunta')");
+
+                        RequiredFieldValidator validator = new RequiredFieldValidator();
+                        validator.ControlToValidate = tb.ID;
+
+                        Panel pAlert = new Panel();
+                        pAlert.CssClass = "alert alert-danger alert-no-answer";
+                        
+                        LiteralControl lcText = new LiteralControl("<strong>Error:</strong> Por favor rellene este campo.");
+                        pAlert.Controls.Add(lcText);
+
+                        validator.Controls.Add(pAlert);
+
                         panel.Controls.Add(tb);
+                        panel.Controls.Add(validator);
 
                         PanelFormulario.Controls.Add(panel);
 
