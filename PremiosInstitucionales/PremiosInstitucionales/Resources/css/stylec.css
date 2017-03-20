@@ -137,6 +137,11 @@ div .question-box {
 	margin-bottom: 12px;
 }
 
+.question-box h5 {
+	text-align: justify;
+	line-height: 150%;
+}
+
 .question-box p{
 	margin: 0px;
 }
@@ -292,15 +297,16 @@ div .question-box {
 	width: 5%;
 }
 
-table.dataTable tr.odd,
-table.dataTable tr.even,
-.sorting_1 { 
-	background-color: white !important;
+table.dataTable tbody tr:hover {
+	cursor: pointer;
 }
 
-table.dataTable tbody tr:hover {
-	background-color: rgba(0, 0, 0, 0.1) !important;
-	cursor: pointer;
+table.display tbody tr:nth-child(even):hover td{
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+table.display tbody tr:nth-child(odd):hover td {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 div.userHeader{

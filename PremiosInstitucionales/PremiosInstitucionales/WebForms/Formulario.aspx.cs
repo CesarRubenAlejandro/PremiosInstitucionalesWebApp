@@ -14,12 +14,12 @@ namespace PremiosInstitucionales.WebForms
 
         private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
         private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
-        private string sCategoriaID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                sCategoriaID = Request.QueryString["c"];
+                string sCategoriaID = Request.QueryString["c"];
                 if (sCategoriaID != null)
                 {
                     var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
@@ -42,7 +42,7 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private void SetForm(Entities.Models.PI_BA_Premio premio, Entities.Models.PI_BA_Categoria categoria)
+        private void SetForm(PI_BA_Premio premio, PI_BA_Categoria categoria)
         {
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;

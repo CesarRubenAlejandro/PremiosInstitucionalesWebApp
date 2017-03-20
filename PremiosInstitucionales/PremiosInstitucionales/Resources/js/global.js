@@ -26,3 +26,7 @@ function sendFormAux() {
     var prefix = "ContentPlaceHolder_";
     var x = document.getElementById(prefix + "EnviarBtn").click();
 }
+
+function changePage(url) {
+    window.open(url, '_blank');
+}
