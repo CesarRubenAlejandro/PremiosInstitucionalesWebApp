@@ -23,6 +23,7 @@ namespace PremiosInstitucionales.Values
         public static readonly String Rechazado = "rechazada";
         public static readonly String Modificado = "modificada";
         public static readonly String Aceptado = "aceptada";
+        // borradorRespuesta
 
         //titulo de valores para status a mostrar al usuario
         public static readonly String TituloSolicitado = "Solicitud registrada";
@@ -57,5 +58,8 @@ namespace PremiosInstitucionales.Values
         public static readonly String ContenidoCorreoPremio = "%PREMIO%";
         public static readonly String ContenidoCorreoCategoria = "%CATEGORIA%";
         public static readonly String ContenidoCorreoRazon = "%RAZON%";
+
+        // validacion de formularos
+        public static readonly String sCharactersRemaining = "caracteres restantes";
     }
 }

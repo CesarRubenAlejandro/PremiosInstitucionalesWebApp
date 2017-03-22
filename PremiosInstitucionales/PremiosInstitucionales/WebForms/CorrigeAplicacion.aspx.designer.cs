@@ -13,13 +13,40 @@ namespace PremiosInstitucionales.WebForms {
     public partial class CorrigeAplicacion {
         
         /// <summary>
-        /// ErrorLbl control.
+        /// litTituloPremio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorLbl;
+        protected global::System.Web.UI.WebControls.Literal litTituloPremio;
+        
+        /// <summary>
+        /// litTituloCategoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTituloCategoria;
+        
+        /// <summary>
+        /// alreadySubmittedLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alreadySubmittedLabel;
+        
+        /// <summary>
+        /// FormFormulario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm FormFormulario;
         
         /// <summary>
         /// PanelFormulario control.
@@ -28,15 +55,15 @@ namespace PremiosInstitucionales.WebForms {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelFormulario;
+        protected global::System.Web.UI.WebControls.Panel PanelFormulario;
         
         /// <summary>
-        /// EnviarBttn control.
+        /// EnviarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EnviarBttn;
+        protected global::System.Web.UI.WebControls.Button EnviarBtn;
     }
 }

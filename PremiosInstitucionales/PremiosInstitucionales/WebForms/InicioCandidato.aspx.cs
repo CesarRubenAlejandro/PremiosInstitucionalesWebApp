@@ -12,6 +12,7 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
             if (!IsPostBack)
             {
                 
@@ -53,7 +54,7 @@ namespace PremiosInstitucionales.WebForms
                 contenidoiniciocandidato.Controls.Add(divControl);
 
                 divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
-            }
+            }*/
         }
 
         /**
