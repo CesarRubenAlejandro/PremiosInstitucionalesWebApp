@@ -164,7 +164,7 @@
     <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\stylec.css" />
-    <Content Include="Resources\css\stylePremiosJuez.css" />
+    <Content Include="Resources\css\PremiosInstitucionalesJuez.css" />
     <Content Include="Resources\img\default-pp.jpg" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
@@ -193,6 +193,7 @@
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\ListaPremios.aspx" />
     <Content Include="WebForms\PremioEspecificoCandidato.aspx" />
+    <Content Include="WebForms\PremiosInstitucionalesJuez.aspx" />
     <Content Include="WebForms\RecuperaCuenta.aspx" />
     <Content Include="WebForms\Recuperar.aspx" />
     <Content Include="WebForms\Registro.aspx" />
@@ -391,6 +392,13 @@
     </Compile>
     <Compile Include="WebForms\PremioEspecificoCandidato.aspx.designer.cs">
       <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\PremiosInstitucionalesJuez.aspx.cs">
+      <DependentUpon>PremiosInstitucionalesJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\PremiosInstitucionalesJuez.aspx.designer.cs">
+      <DependentUpon>PremiosInstitucionalesJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\RecuperaCuenta.aspx.cs">
       <DependentUpon>RecuperaCuenta.aspx</DependentUpon>

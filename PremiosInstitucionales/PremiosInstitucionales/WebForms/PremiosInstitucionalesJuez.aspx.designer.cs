@@ -10,6 +10,15 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class InicioJuez {
+    public partial class PremiosInstitucionalesJuez {
+        
+        /// <summary>
+        /// premiosJuez control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl premiosJuez;
     }
 }
