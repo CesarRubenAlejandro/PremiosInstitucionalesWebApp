@@ -36,7 +36,7 @@ namespace PremiosInstitucionales.WebForms
                     HtmlControl divControl = new HtmlGenericControl("div");
                     divControl.Attributes.Add("class", "crumbs");
                     divControl.Visible = true;
-                    contenidoiniciocandidato.Controls.Add(divControl);
+                    estadosaplicaciones.Controls.Add(divControl);
 
                     divControl.Controls.Add(new LiteralControl(obtenerHtmlMapaEstados(ap)));
                 }
@@ -46,7 +46,7 @@ namespace PremiosInstitucionales.WebForms
                 //desplegar letrero de no aplicaciones
                 HtmlControl divControl = new HtmlGenericControl("div");
                 divControl.Visible = true;
-                contenidoiniciocandidato.Controls.Add(divControl);
+                estadosaplicaciones.Controls.Add(divControl);
 
                 divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
             }

@@ -164,6 +164,7 @@
     <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\stylec.css" />
+    <Content Include="Resources\css\stylePremiosJuez.css" />
     <Content Include="Resources\img\default-pp.jpg" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
     <Content Include="Resources\js\bootstrap.min.js" />

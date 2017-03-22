@@ -14,6 +14,6 @@
 		    </div>
 	    </div>
 
-        <div runat="server" id="contenidoiniciocandidato"></div>
+        <div runat="server" id="estadosaplicaciones"></div>
     </div>
 </asp:Content>

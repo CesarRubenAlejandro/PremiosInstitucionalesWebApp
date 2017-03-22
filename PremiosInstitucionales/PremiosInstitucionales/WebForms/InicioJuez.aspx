@@ -1,15 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioJuez.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.InicioJuez" MasterPageFile="~/MasterPage.Master" Title="Juez"%>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
-    <script src="../../../scripts/prueba.js" language="javascript" type="text/javascript" defer="defer" ></script>
-    <div>
-        <asp:HiddenField runat="server" ID="CategoriasHidden"/>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
-        <ajaxToolkit:TabContainer ID="TabContainer1" runat="server">
-                
-        </ajaxToolkit:TabContainer>
-        <br />
-        <asp:Button runat="server" ID="ExportarBttn" OnClick="ExportarBttn_Click" Text="Exportar"/>
+﻿<%@ Page Title="Juez" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="PremiosJuez.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioJuez" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <link href='<%= ResolveUrl("~/Resources/css/stylePremiosJuez.css")%>'  rel="stylesheet" type="text/css" />
+    <div class="container fadeView">
+
+        <div class="container">
+		    <div class="row">
+			    <div class="col-lg-12 text-center">
+				    <h3 class="section-heading">Premios Institucionales</h3>
+				    <hr class="shorthr">
+			    </div>
+		    </div>
+	    </div>
+
+        <div runat="server" id="premiosJuez"></div>
     </div>
-    
 </asp:Content>
