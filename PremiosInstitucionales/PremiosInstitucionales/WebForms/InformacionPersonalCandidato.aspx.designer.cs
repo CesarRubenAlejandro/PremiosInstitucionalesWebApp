@@ -13,31 +13,40 @@ namespace PremiosInstitucionales.WebForms {
     public partial class InformacionPersonalCandidato {
         
         /// <summary>
-        /// Mensaje control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mensaje;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// EditarBtn control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditarBtn;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// NombresLabel control.
+        /// avatarImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NombresLabel;
+        protected global::System.Web.UI.WebControls.Panel avatarImage;
+        
+        /// <summary>
+        /// FileUploadImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadImage;
         
         /// <summary>
         /// NombresTextBox control.
@@ -49,15 +58,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox NombresTextBox;
         
         /// <summary>
-        /// ApellidosLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ApellidosLabel;
-        
-        /// <summary>
         /// ApellidosTextBox control.
         /// </summary>
         /// <remarks>
@@ -65,15 +65,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ApellidosTextBox;
-        
-        /// <summary>
-        /// CorreoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CorreoLabel;
         
         /// <summary>
         /// CorreoTextBox control.
@@ -85,15 +76,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox CorreoTextBox;
         
         /// <summary>
-        /// DomicilioLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DomicilioLabel;
-        
-        /// <summary>
         /// DomicilioTextBox control.
         /// </summary>
         /// <remarks>
@@ -101,15 +83,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox DomicilioTextBox;
-        
-        /// <summary>
-        /// TelefonoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TelefonoLabel;
         
         /// <summary>
         /// TelefonoTextBox control.
@@ -121,15 +94,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox TelefonoTextBox;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
         /// RFCTextBox control.
         /// </summary>
         /// <remarks>
@@ -137,15 +101,6 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox RFCTextBox;
-        
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// NacionalidadTextBox control.
@@ -164,5 +119,41 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button EnviarBtn;
+        
+        /// <summary>
+        /// currentPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox currentPwdTextBox;
+        
+        /// <summary>
+        /// newPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox newPwdTextBox;
+        
+        /// <summary>
+        /// confirmNewPwdTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirmNewPwdTextBox;
+        
+        /// <summary>
+        /// ButtonChangePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonChangePassword;
     }
 }
