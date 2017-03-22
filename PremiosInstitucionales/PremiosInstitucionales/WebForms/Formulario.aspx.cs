@@ -12,14 +12,14 @@ namespace PremiosInstitucionales.WebForms
     public partial class Formulario : System.Web.UI.Page
     {
 
-        private int iMaxCharacters = 500;
-        private string sCharactersRemainingMessage = "caracteres restantes";
-        private string sCategoriaID;
+        private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
+        private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                sCategoriaID = Request.QueryString["c"];
+                string sCategoriaID = Request.QueryString["c"];
                 if (sCategoriaID != null)
                 {
                     var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
@@ -42,7 +42,7 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private void SetForm(Entities.Models.PI_BA_Premio premio, Entities.Models.PI_BA_Categoria categoria)
+        private void SetForm(PI_BA_Premio premio, PI_BA_Categoria categoria)
         {
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
@@ -50,22 +50,15 @@ namespace PremiosInstitucionales.WebForms
             String emailCandidato = Session[StringValues.CorreoSesion].ToString();
             if (AplicacionService.CheckCandidatoInCategoria(emailCandidato, categoria.cveCategoria))
             {
-                // el candidato actual ya tiene una aplicacion en esta categoria
-                // desplegar msj de error
-                /*
-                ErrorLbl.Text = "Ya se realizó una aplicación a esta categoría.";
-                ErrorLbl.Visible = true;
-                EnviarBttn.Visible = false;*/
+                // mostrar error y ocultar boton de enviar
+                alreadySubmittedLabel.Visible = true;
+                EnviarBtn.Visible = false;
+
+                btnManager.Visible = false;
             }
             else
             {
-                /*
-                // esconder mensaje de error
-                ErrorLbl.Visible = false;
-                // mostrar boton de enviar
-                EnviarBttn.Visible = true;*/
                 // vaciar coleccion de preguntas para evitar IDs repetidos
-
                 PanelFormulario.Controls.Clear();
 
                 // obtener lista de preguntas para la categoria y desplegar el formulario
@@ -91,27 +84,31 @@ namespace PremiosInstitucionales.WebForms
                         tb.Rows = 4;
                         tb.MaxLength = iMaxCharacters;
                         tb.CssClass = "form-control form-text-area scrollbar-custom";
-                        tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this)");
+                        tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this); validateAnswerCharacters(event);");
                         tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
                         tb.Attributes.Remove("cols");
                         tb.Attributes.Add("runat", "server");
+                        tb.Attributes.Add("onvalid", "this.setCustomValidity('Por favor, responde la pregunta')");
+
+                        RequiredFieldValidator validator = new RequiredFieldValidator();
+                        validator.ControlToValidate = tb.ID;
+
+                        Panel pAlert = new Panel();
+                        pAlert.CssClass = "alert alert-danger alert-no-answer";
+                        
+                        LiteralControl lcText = new LiteralControl("<strong>Error:</strong> Por favor rellene este campo.");
+                        pAlert.Controls.Add(lcText);
+
+                        validator.Controls.Add(pAlert);
+
                         panel.Controls.Add(tb);
+                        panel.Controls.Add(validator);
 
                         PanelFormulario.Controls.Add(panel);
 
                         iNumber++;
                     }
                 }
-                /*
-                else
-                {
-                    // esconder control EnviarBttn para evitar incongruencias
-                    // EnviarBttn.Visible = false;
-                }
-
-            }*/
-
-
             }
         }
 
@@ -134,7 +131,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 PI_BA_Pregunta pregunta = preguntas[i];
                 int iIndex = GetIndexFromArray(ctrls, "textbox_" + pregunta.cvePregunta);
-                System.Diagnostics.Debug.Print(pregunta.cvePregunta + " " + iIndex);
+
                 if (iIndex > -1)
                 {
                     String sRespuesta = ctrls[iIndex].Split('=')[1];
@@ -147,7 +144,6 @@ namespace PremiosInstitucionales.WebForms
 
                     ltRespuestas.Add(sRespuesta);
                 }
-
             }
 
             if (ltRespuestas.Count == preguntas.Count)

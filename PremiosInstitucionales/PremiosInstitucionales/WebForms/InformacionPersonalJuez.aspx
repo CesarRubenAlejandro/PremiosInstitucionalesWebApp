@@ -1,7 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformacionPersonalCandidato.aspx.cs"
-    Inherits="PremiosInstitucionales.WebForms.InformacionPersonalCandidato" MasterPageFile="~/mp-Candidato.Master" %>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="Server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InformacionPersonalJuez.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InformacionPersonalJuez" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <form id="form1" runat="server" style="all: unset;">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
         <div class="container fadeView">
@@ -50,33 +48,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Direccion:</label>
-                            <div class="col-lg-8">
-                                <asp:TextBox ID="DomicilioTextBox" runat="server" class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Teléfono:</label>
-                            <div class="col-lg-8">
-                                <asp:TextBox ID="TelefonoTextBox" runat="server" class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">RFC:</label>
-                            <div class="col-lg-8">
-                                <asp:TextBox ID="RFCTextBox" runat="server" class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Nacionalidad:</label>
-                            <div class="col-lg-8">
-                                <asp:TextBox ID="NacionalidadTextBox" runat="server" class="form-control" type="text" />
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="/WebForms/InicioCandidato.aspx" class="no-underline">
+                                    <a href="/WebForms/InicioJuez.aspx" class="no-underline">
                                         <button type="button" class="btn btn-default"> Cancelar
                                         </button>
                                     </a>

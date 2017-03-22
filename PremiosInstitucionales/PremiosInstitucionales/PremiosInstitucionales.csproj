@@ -163,6 +163,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
+    <Content Include="Resources\css\dataTables.css" />
     <Content Include="Resources\css\stylec.css" />
     <Content Include="Resources\css\PremiosInstitucionalesJuez.css" />
     <Content Include="Resources\img\default-pp.jpg" />
@@ -170,9 +171,11 @@
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\global.js" />
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
+    <Content Include="Resources\js\jquery.dataTables.js" />
     <Content Include="Resources\js\jquery.min.js" />
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
+    <Content Include="Resources\js\listaParticipantes.js" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
@@ -187,10 +190,13 @@
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
+    <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
+    <Content Include="WebForms\InformacionPersonalJuez.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
+    <Content Include="WebForms\ListaParticipantes.aspx" />
     <Content Include="WebForms\ListaPremios.aspx" />
     <Content Include="WebForms\PremioEspecificoCandidato.aspx" />
     <Content Include="WebForms\PremiosInstitucionalesJuez.aspx" />
@@ -233,6 +239,7 @@
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\Evaluacion\EvaluacionService.cs" />
     <Compile Include="DBServices\InformacionPersonalCandidato\InformacionPersonalCandidatoService.cs" />
+    <Compile Include="DBServices\InformacionPersonalJuez\InformacionPersonalJuezService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
     <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
@@ -315,6 +322,7 @@
     <Compile Include="mp-Candidato.Master.designer.cs">
       <DependentUpon>mp-Candidato.Master</DependentUpon>
     </Compile>
+    <Compile Include="Values\NumericValues.cs" />
     <Compile Include="Values\StringValues.cs" />
     <Compile Include="WebForms\AplicacionesCandidato.aspx.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
@@ -337,6 +345,13 @@
     <Compile Include="WebForms\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\EvaluaAplicacion.aspx.cs">
+      <DependentUpon>EvaluaAplicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\EvaluaAplicacion.aspx.designer.cs">
+      <DependentUpon>EvaluaAplicacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Formulario.aspx.cs">
       <DependentUpon>Formulario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,6 +365,20 @@
     </Compile>
     <Compile Include="WebForms\InformacionPersonalCandidato.aspx.designer.cs">
       <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalJuez.aspx.cs">
+      <DependentUpon>InformacionPersonalJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalJuez.aspx.designer.cs">
+      <DependentUpon>InformacionPersonalJuez.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\ListaParticipantes.aspx.cs">
+      <DependentUpon>ListaParticipantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\ListaParticipantes.aspx.designer.cs">
+      <DependentUpon>ListaParticipantes.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ListaPremios.aspx.cs">
       <DependentUpon>ListaPremios.aspx</DependentUpon>

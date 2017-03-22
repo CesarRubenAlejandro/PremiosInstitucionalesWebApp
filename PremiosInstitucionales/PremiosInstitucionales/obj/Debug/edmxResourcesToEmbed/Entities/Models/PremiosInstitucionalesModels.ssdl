@@ -73,6 +73,7 @@
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="Apellido" Type="varchar" MaxLength="100" />
     <Property Name="Correo" Type="varchar" MaxLength="100" />
+    <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="PI_BA_JuezPorCategoria">
     <Key>
