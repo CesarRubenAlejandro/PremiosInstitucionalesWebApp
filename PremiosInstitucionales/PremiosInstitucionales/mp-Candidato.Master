@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mp-Candidato.Master.cs" Inherits="PremiosInstitucionales.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mp-CandidatoTest.Master.cs" Inherits="PremiosInstitucionales.Site1" %>
 
 <!DOCTYPE html>
 

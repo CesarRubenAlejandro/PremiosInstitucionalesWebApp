@@ -191,6 +191,7 @@
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
+    <Content Include="WebForms\InformacionPersonalJuez.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\ListaParticipantes.aspx" />
@@ -235,6 +236,7 @@
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\Evaluacion\EvaluacionService.cs" />
     <Compile Include="DBServices\InformacionPersonalCandidato\InformacionPersonalCandidatoService.cs" />
+    <Compile Include="DBServices\InformacionPersonalJuez\InformacionPersonalJuezService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
     <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
@@ -353,6 +355,13 @@
     </Compile>
     <Compile Include="WebForms\InformacionPersonalCandidato.aspx.designer.cs">
       <DependentUpon>InformacionPersonalCandidato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalJuez.aspx.cs">
+      <DependentUpon>InformacionPersonalJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\InformacionPersonalJuez.aspx.designer.cs">
+      <DependentUpon>InformacionPersonalJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ListaParticipantes.aspx.cs">
       <DependentUpon>ListaParticipantes.aspx</DependentUpon>
