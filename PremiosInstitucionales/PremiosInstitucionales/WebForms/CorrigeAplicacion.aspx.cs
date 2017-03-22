@@ -14,39 +14,30 @@ namespace PremiosInstitucionales.WebForms
         private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // confirmar que la aplicacion haya sido rechazada
-            String idApp = Request.QueryString["aplicacion"];
-
-            String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
-
-            if (sCategoriaID != null)
+            if(!IsPostBack)
             {
-                var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
-                var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
+                // confirmar que la aplicacion haya sido rechazada
+                String idApp = Request.QueryString["aplicacion"];
 
-                if (premio != null && categoria != null)
+                String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
+
+                if (sCategoriaID != null)
                 {
-                    if (AplicacionService.GetEsRechazadoByAplicacion(idApp))
+                    var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
+                    var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
+
+                    if (premio != null && categoria != null)
                     {
-                        CrearFormulario(sCategoriaID, premio, categoria);
-                    }
-                    else
-                    {
-                        Response.Redirect("inicioCandidato.aspx");
+                        if (AplicacionService.GetEsRechazadoByAplicacion(idApp))
+                        {
+                            CrearFormulario(sCategoriaID, premio, categoria);
+                            return;
+                        }
                     }
                 }
-                else
-                {
-                    Response.Redirect("inicioCandidato.aspx");
-                }
-
-            }
-            else
-            {
                 Response.Redirect("inicioCandidato.aspx");
             }
-
-
+            
         }
 
         private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
@@ -80,7 +71,7 @@ namespace PremiosInstitucionales.WebForms
                     tb.Rows = 4;
                     tb.MaxLength = iMaxCharacters;
                     tb.CssClass = "form-control form-text-area scrollbar-custom";
-                    tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this)");
+                    tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this); validateAnswerCharacters(event);");
                     tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
                     tb.Attributes.Add("runat", "server");
                     tb.Attributes.Add("onvalid", "this.setCustomValidity('Por favor, responde la pregunta')");

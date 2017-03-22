@@ -53,6 +53,8 @@ namespace PremiosInstitucionales.WebForms
                 // mostrar error y ocultar boton de enviar
                 alreadySubmittedLabel.Visible = true;
                 EnviarBtn.Visible = false;
+
+                btnManager.Visible = false;
             }
             else
             {
@@ -82,7 +84,7 @@ namespace PremiosInstitucionales.WebForms
                         tb.Rows = 4;
                         tb.MaxLength = iMaxCharacters;
                         tb.CssClass = "form-control form-text-area scrollbar-custom";
-                        tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this)");
+                        tb.Attributes.Add("onKeyUp", "updateCharactersLeft(this); validateAnswerCharacters(event);");
                         tb.Attributes.Add("maxlength", iMaxCharacters.ToString());
                         tb.Attributes.Remove("cols");
                         tb.Attributes.Add("runat", "server");

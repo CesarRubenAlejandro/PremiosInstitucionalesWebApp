@@ -19,13 +19,13 @@
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">
             </asp:Panel>
 
-            <div class="btn-group-right">
+            <div class="btn-group-right" id="btnManager" runat="server">
                 <a href="/WebForms/InicioCandidato.aspx">
                     <button type="button" class="btn btn-default">Cancelar</button>
                 </a>
                 <button type="button" class="btn btn-primary" onclick="sendFormAux()">Enviar</button>
+                <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" OnClick="EnviarAplicacion" Text="Enviar aplicación" />
             </div>
-            <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" OnClick="EnviarAplicacion" Text="Enviar aplicación" />
         </form>
 
     </div>

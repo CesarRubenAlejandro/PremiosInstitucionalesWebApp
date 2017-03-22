@@ -16,39 +16,33 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // confirmar que la aplicacion haya sido rechazada
-            String idApp = Request.QueryString["a"];
-
-            String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
-
-            if (sCategoriaID != null)
+            if (!IsPostBack)
             {
-                var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
-                var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
+                // confirmar que la aplicacion haya sido rechazada
+                String idApp = Request.QueryString["a"];
 
-                if (premio != null && categoria != null)
+                if(idApp != null)
                 {
-                    string sMail = Session[StringValues.CorreoSesion].ToString();
-                    var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
-                    bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
+                    String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
+                    if (sCategoriaID != null)
+                    {
+                        var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
+                        var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
 
-                    if (bValidJudge)
-                    {
-                        CrearFormulario(sCategoriaID, premio, categoria);
-                    }
-                    else
-                    {
-                        Response.Redirect("inicioJuez.aspx");
+                        if (premio != null && categoria != null)
+                        {
+                            string sMail = Session[StringValues.CorreoSesion].ToString();
+                            var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
+                            bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
+
+                            if (bValidJudge)
+                            {
+                                CrearFormulario(sCategoriaID, premio, categoria);
+                                return;
+                            }
+                        }
                     }
                 }
-                else
-                {
-                    Response.Redirect("inicioJuez.aspx");
-                }
-
-            }
-            else
-            {
                 Response.Redirect("inicioJuez.aspx");
             }
         }
@@ -76,8 +70,13 @@ namespace PremiosInstitucionales.WebForms
                     panel.Controls.Add(lcPregunta);
 
                     var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, Request.QueryString["a"]);
-                    LiteralControl lcRespuesta = new LiteralControl("<h5>" + respuesta.Valor + "</h5>");
-                    panel.Controls.Add(lcRespuesta);
+                    string[] lines = respuesta.Valor.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                    for(int i = 0; i < lines.Length; i++)
+                    {
+                        LiteralControl lcRespuesta = new LiteralControl("<h5>" + lines[i] + "</h5>");
+                        panel.Controls.Add(lcRespuesta);
+                    }
+                    
 
                     PanelFormulario.Controls.Add(panel);
 
