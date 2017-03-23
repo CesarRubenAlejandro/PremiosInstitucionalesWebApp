@@ -14,7 +14,6 @@ $(document).ready(function () {
 
 function validateAnswerCharacters(e) {
     e.target.value = e.target.value.replace(/&/g, "y");
-    console.log(e.target.value);
 }
 
 function updateCharactersLeft(textarea) {

@@ -59,7 +59,7 @@
 		    <div class="row">
 			    <div class="col-lg-4 col-md-6 text-center">
 				    <div class="service-box">
-					    <a href="/WebForms/PremiosInstitucionalesJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/juez.svg") %>'/></a>
+					    <a href="PremiosInstitucionalesJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/juez.svg") %>'/></a>
 					    <h3>Premios Institucionales</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
 					    <p class="text-muted">We even changed some of the icons! We take the extra effort to make our designs truly original.</p>
@@ -67,7 +67,7 @@
 			    </div>
 			    <div class="col-lg-4 col-md-6 text-center">
 				    <div class="service-box">
-					    <a href="perfilCandidato.html"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
+					    <a href="InformacionPersonalJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
 					    <h3>Informacion Personal</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
 					    <p class="text-muted">Look at this cool set of four icons describing different things about us! We use four, because it's the default.</p>

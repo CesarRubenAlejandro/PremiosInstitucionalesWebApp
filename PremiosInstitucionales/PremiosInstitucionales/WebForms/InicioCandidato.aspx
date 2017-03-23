@@ -26,7 +26,7 @@
 			    <div class="row">
 				    <div class="col-lg-3 col-md-6 text-center">
 					    <div class="service-box">
-						    <a href="premiosInstitucionales.html"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/badgebg.svg") %>'/></a>
+						    <a href="ListaPremios.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/badgebg.svg") %>'/></a>
 						    <h3>Premios Institucionales</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
 						    <p class="text-muted">We even changed some of the icons! We take the extra effort to make our designs truly original.</p>
@@ -34,7 +34,7 @@
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
 					    <div class="service-box">
-						    <a href="/WebForms/AplicacionesCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
+						    <a href="AplicacionesCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
 						    <h3>Mis Aplicaciones Vigentes</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
 						    <p class="text-muted">Guaranteed to use the same fucking template that every other bootstrap website uses, downloaded straight from The Web™</p>
@@ -42,7 +42,7 @@
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
 					    <div class="service-box">
-						    <a href="/WebForms/InformacionPersonalCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
+						    <a href="InformacionPersonalCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
 						    <h3>Informacion Personal</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
 						    <p class="text-muted">Look at this cool set of four icons describing different things about us! We use four, because it's the default.</p>

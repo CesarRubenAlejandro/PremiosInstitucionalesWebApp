@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="/WebForms/InicioCandidato.aspx" class="no-underline">
+                                    <a href="InicioCandidato.aspx" class="no-underline">
                                         <button type="button" class="btn btn-default"> Cancelar
                                         </button>
                                     </a>

@@ -70,6 +70,8 @@ namespace PremiosInstitucionales.WebForms
                     htmlContent += aplicacion.Status + " ";
                 }
 
+                htmlContent += "<a href = \"ListaParticipantes.aspx?c=" + categoria.cveCategoria + "\"> Lista Participantes </a>";
+
                 htmlContent += "</div>";
             }
 

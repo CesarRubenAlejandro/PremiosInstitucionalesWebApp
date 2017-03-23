@@ -22,7 +22,7 @@
                 <a href="/WebForms/AplicacionesCandidato.aspx">
                     <button type="button" class="btn btn-default">Cancelar</button>
                 </a>
-                <button type="button" class="btn btn-primary" onclick="sendFormAux();">Enviar</button>
+                <button type="button" class="btn btn-primary" onclick="sendFormAux()">Enviar</button>
             </div>
             <asp:Button style="display: none;" id="EnviarBtn" runat="server" onclick="EnviarBttn_Click" 
                     CssClass="ApplicationButton" Text="Enviar aplicación" />
