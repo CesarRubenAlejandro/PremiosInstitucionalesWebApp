@@ -62,7 +62,7 @@
 					    <a href="PremiosInstitucionalesJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/juez.svg") %>'/></a>
 					    <h3>Premios Institucionales</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
-					    <p class="text-muted">We even changed some of the icons! We take the extra effort to make our designs truly original.</p>
+					    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat.</p>
 				    </div>
 			    </div>
 			    <div class="col-lg-4 col-md-6 text-center">
@@ -70,7 +70,7 @@
 					    <a href="InformacionPersonalJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
 					    <h3>Informacion Personal</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
-					    <p class="text-muted">Look at this cool set of four icons describing different things about us! We use four, because it's the default.</p>
+					    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex.</p>
 				    </div>
 			    </div>
 			    <div class="col-lg-4 col-md-6 text-center">
@@ -78,7 +78,7 @@
 					    <a data-toggle="modal" data-target="#modalInvite"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/proponer.svg") %>'/></a>
 					    <h3>Proponer Candidato</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
-					    <p class="text-muted">Because nothing says hard work and talent like editing a few lines of text.</p>
+					    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat. Lorem ipsum dolor sit amet.</p>
 				    </div>
 			    </div>
 		    </div>

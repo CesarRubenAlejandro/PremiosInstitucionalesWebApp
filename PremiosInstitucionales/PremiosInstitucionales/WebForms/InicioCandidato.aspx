@@ -29,7 +29,7 @@
 						    <a href="ListaPremios.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/badgebg.svg") %>'/></a>
 						    <h3>Premios Institucionales</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
-						    <p class="text-muted">We even changed some of the icons! We take the extra effort to make our designs truly original.</p>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat.</p>
 					    </div>
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
@@ -37,7 +37,7 @@
 						    <a href="AplicacionesCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
 						    <h3>Mis Aplicaciones Vigentes</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
-						    <p class="text-muted">Guaranteed to use the same fucking template that every other bootstrap website uses, downloaded straight from The Web™</p>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat. Lorem ipsum dolor sit amet.</p>
 					    </div>
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
@@ -45,7 +45,7 @@
 						    <a href="InformacionPersonalCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
 						    <h3>Informacion Personal</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
-						    <p class="text-muted">Look at this cool set of four icons describing different things about us! We use four, because it's the default.</p>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					    </div>
 				    </div>
 				    <div class="col-lg-3 col-md-6 text-center">
@@ -53,7 +53,7 @@
 						    <a data-toggle="modal" data-target="#modalInvite"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/proponer.svg") %>'/></a>
 						    <h3>Proponer Candidato</h3>
 						    <hr class="shorthr" style="margin-bottom:10px;"/>
-						    <p class="text-muted">Because nothing says hard work and talent like editing a few lines of text.</p>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum.</p>
 					    </div>
 				    </div>
 			    </div>
