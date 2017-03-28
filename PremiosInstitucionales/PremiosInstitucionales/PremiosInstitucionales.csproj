@@ -143,8 +143,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="img\elizondo.png" />
-    <Content Include="img\garzasada.jpg" />
-    <Content Include="img\jdbgmgr.jpg" />
     <Content Include="img\mater.jpg" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
@@ -163,10 +161,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\dataTables.css" />
     <Content Include="Resources\css\stylec.css" />
+    <Content Include="Resources\css\PremiosInstitucionalesJuez.css" />
     <Content Include="Resources\img\default-pp.jpg" />
+    <Content Include="Resources\js\AplicacionesCandidato.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\global.js" />
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
@@ -186,6 +187,7 @@
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
+    <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
@@ -197,6 +199,7 @@
     <Content Include="WebForms\ListaParticipantes.aspx" />
     <Content Include="WebForms\ListaPremios.aspx" />
     <Content Include="WebForms\PremioEspecificoCandidato.aspx" />
+    <Content Include="WebForms\PremiosInstitucionalesJuez.aspx" />
     <Content Include="WebForms\RecuperaCuenta.aspx" />
     <Content Include="WebForms\Recuperar.aspx" />
     <Content Include="WebForms\Registro.aspx" />
@@ -321,6 +324,13 @@
     </Compile>
     <Compile Include="Values\NumericValues.cs" />
     <Compile Include="Values\StringValues.cs" />
+    <Compile Include="WebForms\AplicacionesCandidato.aspx.cs">
+      <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AplicacionesCandidato.aspx.designer.cs">
+      <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -411,6 +421,13 @@
     </Compile>
     <Compile Include="WebForms\PremioEspecificoCandidato.aspx.designer.cs">
       <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\PremiosInstitucionalesJuez.aspx.cs">
+      <DependentUpon>PremiosInstitucionalesJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\PremiosInstitucionalesJuez.aspx.designer.cs">
+      <DependentUpon>PremiosInstitucionalesJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\RecuperaCuenta.aspx.cs">
       <DependentUpon>RecuperaCuenta.aspx</DependentUpon>

@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="text-center">
-            <h5 runat="server" id="alreadySubmittedLabel" visible="false">Ya se ha realizado una aplicación para esta categoría. Para conocer el estatus, por favor dirigirse a <a href="WebForms/AplicacionesCandidato.aspx">mis aplicaciones vigentes </a></h5>
+            <h5 runat="server" id="alreadySubmittedLabel" visible="false">Ya se ha realizado una aplicación para esta categoría. Para conocer el estatus, por favor dirigirse a <a href="AplicacionesCandidato.aspx">mis aplicaciones vigentes </a></h5>
         </div>
         <form runat="server" id="FormFormulario">
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">

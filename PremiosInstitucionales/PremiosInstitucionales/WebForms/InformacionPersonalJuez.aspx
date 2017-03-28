@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="/WebForms/InicioJuez.aspx" class="no-underline">
+                                    <a href="InicioJuez.aspx" class="no-underline">
                                         <button type="button" class="btn btn-default"> Cancelar
                                         </button>
                                     </a>
