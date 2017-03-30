@@ -14,7 +14,7 @@ namespace PremiosInstitucionales
         {
 
             if(Session[StringValues.RolSesion] != null)
-            {
+            {/*
                 // ya ha iniciado sesion, por lo tanto se debe desplegar el boton de Logout
                 LogoutCandidato.Visible = true;
                 LogoutAdmin.Visible = true;
@@ -46,7 +46,7 @@ namespace PremiosInstitucionales
                     NavDefault.Visible = false;
 
                 }
-
+                */
             } 
         }
 

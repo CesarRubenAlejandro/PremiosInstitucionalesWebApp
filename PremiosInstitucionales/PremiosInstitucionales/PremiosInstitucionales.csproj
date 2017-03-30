@@ -108,11 +108,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\aplicaciones.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\premiosinstitucionales.css" />
+    <Content Include="Content\dataTables.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\stylec.css" />
+    <Content Include="Content\stylePremios.css" />
     <Content Include="Entities\Models\PremiosInstitucionalesModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
@@ -128,6 +133,8 @@
     <Content Include="img\elizondo.png" />
     <Content Include="img\garzasada.jpg" />
     <Content Include="img\jdbgmgr.jpg" />
+    <Content Include="img\logotec.png" />
+    <Content Include="img\logotec2.png" />
     <Content Include="img\mater.jpg" />
     <Content Include="img\romulogarza.PNG" />
     <Content Include="img\tec.PNG" />
@@ -146,6 +153,18 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="scripts\aplicaciones.js" />
+    <Content Include="scripts\global.js" />
+    <Content Include="scripts\index.js" />
+    <Content Include="scripts\jquery.dataTables.js" />
+    <Content Include="scripts\tablaParticipantes.js" />
+    <Content Include="svg\badgebg.svg" />
+    <Content Include="svg\checkmark.svg" />
+    <Content Include="svg\clipboard.svg" />
+    <Content Include="svg\juez.svg" />
+    <Content Include="svg\learning.svg" />
+    <Content Include="svg\logout.svg" />
+    <Content Include="svg\proponer.svg" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />

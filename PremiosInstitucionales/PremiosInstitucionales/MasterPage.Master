@@ -7,104 +7,51 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
         <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
-        <link href='<%= ResolveUrl("~/Content/premiosinstitucionales.css")%>'  rel="stylesheet" type="text/css" />
+        <link href='<%= ResolveUrl("~/Content/stylec.css")%>'  rel="stylesheet" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" />
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+</asp:ContentPlaceHolder>
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
     <form id="form1" runat="server">
     <div>
-
-        <nav id="NavDefault" visible="true" runat="server" class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
-                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
-                </div>
-                <ul class="nav navbar-nav">
-                    
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/WebForms/Registro.aspx"><span class="glyphicon glyphicon-user"></span>Registrate</a></li>
-                    <li><a href="/WebForms/Login.aspx"><span class="glyphicon glyphicon-log-in"></span>Inicia sesion</a></li>
-                </ul>
-          </div>
-        </nav>
-
-         <nav id="NavCandidato" visible="false" runat="server" class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
-                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
-                </div>
-                <ul class="nav navbar-nav ">
-                    <li><a class="navbar-text" href="/WebForms/InicioCandidato.aspx">Inicio</a></li>
-                    <li><a class="navbar-text" href="/WebForms/InformacionPersonalCandidato.aspx">Mis Datos Personales</a></li>
-                    <li><a class="navbar-text" href="/WebForms/ListaPremios.aspx">Premios Institucionales</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li runat="server" visible="false" id="LogoutCandidato">
-                        <asp:Button runat="server" Text="Cerrar sesión" Id="LogoutBttn" OnClick="LogoutBttn_Click"/>
-                    </li>
-                </ul>
-          </div>
-        </nav>
-
-        <nav id="NavAdmin" visible="false" runat="server" class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
-                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li><a class="navbar-text" href="/WebForms/ListaPremios.aspx">Inicio</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li runat="server" visible="false" id="LogoutAdmin">
-                        <asp:Button runat="server" Text="Logout" Id="LogoutAdminBttn" OnClick="LogoutBttn_Click"/>
-                    </li>
-                </ul>
-          </div>
-        </nav>
-
-        <nav id="NavJuez" visible="false" runat="server" class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                  <asp:Image class="logoTec" runat="server" ImageUrl="/img/tec.png"/>
-                  <asp:Image class="logoPremios" runat="server" ImageUrl="/img/premiostec3.png"/>
-                </div>
-                <ul class="nav navbar-nav">
-                    
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li runat="server" visible="false" id="LogoutJuez">
-                        <asp:Button runat="server" Text="Logout" Id="LogoutJuezBttn" OnClick="LogoutBttn_Click"/>
-                    </li>
-                </ul>
-          </div>
-        </nav>
+        <nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<img src='<%= ResolveUrl("~/img/logotec2.png")%>' style="max-width: 24px; margin-top: 13px; float: left; margin-right: 8px;"/>
+				<a class="navbar-brand" href="inicioCandidato.html">Premios TEC</a>
+                <asp:ContentPlaceHolder ID="navBarIcons" runat="server">
+            </asp:ContentPlaceHolder>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html">Cerrar sesión</a></li>
+					<img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="avatar img-circle" alt="avatar" style="max-width: 28px; margin-top: 12px;">
+					<!--li><img src="svg/logout.svg" class="logout"></li-->
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</nav>
+       
         <div id="MasterContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
             </asp:ContentPlaceHolder>
         </div>
 
-        <footer>
-            <nav id="Footer" class="navbar navbar-default navbar-fixed-bottom">
-                <div class="container">
-                    <p class="navbar-text">Av. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P.64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8328-4232</p>
-                    <br />
-                    <p class="navbar-text">D.R. &copy; Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2016</p>
-                    <br />
-                    <p class="navbar-text"> Aviso legal | Políticas de privacidad | Aviso de privacidad | Sobre el sitio </p>                   
-                    
-                </div>
-            </nav>
-        </footer>
 
-        <script src="scripts/jquery-1.9.1.min.js"></script>
-        <script src="scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/jquery-1.9.1.min.js")%>'></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/bootstrap.min.js")%>'></script>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+</asp:ContentPlaceHolder>
     </div>
     </form>
 </body>

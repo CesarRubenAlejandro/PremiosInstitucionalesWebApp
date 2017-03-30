@@ -17,6 +17,14 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             return dbContext.PI_BA_Premio.ToList();
         }
 
+        public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
+        {
+            var query = (from cat in dbContext.PI_BA_Categoria
+                         where cat.cveConvocatoria.Equals(idConvocatoria)
+                         orderby cat.Nombre descending
+                         select cat).ToList();
+            return query;
+        }
         public static PI_BA_Premio GetPremioById(String idPremio)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -181,6 +189,7 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             dbContext = new wPremiosInstitucionalesdbEntities();
             // revisar que el premio cuente con una convocatoria vigente
             var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(idPremio)).First();
+
             if (premio.PI_BA_Convocatoria.Count > 0)
             {
                 // obtener la convocatoria vigente
