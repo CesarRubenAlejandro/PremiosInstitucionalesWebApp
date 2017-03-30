@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.InicioCandidato" MasterPageFile="~/MasterPage.Master"%>
+    Inherits="PremiosInstitucionales.WebForms.InicioCandidato" MasterPageFile="~/mp-Candidato.Master"%>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 
@@ -69,48 +69,47 @@
         </div>
 	</div>
 
-	<!-- Dividing line -->
-	<hr>
+<!-- Dividing line -->
+		    <hr/>
 
-	<!-- Home component -->
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-                    <asp:HyperLink class="linkiniciales" ID="HyperLink2" NavigateUrl="~/WebForms/ListaPremios.aspx" runat="server" ><img class="service-icons" src='<%= ResolveUrl("~/svg/badgebg.svg")%>'/></asp:HyperLink>
-					<h3>Premios Institucionales</h3>
-					<hr class="shorthr" style="margin-bottom:10px;">
-					<p class="text-muted">We even changed some of the icons! We take the extra effort to make our designs truly original.</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-                    <asp:HyperLink class="linkiniciales" ID="HyperLink1" NavigateUrl="~/WebForms/Login.aspx" runat="server" ><a href="aplicaciones.html"><img class="service-icons" src='<%= ResolveUrl("~/svg/clipboard.svg")%>'/></a></asp:HyperLink>
+		    <!-- Home component -->
+		    <div class="container">
+			    <div class="row">
+				    <div class="col-lg-3 col-md-6 text-center">
+					    <div class="service-box">
+						    <a href="ListaPremios.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/badgebg.svg") %>'/></a>
+						    <h3>Premios Institucionales</h3>
+						    <hr class="shorthr" style="margin-bottom:10px;"/>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat.</p>
+					    </div>
+				    </div>
+				    <div class="col-lg-3 col-md-6 text-center">
+					    <div class="service-box">
+						    <a href="AplicacionesCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/clipboard.svg") %>'/></a>
+						    <h3>Mis Aplicaciones Vigentes</h3>
+						    <hr class="shorthr" style="margin-bottom:10px;"/>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat. Lorem ipsum dolor sit amet.</p>
+					    </div>
+				    </div>
+				    <div class="col-lg-3 col-md-6 text-center">
+					    <div class="service-box">
+						    <a href="InformacionPersonalCandidato.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
+						    <h3>Informacion Personal</h3>
+						    <hr class="shorthr" style="margin-bottom:10px;"/>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum, a finibus ex. Donec non ante erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					    </div>
+				    </div>
+				    <div class="col-lg-3 col-md-6 text-center">
+					    <div class="service-box">
+						    <a data-toggle="modal" data-target="#modalInvite"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/proponer.svg") %>'/></a>
+						    <h3>Proponer Candidato</h3>
+						    <hr class="shorthr" style="margin-bottom:10px;"/>
+						    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae feugiat ipsum.</p>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
 
-					<h3>Mis Aplicaciones Vigentes</h3>
-					<hr class="shorthr" style="margin-bottom:10px;">
-					<p class="text-muted">Guaranteed to use the same fucking template that every other bootstrap website uses, downloaded straight from The Web™</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-					<a href="perfilCandidato.html"><img class="service-icons" src='<%= ResolveUrl("~/svg/learning.svg")%>'></a>
-					<h3>Informacion Personal</h3>
-					<hr class="shorthr" style="margin-bottom:10px;">
-					<p class="text-muted">Look at this cool set of four icons describing different things about us! We use four, because it's the default.</p>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6 text-center">
-				<div class="service-box">
-					<a data-toggle="modal" data-target="#modalInvite"><img class="service-icons" src='<%= ResolveUrl("~/svg/proponer.svg")%>'/></a>
-					<h3>Proponer Candidato</h3>
-					<hr class="shorthr" style="margin-bottom:10px;">
-					<p class="text-muted">Because nothing says hard work and talent like editing a few lines of text.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	</div>
     </div>
 </asp:Content>

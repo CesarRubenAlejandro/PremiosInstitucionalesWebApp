@@ -47,7 +47,6 @@
             </asp:ContentPlaceHolder>
         </div>
 
-
         <script type="text/javascript" src='<%= ResolveUrl("scripts/jquery-1.9.1.min.js")%>'></script>
         <script type="text/javascript" src='<%= ResolveUrl("scripts/bootstrap.min.js")%>'></script>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">

@@ -30,6 +30,7 @@
           <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
           <Property Name="RFC" Type="varchar" MaxLength="50" />
           <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -77,6 +78,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
           <Property Name="Apellido" Type="varchar" MaxLength="100" />
           <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PI_BA_JuezPorCategoria">
           <Key>
@@ -386,6 +388,7 @@
           <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -446,6 +449,7 @@
           <NavigationProperty Name="PI_BA_Evaluacion" Relationship="Self.FK_PI_BA_Evaluacion_PI_BA_Juez" FromRole="PI_BA_Juez" ToRole="PI_BA_Evaluacion" />
           <NavigationProperty Name="PI_BA_JuezPorCategoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" FromRole="PI_BA_Juez" ToRole="PI_BA_JuezPorCategoria" />
           <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PI_BA_JuezPorCategoria">
           <Key>
@@ -769,6 +773,7 @@
           <EntitySetMapping Name="PI_BA_Candidato">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
               <MappingFragment StoreEntitySet="PI_BA_Candidato">
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="RFC" ColumnName="RFC" />
                 <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
@@ -826,6 +831,7 @@
           <EntitySetMapping Name="PI_BA_Juez">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Juez">
               <MappingFragment StoreEntitySet="PI_BA_Juez">
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

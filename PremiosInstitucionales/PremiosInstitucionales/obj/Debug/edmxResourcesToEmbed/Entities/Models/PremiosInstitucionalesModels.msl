@@ -15,6 +15,7 @@
     <EntitySetMapping Name="PI_BA_Candidato">
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
         <MappingFragment StoreEntitySet="PI_BA_Candidato">
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
           <ScalarProperty Name="Direccion" ColumnName="Direccion" />
           <ScalarProperty Name="RFC" ColumnName="RFC" />
           <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
@@ -72,6 +73,7 @@
     <EntitySetMapping Name="PI_BA_Juez">
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Juez">
         <MappingFragment StoreEntitySet="PI_BA_Juez">
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
           <ScalarProperty Name="Correo" ColumnName="Correo" />
           <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />

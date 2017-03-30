@@ -29,7 +29,39 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             return dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
-                    .FirstOrDefault(); 
+                    .FirstOrDefault();
+        }
+
+        public static PI_BA_Categoria GetCategoriaById(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            return dbContext.PI_BA_Categoria.Where(p => p.cveCategoria == idCategoria)
+                    .FirstOrDefault();
+        }
+
+        public static PI_BA_Convocatoria GetConvocatoriaById(String idConvocatoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            return dbContext.PI_BA_Convocatoria.Where(cvc => cvc.cveConvocatoria == idConvocatoria)
+                    .FirstOrDefault();
+        }
+
+        public static PI_BA_Premio GetPremioByCategoria(string idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+
+            var categoria = GetCategoriaById(idCategoria);
+            if (categoria != null)
+            {
+                var convocatoria = GetConvocatoriaById(categoria.cveConvocatoria);
+                if(categoria != null)
+                {
+                    var premio = GetPremioById(convocatoria.cvePremio);
+                    return premio;
+                }
+            }
+
+            return null;
         }
 
         public static void SaveNewConvocatoria(string idPremio, PI_BA_Convocatoria nuevaConvocatoria)
