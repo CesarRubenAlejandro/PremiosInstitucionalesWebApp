@@ -13,12 +13,21 @@ namespace PremiosInstitucionales.WebForms {
     public partial class ListaPremios {
         
         /// <summary>
-        /// PanelesPremios control.
+        /// modalList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelesPremios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalList;
+        
+        /// <summary>
+        /// colPremio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl colPremio;
     }
 }
