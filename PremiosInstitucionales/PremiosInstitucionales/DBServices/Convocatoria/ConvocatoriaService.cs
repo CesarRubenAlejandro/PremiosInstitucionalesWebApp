@@ -17,6 +17,13 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             return dbContext.PI_BA_Premio.ToList();
         }
 
+        public static void CreatePremio (PI_BA_Premio premio)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Premio.Add(premio);
+            dbContext.SaveChanges();
+        }
+
         public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
         {
             var query = (from cat in dbContext.PI_BA_Categoria

@@ -115,6 +115,7 @@
     <EntitySetMapping Name="PI_BA_Premio">
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Premio">
         <MappingFragment StoreEntitySet="PI_BA_Premio">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
           <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />

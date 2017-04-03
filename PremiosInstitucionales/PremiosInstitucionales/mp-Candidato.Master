@@ -11,7 +11,7 @@
         <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
         <link href='<%= ResolveUrl("~/Resources/css/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
         <link href='<%= ResolveUrl("~/Resources/css/stylec.css")%>'  rel="stylesheet" type="text/css" />
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!-- Load scripts at the bottom for faster loading -->
         <script src='<%= ResolveUrl("~/Resources/js/jquery.min.js") %>'></script>
         <script src='<%= ResolveUrl("~/Resources/js/bootstrap.min.js") %>'></script>

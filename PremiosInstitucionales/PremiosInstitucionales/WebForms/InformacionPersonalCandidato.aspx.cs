@@ -66,46 +66,6 @@ namespace PremiosInstitucionales.WebForms
             ActualizarContrasena();
         }
 
-        public class ajax_Candidato
-        {
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string Direccion { get; set; }
-            public string Nacionalidad { get; set; }
-            public string RFC { get; set; }
-            public string Telefono { get; set; }
-        }
-
-        [WebMethod]
-        [ScriptMethod]
-        public static void MyMethod(ajax_Candidato cand)
-        {
-            try
-            {
-                PI_BA_Candidato aux = new PI_BA_Candidato();
-                aux.Nombre = cand.Nombre;
-                aux.Apellido = cand.Apellido;
-                aux.Direccion = cand.Direccion;
-                aux.Nacionalidad = cand.Nacionalidad;
-                aux.RFC = cand.RFC;
-                aux.Telefono = cand.Telefono;
-
-                if (InformacionPersonalCandidatoService.GuardarCambios(aux, HttpContext.Current.Session[StringValues.CorreoSesion].ToString()))
-                {
-                    System.Diagnostics.Debug.WriteLine("Tus cambios han sido guardados");
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Hubo un error al guardar tus cambios");
-                }
-            }
-            catch (Exception)
-            {
-                System.Diagnostics.Debug.WriteLine("??? why tho");
-                throw;
-            }
-        }
-
         protected void ActualizarContrasena()
         {
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
