@@ -361,8 +361,8 @@ div.userHeader{
 	position: relative;
 }
 
-div.userHeader{
-	width: inherit;;
+div.award-header{
+	width: inherit;
 	height: 80%;
 	display: block;
 	margin: 0 auto;

@@ -38,7 +38,7 @@ namespace PremiosInstitucionales.WebForms
 
                 // Div encargado de la parte superior (imagen)
                 Panel pUserHeader = new Panel();
-                pUserHeader.CssClass = "userHeader";
+                pUserHeader.CssClass = "award-header";
 
                 Panel pAwardImage = new Panel();
                 pAwardImage.CssClass = "award-thumbnail";
