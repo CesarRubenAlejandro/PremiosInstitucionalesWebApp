@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class AdministraPremios {
+    public partial class AdministraCategorias {
         
         /// <summary>
         /// form1 control.
@@ -22,40 +22,13 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// avatarImage control.
+        /// tbCategoryTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel avatarImage;
-        
-        /// <summary>
-        /// FileUploadImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUploadImage;
-        
-        /// <summary>
-        /// tbAwardTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAwardTitle;
-        
-        /// <summary>
-        /// tbAwardDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbAwardDescription;
+        protected global::System.Web.UI.WebControls.TextBox tbCategoryTitle;
         
         /// <summary>
         /// EnviarBtn control.
@@ -67,12 +40,30 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Button EnviarBtn;
         
         /// <summary>
-        /// awardList control.
+        /// litTituloPremio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl awardList;
+        protected global::System.Web.UI.WebControls.Literal litTituloPremio;
+        
+        /// <summary>
+        /// litTituloConvocatoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTituloConvocatoria;
+        
+        /// <summary>
+        /// categoryList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl categoryList;
     }
 }

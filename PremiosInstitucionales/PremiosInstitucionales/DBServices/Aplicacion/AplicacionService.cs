@@ -59,6 +59,21 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             }
         }
 
+        public static PI_BA_Forma GetFormByCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
+                PI_BA_Forma forma = categoria.PI_BA_Forma.First();
+                return forma;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static List<PI_BA_Pregunta>GetFormularioByCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

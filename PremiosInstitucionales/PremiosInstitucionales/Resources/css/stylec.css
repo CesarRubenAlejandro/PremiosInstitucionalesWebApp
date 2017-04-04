@@ -452,11 +452,11 @@ div.award-header{
 
 @media screen and (min-width: 768px) {
     .modal-big {
-        width: 65%;
+		width: 65%;
     }
 }
 
-.box {
+.award-new-box {
   display: block;
   max-width: 350px;
   height: 224px;
@@ -472,22 +472,14 @@ div.award-header{
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-image: url("");
+  background-image: url("../img/default-award.png");
   background-color: #fafafa;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.js--image-preview::after {
-  content: "photo_size_select_actual";
-  font-family: 'Material Icons';
-  position: relative;
-  font-size: 12em;
-  color: #e6e6e6;
-  top: calc(50% - 14.5rem);
-  left: calc(50% - 7.5rem);
-  z-index: 0;
-}
+
+
 
 .control-title{
 	padding: 0px;

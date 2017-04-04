@@ -14,11 +14,12 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="box">
-                                    <div class="js--image-preview"></div>
+                                <div class="award-new-box">
+                                    <asp:Panel runat="server" class="js--image-preview" ID="avatarImage" onclick="uploadImage();"></asp:Panel>
                                 </div>
+                                <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" Style="display: none;" onchange="ShowImagePreview(this);" />
                                 <div class="btn-group-mid">
-                                    <button type="button" class="btn btn-default">Cambiar imagen de perfil</button>
+                                    <button type="button" class="btn btn-default" onclick="uploadImage();">Cambiar imagen de perfil</button>
                                 </div>
                             </div>
                             <div class="col-md-6" style="padding-right: 35px; padding-left: 35px">

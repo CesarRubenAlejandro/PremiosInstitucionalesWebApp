@@ -17,10 +17,24 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             return dbContext.PI_BA_Premio.ToList();
         }
 
-        public static void CreatePremio (PI_BA_Premio premio)
+        public static void CreatePremio(PI_BA_Premio premio)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             dbContext.PI_BA_Premio.Add(premio);
+            dbContext.SaveChanges();
+        }
+
+        public static void CreateCategoria(PI_BA_Categoria categoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Categoria.Add(categoria);
+            dbContext.SaveChanges();
+        }
+
+        public static void CreateForma(PI_BA_Forma forma)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Forma.Add(forma);
             dbContext.SaveChanges();
         }
 

@@ -2,6 +2,7 @@
 using PremiosInstitucionales.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,7 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
             LoadAwards();
         }
 
@@ -42,7 +44,14 @@ namespace PremiosInstitucionales.WebForms
 
                 Panel pAwardImage = new Panel();
                 pAwardImage.CssClass = "award-thumbnail";
-                pAwardImage.Style.Add("background-image", "url(/AwardPictures/" + p.NombreImagen + ")");
+                if(p.NombreImagen != null)
+                {
+                    pAwardImage.Style.Add("background-image", "url(/AwardPictures/" + p.NombreImagen + ")");
+                }
+                else
+                {
+                    pAwardImage.Style.Add("background-image", "url(http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png)");
+                }
 
                 pUserHeader.Controls.Add(pAwardImage);
 
@@ -69,7 +78,11 @@ namespace PremiosInstitucionales.WebForms
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
             if (tbAwardTitle.Text.Length > 0)
+            {
                 CreateAward();
+            }
+            Response.Redirect("AdministraPremios.aspx");
+
         }
 
         private void CreateAward()
@@ -78,9 +91,32 @@ namespace PremiosInstitucionales.WebForms
             premio.cvePremio = Guid.NewGuid().ToString();
             premio.Nombre = tbAwardTitle.Text;
             premio.Descripcion = tbAwardDescription.Text;
+            premio.NombreImagen = UploadImage();
+
             ConvocatoriaService.CreatePremio(premio);
 
             ResetFields();
+        }
+
+        private string UploadImage()
+        {
+            if (FileUploadImage.HasFile)
+            {
+                // Get filename
+                string fileName = Path.GetFileName(FileUploadImage.PostedFile.FileName);
+
+                // Get string image format (png, jpg, etc)
+                var startIndex = fileName.LastIndexOf(".");
+                var endIndex = fileName.Length - startIndex;
+                string sFormat = fileName.Substring(startIndex, endIndex);
+                string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
+
+                // Upload image to server
+                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/Resources/img/default-award.png") + sNombreImagen);
+                return sNombreImagen;
+            }
+
+            return null;
         }
     }
 }
