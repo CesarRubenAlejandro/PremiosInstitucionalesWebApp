@@ -112,7 +112,7 @@ namespace PremiosInstitucionales.WebForms
                 string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
 
                 // Upload image to server
-                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/Resources/img/default-award.png") + sNombreImagen);
+                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/AwardPictures/") + sNombreImagen);
                 return sNombreImagen;
             }
 
