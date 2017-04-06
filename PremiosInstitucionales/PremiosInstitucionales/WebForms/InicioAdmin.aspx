@@ -18,7 +18,7 @@
                 <div class="col-lg-6">
                     <div class="row service-list">
                         <div class="col-xs-4 text-center" style="height: 96px">
-                            <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                            <img class="service-icon" src="../Resources/svg/badgebg.svg" />
                         </div>
                         <div class="col-xs-8">
                             <h5>Premios Institucionales </h5>
@@ -42,7 +42,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="../Resources/svg/learning.svg" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Información de candidatos </h5>
@@ -53,7 +53,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="../Resources/svg/proponer.svg" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Proponer candidato </h5>
@@ -64,7 +64,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="../Resources/svg/juez.svg" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Información de jueces </h5>
@@ -75,7 +75,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="../Resources/svg/teacher.svg" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Crear juez </h5>
@@ -86,7 +86,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="../Resources/svg/team.svg" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Administrar jueces a categorías </h5>
@@ -97,7 +97,7 @@
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                        <img class="service-icon" src="http://inspired-bd.com/wp-content/uploads/2016/07/trophy200.png" />
                     </div>
                     <div class="col-xs-8">
                         <h5>Elegir ganador </h5>

@@ -177,6 +177,7 @@
     <Content Include="Resources\js\jquery.dataTables.js" />
     <Content Include="Resources\js\jquery.min.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
+    <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
@@ -184,11 +185,14 @@
     <Content Include="Resources\svg\learning.svg" />
     <Content Include="Resources\svg\logout.svg" />
     <Content Include="Resources\svg\proponer.svg" />
+    <Content Include="Resources\svg\shield.svg" />
+    <Content Include="Resources\svg\teacher.svg" />
     <Content Include="scripts\aplicaciones.js" />
     <Content Include="scripts\global.js" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\jquery.dataTables.js" />
     <Content Include="scripts\tablaParticipantes.js" />
+    <Content Include="svg\add.svg" />
     <Content Include="svg\badgebg.svg" />
     <Content Include="svg\checkmark.svg" />
     <Content Include="svg\clipboard.svg" />
