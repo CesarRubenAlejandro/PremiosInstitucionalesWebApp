@@ -176,6 +176,7 @@
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
     <Content Include="Resources\js\jquery.dataTables.js" />
     <Content Include="Resources\js\jquery.min.js" />
+    <Content Include="Resources\js\listaUsuariosCandidato.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
     <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
@@ -205,6 +206,7 @@
     <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\AdministraCategorias.aspx" />
     <Content Include="WebForms\AdministraPremios.aspx" />
+    <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
@@ -358,6 +360,13 @@
     </Compile>
     <Compile Include="WebForms\AdministraPremios.aspx.designer.cs">
       <DependentUpon>AdministraPremios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraUsuarios.aspx.cs">
+      <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AplicacionesCandidato.aspx.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
