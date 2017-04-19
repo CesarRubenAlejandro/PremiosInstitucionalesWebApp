@@ -113,5 +113,12 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
             dbContext.SaveChanges();
             return true;
         }
+
+        public static List<PI_BA_Candidato> GetCandidatos()
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var candidatos = dbContext.PI_BA_Candidato.ToList();
+            return candidatos;
+        }
     }
 }   

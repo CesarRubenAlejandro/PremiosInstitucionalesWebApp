@@ -108,6 +108,7 @@
     <Property Name="cvePremio" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="PI_BA_Respuesta">
     <Key>
