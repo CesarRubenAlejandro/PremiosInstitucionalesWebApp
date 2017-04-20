@@ -24,7 +24,21 @@ namespace PremiosInstitucionales.WebForms
                 MostrarCampos();
                 ResetFields();
             }
+            CheckPrivacy();
 
+        }
+
+        private void CheckPrivacy()
+        {
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if (!candidato.FechaPrivacidadDatos.HasValue)
+            {
+                guardarCambiosBtn.Style.Add("display", "none");
+            }
+            else
+            {
+                avisoPrivacidad.Style.Add("display", "none");
+            }
         }
 
         private void ResetFields()
@@ -52,6 +66,8 @@ namespace PremiosInstitucionales.WebForms
                     avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + candidato.NombreImagen + ")");
                 }
             }
+
+            
 
         }
 
@@ -94,21 +110,26 @@ namespace PremiosInstitucionales.WebForms
         protected void ActualizarDatosGenerales()
         {
 
-            PI_BA_Candidato aux = new PI_BA_Candidato();
-            aux.Nombre = NombresTextBox.Text;
-            aux.Apellido = ApellidosTextBox.Text;
-            aux.Direccion = DomicilioTextBox.Text.ToString();
-            aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
-            aux.RFC = RFCTextBox.Text.ToString();
-            aux.Telefono = TelefonoTextBox.Text.ToString();
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if(candidato != null)
+            {
+                PI_BA_Candidato aux = new PI_BA_Candidato();
+                aux.Nombre = NombresTextBox.Text;
+                aux.Apellido = ApellidosTextBox.Text;
+                aux.Direccion = DomicilioTextBox.Text.ToString();
+                aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
+                aux.RFC = RFCTextBox.Text.ToString();
+                aux.Telefono = TelefonoTextBox.Text.ToString();
 
-            if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
-            {
+                if (!candidato.FechaPrivacidadDatos.HasValue)
+                {
+                    aux.FechaPrivacidadDatos = DateTime.Today.Date;
+                }
+
+                InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString());
             }
-            else
-            {
-                MostrarCampos();
-            }
+
+            
         }
 
         protected void EditarBtn_Click(object sender, EventArgs e)

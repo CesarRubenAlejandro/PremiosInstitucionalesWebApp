@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
+using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,54 @@ namespace PremiosInstitucionales.WebForms
 
         private void LoadJudgeTable()
         {
+            var jueces = InformacionPersonalJuezService.GetJueces();
+            string sType = Request.QueryString["t"];
+            if(jueces != null)
+            {
+                foreach(var juez in jueces)
+                {
+                    TableRow tr = new TableRow();
+                    tr.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
+                    // profile image column
+                    TableCell tdIP = new TableCell();
+                    tdIP.CssClass = "dt-profile-pic";
 
+                    Image ipImage = new Image();
+                    if (juez.NombreImagen != null)
+                    {
+                        ipImage.ImageUrl = "/ProfilePictures/" + juez.NombreImagen;
+                    }
+                    else
+                    {
+                        ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
+                    }
+                    ipImage.CssClass = "avatar img-circle";
+                    ipImage.AlternateText = "avatar";
+                    ipImage.Style.Add("width", "28px");
+                    ipImage.Style.Add("height", "28px");
+
+                    tdIP.Controls.Add(ipImage);
+
+                    // name column
+                    TableCell tdName = new TableCell();
+                    tdName.Text = juez.Nombre;
+
+                    // last name column
+                    TableCell tdLastName = new TableCell();
+                    tdLastName.Text = juez.Apellido;
+
+                    TableCell tdEmail = new TableCell();
+                    tdEmail.Text = juez.Correo;
+
+                    tr.Controls.Add(tdIP);
+                    tr.Controls.Add(tdName);
+                    tr.Controls.Add(tdLastName);
+                    tr.Controls.Add(tdEmail);
+
+                    listaJuecesTableBody.Controls.Add(tr);
+
+                }
+            }
         }
 
         private void LoadCandidateTable()
@@ -90,11 +138,35 @@ namespace PremiosInstitucionales.WebForms
                     TableCell tdAddress = new TableCell();
                     tdAddress.Text = cand.Direccion;
 
+                    TableCell tdConfirmacion = new TableCell();
+                    LiteralControl lcConfirmacion;
+                    if (cand.Confirmado.HasValue && cand.Confirmado.Value)
+                    {
+                        tdConfirmacion.Style.Add("color", "#4caf50");
+                        lcConfirmacion = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Confirmado </strong>");
+                    }
+                    else
+                    {
+                        tdConfirmacion.Style.Add("color", "#f9a825");
+                        lcConfirmacion = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Sin confirmar </strong>");
+                    }
+                    tdConfirmacion.Controls.Add(lcConfirmacion);
+
                     // status column
-                    TableCell tdStatus = new TableCell();
-                    tdStatus.Style.Add("color", "#f44336");
-                    LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
-                    tdStatus.Controls.Add(lcStatus);
+                    TableCell tdPrivacidad = new TableCell();
+                    LiteralControl lcPrivacidad;
+                    if (cand.FechaPrivacidadDatos != null)
+                    {
+                        tdPrivacidad.Style.Add("color", "#4caf50");
+                        lcPrivacidad = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Aceptado </strong>");
+                    }
+                    else
+                    {
+                        tdPrivacidad.Style.Add("color", "#f9a825");
+                        lcPrivacidad = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Sin aceptar </strong>");
+                    }
+
+                    tdPrivacidad.Controls.Add(lcPrivacidad);
 
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
@@ -104,7 +176,8 @@ namespace PremiosInstitucionales.WebForms
                     tr.Controls.Add(tdNationality);
                     tr.Controls.Add(tdRFC);
                     tr.Controls.Add(tdAddress);
-                    tr.Controls.Add(tdStatus);
+                    tr.Controls.Add(tdConfirmacion);
+                    tr.Controls.Add(tdPrivacidad);
 
                     listaCandidatosTableBody.Controls.Add(tr);
                 }

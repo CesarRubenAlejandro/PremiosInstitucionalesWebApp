@@ -205,6 +205,7 @@
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\AdministraCategorias.aspx" />
+    <Content Include="WebForms\AdministraInformacionPersonal.aspx" />
     <Content Include="WebForms\AdministraPremios.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
@@ -353,6 +354,13 @@
     </Compile>
     <Compile Include="WebForms\AdministraCategorias.aspx.designer.cs">
       <DependentUpon>AdministraCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraInformacionPersonal.aspx.cs">
+      <DependentUpon>AdministraInformacionPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraInformacionPersonal.aspx.designer.cs">
+      <DependentUpon>AdministraInformacionPersonal.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AdministraPremios.aspx.cs">
       <DependentUpon>AdministraPremios.aspx</DependentUpon>

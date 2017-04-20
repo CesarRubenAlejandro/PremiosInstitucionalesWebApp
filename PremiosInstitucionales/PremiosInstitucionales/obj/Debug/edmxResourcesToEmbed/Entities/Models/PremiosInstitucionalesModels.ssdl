@@ -26,6 +26,7 @@
     <Property Name="RFC" Type="varchar" MaxLength="50" />
     <Property Name="Direccion" Type="varchar" MaxLength="50" />
     <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+    <Property Name="FechaPrivacidadDatos" Type="date" />
   </EntityType>
   <EntityType Name="PI_BA_Categoria">
     <Key>

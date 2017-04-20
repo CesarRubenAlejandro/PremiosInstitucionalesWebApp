@@ -20,7 +20,8 @@
                         <th>Nacionalidad</th>
                         <th>RFC</th>
                         <th>Direccion</th>
-                        <th>Estatus</th>
+                        <th>Confirmacion de cuenta</th>
+                        <th>Aviso de privacidad</th>
 					</tr>
 				</thead>
 				<tbody id="listaCandidatosTableBody" runat="server">
@@ -33,7 +34,6 @@
 						<th>Nombres</th>
 						<th>Apellidos</th>
 						<th>Correo</th>
-                        <th>Estatus</th>
 					</tr>
 				</thead>
 				<tbody id="listaJuecesTableBody" runat="server">

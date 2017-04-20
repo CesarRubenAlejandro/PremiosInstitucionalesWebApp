@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class InformacionPersonalCandidato {
+    public partial class AdministraInformacionPersonal {
         
         /// <summary>
         /// form1 control.
@@ -38,6 +38,15 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload FileUploadImage;
+        
+        /// <summary>
+        /// controlFormCandidato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl controlFormCandidato;
         
         /// <summary>
         /// NombresTextBox control.
@@ -103,15 +112,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox NacionalidadTextBox;
         
         /// <summary>
-        /// avisoPrivacidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor avisoPrivacidad;
-        
-        /// <summary>
         /// guardarCambiosBtn control.
         /// </summary>
         /// <remarks>
@@ -130,13 +130,49 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Button EnviarBtn;
         
         /// <summary>
-        /// currentPwdTextBox control.
+        /// controlFormJuez control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox currentPwdTextBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl controlFormJuez;
+        
+        /// <summary>
+        /// jNombresTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox jNombresTextBox;
+        
+        /// <summary>
+        /// jApellidosTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox jApellidosTextBox;
+        
+        /// <summary>
+        /// jCorreoTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox jCorreoTextBox;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
         /// newPwdTextBox control.

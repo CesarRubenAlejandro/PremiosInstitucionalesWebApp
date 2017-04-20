@@ -17,7 +17,21 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalJuez
             try
             {
                 return dbContext.PI_BA_Juez.Where(c => c.Correo.Equals(correo)).FirstOrDefault();
-            } catch (Exception e)
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static PI_BA_Juez GetJuezById(String id)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                return dbContext.PI_BA_Juez.Where(c => c.cveJuez.Equals(id)).FirstOrDefault();
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -77,6 +91,13 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalJuez
             }
 
 
+        }
+
+        public static List<PI_BA_Juez> GetJueces()
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var jueces = dbContext.PI_BA_Juez.ToList();
+            return jueces;
         }
 
     }

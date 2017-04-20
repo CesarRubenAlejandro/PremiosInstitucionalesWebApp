@@ -30,6 +30,7 @@
     <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaPrivacidadDatos" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="PI_BA_Categoria">
     <Key>

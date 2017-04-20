@@ -31,6 +31,7 @@
           <Property Name="RFC" Type="varchar" MaxLength="50" />
           <Property Name="Direccion" Type="varchar" MaxLength="50" />
           <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+          <Property Name="FechaPrivacidadDatos" Type="date" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -390,6 +391,7 @@
           <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaPrivacidadDatos" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="PI_BA_Categoria">
           <Key>
@@ -775,6 +777,7 @@
           <EntitySetMapping Name="PI_BA_Candidato">
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
               <MappingFragment StoreEntitySet="PI_BA_Candidato">
+                <ScalarProperty Name="FechaPrivacidadDatos" ColumnName="FechaPrivacidadDatos" />
                 <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="RFC" ColumnName="RFC" />
