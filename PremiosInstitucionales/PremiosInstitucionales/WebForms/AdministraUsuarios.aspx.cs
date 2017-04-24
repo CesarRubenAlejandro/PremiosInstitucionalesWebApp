@@ -35,6 +35,7 @@ namespace PremiosInstitucionales.WebForms
 
         private void LoadJudgeTable()
         {
+            litUsuarios.Text = "Jueces";
             var jueces = InformacionPersonalJuezService.GetJueces();
             string sType = Request.QueryString["t"];
             if(jueces != null)
@@ -87,7 +88,7 @@ namespace PremiosInstitucionales.WebForms
 
         private void LoadCandidateTable()
         {
-            
+            litUsuarios.Text = "Candidatos";
             var candidatos = InformacionPersonalCandidatoService.GetCandidatos();
             string sType = Request.QueryString["t"];
             if (candidatos != null)

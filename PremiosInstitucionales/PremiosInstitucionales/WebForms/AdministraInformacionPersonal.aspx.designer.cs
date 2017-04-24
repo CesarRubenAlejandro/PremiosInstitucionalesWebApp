@@ -112,6 +112,15 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox NacionalidadTextBox;
         
         /// <summary>
+        /// dataOptionsCandidato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dataOptionsCandidato;
+        
+        /// <summary>
         /// guardarCambiosBtn control.
         /// </summary>
         /// <remarks>
@@ -200,5 +209,23 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonChangePassword;
+        
+        /// <summary>
+        /// alertInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alertInfo;
+        
+        /// <summary>
+        /// litAlertMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litAlertMessage;
     }
 }

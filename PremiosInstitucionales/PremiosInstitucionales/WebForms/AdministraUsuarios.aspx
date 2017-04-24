@@ -6,7 +6,9 @@
     <div class="container fadeView">
 		
 		<h3>Información personal</h3>
-		<h4>Candidatos</h4>
+		<h4>
+            <asp:Literal ID="litUsuarios" runat="server" />
+        </h4>
 
 		<div class="container">
 			<table id="listaCandidatoTable" class="display" cellspacing="0" width="100%">

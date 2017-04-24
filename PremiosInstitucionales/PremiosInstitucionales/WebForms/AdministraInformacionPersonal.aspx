@@ -71,7 +71,7 @@
                                 <asp:TextBox ID="NacionalidadTextBox" runat="server" class="form-control" type="text" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" runat="server" id="dataOptionsCandidato">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
                                     <a href="InicioCandidato.aspx" class="no-underline">
@@ -130,17 +130,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alerta de cambios guardados... -->
-            <div class="row" id="changealert" style="margin-top: 20px; opacity: 0;">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" onclick="closeAlert()">×</a>
-                        <i class="fa fa-coffee"></i>
-                        Los <strong>cambios</strong> han sido guardados.
                     </div>
                 </div>
             </div>
@@ -207,4 +196,14 @@
         </div>
 
     </form>
+    <asp:Panel class="row" style="margin-top: 20px;" id="alertInfo" runat="server" Visible="false">
+      <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        <asp:Literal ID="litAlertMessage" runat="server" />
+      </div>
+    </div>
+    </asp:Panel>
+    
 </asp:Content>

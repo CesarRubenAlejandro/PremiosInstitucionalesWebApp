@@ -52,6 +52,33 @@ namespace PremiosInstitucionales.WebForms
                 TelefonoTextBox.Text = candidato.Telefono;
                 NacionalidadTextBox.Text = candidato.Nacionalidad;
 
+                if (!candidato.FechaPrivacidadDatos.HasValue)
+                {
+                    NombresTextBox.ReadOnly = true;
+                    NombresTextBox.Attributes.Add("disabled", "disabled");
+
+                    ApellidosTextBox.ReadOnly = true;
+                    ApellidosTextBox.Attributes.Add("disabled", "disabled");
+
+                    DomicilioTextBox.ReadOnly = true;
+                    DomicilioTextBox.Attributes.Add("disabled", "disabled");
+
+                    RFCTextBox.ReadOnly = true;
+                    RFCTextBox.Attributes.Add("disabled", "disabled");
+
+                    TelefonoTextBox.ReadOnly = true;
+                    TelefonoTextBox.Attributes.Add("disabled", "disabled");
+
+                    NacionalidadTextBox.ReadOnly = true;
+                    NacionalidadTextBox.Attributes.Add("disabled", "disabled");
+
+                    // to-do show message
+                    guardarCambiosBtn.Visible = false;
+                    dataOptionsCandidato.Visible = false;
+                    alertInfo.Visible = true;
+                    litAlertMessage.Text = "El usuario <strong>actual</strong> no ha aceptado las politicas de privacidad de datos.";
+                }
+
                 if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
                 {
                     if (File.Exists(Server.MapPath("~/ProfilePictures/" + candidato.NombreImagen)))
