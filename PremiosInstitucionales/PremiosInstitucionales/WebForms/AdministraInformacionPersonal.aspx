@@ -74,7 +74,7 @@
                         <div class="form-group" runat="server" id="dataOptionsCandidato">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="InicioCandidato.aspx" class="no-underline">
+                                    <a href="InicioAdmin.aspx" class="no-underline">
                                         <button type="button" class="btn btn-default">
                                             Cancelar
                                         </button>

@@ -9,9 +9,9 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
 {
     public class AplicacionService
     {
-        private static wPremiosInstitucionalesdbEntities dbContext; 
+        private static wPremiosInstitucionalesdbEntities dbContext;
 
-        public static List<PI_BA_Categoria>GetCategoriasByConvocatoria(String idConvocatoria)
+        public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             return dbContext.PI_BA_Categoria.Where(c => c.cveConvocatoria.Equals(idConvocatoria)).ToList();
@@ -26,17 +26,19 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             {
                 // obtener la convocatoria vigente
                 var convocatoria = (from convo in premio.PI_BA_Convocatoria
-                             where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
-                             select convo).FirstOrDefault();
+                                    where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
+                                    select convo).FirstOrDefault();
                 // regresar las categorias de la convocatoria
                 try
                 {
                     return convocatoria.PI_BA_Categoria.ToList();
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     return null;
                 }
-            } else
+            }
+            else
             {
                 return null;
             }
@@ -53,7 +55,8 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             {
                 var query = candidato.PI_BA_Aplicacion.Where(a => a.cveCategoria.Equals(idCategoria)).ToList();
                 return query.Count > 0;
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -74,7 +77,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             }
         }
 
-        public static List<PI_BA_Pregunta>GetFormularioByCategoria(String idCategoria)
+        public static List<PI_BA_Pregunta> GetFormularioByCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             try
@@ -86,11 +89,12 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                                  orderby p.Orden
                                  select p).ToList();
                 return preguntas;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
-                 
+
         }
 
         public static void CrearAplicacion(PI_BA_Aplicacion aplicacion, List<PI_BA_Respuesta> respuestas)
@@ -117,13 +121,22 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             PI_BA_Candidato candidato = dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(correo)).FirstOrDefault();
-            try { 
+            try
+            {
                 var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.cveCandidato.Equals(candidato.cveCandidato)).ToList();
                 return aplicaciones;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return null;
             }
+        }
+
+        public static List<PI_BA_Aplicacion> GetAplicacionesByStatus(String status)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.Status.Equals(status)).ToList();
+            return aplicaciones;
         }
 
         public static String GetPremioCategoriaByClaveCategoria(String idCategoria)
@@ -161,7 +174,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
 
             aplicacion.Status = Values.StringValues.Rechazado;
 
-            dbContext.SaveChanges();         
+            dbContext.SaveChanges();
         }
 
         public static void AceptarAplicacion(String claveAplicacion)
@@ -189,11 +202,13 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
 
             int result;
-            try { 
+            try
+            {
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechafin = Convert.ToDateTime(convocatoria.FechaFin);
                 result = DateTime.Compare(fechaactual, fechafin);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 result = -1;
             }
@@ -213,11 +228,13 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
 
             int result;
-            try { 
+            try
+            {
                 DateTime fechaactual = DateTime.Now;
                 DateTime fechaveredicto = Convert.ToDateTime(convocatoria.FechaVeredicto);
                 result = DateTime.Compare(fechaactual, fechaveredicto);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 result = -1;
             }
@@ -238,7 +255,8 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(idAplicacion)).FirstOrDefault();
                 return aplicacion.Status.Equals(StringValues.Rechazado);
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }

@@ -79,7 +79,11 @@ namespace PremiosInstitucionales.WebForms
                                         "<label for='sel"+i+"'> Selecciona la categoria correspondiente:</label>"+
                                         "<select class='form-control' id='sel"+i+"'>";
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
+                if (conv == null)
+                    return;
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
+                if (listCat == null)
+                    return;
                 modalList.Controls.Add(lit2);
 
                 foreach (var cat in listCat) {
