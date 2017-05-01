@@ -56,9 +56,9 @@
     <EntitySetMapping Name="PI_BA_Evaluacion">
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Evaluacion">
         <MappingFragment StoreEntitySet="PI_BA_Evaluacion">
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
           <ScalarProperty Name="cveEvaluacion" ColumnName="cveEvaluacion" />
           <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
-          <ScalarProperty Name="cveRespuesta" ColumnName="cveRespuesta" />
           <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -76,10 +76,20 @@ namespace PremiosInstitucionales.WebForms
 
                     // status column
                     TableCell tdStatus = new TableCell();
-                    tdStatus.Style.Add("color", "#f44336");
-                    LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
-                    tdStatus.Controls.Add(lcStatus);
-
+                    var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
+                    if(Eval != null)
+                    {
+                        tdStatus.Style.Add("color", "#4caf50");
+                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 0 </div> Completo </strong>");
+                        tdStatus.Controls.Add(lcStatus);
+                    }
+                    else
+                    {
+                        tdStatus.Style.Add("color", "#f44336");
+                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
+                        tdStatus.Controls.Add(lcStatus);
+                    }
+                    
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
                     tr.Controls.Add(tdLastName);

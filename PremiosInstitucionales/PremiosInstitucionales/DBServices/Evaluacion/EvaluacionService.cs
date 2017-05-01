@@ -31,5 +31,43 @@ namespace PremiosInstitucionales.DBServices.Evaluacion
                           select p).First().Nombre;
             return result;
         }
+
+        public static void CrearEvaluacion(PI_BA_Evaluacion evaluacion)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Evaluacion.Add(evaluacion);
+            dbContext.SaveChanges();
+        }
+
+        public static void ActualizaEvaluacion(String sEvalId, short calif)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var eval = GetEvaluacionById(sEvalId);
+            if(eval != null)
+            {
+                eval.Calificacion = calif;
+            }
+            dbContext.SaveChanges();
+        }
+
+        public static PI_BA_Evaluacion GetEvaluacionById(String evalId)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var eval = dbContext.PI_BA_Evaluacion.Where(e => e.cveEvaluacion.Equals(evalId)).FirstOrDefault();
+            return eval;
+        }
+
+        public static PI_BA_Evaluacion GetEvaluacionByAplicacionAndJuez(String juezMail, String appId)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var juez = dbContext.PI_BA_Juez.Where(j => j.Correo.Equals(juezMail)).First();
+
+            if (juez == null)
+                return null;
+
+            var evaluacion = dbContext.PI_BA_Evaluacion.Where(e => e.cveJuez.Equals(juez.cveJuez) && e.cveAplicacion.Equals(appId)).FirstOrDefault();
+
+            return evaluacion;
+        }
     }
 }

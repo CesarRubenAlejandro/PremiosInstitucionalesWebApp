@@ -49,8 +49,8 @@ namespace PremiosInstitucionales.WebForms
                     LiteralControl lcPanelTitle = new LiteralControl("" +
                         "<h4 class=\"panel-title\">" +
                             "<a role = \"button\" data-toggle=\"collapse\" data-parent=\"#" + "ContentPlaceHolder_accordion" + "\" href=\"#collapse" + iCont + "\" aria-expanded=\"true\" aria-controls=\"collapse" + iCont + "\" onclick=\"SetActualAppId('" + app.cveAplicacion + "');\">" +
-                                "<strong> " + candidato.Nombre + " " + candidato.Apellido + "</strong> | " +
-                                "Premio " + premio.Nombre + " - Categoria " + categoria.Nombre +
+                                "<strong> Premio " + premio.Nombre + " - Categoria " + categoria.Nombre+"</strong> | " +
+                                candidato.Nombre + " " + candidato.Apellido +
                             "</a>" +
                         "</h4>" +
                         "");

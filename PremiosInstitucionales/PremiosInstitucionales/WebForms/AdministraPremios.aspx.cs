@@ -27,6 +27,7 @@ namespace PremiosInstitucionales.WebForms
         private void LoadAwards()
         {
             //awardList.Controls.Add();
+            tbAwardDescription.Attributes.Add("MaxLength", "500");
             var premios = ConvocatoriaService.GetAllPremios();
             foreach (var p in premios)
             {
