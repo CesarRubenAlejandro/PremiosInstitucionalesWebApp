@@ -6,7 +6,6 @@
         <MappingFragment StoreEntitySet="PI_BA_Aplicacion">
           <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
           <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
-          <ScalarProperty Name="Ganador" ColumnName="Ganador" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
         </MappingFragment>
@@ -34,6 +33,7 @@
     <EntitySetMapping Name="PI_BA_Categoria">
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Categoria">
         <MappingFragment StoreEntitySet="PI_BA_Categoria">
+          <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
           <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />

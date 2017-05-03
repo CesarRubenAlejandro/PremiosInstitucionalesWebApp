@@ -34,6 +34,7 @@
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Aplicacion" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Juez1" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Categoria_PI_BA_Aplicacion" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

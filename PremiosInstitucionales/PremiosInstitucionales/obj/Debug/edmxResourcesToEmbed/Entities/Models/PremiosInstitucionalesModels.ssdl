@@ -5,7 +5,6 @@
       <PropertyRef Name="cveAplicacion" />
     </Key>
     <Property Name="cveAplicacion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Ganador" Type="bit" />
     <Property Name="Status" Type="varchar" MaxLength="20" />
     <Property Name="cveCandidato" Type="varchar" MaxLength="50" />
     <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
@@ -35,6 +34,7 @@
     <Property Name="cveCategoria" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="100" />
     <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" />
+    <Property Name="cveAplicacionGanadora" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="PI_BA_Convocatoria">
     <Key>
@@ -150,6 +150,18 @@
       </Principal>
       <Dependent Role="PI_BA_Aplicacion">
         <PropertyRef Name="cveCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_BA_Categoria_PI_BA_Aplicacion">
+    <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+    <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI_BA_Aplicacion">
+        <PropertyRef Name="cveAplicacion" />
+      </Principal>
+      <Dependent Role="PI_BA_Categoria">
+        <PropertyRef Name="cveAplicacionGanadora" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -306,6 +318,10 @@
     <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria">
       <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
       <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Categoria_PI_BA_Aplicacion">
+      <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+      <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
     </AssociationSet>
     <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Convocatoria" Association="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria">
       <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />

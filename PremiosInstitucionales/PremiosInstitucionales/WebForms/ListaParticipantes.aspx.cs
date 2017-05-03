@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PremiosInstitucionales.Entities.Models;
+using PremiosInstitucionales.DBServices.Aplicacion;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -40,6 +41,16 @@ namespace PremiosInstitucionales.WebForms
 
         private void CargarAplicaciones(string sMail, string sCategoriaID)
         {
+
+            var categoria = AplicacionService.GetCategoriaByClaveCategoria(sCategoriaID);
+            var premio = AplicacionService.GetPremioByClaveCategoria(sCategoriaID);
+
+            if (premio == null || categoria == null)
+                return;
+
+            litTituloPremio.Text = "Premio " + premio.Nombre;
+            litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
+
             var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
             bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
 

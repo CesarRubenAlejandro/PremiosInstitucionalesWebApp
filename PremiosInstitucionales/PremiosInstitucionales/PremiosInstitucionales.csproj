@@ -206,6 +206,7 @@
     <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\AdministraAplicacionesPendientes.aspx" />
     <Content Include="WebForms\AdministraCategorias.aspx" />
+    <Content Include="WebForms\AdministraGanadores.aspx" />
     <Content Include="WebForms\AdministraInformacionPersonal.aspx" />
     <Content Include="WebForms\AdministraPremios.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
@@ -362,6 +363,13 @@
     </Compile>
     <Compile Include="WebForms\AdministraCategorias.aspx.designer.cs">
       <DependentUpon>AdministraCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadores.aspx.cs">
+      <DependentUpon>AdministraGanadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadores.aspx.designer.cs">
+      <DependentUpon>AdministraGanadores.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AdministraInformacionPersonal.aspx.cs">
       <DependentUpon>AdministraInformacionPersonal.aspx</DependentUpon>

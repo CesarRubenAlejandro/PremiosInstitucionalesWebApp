@@ -126,11 +126,11 @@ namespace PremiosInstitucionales.WebForms
                 ev.Calificacion = short.Parse(aplicationEvaluationNumber.Text);
 
                 EvaluacionService.CrearEvaluacion(ev);
-                Response.Redirect("inicioJuez.aspx");
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
             }
             catch (Exception ex)
             {
-                Response.Redirect("inicioJuez.aspx");
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
             }
 
         }
@@ -155,11 +155,11 @@ namespace PremiosInstitucionales.WebForms
                     }
                 }
 
-                Response.Redirect("inicioJuez.aspx");
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
             }
             catch (Exception ex)
             {
-                Response.Redirect("inicioJuez.aspx");
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
             }
 
         }

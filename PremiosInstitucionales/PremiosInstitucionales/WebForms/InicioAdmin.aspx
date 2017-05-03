@@ -89,6 +89,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
@@ -100,17 +101,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="row service-list">
-                    <div class="col-xs-4 text-center" style="height: 96px">
-                        <img class="service-icon" src="http://inspired-bd.com/wp-content/uploads/2016/07/trophy200.png" />
-                    </div>
-                    <div class="col-xs-8">
-                        <h5>Elegir ganador </h5>
-                        <h6>Selección de ganador en base a las evaluaciones de los jueces. </h6>
+            <a href="AdministraGanadores.aspx" class="no-underline">
+                <div class="col-lg-6">
+                    <div class="row service-list">
+                        <div class="col-xs-4 text-center" style="height: 96px">
+                            <img class="service-icon" src="http://inspired-bd.com/wp-content/uploads/2016/07/trophy200.png" />
+                        </div>
+                        <div class="col-xs-8">
+                            <h5>Elegir ganador </h5>
+                            <h6>Selección de ganador en base a las evaluaciones de los jueces. </h6>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </asp:Content>
