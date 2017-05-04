@@ -139,6 +139,13 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             return aplicaciones;
         }
 
+        public static List<PI_BA_Aplicacion> GetAplicacionesByCategoria(String categoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var aplicaciones = dbContext.PI_BA_Aplicacion.Where(a => a.cveCategoria.Equals(categoria)).ToList();
+            return aplicaciones;
+        }
+
         public static String GetPremioCategoriaByClaveCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

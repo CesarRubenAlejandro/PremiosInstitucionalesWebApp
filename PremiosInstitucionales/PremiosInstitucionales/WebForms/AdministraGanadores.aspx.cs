@@ -95,7 +95,6 @@ namespace PremiosInstitucionales.WebForms
                         row.Controls.Add(col);
                         row.Controls.Add(new LiteralControl("</a>"));
 
-
                         iCounter++;
                     }
 
@@ -103,8 +102,6 @@ namespace PremiosInstitucionales.WebForms
                     main.Controls.Add(lcCategoria);
                     main.Controls.Add(row);
 
-
-                    
                     PanelCategoriasPorPremio.Controls.Add(main);
                 }
             }

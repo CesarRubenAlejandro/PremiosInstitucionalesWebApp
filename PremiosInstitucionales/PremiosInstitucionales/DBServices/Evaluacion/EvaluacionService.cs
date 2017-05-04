@@ -57,6 +57,13 @@ namespace PremiosInstitucionales.DBServices.Evaluacion
             return eval;
         }
 
+        public static List<PI_BA_Evaluacion> GetEvaluacionesByAplicacion(String appId)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var eval = dbContext.PI_BA_Evaluacion.Where(e => e.cveAplicacion.Equals(appId)).ToList();
+            return eval;
+        }
+
         public static PI_BA_Evaluacion GetEvaluacionByAplicacionAndJuez(String juezMail, String appId)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
