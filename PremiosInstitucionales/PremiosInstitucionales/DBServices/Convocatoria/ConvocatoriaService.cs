@@ -17,6 +17,27 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             return dbContext.PI_BA_Premio.ToList();
         }
 
+        public static void CreatePremio(PI_BA_Premio premio)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Premio.Add(premio);
+            dbContext.SaveChanges();
+        }
+
+        public static void CreateCategoria(PI_BA_Categoria categoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Categoria.Add(categoria);
+            dbContext.SaveChanges();
+        }
+
+        public static void CreateForma(PI_BA_Forma forma)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            dbContext.PI_BA_Forma.Add(forma);
+            dbContext.SaveChanges();
+        }
+
         public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
         {
             var query = (from cat in dbContext.PI_BA_Categoria
@@ -241,6 +262,31 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             {
                 return null;
             }
+        }
+
+        public static List<PI_BA_Categoria> GetCategoriasPendientes()
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var categorias = dbContext.PI_BA_Categoria.Where(a => a.cveAplicacionGanadora == null).ToList();
+
+            if (categorias == null)
+                return categorias;
+
+            List<PI_BA_Categoria> validCategories = new List<PI_BA_Categoria>();
+
+            foreach(var c in categorias)
+            {
+                var convo = GetConvocatoriaById(c.cveConvocatoria);
+                if(DateTime.Today >= convo.FechaInicio)
+                {
+                    validCategories.Add(c);
+                }
+            }
+
+            if (validCategories.Count == 0)
+                return null;
+
+            return validCategories;
         }
 
     }

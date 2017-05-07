@@ -24,7 +24,21 @@ namespace PremiosInstitucionales.WebForms
                 MostrarCampos();
                 ResetFields();
             }
+            CheckPrivacy();
 
+        }
+
+        private void CheckPrivacy()
+        {
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if (!candidato.FechaPrivacidadDatos.HasValue)
+            {
+                guardarCambiosBtn.Style.Add("display", "none");
+            }
+            else
+            {
+                avisoPrivacidad.Style.Add("display", "none");
+            }
         }
 
         private void ResetFields()
@@ -53,6 +67,8 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
 
+            
+
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
@@ -64,46 +80,6 @@ namespace PremiosInstitucionales.WebForms
         protected void CambiarContrasena_Click(object sender, EventArgs e)
         {
             ActualizarContrasena();
-        }
-
-        public class ajax_Candidato
-        {
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string Direccion { get; set; }
-            public string Nacionalidad { get; set; }
-            public string RFC { get; set; }
-            public string Telefono { get; set; }
-        }
-
-        [WebMethod]
-        [ScriptMethod]
-        public static void MyMethod(ajax_Candidato cand)
-        {
-            try
-            {
-                PI_BA_Candidato aux = new PI_BA_Candidato();
-                aux.Nombre = cand.Nombre;
-                aux.Apellido = cand.Apellido;
-                aux.Direccion = cand.Direccion;
-                aux.Nacionalidad = cand.Nacionalidad;
-                aux.RFC = cand.RFC;
-                aux.Telefono = cand.Telefono;
-
-                if (InformacionPersonalCandidatoService.GuardarCambios(aux, HttpContext.Current.Session[StringValues.CorreoSesion].ToString()))
-                {
-                    System.Diagnostics.Debug.WriteLine("Tus cambios han sido guardados");
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Hubo un error al guardar tus cambios");
-                }
-            }
-            catch (Exception)
-            {
-                System.Diagnostics.Debug.WriteLine("??? why tho");
-                throw;
-            }
         }
 
         protected void ActualizarContrasena()
@@ -134,21 +110,26 @@ namespace PremiosInstitucionales.WebForms
         protected void ActualizarDatosGenerales()
         {
 
-            PI_BA_Candidato aux = new PI_BA_Candidato();
-            aux.Nombre = NombresTextBox.Text;
-            aux.Apellido = ApellidosTextBox.Text;
-            aux.Direccion = DomicilioTextBox.Text.ToString();
-            aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
-            aux.RFC = RFCTextBox.Text.ToString();
-            aux.Telefono = TelefonoTextBox.Text.ToString();
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if(candidato != null)
+            {
+                PI_BA_Candidato aux = new PI_BA_Candidato();
+                aux.Nombre = NombresTextBox.Text;
+                aux.Apellido = ApellidosTextBox.Text;
+                aux.Direccion = DomicilioTextBox.Text.ToString();
+                aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
+                aux.RFC = RFCTextBox.Text.ToString();
+                aux.Telefono = TelefonoTextBox.Text.ToString();
 
-            if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
-            {
+                if (!candidato.FechaPrivacidadDatos.HasValue)
+                {
+                    aux.FechaPrivacidadDatos = DateTime.Today.Date;
+                }
+
+                InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString());
             }
-            else
-            {
-                MostrarCampos();
-            }
+
+            
         }
 
         protected void EditarBtn_Click(object sender, EventArgs e)

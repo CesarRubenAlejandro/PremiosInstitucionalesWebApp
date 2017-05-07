@@ -39,9 +39,9 @@ namespace PremiosInstitucionales.WebForms
                 panelNuevo.CssClass = "premioPanel";
 
                 var imgButton = new ImageButton();
-                if (File.Exists(Server.MapPath("~/img/" + premio.NombreImagen)))
+                if (File.Exists(Server.MapPath("~/AwardPictures/" + premio.NombreImagen)))
                 {
-                    imgButton.ImageUrl = "/img/" + premio.NombreImagen;
+                    imgButton.ImageUrl = "/AwardPictures/" + premio.NombreImagen;
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace PremiosInstitucionales.WebForms
 
 
                 lit.Text = "<div class='col-md-6'>" + "<div class='blockquote-box clearfix' style=''><div class='square pull-left'>" +
-                    "<img src = '/img/" + premio.NombreImagen + "' class='img-square'/>" + "</div><h4>" + premio.Nombre + "</h4><p>Lorem Ipsum</p>" +
+                    "<img src = '/AwardPictures/" + premio.NombreImagen + "' class='img-square'/>" + "</div><h4>" + premio.Nombre + "</h4><p>Lorem Ipsum</p>" +
                     "<div style='text-align: right; '><button id = '" + premio.cvePremio + "' type = 'button' class='btn btn-sm btn-primary'  data-toggle='modal' data-target='#myModal" + i + "'>Detalles</button></div></div></div>";
                 colPremio.Controls.Add(lit);
                 Literal lit2 = new Literal();
@@ -79,7 +79,11 @@ namespace PremiosInstitucionales.WebForms
                                         "<label for='sel"+i+"'> Selecciona la categoria correspondiente:</label>"+
                                         "<select class='form-control' id='sel"+i+"'>";
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
+                if (conv == null)
+                    return;
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
+                if (listCat == null)
+                    return;
                 modalList.Controls.Add(lit2);
 
                 foreach (var cat in listCat) {

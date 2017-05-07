@@ -108,6 +108,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\img\default-award.png" />
     <Content Include="Content\aplicaciones.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -175,7 +176,9 @@
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
     <Content Include="Resources\js\jquery.dataTables.js" />
     <Content Include="Resources\js\jquery.min.js" />
+    <Content Include="Resources\js\listaUsuariosCandidato.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
+    <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
@@ -183,11 +186,14 @@
     <Content Include="Resources\svg\learning.svg" />
     <Content Include="Resources\svg\logout.svg" />
     <Content Include="Resources\svg\proponer.svg" />
+    <Content Include="Resources\svg\shield.svg" />
+    <Content Include="Resources\svg\teacher.svg" />
     <Content Include="scripts\aplicaciones.js" />
     <Content Include="scripts\global.js" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\jquery.dataTables.js" />
     <Content Include="scripts\tablaParticipantes.js" />
+    <Content Include="svg\add.svg" />
     <Content Include="svg\badgebg.svg" />
     <Content Include="svg\checkmark.svg" />
     <Content Include="svg\clipboard.svg" />
@@ -198,6 +204,13 @@
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
+    <Content Include="WebForms\AdministraAplicacionesPendientes.aspx" />
+    <Content Include="WebForms\AdministraCategorias.aspx" />
+    <Content Include="WebForms\AdministraGanadorCategoria.aspx" />
+    <Content Include="WebForms\AdministraGanadores.aspx" />
+    <Content Include="WebForms\AdministraInformacionPersonal.aspx" />
+    <Content Include="WebForms\AdministraPremios.aspx" />
+    <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
@@ -205,6 +218,7 @@
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
     <Content Include="WebForms\InformacionPersonalJuez.aspx" />
+    <Content Include="WebForms\InicioAdmin.aspx" />
     <Content Include="WebForms\InicioCandidato.aspx" />
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\ListaParticipantes.aspx" />
@@ -337,6 +351,55 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values\NumericValues.cs" />
     <Compile Include="Values\StringValues.cs" />
+    <Compile Include="WebForms\AdministraAplicacionesPendientes.aspx.cs">
+      <DependentUpon>AdministraAplicacionesPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraAplicacionesPendientes.aspx.designer.cs">
+      <DependentUpon>AdministraAplicacionesPendientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraCategorias.aspx.cs">
+      <DependentUpon>AdministraCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraCategorias.aspx.designer.cs">
+      <DependentUpon>AdministraCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadorCategoria.aspx.cs">
+      <DependentUpon>AdministraGanadorCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadorCategoria.aspx.designer.cs">
+      <DependentUpon>AdministraGanadorCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadores.aspx.cs">
+      <DependentUpon>AdministraGanadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraGanadores.aspx.designer.cs">
+      <DependentUpon>AdministraGanadores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraInformacionPersonal.aspx.cs">
+      <DependentUpon>AdministraInformacionPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraInformacionPersonal.aspx.designer.cs">
+      <DependentUpon>AdministraInformacionPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraPremios.aspx.cs">
+      <DependentUpon>AdministraPremios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraPremios.aspx.designer.cs">
+      <DependentUpon>AdministraPremios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraUsuarios.aspx.cs">
+      <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\AplicacionesCandidato.aspx.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -385,6 +448,13 @@
     </Compile>
     <Compile Include="WebForms\InformacionPersonalJuez.aspx.designer.cs">
       <DependentUpon>InformacionPersonalJuez.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\InicioAdmin.aspx.cs">
+      <DependentUpon>InicioAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\InicioAdmin.aspx.designer.cs">
+      <DependentUpon>InicioAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ListaParticipantes.aspx.cs">
       <DependentUpon>ListaParticipantes.aspx</DependentUpon>
@@ -466,6 +536,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="AwardPictures\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>
