@@ -188,6 +188,7 @@
     <Content Include="Resources\svg\proponer.svg" />
     <Content Include="Resources\svg\shield.svg" />
     <Content Include="Resources\svg\teacher.svg" />
+    <Content Include="scripts\adminQ.js" />
     <Content Include="scripts\aplicaciones.js" />
     <Content Include="scripts\global.js" />
     <Content Include="scripts\index.js" />
@@ -204,12 +205,14 @@
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
+    <Content Include="WebForms\AdministraFormulario.aspx" />
     <Content Include="WebForms\AdministraCategorias.aspx" />
     <Content Include="WebForms\AdministraPremios.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
+    <Content Include="WebForms\CreaJuez.aspx" />
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
@@ -347,6 +350,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Values\NumericValues.cs" />
     <Compile Include="Values\StringValues.cs" />
+    <Compile Include="WebForms\AdministraFormulario.aspx.cs">
+      <DependentUpon>AdministraFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraFormulario.aspx.designer.cs">
+      <DependentUpon>AdministraFormulario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\AdministraCategorias.aspx.cs">
       <DependentUpon>AdministraCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -388,6 +398,13 @@
     </Compile>
     <Compile Include="WebForms\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CreaJuez.aspx.cs">
+      <DependentUpon>CreaJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CreaJuez.aspx.designer.cs">
+      <DependentUpon>CreaJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\EvaluaAplicacion.aspx.cs">
       <DependentUpon>EvaluaAplicacion.aspx</DependentUpon>

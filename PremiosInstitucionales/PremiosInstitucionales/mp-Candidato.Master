@@ -19,6 +19,9 @@
         <script src='<%= ResolveUrl("~/Resources/js/InformacionPersonalCandidato.js") %>'></script>
 
     </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <!-- Navigation bar -->
