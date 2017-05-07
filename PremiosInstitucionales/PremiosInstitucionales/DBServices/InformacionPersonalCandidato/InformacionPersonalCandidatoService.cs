@@ -32,7 +32,21 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
             try
             {
                 return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(correo)).FirstOrDefault();
-            } catch (Exception e)
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static PI_BA_Candidato GetCandidatoById(String id)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                return dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(id)).FirstOrDefault();
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -51,6 +65,8 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
                 candidato.Nombre = container.Nombre;
                 candidato.RFC = container.RFC;
                 candidato.Telefono = container.Telefono;
+                if(container.FechaPrivacidadDatos.HasValue)
+                candidato.FechaPrivacidadDatos = container.FechaPrivacidadDatos;
                 dbContext.SaveChanges();
                 return true;
             }

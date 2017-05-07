@@ -32,6 +32,9 @@
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Respuesta_PI_BA_Pregunta" ManuallyRouted="false" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" />
         <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria1" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Categoria_PI_BA_Aplicacion" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Aplicacion" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Juez1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,10 +16,12 @@ namespace PremiosInstitucionales.Entities.Models
     {
         public string cveEvaluacion { get; set; }
         public Nullable<short> Calificacion { get; set; }
-        public string cveRespuesta { get; set; }
         public string cveJuez { get; set; }
+        public string cveAplicacion { get; set; }
     
         public virtual PI_BA_Juez PI_BA_Juez { get; set; }
         public virtual PI_BA_Respuesta PI_BA_Respuesta { get; set; }
+        public virtual PI_BA_Aplicacion PI_BA_Aplicacion { get; set; }
+        public virtual PI_BA_Juez PI_BA_Juez1 { get; set; }
     }
 }

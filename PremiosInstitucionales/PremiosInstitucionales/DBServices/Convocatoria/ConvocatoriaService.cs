@@ -111,7 +111,16 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                          orderby convo.FechaFin descending
                          select convo).FirstOrDefault();
             return query;
-            
+        }
+
+        public static List<PI_BA_Convocatoria> GetConvocatoriasPremio(string idPremio)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from convo in dbContext.PI_BA_Convocatoria
+                         where convo.cvePremio.Equals(idPremio)
+                         orderby convo.FechaFin descending
+                         select convo).ToList();
+            return query;
         }
 
         public static void ActualizarConvocatoria(string idConvocatoria, string descripcion, string titulo)
@@ -121,6 +130,17 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                 .FirstOrDefault<PI_BA_Convocatoria>();
             convo.Descripcion = descripcion;
             convo.TituloConvocatoria = titulo;
+            dbContext.SaveChanges();
+        }
+
+        public static void ActualizarPremio(string idPremio, string titulo, string descripcion, string imagenurl)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
+                .FirstOrDefault<PI_BA_Premio>();
+            premio.Nombre = titulo;
+            premio.Descripcion = descripcion;
+            premio.NombreImagen = imagenurl;
             dbContext.SaveChanges();
         }
 
@@ -272,6 +292,31 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             {
                 return null;
             }
+        }
+
+        public static List<PI_BA_Categoria> GetCategoriasPendientes()
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var categorias = dbContext.PI_BA_Categoria.Where(a => a.cveAplicacionGanadora == null).ToList();
+
+            if (categorias == null)
+                return categorias;
+
+            List<PI_BA_Categoria> validCategories = new List<PI_BA_Categoria>();
+
+            foreach(var c in categorias)
+            {
+                var convo = GetConvocatoriaById(c.cveConvocatoria);
+                if(DateTime.Today >= convo.FechaInicio)
+                {
+                    validCategories.Add(c);
+                }
+            }
+
+            if (validCategories.Count == 0)
+                return null;
+
+            return validCategories;
         }
 
     }

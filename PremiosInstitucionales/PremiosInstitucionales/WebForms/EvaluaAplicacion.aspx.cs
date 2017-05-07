@@ -1,6 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.Aplicacion;
 using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.DBServices.Evaluacion;
+using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
@@ -21,7 +22,7 @@ namespace PremiosInstitucionales.WebForms
                 // confirmar que la aplicacion haya sido rechazada
                 String idApp = Request.QueryString["a"];
 
-                if(idApp != null)
+                if (idApp != null)
                 {
                     String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
                     if (sCategoriaID != null)
@@ -34,11 +35,24 @@ namespace PremiosInstitucionales.WebForms
                             string sMail = Session[StringValues.CorreoSesion].ToString();
                             var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
                             bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
-
+                            var eval = CheckExistenceOfEvaluation(sMail, idApp);
                             if (bValidJudge)
                             {
+                                if (eval != null)
+                                {
+                                    evaluateApplicationBtn.Visible = false;
+                                    modifiyEvaluationBtn.Visible = true;
+                                    aplicationEvaluationNumber.Text = eval.Calificacion.ToString();
+                                }
+                                else
+                                {
+                                    evaluateApplicationBtn.Visible = true;
+                                    modifiyEvaluationBtn.Visible = false;
+
+                                }
                                 CrearFormulario(sCategoriaID, premio, categoria);
                                 return;
+
                             }
                         }
                     }
@@ -49,9 +63,6 @@ namespace PremiosInstitucionales.WebForms
 
         private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
         {
-            // vaciar coleccion de preguntas para evitar IDs repetidos
-            PanelFormulario.Controls.Clear();
-
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
 
@@ -71,12 +82,12 @@ namespace PremiosInstitucionales.WebForms
 
                     var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, Request.QueryString["a"]);
                     string[] lines = respuesta.Valor.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-                    for(int i = 0; i < lines.Length; i++)
+                    for (int i = 0; i < lines.Length; i++)
                     {
                         LiteralControl lcRespuesta = new LiteralControl("<h5>" + lines[i] + "</h5>");
                         panel.Controls.Add(lcRespuesta);
                     }
-                    
+
 
                     PanelFormulario.Controls.Add(panel);
 
@@ -96,6 +107,61 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
             return false;
+        }
+
+        private PI_BA_Evaluacion CheckExistenceOfEvaluation(string sMail, string sAppId)
+        {
+            var eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, sAppId);
+            return eval;
+        }
+
+        protected void EvaluarAplicacion(object sender, EventArgs e)
+        {
+            try
+            {
+                PI_BA_Evaluacion ev = new PI_BA_Evaluacion();
+                ev.cveEvaluacion = Guid.NewGuid().ToString();
+                ev.cveAplicacion = Request.QueryString["a"];
+                ev.cveJuez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString()).cveJuez;
+                ev.Calificacion = short.Parse(aplicationEvaluationNumber.Text);
+
+                EvaluacionService.CrearEvaluacion(ev);
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+            }
+
+        }
+
+        protected void ModificarAplicacion(object sender, EventArgs e)
+        {
+            try
+            {
+                var aplicacion = Request.QueryString["a"];
+                var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
+
+                var eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(juez.Correo, aplicacion);
+                if(eval != null)
+                {
+                    try
+                    {
+                        EvaluacionService.ActualizaEvaluacion(eval.cveEvaluacion, short.Parse(aplicationEvaluationNumber.Text));
+                    }
+                    catch (Exception exception)
+                    {
+
+                    }
+                }
+
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+            }
+
         }
     }
 }

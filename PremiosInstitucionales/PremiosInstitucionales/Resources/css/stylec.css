@@ -479,8 +479,11 @@ div.award-header{
   background-size: cover;
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> refs/remotes/origin/master
 .control-title{
 	padding: 0px;
 	font-weight: bold;
@@ -519,4 +522,13 @@ div.award-header{
 		word-wrap: break-word;
 		font-size: 28px;
 	}
+<<<<<<< HEAD
+=======
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+>>>>>>> refs/remotes/origin/master
 }

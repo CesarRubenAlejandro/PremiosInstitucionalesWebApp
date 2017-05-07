@@ -7,7 +7,9 @@
 		
 		<h3>Información personal</h3>
 		<h4>Candidatos</h4>
-
+		<h4>
+            <asp:Literal ID="litUsuarios" runat="server" />
+        </h4>
 		<div class="container">
 			<table id="listaCandidatoTable" class="display" cellspacing="0" width="100%">
 				<thead>
@@ -21,6 +23,8 @@
                         <th>RFC</th>
                         <th>Direccion</th>
                         <th>Estatus</th>
+                        <th>Confirmacion de cuenta</th>
+                        <th>Aviso de privacidad</th>
 					</tr>
 				</thead>
 				<tbody id="listaCandidatosTableBody" runat="server">
