@@ -35,6 +35,6 @@ namespace PremiosInstitucionales.Entities.Models
         public virtual ICollection<PI_BA_Aplicacion> PI_BA_Aplicacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_JuezPorCategoria> PI_BA_JuezPorCategoria1 { get; set; }
-        public virtual PI_BA_Aplicacion PI_BA_AplicacionGanadora { get; set; }
+        public virtual PI_BA_Aplicacion PI_BA_Aplicacion1 { get; set; }
     }
 }
