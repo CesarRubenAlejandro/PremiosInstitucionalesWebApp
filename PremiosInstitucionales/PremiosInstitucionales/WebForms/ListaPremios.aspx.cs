@@ -79,11 +79,8 @@ namespace PremiosInstitucionales.WebForms
                                         "<label for='sel"+i+"'> Selecciona la categoria correspondiente:</label>"+
                                         "<select class='form-control' id='sel"+i+"'>";
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
-                if (conv == null)
-                    return;
+                if (conv == null) return;
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
-                if (listCat == null)
-                    return;
                 modalList.Controls.Add(lit2);
 
                 foreach (var cat in listCat) {
@@ -95,7 +92,8 @@ namespace PremiosInstitucionales.WebForms
                 lit3.Text= "</select></div></div>"+
                             "<div class='modal-footer'>"+
                                 "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>"+
-                                    "<a href='cuestionario.html'><button type='button' class='btn btn-primary'> Aplicar</button></a>"+
+                                    // HARD CODED
+                                    "<a href='Formulario.aspx?c=categoria3'><button type='button' class='btn btn-primary'> Aplicar</button></a>" +
                                     "</div></div></div></div>";
                 modalList.Controls.Add(lit3);
                 panelNuevo.Controls.Add(imgButton);
