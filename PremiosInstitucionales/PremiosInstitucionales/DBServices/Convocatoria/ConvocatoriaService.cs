@@ -101,7 +101,16 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                          orderby convo.FechaFin descending
                          select convo).FirstOrDefault();
             return query;
-            
+        }
+
+        public static List<PI_BA_Convocatoria> GetConvocatoriasPremio(string idPremio)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from convo in dbContext.PI_BA_Convocatoria
+                         where convo.cvePremio.Equals(idPremio)
+                         orderby convo.FechaFin descending
+                         select convo).ToList();
+            return query;
         }
 
         public static void ActualizarConvocatoria(string idConvocatoria, string descripcion, string titulo)
@@ -111,6 +120,17 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                 .FirstOrDefault<PI_BA_Convocatoria>();
             convo.Descripcion = descripcion;
             convo.TituloConvocatoria = titulo;
+            dbContext.SaveChanges();
+        }
+
+        public static void ActualizarPremio(string idPremio, string titulo, string descripcion, string imagenurl)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
+                .FirstOrDefault<PI_BA_Premio>();
+            premio.Nombre = titulo;
+            premio.Descripcion = descripcion;
+            premio.NombreImagen = imagenurl;
             dbContext.SaveChanges();
         }
 
