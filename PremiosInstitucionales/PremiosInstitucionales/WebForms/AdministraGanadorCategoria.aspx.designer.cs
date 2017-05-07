@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class ListaParticipantes {
+    public partial class AdministraGanadorCategoria {
         
         /// <summary>
         /// litTituloPremio control.

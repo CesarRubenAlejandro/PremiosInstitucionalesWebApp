@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PremiosInstitucionales.Entities.Models;
+using PremiosInstitucionales.DBServices.Aplicacion;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -40,6 +41,16 @@ namespace PremiosInstitucionales.WebForms
 
         private void CargarAplicaciones(string sMail, string sCategoriaID)
         {
+
+            var categoria = AplicacionService.GetCategoriaByClaveCategoria(sCategoriaID);
+            var premio = AplicacionService.GetPremioByClaveCategoria(sCategoriaID);
+
+            if (premio == null || categoria == null)
+                return;
+
+            litTituloPremio.Text = "Premio " + premio.Nombre;
+            litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
+
             var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
             bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
 
@@ -76,10 +87,20 @@ namespace PremiosInstitucionales.WebForms
 
                     // status column
                     TableCell tdStatus = new TableCell();
-                    tdStatus.Style.Add("color", "#f44336");
-                    LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
-                    tdStatus.Controls.Add(lcStatus);
-
+                    var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
+                    if(Eval != null)
+                    {
+                        tdStatus.Style.Add("color", "#4caf50");
+                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 0 </div> Completo </strong>");
+                        tdStatus.Controls.Add(lcStatus);
+                    }
+                    else
+                    {
+                        tdStatus.Style.Add("color", "#f44336");
+                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
+                        tdStatus.Controls.Add(lcStatus);
+                    }
+                    
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
                     tr.Controls.Add(tdLastName);

@@ -284,6 +284,31 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             }
         }
 
+        public static List<PI_BA_Categoria> GetCategoriasPendientes()
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var categorias = dbContext.PI_BA_Categoria.Where(a => a.cveAplicacionGanadora == null).ToList();
+
+            if (categorias == null)
+                return categorias;
+
+            List<PI_BA_Categoria> validCategories = new List<PI_BA_Categoria>();
+
+            foreach(var c in categorias)
+            {
+                var convo = GetConvocatoriaById(c.cveConvocatoria);
+                if(DateTime.Today >= convo.FechaInicio)
+                {
+                    validCategories.Add(c);
+                }
+            }
+
+            if (validCategories.Count == 0)
+                return null;
+
+            return validCategories;
+        }
+
     }
 
     

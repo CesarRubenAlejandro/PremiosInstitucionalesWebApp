@@ -43,10 +43,11 @@ namespace PremiosInstitucionales.WebForms
                 foreach(var juez in jueces)
                 {
                     TableRow tr = new TableRow();
-                    tr.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
+                    
                     // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
+                    tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
 
                     Image ipImage = new Image();
                     if (juez.NombreImagen != null)
@@ -67,13 +68,16 @@ namespace PremiosInstitucionales.WebForms
                     // name column
                     TableCell tdName = new TableCell();
                     tdName.Text = juez.Nombre;
+                    tdName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
 
                     // last name column
                     TableCell tdLastName = new TableCell();
                     tdLastName.Text = juez.Apellido;
+                    tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
 
                     TableCell tdEmail = new TableCell();
-                    tdEmail.Text = juez.Correo;
+                    LiteralControl lcMailLink = new LiteralControl("<a href=\"mailto:" + juez.Correo + "?Subject=Premios%20Institucionales\" target=\"_top\"> " + juez.Correo + "</a>");
+                    tdEmail.Controls.Add(lcMailLink);
 
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
@@ -96,11 +100,11 @@ namespace PremiosInstitucionales.WebForms
                 foreach (var cand in candidatos)
                 {
                     TableRow tr = new TableRow();
-                    tr.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
+                    //tr.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
                     // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
-
+                    tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
                     Image ipImage = new Image();
                     if (cand.NombreImagen != null)
                     {
@@ -119,27 +123,35 @@ namespace PremiosInstitucionales.WebForms
                     // name column
                     TableCell tdName = new TableCell();
                     tdName.Text = cand.Nombre;
+                    tdName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     // last name column
                     TableCell tdLastName = new TableCell();
                     tdLastName.Text = cand.Apellido;
+                    tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdEmail = new TableCell();
-                    tdEmail.Text = cand.Correo;
+                    LiteralControl lcMailLink = new LiteralControl("<a href=\"mailto:" + cand.Correo + "?Subject=Premios%20Institucionales\" target=\"_top\"> " + cand.Correo + "</a>");
+                    tdEmail.Controls.Add(lcMailLink);
 
                     TableCell tdPhone = new TableCell();
                     tdPhone.Text = cand.Telefono;
+                    tdPhone.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdNationality = new TableCell();
                     tdNationality.Text = cand.Nacionalidad;
+                    tdNationality.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdRFC = new TableCell();
                     tdRFC.Text = cand.RFC;
+                    tdRFC.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdAddress = new TableCell();
                     tdAddress.Text = cand.Direccion;
+                    tdAddress.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdConfirmacion = new TableCell();
+                    tdConfirmacion.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
                     LiteralControl lcConfirmacion;
                     if (cand.Confirmado.HasValue && cand.Confirmado.Value)
                     {
@@ -155,6 +167,7 @@ namespace PremiosInstitucionales.WebForms
 
                     // status column
                     TableCell tdPrivacidad = new TableCell();
+                    tdPrivacidad.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
                     LiteralControl lcPrivacidad;
                     if (cand.FechaPrivacidadDatos != null)
                     {

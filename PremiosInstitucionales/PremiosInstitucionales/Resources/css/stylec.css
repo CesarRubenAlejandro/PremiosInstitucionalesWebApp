@@ -479,17 +479,6 @@ div.award-header{
   background-size: cover;
 }
 
-.js--image-preview::after {
-  content: "photo_size_select_actual";
-  font-family: 'Material Icons';
-  position: relative;
-  font-size: 12em;
-  color: #e6e6e6;
-  top: calc(50% - 14.5rem);
-  left: calc(50% - 7.5rem);
-  z-index: 0;
-}
-
 .control-title{
 	padding: 0px;
 	font-weight: bold;
@@ -528,4 +517,10 @@ div.award-header{
 		word-wrap: break-word;
 		font-size: 28px;
 	}
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

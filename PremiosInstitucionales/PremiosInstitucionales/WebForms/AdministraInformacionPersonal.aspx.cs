@@ -76,7 +76,13 @@ namespace PremiosInstitucionales.WebForms
                     guardarCambiosBtn.Visible = false;
                     dataOptionsCandidato.Visible = false;
                     alertInfo.Visible = true;
+                    FileUploadImage.Enabled = false;
                     litAlertMessage.Text = "El usuario <strong>actual</strong> no ha aceptado las politicas de privacidad de datos.";
+                }
+
+                if (!candidato.Confirmado.HasValue)
+                {
+                    litAlertMessage.Text = "El usuario <strong>actual</strong> no ha confirmado su cuenta.";
                 }
 
                 if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)

@@ -78,6 +78,7 @@ namespace PremiosInstitucionales.WebForms
                     tb.Attributes.Remove("cols");
 
                     var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, Request.QueryString["aplicacion"]);
+                    if (respuesta != null)
                     tb.Text = respuesta.Valor;
 
                     RequiredFieldValidator validator = new RequiredFieldValidator();
