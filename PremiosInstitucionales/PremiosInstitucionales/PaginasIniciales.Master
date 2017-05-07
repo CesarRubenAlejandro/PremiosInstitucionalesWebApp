@@ -7,24 +7,26 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
-    <link href='<%= ResolveUrl("~/Content/premiosinstitucionales.css")%>'  rel="stylesheet" type="text/css" />
+    <link href='<%= ResolveUrl("~/Content/style.css")%>'  rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="favicon.ico" />
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div class="video-background">
+		<div class="video-foreground">
+		  <iframe src="https://www.youtube.com/embed/TxDmvPMf6Qo?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=TxDmvPMf6Qo&vq=hd720" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
     <form id="form1" runat="server">
     <div class="contentpaginasiniciales">
-
-        <asp:Image class="logoiniciales" runat="server" ImageUrl="/img/premiostec3.png"/>
-        <br/> 
-        <asp:Image class="logoiniciales" runat="server" ImageUrl="/img/tec.png"/>
-        <br/> 
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
         </asp:ContentPlaceHolder>
 
-        <script src="scripts/jquery-1.9.1.min.js"></script>
-        <script src="scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/jquery-1.9.1.min.js")%>'></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/bootstrap.min.js")%>'></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/index.js")%>'></script>
+        <script type="text/javascript" src='<%= ResolveUrl("scripts/global.js")%>'></script>
     </div>
     </form>
 </body>

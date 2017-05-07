@@ -23,6 +23,7 @@ namespace PremiosInstitucionales.Entities.Models
         public string cvePremio { get; set; }
         public string Nombre { get; set; }
         public string NombreImagen { get; set; }
+        public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_Convocatoria> PI_BA_Convocatoria { get; set; }

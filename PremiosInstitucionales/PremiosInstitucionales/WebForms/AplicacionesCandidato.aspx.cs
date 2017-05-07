@@ -64,7 +64,7 @@ namespace PremiosInstitucionales.WebForms
                     "<div class=\"row\">" +
                         "<div class=\"panel-body\">" +
                             "<div class=\"col-sm-2\">" +
-                                "<img src = /img/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-premio\"/>" +
+                                "<img src = /AwardPictures/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-premio\"/>" +
                             "</div>" +
                             "<div class=\"col-sm-10\">" +
                                 "Estado de la solicitud:" +

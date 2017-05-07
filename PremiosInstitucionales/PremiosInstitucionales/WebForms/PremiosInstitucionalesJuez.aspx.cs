@@ -49,7 +49,7 @@ namespace PremiosInstitucionales.WebForms
 
             htmlContent = "<div class=\"blockquote-box\">" +
                                "<div class=\"col-sm-2 prem-img\">" +
-                                   "<img src = /img/" + nombreImagen + " class=\"img-square\"/>" +
+                                   "<img src = /AwardPictures/" + nombreImagen + " class=\"img-square\"/>" +
                                "</div>" +
                                "<div class=\"tab-content col-sm-8 prem-info\">" +
                                    "<div id = \"" + premio.GetHashCode() + "\" class=\"tab-pane fade in active\">" +
@@ -69,6 +69,8 @@ namespace PremiosInstitucionales.WebForms
                 {
                     htmlContent += aplicacion.Status + " ";
                 }
+
+                htmlContent += "<a href = \"ListaParticipantes.aspx?c=" + categoria.cveCategoria + "\"> Lista Participantes </a>";
 
                 htmlContent += "</div>";
             }

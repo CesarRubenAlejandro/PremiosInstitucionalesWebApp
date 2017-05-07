@@ -15,19 +15,38 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class InformacionPersonalCandidato : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
-            MostrarCampos();
-            ResetPasswordFields();
+            if (!IsPostBack)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
+                MostrarCampos();
+                ResetFields();
+            }
+            CheckPrivacy();
+
         }
 
-        private void ResetPasswordFields ()
+        private void CheckPrivacy()
+        {
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if (!candidato.FechaPrivacidadDatos.HasValue)
+            {
+                guardarCambiosBtn.Style.Add("display", "none");
+            }
+            else
+            {
+                avisoPrivacidad.Style.Add("display", "none");
+            }
+        }
+
+        private void ResetFields()
         {
             currentPwdTextBox.Text = "";
             newPwdTextBox.Text = "";
             confirmNewPwdTextBox.Text = "";
+            CorreoTextBox.Text = Session[StringValues.CorreoSesion].ToString();
         }
 
         private void MostrarCampos()
@@ -35,7 +54,6 @@ namespace PremiosInstitucionales.WebForms
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
             NombresTextBox.Text = candidato.Nombre;
             ApellidosTextBox.Text = candidato.Apellido;
-            CorreoTextBox.Text = Session[StringValues.CorreoSesion].ToString();
             DomicilioTextBox.Text = candidato.Direccion;
             RFCTextBox.Text = candidato.RFC;
             TelefonoTextBox.Text = candidato.Telefono;
@@ -48,7 +66,9 @@ namespace PremiosInstitucionales.WebForms
                     avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + candidato.NombreImagen + ")");
                 }
             }
+
             
+
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
@@ -62,47 +82,7 @@ namespace PremiosInstitucionales.WebForms
             ActualizarContrasena();
         }
 
-        public class ajax_Candidato
-        {
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string Direccion { get; set; }
-            public string Nacionalidad { get; set; }
-            public string RFC { get; set; }
-            public string Telefono { get; set; }
-        }
-
-        [WebMethod]
-        [ScriptMethod]
-        public static void MyMethod(ajax_Candidato cand)
-        {
-            try
-            {
-                PI_BA_Candidato aux = new PI_BA_Candidato();
-                aux.Nombre = cand.Nombre;
-                aux.Apellido = cand.Apellido;
-                aux.Direccion = cand.Direccion;
-                aux.Nacionalidad = cand.Nacionalidad;
-                aux.RFC = cand.RFC;
-                aux.Telefono = cand.Telefono;
-
-                if (InformacionPersonalCandidatoService.GuardarCambios(aux, HttpContext.Current.Session[StringValues.CorreoSesion].ToString()))
-                {
-                    System.Diagnostics.Debug.WriteLine("Tus cambios han sido guardados");
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("Hubo un error al guardar tus cambios");
-                }
-            }
-            catch (Exception)
-            {
-                System.Diagnostics.Debug.WriteLine("??? why tho");
-                throw;
-            }
-        }
-
-        protected void ActualizarContrasena ()
+        protected void ActualizarContrasena()
         {
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
 
@@ -115,36 +95,41 @@ namespace PremiosInstitucionales.WebForms
                     aux.Password = newPwdTextBox.Text;
                     if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(aux, Session[StringValues.CorreoSesion].ToString()))
                     {
-                        
+                        // good
                     }
                     else
                     {
-                        
+                        // bad
                     }
                 }
-                
+
             }
 
         }
 
-        protected void ActualizarDatosGenerales ()
+        protected void ActualizarDatosGenerales()
         {
-            
-            PI_BA_Candidato aux = new PI_BA_Candidato();
-            aux.Nombre = NombresTextBox.Text;
-            aux.Apellido = ApellidosTextBox.Text;
-            aux.Direccion = DomicilioTextBox.Text.ToString();
-            aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
-            aux.RFC = RFCTextBox.Text.ToString();
-            aux.Telefono = TelefonoTextBox.Text.ToString();
 
-            if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if(candidato != null)
             {
+                PI_BA_Candidato aux = new PI_BA_Candidato();
+                aux.Nombre = NombresTextBox.Text;
+                aux.Apellido = ApellidosTextBox.Text;
+                aux.Direccion = DomicilioTextBox.Text.ToString();
+                aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
+                aux.RFC = RFCTextBox.Text.ToString();
+                aux.Telefono = TelefonoTextBox.Text.ToString();
+
+                if (!candidato.FechaPrivacidadDatos.HasValue)
+                {
+                    aux.FechaPrivacidadDatos = DateTime.Today.Date;
+                }
+
+                InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString());
             }
-            else
-            {
-                MostrarCampos();
-            }
+
+            
         }
 
         protected void EditarBtn_Click(object sender, EventArgs e)
@@ -161,7 +146,7 @@ namespace PremiosInstitucionales.WebForms
 
                 // Get logged in candidate
                 var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
-                if(candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+                if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
                 {
                     // Delete previous image...
                     File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
@@ -179,14 +164,14 @@ namespace PremiosInstitucionales.WebForms
                 // Update data in database
                 PI_BA_Candidato aux = new PI_BA_Candidato();
                 aux.NombreImagen = sNombreImagen;
-                
+
                 if (InformacionPersonalCandidatoService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString()))
                 {
-                    
+
                 }
                 else
                 {
-                    
+
                 }
 
                 Response.Redirect(Request.Url.AbsoluteUri);
