@@ -114,7 +114,40 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 return null;
             }
         }
+        public static void RemovePregunta(String idForma, String idPregunta)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from pregunta in dbContext.PI_BA_PreguntasPorForma
+                         where pregunta.cveForma.Equals(idForma) && pregunta.cvePregunta.Equals(idPregunta)
+                         select pregunta).FirstOrDefault();
+            dbContext.PI_BA_PreguntasPorForma.Remove(query);
 
+            dbContext.SaveChanges();
+
+            var query2 = (from pregunta in dbContext.PI_BA_Pregunta
+                          where pregunta.cvePregunta.Equals(idPregunta)
+                          select pregunta).FirstOrDefault();
+            dbContext.PI_BA_Pregunta.Remove(query2);
+            dbContext.SaveChanges();
+        }
+        public static void InsertaPregunta(String idForma, String valor, int orden)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Pregunta pregunta = new PI_BA_Pregunta();
+            pregunta.cvePregunta = Guid.NewGuid().ToString();
+            pregunta.Orden = orden;
+            pregunta.Texto = valor;
+            dbContext.PI_BA_Pregunta.Add(pregunta);
+            dbContext.SaveChanges();
+            PI_BA_PreguntasPorForma pregForma = new PI_BA_PreguntasPorForma();
+            pregForma.cvePreguntaPorForma = Guid.NewGuid().ToString();
+            pregForma.cveForma = idForma;
+            pregForma.cvePregunta = pregunta.cvePregunta;
+            dbContext.PI_BA_PreguntasPorForma.Add(pregForma);
+            dbContext.SaveChanges();         
+
+
+        }
         public static void RemoveJuezCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -367,6 +400,22 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 dbContext.SaveChanges();
             }
             catch (Exception e)
+            {
+
+            }
+        }
+
+        public static void GuardaPregunta(String idPregunta, String valor, int orden)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var resp = dbContext.PI_BA_Pregunta.Where(r => r.cvePregunta.Equals(idPregunta)).FirstOrDefault();
+                resp.Texto = valor;
+                resp.Orden = orden;
+                dbContext.SaveChanges();
+            }
+            catch(Exception e)
             {
 
             }
