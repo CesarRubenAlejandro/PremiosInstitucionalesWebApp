@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioAdmin" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioAdmin" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <form runat="server">
     <!-- Welcome message -->
     <div class="container welcome-box">
         <!-- Main component for a primary marketing message or call to action -->
@@ -28,19 +29,17 @@
                     </div>
                 </div>
             </a>
-            <a href="AdministraAplicacionesPendientes.aspx" class="no-underline">
-                <div class="col-lg-6">
-                    <div class="row service-list">
-                        <div class="col-xs-4 text-center" style="height: 96px">
-                            <img class="service-icon" src="../Resources/svg/clipboard.svg" />
-                        </div>
-                        <div class="col-xs-8">
-                            <h5>Aplicaciones pendientes </h5>
-                            <h6>Lista de aplicaciones que se deberán analizar para validar que cumplan con los requerimientos mínimos. </h6>
-                        </div>
+            <div class="col-lg-6">
+                <div class="row service-list">
+                    <div class="col-xs-4 text-center" style="height: 96px">
+                        <img class="service-icon" src="../Resources/svg/clipboard.svg" />
+                    </div>
+                    <div class="col-xs-8">
+                        <h5>Aplicaciones pendientes </h5>
+                        <h6>Lista de aplicaciones que se deberán analizar para validar que cumplan con los requerimientos mínimos. </h6>
                     </div>
                 </div>
-            </a>
+            </div>
             <a href="AdministraUsuarios.aspx?t=candidato" class="no-underline">
                 <div class="col-lg-6">
                     <div class="row service-list">
@@ -78,6 +77,7 @@
                     </div>
                 </div>
             </a>
+            <a data-toggle="modal" data-target="#modalInvite">
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-
+                </a>
             <div class="col-lg-6">
                 <div class="row service-list">
                     <div class="col-xs-4 text-center" style="height: 96px">
@@ -101,19 +101,44 @@
                     </div>
                 </div>
             </div>
-            <a href="AdministraGanadores.aspx" class="no-underline">
-                <div class="col-lg-6">
-                    <div class="row service-list">
-                        <div class="col-xs-4 text-center" style="height: 96px">
-                            <img class="service-icon" src="http://inspired-bd.com/wp-content/uploads/2016/07/trophy200.png" />
-                        </div>
-                        <div class="col-xs-8">
-                            <h5>Elegir ganador </h5>
-                            <h6>Selección de ganador en base a las evaluaciones de los jueces. </h6>
-                        </div>
+            <div class="col-lg-6">
+                <div class="row service-list">
+                    <div class="col-xs-4 text-center" style="height: 96px">
+                        <img class="service-icon" src="http://inspired-bd.com/wp-content/uploads/2016/07/trophy200.png" />
+                    </div>
+                    <div class="col-xs-8">
+                        <h5>Elegir ganador </h5>
+                        <h6>Selección de ganador en base a las evaluaciones de los jueces. </h6>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
+    <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">		
+				<div class="modal-header text-center">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">Proponer Candidato</h3>
+					<hr class="shorthr">
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+						<label class="col-lg-3 control-label">Correo:</label>
+						<div class="col-lg-8">
+							 <asp:TextBox ID="correoJuez" ClientIDMode="Static" runat="server" placeholder="Correo de Juez"></asp:TextBox><br />
+						</div>
+						</div>
+					</form>
+				</div>
+               
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Registra_Juez" Text="Registra Juez" />
+				</div>
+			</div>
+		</div>
+	</div>
+        </form>
 </asp:Content>

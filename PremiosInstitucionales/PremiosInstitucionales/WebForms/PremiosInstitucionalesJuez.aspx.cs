@@ -14,10 +14,12 @@ namespace PremiosInstitucionales.WebForms
     public struct Premio
     {
         public string Nombre;
+        public string Descripcion;
         public List<PI_BA_Categoria> ListaCategorias;
-        public Premio(string nombre, List<PI_BA_Categoria> listaCategorias)
+        public Premio(PI_BA_Premio premio, List<PI_BA_Categoria> listaCategorias)
         {
-            Nombre = nombre;
+            Nombre = premio.Nombre;
+            Descripcion = premio.Descripcion;
             ListaCategorias = listaCategorias;
         }
     }
@@ -55,13 +57,13 @@ namespace PremiosInstitucionales.WebForms
                                    "<div id = \"" + premio.GetHashCode() + "\" class=\"tab-pane fade in active\">" +
                                        "<h4>" + premio.Nombre + "</h4>" +
                                        "<p>" +
-                                            "TODO: Agregar una descripcion por premio en la BD." +
+                                            premio.Descripcion +
                                        "</p>" +
                                    "</div>";
 
             foreach (var categoria in premio.ListaCategorias)
             {
-                htmlContent += "<div id = \"" + categoria.Nombre + "\" class=\"tab-pane fade\">" +
+                htmlContent += "<div id = \"" + categoria.cveCategoria + "\" class=\"tab-pane fade\">" +
                                         "<h4>" + categoria.Nombre + "</h4>";
 
                 var ListaAplicaciones = ConvocatoriaService.ObtenerAplicacionesPorCategoria(categoria.cveCategoria);
@@ -83,9 +85,9 @@ namespace PremiosInstitucionales.WebForms
             foreach (var categoria in premio.ListaCategorias)
             {
                 htmlContent += "<li>" +
-                                            "<a href = \"#" + categoria.Nombre + "\" data-toggle= \"tab\"> " + categoria.Nombre +
+                                            "<a href = \"#" + categoria.cveCategoria + "\" data-toggle= \"tab\"> " + categoria.Nombre +
                                                 " <span class=\"badge\" style=\"font-weight: bold;\">" +
-                                                    ConvocatoriaService.ObtenerAplicacionesPorCategoria(categoria.cveCategoria).Count +
+                                                    GetAplicacionesAceptadas(categoria.cveCategoria) +
                                                 "</span>" +
                                             "</a>" +
                                         "</li>";
@@ -96,6 +98,20 @@ namespace PremiosInstitucionales.WebForms
                             "</div>";
 
             return htmlContent;
+        }
+
+
+        private int GetAplicacionesAceptadas(string idCategoria)
+        {
+            int cantidad = 0;
+            List<PI_BA_Aplicacion> apliciones = ConvocatoriaService.ObtenerAplicacionesPorCategoria(idCategoria);
+
+            foreach (var aplicacion in apliciones)
+            {
+                if (aplicacion.Status == "aceptada") cantidad++;
+            }
+
+            return cantidad;
         }
 
         private void CargarAplicaciones()
@@ -116,7 +132,7 @@ namespace PremiosInstitucionales.WebForms
 
                 foreach (var premio in listaPremios)
                 {
-                    if (premio.Nombre == EvaluacionService.GetNombrePremioByCategoria(categoria.cveCategoria))
+                    if (premio.Nombre == EvaluacionService.GetNombrePremioByCategoria(categoria.cveCategoria).Nombre)
                     {
                         premio.ListaCategorias.Add(categoria);
                         categoriaAgregada = true;

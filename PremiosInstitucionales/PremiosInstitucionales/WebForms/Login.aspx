@@ -9,8 +9,8 @@
 			<div class="login-html">
 				<img id="logoTec" src='<%= ResolveUrl("~/img/logotec.png")%>' alt="Logo Tec">
 				<div class="option-tabs">
-					<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked><label for="tab-1" class="tab">Inicio</label>
-					<input id="tab-2" type="radio" name="tab" class="sign-up" onchange="changeTab(false)"><label for="tab-2" class="tab">Registro</label>
+					<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked/><label for="tab-1" class="tab">Inicio</label>
+					<input id="tab-2" type="radio" name="tab" class="sign-up" onchange="changeTab(false)"/><label for="tab-2" class="tab">Registro</label>
 				</div>
 				<div class="login-form">
 					<div class="sign-in-htm">
@@ -27,7 +27,7 @@
 							<label for="check"><span class="icon"></span> Recordarme</label>
 						</div>
 						<div class="int-group">
-                            <asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Button1_Click" Text="Inicia Sesión" style="width:100%;"/><br /> <br /> <br />
+                            <asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Button1_Click" Text="Inicia Sesión" style="width:100%;"/>
 						</div>
 						<hr class="custom-hr">
 						<div class="foot-lnk">
@@ -60,9 +60,10 @@
 						<div class="int-group">
                             <asp:Button class="btn btn-primary" ID="RegisterButton" runat="server" OnClick="Registro_Click" Text="Regístrate" style="width:100%;"/>
 						</div>
-						<hr class="custom-hr">
+						<hr class="custom-hr"/>
 						<div class="foot-lnk">
-							<label for="tab-1" style="cursor:pointer">¿Ya eres miembro?</a>
+                            <!-- ?? -->
+							<label for="tab-1" style="cursor:pointer">¿Ya eres miembro?</label>
 						</div>
 					</div>
 					<div class="forgot-htm">
@@ -78,7 +79,7 @@
                                 <asp:Button class="btn btn-primary" ID="EnviarBoton" runat="server" Text="Enviar" OnClick="Recover_Click" style="width:100%; margin-top:15px"/> <br /><br />
 							</div>
 						</div>
-						<hr class="custom-hr">
+						<hr class="custom-hr"/>
 						<div class="foot-lnk">
 							<a href="#" onclick="forgotPassword(false);">Volver al Inicio</a>
 						</div>

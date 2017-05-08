@@ -77,6 +77,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             }
         }
 
+
         public static List<PI_BA_Pregunta> GetFormularioByCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -95,6 +96,96 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 return null;
             }
 
+        }
+
+        public static List<String> GetJuecesIdsCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                var query = (from juezCategoria in dbContext.PI_BA_JuezPorCategoria
+                             where juezCategoria.cveCategoria.Equals(idCategoria)
+                             select juezCategoria.cveJuez).ToList();
+                return query;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public static void RemovePregunta(String idForma, String idPregunta)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from pregunta in dbContext.PI_BA_PreguntasPorForma
+                         where pregunta.cveForma.Equals(idForma) && pregunta.cvePregunta.Equals(idPregunta)
+                         select pregunta).FirstOrDefault();
+            dbContext.PI_BA_PreguntasPorForma.Remove(query);
+
+            dbContext.SaveChanges();
+
+            var query2 = (from pregunta in dbContext.PI_BA_Pregunta
+                          where pregunta.cvePregunta.Equals(idPregunta)
+                          select pregunta).FirstOrDefault();
+            dbContext.PI_BA_Pregunta.Remove(query2);
+            dbContext.SaveChanges();
+        }
+        public static void InsertaPregunta(String idForma, String valor, int orden)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Pregunta pregunta = new PI_BA_Pregunta();
+            pregunta.cvePregunta = Guid.NewGuid().ToString();
+            pregunta.Orden = orden;
+            pregunta.Texto = valor;
+            dbContext.PI_BA_Pregunta.Add(pregunta);
+            dbContext.SaveChanges();
+            PI_BA_PreguntasPorForma pregForma = new PI_BA_PreguntasPorForma();
+            pregForma.cvePreguntaPorForma = Guid.NewGuid().ToString();
+            pregForma.cveForma = idForma;
+            pregForma.cvePregunta = pregunta.cvePregunta;
+            dbContext.PI_BA_PreguntasPorForma.Add(pregForma);
+            dbContext.SaveChanges();         
+
+
+        }
+        public static void RemoveJuezCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from juezCategoria in dbContext.PI_BA_JuezPorCategoria
+                            where juezCategoria.cveCategoria.Equals(idCategoria)
+                            select juezCategoria).ToList();
+
+
+
+            foreach (var juez in query)
+            {
+                dbContext.PI_BA_JuezPorCategoria.Remove(juez);
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public static void AsignarJuecesCategoria(String idCategoria, List<String> idJueces)
+        {
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                foreach (var idJuez in idJueces)
+                {
+
+                    PI_BA_JuezPorCategoria row = new PI_BA_JuezPorCategoria();
+                    row.cveCategoria = idCategoria;
+                    row.cveJuez = idJuez;
+                    row.cveJuezPorCategoria = Guid.NewGuid().ToString();
+                    dbContext.PI_BA_JuezPorCategoria.Add(row);
+
+                }
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
 
         public static void CrearAplicacion(PI_BA_Aplicacion aplicacion, List<PI_BA_Respuesta> respuestas)
@@ -309,6 +400,22 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 dbContext.SaveChanges();
             }
             catch (Exception e)
+            {
+
+            }
+        }
+
+        public static void GuardaPregunta(String idPregunta, String valor, int orden)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var resp = dbContext.PI_BA_Pregunta.Where(r => r.cvePregunta.Equals(idPregunta)).FirstOrDefault();
+                resp.Texto = valor;
+                resp.Orden = orden;
+                dbContext.SaveChanges();
+            }
+            catch(Exception e)
             {
 
             }

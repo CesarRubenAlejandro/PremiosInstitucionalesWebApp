@@ -1,36 +1,29 @@
-﻿using PremiosInstitucionales.DBServices.Registro;
-using PremiosInstitucionales.Values;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
+using PremiosInstitucionales.DBServices.Registro;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
+using System.IO;
+using PremiosInstitucionales.Values;
+using System.Net;
 
 namespace PremiosInstitucionales.WebForms
 {
-    public partial class InicioAdmin : System.Web.UI.Page
+    public partial class CreaJuez : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
-                if (Session[StringValues.RolSesion] != null)
-                {
-                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
-                        Response.Redirect("Login.aspx");
-                }
-            }
+
         }
-        protected void Registra_Juez(object sender, EventArgs e)
-        {
+
+        protected void Registra_Juez(object sender, EventArgs e) {
             String correo = correoJuez.Text;
             string contrasena = System.Web.Security.Membership.GeneratePassword(7, 0);
-            if (RegistroService.RegistraJuez(correo, contrasena))
-            {
+            if (RegistroService.RegistraJuez(correo, contrasena)) {
                 EnviarCorreoConfirmacion(contrasena);
             }
 
@@ -46,7 +39,7 @@ namespace PremiosInstitucionales.WebForms
                 {
                     mm.Subject = "Fuiste Asignado como Juez a lso premios institucionales.";
                     mm.IsBodyHtml = true;
-                    var bodyContent = "Tu contrasena es  " + contrasena;
+                    var bodyContent = "Tu contrasena es  "+contrasena;
                     try
                     {
                         mm.Body = bodyContent;

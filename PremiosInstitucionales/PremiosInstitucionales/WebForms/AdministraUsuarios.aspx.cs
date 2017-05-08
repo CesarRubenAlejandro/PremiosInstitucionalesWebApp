@@ -38,12 +38,12 @@ namespace PremiosInstitucionales.WebForms
             litUsuarios.Text = "Jueces";
             var jueces = InformacionPersonalJuezService.GetJueces();
             string sType = Request.QueryString["t"];
-            if(jueces != null)
+            if (jueces != null)
             {
-                foreach(var juez in jueces)
+                foreach (var juez in jueces)
                 {
                     TableRow tr = new TableRow();
-                    
+
                     // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
@@ -110,7 +110,8 @@ namespace PremiosInstitucionales.WebForms
                     {
                         ipImage.ImageUrl = "/ProfilePictures/" + cand.NombreImagen;
                     }
-                    else{
+                    else
+                    {
                         ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
                     }
                     ipImage.CssClass = "avatar img-circle";

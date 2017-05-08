@@ -108,6 +108,76 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.xml" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.Web.xml" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PremiosInstitucionales.dll" />
+    <Content Include="bin\PremiosInstitucionales.pdb" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="obj\Debug\PremiosInstitucionales.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PremiosInstitucionales.dll" />
+    <Content Include="obj\Debug\PremiosInstitucionales.pdb" />
+    <Content Include="obj\Debug\TempPE\Entities.Models.PremiosInstitucionalesModels.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Entities.Models.PremiosInstitucionalesModels.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PremiosInstitucionalesModels.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PremiosInstitucionalesModels.Designer.cs.dll" />
+    <Content Include="Resources\css\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
+    <Content Include="Resources\css\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
+    <Content Include="Resources\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Resources\css\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_10_eceadf_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_15_d3c05a_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_15_eceadf_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_15_ffffff_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_65_654b24_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_fine-grain_68_b83400_60x60.png" />
+    <Content Include="Resources\css\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Resources\css\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Resources\css\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Resources\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Resources\css\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Resources\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Resources\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Resources\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_3572ac_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_444444_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_555555_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_8c291d_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_b83400_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_fbdb93_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Resources\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Resources\css\jquery-ui.css" />
     <Content Include="Resources\img\default-award.png" />
     <Content Include="Content\aplicaciones.css" />
@@ -172,6 +242,7 @@
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
+    <Content Include="Resources\js\AsignarJuez.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\crearConvocatoria.js" />
     <Content Include="Resources\js\global.js" />
@@ -182,6 +253,7 @@
     <Content Include="Resources\js\jquery.min.js" />
     <Content Include="Resources\js\listaUsuariosCandidato.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
+    <Content Include="Resources\js\Sortable.js" />
     <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
@@ -193,10 +265,13 @@
     <Content Include="Resources\svg\proponer.svg" />
     <Content Include="Resources\svg\shield.svg" />
     <Content Include="Resources\svg\teacher.svg" />
+    <Content Include="Resources\svg\team.svg" />
+    <Content Include="Resources\js\adminQ.js" />
     <Content Include="scripts\aplicaciones.js" />
     <Content Include="scripts\global.js" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\jquery.dataTables.js" />
+    <Content Include="scripts\prueba.js" />
     <Content Include="scripts\tablaParticipantes.js" />
     <Content Include="svg\add.svg" />
     <Content Include="svg\badgebg.svg" />
@@ -210,6 +285,8 @@
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
     <Content Include="WebForms\AdministraAplicacionesPendientes.aspx" />
+    <Content Include="WebForms\AdministraConvocatorias.aspx" />
+    <Content Include="WebForms\AdministraFormulario.aspx" />
     <Content Include="WebForms\AdministraCategorias.aspx" />
     <Content Include="WebForms\AdministraGanadorCategoria.aspx" />
     <Content Include="WebForms\AdministraGanadores.aspx" />
@@ -219,6 +296,7 @@
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
+    <Content Include="WebForms\CreaJuez.aspx" />
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
@@ -235,12 +313,25 @@
     <Content Include="WebForms\Registro.aspx" />
     <Content Include="PaginasIniciales.Master" />
     <Content Include="mp-Candidato.Master" />
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\PremiosInstitucionales.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Entities\Models\PremiosInstitucionalesModels.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Entities\Models\PremiosInstitucionalesModels.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Entities\Models\PremiosInstitucionalesModels.ssdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.ssdl" />
+    <Content Include="obj\Debug\PremiosInstitucionales.csprojResolveAssemblyReference.cache" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="WebForms\AdministraConvocatorias.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -346,6 +437,9 @@
     <Compile Include="mp-Candidato.Master.designer.cs">
       <DependentUpon>mp-Candidato.Master</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="PaginasIniciales.Master.cs">
       <DependentUpon>PaginasIniciales.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -362,6 +456,20 @@
     </Compile>
     <Compile Include="WebForms\AdministraAplicacionesPendientes.aspx.designer.cs">
       <DependentUpon>AdministraAplicacionesPendientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraConvocatorias.aspx.cs">
+      <DependentUpon>AdministraConvocatorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraConvocatorias.aspx.designer.cs">
+      <DependentUpon>AdministraConvocatorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AdministraFormulario.aspx.cs">
+      <DependentUpon>AdministraFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AdministraFormulario.aspx.designer.cs">
+      <DependentUpon>AdministraFormulario.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AdministraCategorias.aspx.cs">
       <DependentUpon>AdministraCategorias.aspx</DependentUpon>
@@ -426,6 +534,13 @@
     <Compile Include="WebForms\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\CreaJuez.aspx.cs">
+      <DependentUpon>CreaJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\CreaJuez.aspx.designer.cs">
+      <DependentUpon>CreaJuez.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\EvaluaAplicacion.aspx.cs">
       <DependentUpon>EvaluaAplicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -474,13 +589,6 @@
     </Compile>
     <Compile Include="WebForms\ListaPremios.aspx.designer.cs">
       <DependentUpon>ListaPremios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForms\AdministraConvocatorias.aspx.cs">
-      <DependentUpon>AdministraConvocatorias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\AdministraConvocatorias.aspx.designer.cs">
-      <DependentUpon>AdministraConvocatorias.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\InicioCandidato.aspx.cs">
       <DependentUpon>InicioCandidato.aspx</DependentUpon>
@@ -542,7 +650,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="AwardPictures\" />
-    <Folder Include="Resources\css\images\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>

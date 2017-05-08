@@ -1,13 +1,11 @@
 ﻿$(document).ready(function () {
     var queryType = getUrlVars()["t"];
     var tableId;
-    if (queryType == 'juez')
-    {
+    if (queryType == 'juez') {
         tableId = '#listaJuezTable';
         $('#listaCandidatoTable').remove();
     }
-    else if (queryType == 'candidato')
-    {
+    else if (queryType == 'candidato') {
         tableId = '#listaCandidatoTable';
         $('#listaJuezTable').remove();
     }
