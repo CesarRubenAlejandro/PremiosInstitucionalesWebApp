@@ -18,13 +18,14 @@ namespace PremiosInstitucionales.WebForms
         String formaID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // obtener el premio usando el query string de su id
+            // Obtener Ids
             formaID = Request.QueryString["p"];
             var forma = ConvocatoriaService.GetFormaByID(formaID);
             idCategoria = forma.cveCategoria;
             String nombrePremio = AplicacionService.GetPremioByClaveCategoria(idCategoria).Nombre;
             String nombreCategoria = AplicacionService.GetCategoriaByClaveCategoria(idCategoria).Nombre;
 
+            // Nombre de Titulos
             nombrePremioCategoria.Controls.Add(new LiteralControl(
                 "<h3> <strong> Premio: </strong>" + nombrePremio + "</h3>" +
                 "<h4> <strong> Categoria: </strong>" + nombreCategoria + "</h4>"
@@ -100,7 +101,68 @@ namespace PremiosInstitucionales.WebForms
             //<div class="list-group-item"><input class="pregunta form-control" type="text" name="mytext[]" placeholder= "Pregunta"/><a href="#" class="remove">Eliminar</a></div>
             //Guid.NewGuid().ToString();
         }
-        protected void Guarda_Formulario() {
+
+        private void LoadJudgeTable()
+        {
+            var jueces = InformacionPersonalJuezService.GetJueces();
+            string sType = Request.QueryString["t"];
+            if (jueces != null)
+            {
+                foreach (var juez in jueces)
+                {
+                    TableRow tr = new TableRow();
+
+                    // profile image column
+                    TableCell tdIP = new TableCell();
+                    tdIP.CssClass = "dt-profile-pic";
+
+                    Image ipImage = new Image();
+                    if (juez.NombreImagen != null)
+                    {
+                        ipImage.ImageUrl = "/ProfilePictures/" + juez.NombreImagen;
+                    }
+                    else
+                    {
+                        ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
+                    }
+                    ipImage.CssClass = "avatar img-circle";
+                    ipImage.AlternateText = "avatar";
+                    ipImage.Style.Add("width", "28px");
+                    ipImage.Style.Add("height", "28px");
+
+                    tdIP.Controls.Add(ipImage);
+
+                    // name column
+                    TableCell tdName = new TableCell();
+                    tdName.Text = juez.Nombre;
+
+                    // last name column
+                    TableCell tdLastName = new TableCell();
+                    tdLastName.Text = juez.Apellido;
+
+                    TableCell tdEmail = new TableCell();
+
+                    LiteralControl lHiddenValue = new LiteralControl("<span id=\"" + juez.cveJuez + "\">" + juez.Correo + "</span>");
+                    tdEmail.Controls.Add(lHiddenValue);
+
+                    tr.Controls.Add(tdIP);
+                    tr.Controls.Add(tdName);
+                    tr.Controls.Add(tdLastName);
+                    tr.Controls.Add(tdEmail);
+                    if (!AplicacionService.GetJuecesIdsCategoria(idCategoria).Contains(juez.cveJuez))
+                    {
+                        listaJuecesTableBody.Controls.Add(tr);
+                    }
+                    else
+                    {
+                        listaJuezTableAsignadosBody.Controls.Add(tr);
+                    }
+                }
+            }
+        }
+
+        protected void Guarda_Formulario()
+        {
             formaID = Request.QueryString["p"];
             var forma = ConvocatoriaService.GetFormaByID(formaID);
 
@@ -125,108 +187,44 @@ namespace PremiosInstitucionales.WebForms
                                 var preguntasCount = listaPreguntas.Count;
                                 if (listaPreguntas != null)
                                 {
-                                    if ( nuevasPreguntasCount == preguntasCount) {
-                                        for (var i = 0; i < nuevasPreguntasCount; i++) {
+                                    if (nuevasPreguntasCount == preguntasCount)
+                                    {
+                                        for (var i = 0; i < nuevasPreguntasCount; i++)
+                                        {
                                             if (values[i] != "")
-                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i],i);
+                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i], i);
                                         }
                                     }
-                                    else if(nuevasPreguntasCount < preguntasCount)
+                                    else if (nuevasPreguntasCount < preguntasCount)
                                     {
                                         var dif = preguntasCount - nuevasPreguntasCount;
-                                        for (var i = 0; i < (preguntasCount-dif); i++)
+                                        for (var i = 0; i < (preguntasCount - dif); i++)
                                         {
-                                            if(values[i]!="")
-                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i],i);
+                                            if (values[i] != "")
+                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i], i);
                                         }
-                                        for( var i=nuevasPreguntasCount; i< preguntasCount; i++)
+                                        for (var i = nuevasPreguntasCount; i < preguntasCount; i++)
                                         {
                                             AplicacionService.RemovePregunta(formaID, listaPreguntas[i].cvePregunta);
                                         }
                                     }
-                                    else{
+                                    else
+                                    {
                                         var dif = nuevasPreguntasCount - preguntasCount;
                                         for (var i = 0; i < preguntasCount; i++)
                                         {
                                             if (values[i] != "")
                                                 AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i], i);
                                         }
-                                        for(var i=preguntasCount; i < nuevasPreguntasCount; i++)
+                                        for (var i = preguntasCount; i < nuevasPreguntasCount; i++)
                                         {
                                             if (values[i] != "")
                                                 AplicacionService.InsertaPregunta(formaID, values[i], i);
                                         }
                                     }
-                                }   
+                                }
                             }
                         }
-                    }
-                }
-            }
-        }
-
-        private void LoadJudgeTable()
-        {
-            //litUsuarios.Text = "Jueces";
-            var jueces = InformacionPersonalJuezService.GetJueces();
-            string sType = Request.QueryString["t"];
-            if (jueces != null)
-            {
-                foreach (var juez in jueces)
-                {
-                    TableRow tr = new TableRow();
-
-                    // profile image column
-                    TableCell tdIP = new TableCell();
-                    tdIP.CssClass = "dt-profile-pic";
-                    //tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
-
-                    Image ipImage = new Image();
-                    if (juez.NombreImagen != null)
-                    {
-                        ipImage.ImageUrl = "/ProfilePictures/" + juez.NombreImagen;
-                    }
-                    else
-                    {
-                        ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
-                    }
-                    ipImage.CssClass = "avatar img-circle";
-                    ipImage.AlternateText = "avatar";
-                    ipImage.Style.Add("width", "28px");
-                    ipImage.Style.Add("height", "28px");
-
-                    tdIP.Controls.Add(ipImage);
-
-                    // name column
-                    TableCell tdName = new TableCell();
-                    tdName.Text = juez.Nombre;
-                    //tdName.Attributes.Add("OnServerClick", "CheckJuez");
-
-                    // last name column
-                    TableCell tdLastName = new TableCell();
-                    tdLastName.Text = juez.Apellido;
-                    //tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + juez.cveJuez + "&t=" + sType + "');");
-
-                    TableCell tdEmail = new TableCell();
-                    //tdEmail.Text = juez.Correo;
-
-                    LiteralControl lHiddenValue = new LiteralControl("<span id=\"" + juez.cveJuez + "\">" + juez.Correo + "</span>");
-                    tdEmail.Controls.Add(lHiddenValue);
-
-                    //LiteralControl lcMailLink = new LiteralControl("<a href=\"mailto:" + juez.Correo + "?Subject=Premios%20Institucionales\" target=\"_top\"> " + juez.Correo + "</a>");
-                    //tdEmail.Controls.Add(lcMailLink);
-
-                    tr.Controls.Add(tdIP);
-                    tr.Controls.Add(tdName);
-                    tr.Controls.Add(tdLastName);
-                    tr.Controls.Add(tdEmail);
-                    if (!AplicacionService.GetJuecesIdsCategoria(idCategoria).Contains(juez.cveJuez))
-                    {
-                        listaJuecesTableBody.Controls.Add(tr);
-                    }
-                    else
-                    {
-                        listaJuezTableAsignadosBody.Controls.Add(tr);
                     }
                 }
             }

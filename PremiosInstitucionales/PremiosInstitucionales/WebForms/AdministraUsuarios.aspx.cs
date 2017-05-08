@@ -38,12 +38,12 @@ namespace PremiosInstitucionales.WebForms
             litUsuarios.Text = "Jueces";
             var jueces = InformacionPersonalJuezService.GetJueces();
             string sType = Request.QueryString["t"];
-            if(jueces != null)
+            if (jueces != null)
             {
-                foreach(var juez in jueces)
+                foreach (var juez in jueces)
                 {
                     TableRow tr = new TableRow();
-                    
+
                     // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
@@ -92,7 +92,6 @@ namespace PremiosInstitucionales.WebForms
 
         private void LoadCandidateTable()
         {
-
             litUsuarios.Text = "Candidatos";
             var candidatos = InformacionPersonalCandidatoService.GetCandidatos();
             string sType = Request.QueryString["t"];
@@ -101,16 +100,18 @@ namespace PremiosInstitucionales.WebForms
                 foreach (var cand in candidatos)
                 {
                     TableRow tr = new TableRow();
+                    //tr.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
+                    // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
                     tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
-
                     Image ipImage = new Image();
                     if (cand.NombreImagen != null)
                     {
                         ipImage.ImageUrl = "/ProfilePictures/" + cand.NombreImagen;
                     }
-                    else{
+                    else
+                    {
                         ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
                     }
                     ipImage.CssClass = "avatar img-circle";
@@ -128,12 +129,6 @@ namespace PremiosInstitucionales.WebForms
                     // last name column
                     TableCell tdLastName = new TableCell();
                     tdLastName.Text = cand.Apellido;
-
-                    // status column
-                    TableCell tdStatus = new TableCell();
-                    tdStatus.Style.Add("color", "#f44336");
-                    LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
-                    tdStatus.Controls.Add(lcStatus);
                     tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + sType + "');");
 
                     TableCell tdEmail = new TableCell();
@@ -187,6 +182,7 @@ namespace PremiosInstitucionales.WebForms
                     }
 
                     tdPrivacidad.Controls.Add(lcPrivacidad);
+
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
                     tr.Controls.Add(tdLastName);
@@ -195,9 +191,9 @@ namespace PremiosInstitucionales.WebForms
                     tr.Controls.Add(tdNationality);
                     tr.Controls.Add(tdRFC);
                     tr.Controls.Add(tdAddress);
-                    tr.Controls.Add(tdStatus);
                     tr.Controls.Add(tdConfirmacion);
                     tr.Controls.Add(tdPrivacidad);
+
                     listaCandidatosTableBody.Controls.Add(tr);
                 }
             }
