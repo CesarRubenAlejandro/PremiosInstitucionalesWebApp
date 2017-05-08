@@ -478,12 +478,6 @@ div.award-header{
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> refs/remotes/origin/master
 .control-title{
 	padding: 0px;
 	font-weight: bold;
@@ -522,13 +516,23 @@ div.award-header{
 		word-wrap: break-word;
 		font-size: 28px;
 	}
-<<<<<<< HEAD
-=======
+
 }
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
->>>>>>> refs/remotes/origin/master
+
+}
+
+.judge-list{
+	display: block;
+	background-color: white;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	padding: 16px;
+	margin-top: 32px;
+	margin-bottom: 32px;
+	min-height: 350px;
+
 }
