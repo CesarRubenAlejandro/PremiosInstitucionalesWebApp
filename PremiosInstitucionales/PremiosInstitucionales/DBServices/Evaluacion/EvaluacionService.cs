@@ -21,14 +21,14 @@ namespace PremiosInstitucionales.DBServices.Evaluacion
             return result;
         }
 
-        public static string GetNombrePremioByCategoria(String categoriaId)
+        public static PI_BA_Premio GetNombrePremioByCategoria(String categoriaId)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             var result = (from p in dbContext.PI_BA_Premio
                           join convo in dbContext.PI_BA_Convocatoria on p.cvePremio equals convo.cvePremio
                           join cat in dbContext.PI_BA_Categoria on convo.cveConvocatoria equals cat.cveConvocatoria
                           where cat.cveCategoria.Equals(categoriaId)
-                          select p).First().Nombre;
+                          select p).First();
             return result;
         }
 
