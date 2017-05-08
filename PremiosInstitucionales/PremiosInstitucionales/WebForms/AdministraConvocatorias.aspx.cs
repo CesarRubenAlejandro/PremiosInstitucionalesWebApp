@@ -142,7 +142,14 @@ namespace PremiosInstitucionales.WebForms
 
         protected void UpdateInfo(object sender, EventArgs e)
         {
-            ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, UploadImage());
+            string imgUrl = UploadImage();
+
+            if (UploadImage() == null)
+            {
+                imgUrl = premioActual.NombreImagen;
+            }
+
+            ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl);
             Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
         }
 
