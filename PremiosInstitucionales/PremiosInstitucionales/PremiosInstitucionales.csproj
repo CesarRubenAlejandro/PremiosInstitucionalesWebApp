@@ -256,6 +256,7 @@
     <Content Include="WebForms\AdministraPremios.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
+    <Content Include="WebForms\AsignarJuez.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\CreaJuez.aspx" />
@@ -481,6 +482,13 @@
     </Compile>
     <Compile Include="WebForms\AplicacionesCandidato.aspx.designer.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AsignarJuez.aspx.cs">
+      <DependentUpon>AsignarJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AsignarJuez.aspx.designer.cs">
+      <DependentUpon>AsignarJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
       <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
