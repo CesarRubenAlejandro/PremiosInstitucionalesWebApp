@@ -28,6 +28,7 @@
                                     <asp:TextBox runat="server" class="form-control" placeholder="Eugenio Garza Sada" type="text" ID="tbAwardTitle" />
                                     <label class="col-lg-12 control-label control-title">Descripción:</label>
                                     <asp:TextBox runat="server" class="form-control form-text-area scrollbar-custom" MaxLength="500" Rows="4" onkeyup="updateCharactersLeft(this);" ID="tbAwardDescription" TextMode="MultiLine"></asp:TextBox>
+
                                     <p>500 caracteres restantes </p>
                                 </div>
                             </div>
@@ -42,7 +43,7 @@
                 </div>
             </div>
         </div>
-    
+    </form>
     <!-- Contenido -->
     <div class="container fadeView">
 
@@ -68,5 +69,4 @@
             </div>
         </div>
     </div>
-        </form>
 </asp:Content>
