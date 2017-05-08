@@ -53,6 +53,16 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
                     .FirstOrDefault();
         }
 
+        public static PI_BA_Forma GetFormaByCategoria(string idCategoria) {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            return dbContext.PI_BA_Forma.Where(p => p.cveCategoria == idCategoria).FirstOrDefault();
+        }
+
+        public static PI_BA_Forma GetFormaByID(string idForma) {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            return dbContext.PI_BA_Forma.Where(p => p.cveForma == idForma).FirstOrDefault();
+        }
+
         public static PI_BA_Categoria GetCategoriaById(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

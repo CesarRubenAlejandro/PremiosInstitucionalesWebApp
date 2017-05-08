@@ -77,6 +77,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             }
         }
 
+
         public static List<PI_BA_Pregunta> GetFormularioByCategoria(String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

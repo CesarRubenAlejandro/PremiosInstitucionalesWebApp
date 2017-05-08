@@ -62,7 +62,7 @@ namespace PremiosInstitucionales.WebForms
                 pCol.Controls.Add(pItem);
 
                 String sFormaID = AplicacionService.GetFormByCategoria(c.cveCategoria).cveForma;
-                categoryList.Controls.Add(new LiteralControl("<a href=AdministraForma.aspx?p=" + sFormaID + ">"));
+                categoryList.Controls.Add(new LiteralControl("<a href=AdministraFormulario.aspx?p=" + sFormaID + ">"));
                 categoryList.Controls.Add(pCol);
                 categoryList.Controls.Add(new LiteralControl("</a>"));
 

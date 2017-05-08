@@ -10,6 +10,24 @@ namespace PremiosInstitucionales.DBServices.Registro
     {
         private static wPremiosInstitucionalesdbEntities dbContext;
 
+        public static bool RegistraJuez(String correo, String contrasena)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            if (!existJuez(correo))
+            {
+                PI_BA_Juez juez = new PI_BA_Juez();
+                juez.cveJuez = Guid.NewGuid().ToString();
+                juez.Correo = correo;
+                juez.Password = contrasena;
+                dbContext.PI_BA_Juez.Add(juez);
+                dbContext.SaveChanges();
+                return true;
+            }
+            else
+                return false;
+
+        }
+
         public static bool Registrar(String email, String password, String codigoConfirmacion)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -34,6 +52,10 @@ namespace PremiosInstitucionales.DBServices.Registro
         private static bool exists(String email)
         {
             return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
+        }
+        private static bool existJuez(String email)
+        {
+            return dbContext.PI_BA_Juez.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
         }
 
         public static void ConfirmarCandidato(String codigoConfirmacion)
