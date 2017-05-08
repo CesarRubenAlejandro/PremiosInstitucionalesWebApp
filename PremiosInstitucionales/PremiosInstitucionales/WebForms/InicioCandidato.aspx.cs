@@ -1,4 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.Aplicacion;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
@@ -12,49 +13,28 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
             if (!IsPostBack)
             {
-                
-                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
-                if (Session[StringValues.RolSesion] != null)
-                {
-                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
-                        // si no es candidato, redireccionar a login
-                        Response.Redirect("Login.aspx");
-                }
-                else
-                {
-                    Response.Redirect("Login.aspx");
-                }
+                LoadMessage();
             }
+        }
 
-            var aplicaciones = AplicacionService.GetAplicacionesByCorreo(Session[StringValues.CorreoSesion].ToString());
-            if (aplicaciones != null) { 
-                foreach (var ap in aplicaciones)
-                {
-                    //desplegar categoria
-                    Literal lit = new Literal();
-                    lit.Text = @"<h3>" + AplicacionService.GetPremioCategoriaByClaveCategoria(ap.cveCategoria).ToString() + "</h3> <br/>";
-                    contenidoiniciocandidato.Controls.Add(lit);
+        private void LoadMessage()
+        {
+            var correo = Session[StringValues.CorreoSesion].ToString();
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(correo);
 
-                    //desplegar mapa de estados
-                    HtmlControl divControl = new HtmlGenericControl("div");
-                    divControl.Attributes.Add("class", "crumbs");
-                    divControl.Visible = true; 
-                    contenidoiniciocandidato.Controls.Add(divControl);
+            if (candidato == null)
+                Response.Redirect("Login.aspx");
 
-                    divControl.Controls.Add(new LiteralControl(obtenerHtmlMapaEstados(ap)));
-               }
-            } else
+            if (candidato.Nombre != null && candidato.Nombre.Length > 0)
             {
-                //desplegar letrero de no aplicaciones
-                HtmlControl divControl = new HtmlGenericControl("div");
-                divControl.Visible = true; 
-                contenidoiniciocandidato.Controls.Add(divControl);
-
-                divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
-            }*/
+                litBienvenidoUsuario.Text = "<h1> Bienvenido, " + candidato.Nombre + " </h1>";
+            }
+            else
+            {
+                litBienvenidoUsuario.Text = "<h1> Bienvenido </h1>";
+            }
         }
 
         /**
