@@ -10,6 +10,8 @@ $(document).ready(function() {
 	function newpage() {
 		window.location = newLocation;
 	}
+
+	var clave = document.getElementById('clave');
 });
 
 var loadingSpinner, changePasswordForm, passwordCheckMark, changeAlert;

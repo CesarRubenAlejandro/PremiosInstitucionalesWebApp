@@ -13,6 +13,7 @@ namespace PremiosInstitucionales.WebForms
     public partial class AdministraFormulario : System.Web.UI.Page
     {
         int numPregunta = 0;
+        string cat = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -28,6 +29,7 @@ namespace PremiosInstitucionales.WebForms
                     var categoria = ConvocatoriaService.GetCategoriaById(categoriaID);
                     if (categoria != null)
                     {
+                        cat = categoria.cveCategoria;
                         var convocatoria = ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria);
                         if (convocatoria != null)
                         {
@@ -93,11 +95,70 @@ namespace PremiosInstitucionales.WebForms
             //Guid.NewGuid().ToString();
         }
         protected void Guarda_Formulario(object sender, EventArgs e) {
+            string formaID = Request.QueryString["p"];
+            var forma = ConvocatoriaService.GetFormaByID(formaID);
 
-            var results = this.Controls.OfType<TextBox>().Where(c => Convert.ToString(c.Attributes["class"]).Contains("pregunta"));
-            foreach (var tb in results) {
-                Response.Write("SI SE PUDO2222222");
+            string categoriaID = forma.cveCategoria;
+            if (categoriaID != null)
+            {
+                var categoria = ConvocatoriaService.GetCategoriaById(categoriaID);
+                if (categoria != null)
+                {
+                    var convocatoria = ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria);
+                    if (convocatoria != null)
+                    {
+                        var premio = ConvocatoriaService.GetPremioById(convocatoria.cvePremio);
+
+                        if (premio != null)
+                        {
+                            string[] values = Request.Form.GetValues("mytext");
+                            if (values != null)
+                            {
+                                var listaPreguntas = AplicacionService.GetFormularioByCategoria(categoria.cveCategoria);
+                                var nuevasPreguntasCount = values.Length;
+                                var preguntasCount = listaPreguntas.Count;
+                                if (listaPreguntas != null)
+                                {
+                                    if ( nuevasPreguntasCount == preguntasCount) {
+                                        for (var i = 0; i < nuevasPreguntasCount; i++) {
+                                            if (values[i] != "")
+                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i],i);
+                                        }
+                                    }
+                                    else if(nuevasPreguntasCount < preguntasCount)
+                                    {
+                                        var dif = preguntasCount - nuevasPreguntasCount;
+                                        for (var i = 0; i < (preguntasCount-dif); i++)
+                                        {
+                                            if(values[i]!="")
+                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i],i);
+                                        }
+                                        for( var i=nuevasPreguntasCount; i< preguntasCount; i++)
+                                        {
+                                            AplicacionService.RemovePregunta(formaID, listaPreguntas[i].cvePregunta);
+                                        }
+                                    }
+                                    else{
+                                        var dif = nuevasPreguntasCount - preguntasCount;
+                                        for (var i = 0; i < preguntasCount; i++)
+                                        {
+                                            if (values[i] != "")
+                                                AplicacionService.GuardaPregunta(listaPreguntas[i].cvePregunta, values[i], i);
+                                        }
+                                        for(var i=preguntasCount; i < nuevasPreguntasCount; i++)
+                                        {
+                                            if (values[i] != "")
+                                                AplicacionService.InsertaPregunta(formaID, values[i], i);
+                                        }
+                                    }
+
+                                }   
+                            }
+                        }
+                    }
+                }
             }
+            Response.Redirect("AdministraFormulario.aspx?p=" + formaID);
         }
 
 
