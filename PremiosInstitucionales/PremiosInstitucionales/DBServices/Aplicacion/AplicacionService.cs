@@ -97,6 +97,63 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
 
         }
 
+        public static List<String> GetJuecesIdsCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                var query = (from juezCategoria in dbContext.PI_BA_JuezPorCategoria
+                             where juezCategoria.cveCategoria.Equals(idCategoria)
+                             select juezCategoria.cveJuez).ToList();
+                return query;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static void RemoveJuezCategoria(String idCategoria)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            var query = (from juezCategoria in dbContext.PI_BA_JuezPorCategoria
+                            where juezCategoria.cveCategoria.Equals(idCategoria)
+                            select juezCategoria).ToList();
+
+
+
+            foreach (var juez in query)
+            {
+                dbContext.PI_BA_JuezPorCategoria.Remove(juez);
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public static void AsignarJuecesCategoria(String idCategoria, List<String> idJueces)
+        {
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                foreach (var idJuez in idJueces)
+                {
+
+                    PI_BA_JuezPorCategoria row = new PI_BA_JuezPorCategoria();
+                    row.cveCategoria = idCategoria;
+                    row.cveJuez = idJuez;
+                    row.cveJuezPorCategoria = Guid.NewGuid().ToString();
+                    dbContext.PI_BA_JuezPorCategoria.Add(row);
+
+                }
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
+
         public static void CrearAplicacion(PI_BA_Aplicacion aplicacion, List<PI_BA_Respuesta> respuestas)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

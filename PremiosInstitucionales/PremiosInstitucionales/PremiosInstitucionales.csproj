@@ -172,6 +172,7 @@
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
+    <Content Include="Resources\js\AsignarJuez.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\crearConvocatoria.js" />
     <Content Include="Resources\js\global.js" />
@@ -215,6 +216,7 @@
     <Content Include="WebForms\AdministraGanadores.aspx" />
     <Content Include="WebForms\AdministraInformacionPersonal.aspx" />
     <Content Include="WebForms\AdministraPremios.aspx" />
+    <Content Include="WebForms\AsignarJuez.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
@@ -397,6 +399,13 @@
     </Compile>
     <Compile Include="WebForms\AdministraPremios.aspx.designer.cs">
       <DependentUpon>AdministraPremios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\AsignarJuez.aspx.cs">
+      <DependentUpon>AsignarJuez.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\AsignarJuez.aspx.designer.cs">
+      <DependentUpon>AsignarJuez.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\AdministraUsuarios.aspx.cs">
       <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
