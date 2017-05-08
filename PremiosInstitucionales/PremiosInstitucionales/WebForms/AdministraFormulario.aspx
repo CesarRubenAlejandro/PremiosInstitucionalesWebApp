@@ -3,7 +3,7 @@
 <asp:Content ID="Content" ContentPlaceHolderID="HeadContent" runat ="server">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
-    <script src="../scripts/adminQ.js"></script>
+    <script src="/scripts/adminQ.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <!-- Contenido -->
@@ -36,12 +36,10 @@
 		<div id="PreguntaPadre" class="wrapper" runat="server">
 			<button class="add_button">Agrega Pregunta</button>
 			<div id="simpleList" class="list-group" runat="server" ClientIDMode="Static">
-                <asp:Panel runat="server" id="PanelPreguntas" ClientIDMode="Static" class="list-groups">
-            </asp:Panel>
 			</div>
 		</div>
         <div class="col-sm-offset-6 col-sm-3">
-         <asp:Button class="btn btn-primary" ID="Button1" runat="server"  Text="Guardar" style="width:100%;"/><br /> <br /> <br />
+         <asp:Button class="btn btn-primary" ID="Button1" runat="server"  OnClick="Guarda_Formulario" Text="Guardar" style="width:100%;"/><br /> <br /> <br />
             </div>
             </form>
 	</div>

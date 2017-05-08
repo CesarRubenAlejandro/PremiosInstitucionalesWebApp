@@ -29,10 +29,12 @@ $(function()
  
 
 
-$(document).ready(function(){
+$(document).ready(function () {
+    var num = 10000;
     $(".add_button").click(function(e){
         e.preventDefault();
-        $('#PanelPreguntas').append('<div class="list-group-item"><input class="pregunta form-control" type="text" name="mytext[]" placeholder= "Pregunta"/><a href="#" class="remove">Eliminar</a></div>');
+        $('#simpleList').append('<div class="list-group-item"><input class="pregunta form-control" id="pregunta_'+num +'" type="text" name="mytext" placeholder= "Pregunta" pos=""/><a href="#" class="remove">Eliminar</a></div>');
+        num++;
     });
 
     $('.wrapper').on("click",".remove", function(e){
@@ -40,9 +42,8 @@ $(document).ready(function(){
         $(this).parent('div').remove();
     });
 
-    $('#PanelPreguntas').sortable({
-        stop: function(event,div){
-            alert(div.item.index());
+    $('#simpleList').sortable({
+        stop: function (event, div) {
         }
     });
 });

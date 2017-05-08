@@ -12,14 +12,14 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class AdministraFormulario : System.Web.UI.Page
     {
-      
+        int numPregunta = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
 
             if (!IsPostBack)
             {
-                string formaID = Request.QueryString["formaID"];
+                string formaID = Request.QueryString["p"];
                 var forma = ConvocatoriaService.GetFormaByID(formaID);
 
                 string categoriaID = forma.cveCategoria;
@@ -53,7 +53,7 @@ namespace PremiosInstitucionales.WebForms
             var listaPreguntas = AplicacionService.GetFormularioByCategoria(categoria.cveCategoria);
             if (listaPreguntas != null)
             {
-                int numPregunta = 0;
+                
                 foreach (var pregunta in listaPreguntas)
                 {
                     Panel panel = new Panel();
@@ -62,10 +62,12 @@ namespace PremiosInstitucionales.WebForms
                     input.Text = pregunta.Texto;
                     input.CssClass = "pregunta form-control";
                     input.Attributes.Add("type", "text");
-                    input.Attributes.Add("name", "mytext[]");
+                    input.Attributes.Add("name", "mytext");
                     input.Attributes.Add("placeholder", "Pregunta");
+                    input.Attributes.Add("id", pregunta.cvePregunta);
+                    LiteralControl lit = new LiteralControl("<input class='pregunta form-control' type='text' name='mytext' placeholder='Pregunta' value='"+pregunta.Texto+"'/>");
                     LiteralControl remove = new LiteralControl("<a href='#' class='remove'>Eliminar</a>");
-                    panel.Controls.Add(input);
+                    panel.Controls.Add(lit);
                     panel.Controls.Add(remove);
                     simpleList.Controls.Add(panel);
                 }
@@ -76,18 +78,27 @@ namespace PremiosInstitucionales.WebForms
                 TextBox input = new TextBox();
                 input.CssClass = "pregunta form-control";
                 input.Attributes.Add("type", "text");
-                input.Attributes.Add("name", "mytext[]");
+                input.Attributes.Add("name", "mytext");
                 input.Attributes.Add("placeholder", "Pregunta");
+                input.Attributes.Add("id", "pregunta_" + numPregunta);
                 LiteralControl remove = new LiteralControl("<a href='#' class='remove'>Eliminar</a>");
                 panel.Controls.Add(input);
                 panel.Controls.Add(remove);
                 simpleList.Controls.Add(panel);
+
             }
+            numPregunta++;
 
             //<div class="list-group-item"><input class="pregunta form-control" type="text" name="mytext[]" placeholder= "Pregunta"/><a href="#" class="remove">Eliminar</a></div>
+            //Guid.NewGuid().ToString();
         }
+        protected void Guarda_Formulario(object sender, EventArgs e) {
 
-
+            var results = this.Controls.OfType<TextBox>().Where(c => Convert.ToString(c.Attributes["class"]).Contains("pregunta"));
+            foreach (var tb in results) {
+                Response.Write("SI SE PUDO2222222");
+            }
+        }
 
 
     }

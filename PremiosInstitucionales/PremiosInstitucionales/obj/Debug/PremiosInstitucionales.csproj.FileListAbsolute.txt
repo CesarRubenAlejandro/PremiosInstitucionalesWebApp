@@ -14,17 +14,6 @@ C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucion
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\PremiosInstitucionales.dll.config
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\PremiosInstitucionales.dll
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\PremiosInstitucionales.pdb
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\AjaxControlToolkit.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\EntityFramework.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\EntityFramework.SqlServer.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.Agent.Intercept.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.DependencyCollector.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.Web.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.WindowsServer.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.ApplicationInsights.dll
-C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\EntityFramework.xml
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\EntityFramework.SqlServer.xml
 C:\Users\Frutos\Documents\GitHub\PremiosInstitucionalesWebApp\PremiosInstitucionales\PremiosInstitucionales\bin\Microsoft.AI.DependencyCollector.xml

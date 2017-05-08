@@ -1,8 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
-<<<<<<< HEAD
-=======
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
->>>>>>> refs/remotes/origin/master
 using System;
 using System.Collections.Generic;
 using System.Linq;
