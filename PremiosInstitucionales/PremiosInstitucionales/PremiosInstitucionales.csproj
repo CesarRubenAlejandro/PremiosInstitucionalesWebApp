@@ -260,9 +260,11 @@
     <Content Include="Resources\svg\juez.svg" />
     <Content Include="Resources\svg\learning.svg" />
     <Content Include="Resources\svg\logout.svg" />
+    <Content Include="Resources\svg\plus.svg" />
     <Content Include="Resources\svg\proponer.svg" />
     <Content Include="Resources\svg\shield.svg" />
     <Content Include="Resources\svg\teacher.svg" />
+    <Content Include="Resources\svg\team.svg" />
     <Content Include="scripts\adminQ.js" />
     <Content Include="scripts\aplicaciones.js" />
     <Content Include="scripts\global.js" />

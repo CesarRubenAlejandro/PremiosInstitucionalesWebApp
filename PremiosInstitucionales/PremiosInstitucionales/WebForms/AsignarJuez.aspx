@@ -11,8 +11,8 @@
     
     <div id="centerDiv">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#Formulario"><strong>Formulario</strong></a></li>
-            <li><a data-toggle="tab" href="#Jueces"><strong>Asignar Jueces</strong></a></li>
+            <li class="active li-center"><a data-toggle="tab" href="#Formulario"><strong>Formulario</strong></a></li>
+            <li class="li-center"><a data-toggle="tab" href="#Jueces"><strong>Asignar Jueces</strong></a></li>
         </ul>
     </div>
 

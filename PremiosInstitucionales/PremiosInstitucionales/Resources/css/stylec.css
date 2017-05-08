@@ -537,13 +537,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
-.nav-tabs > li, .nav-pills > li {
+.nav-tabs > .li-center,
+.nav-pills > .li-center {
     float:none;
     display:inline-block;
     *display:inline; /* ie7 fix */
      zoom:1; /* hasLayout ie7 trigger */
 }
 
-.nav-tabs, .nav-pills {
+.nav-tabs,
+.nav-pills {
     text-align:center;
 }
