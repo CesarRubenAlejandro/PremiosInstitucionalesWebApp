@@ -24,6 +24,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form runat="server">
     <!-- Navigation bar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -78,18 +79,19 @@
 						<div class="form-group">
 						<label class="col-lg-3 control-label">Correo eléctronico:</label>
 						<div class="col-lg-8">
-							<input class="form-control" value="rubencv@hollowlife.com" type="text">
+
+                                <asp:TextBox class="form-control" ID="correoCandidato" ClientIDMode="Static" runat="server" placeholder="Correo de Juez"></asp:TextBox><br />
 						</div>
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Invitar</button>
+					<asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Invitar_Candidato" Text="Invitar" />
 				</div>
 			</div>
 		</div>
 	</div>
-
+    </form>
 </body>
 </html>
