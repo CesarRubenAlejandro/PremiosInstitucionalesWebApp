@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="EvaluaAplicacion.aspx.cs" Inherits="PremiosInstitucionales.WebForms.EvaluaAplicacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="EvaluaAplicacion.aspx.cs" Inherits="PremiosInstitucionales.WebForms.EvaluaAplicacion" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="container fadeView">
@@ -12,7 +12,6 @@
                 <hr class="shorthr" />
             </div>
         </div>
-        <form runat="server" id="FormFormulario">
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">
             </asp:Panel>
 
@@ -58,6 +57,5 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 </asp:Content>

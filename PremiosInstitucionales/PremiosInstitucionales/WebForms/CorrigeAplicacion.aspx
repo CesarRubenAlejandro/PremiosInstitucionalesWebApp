@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CorrigeAplicacion.aspx.cs" 
-    MasterPageFile="~/mp-Candidato.Master" Inherits="PremiosInstitucionales.WebForms.CorrigeAplicacion" %>
+    MasterPageFile="~/mp-Candidato.Master" Inherits="PremiosInstitucionales.WebForms.CorrigeAplicacion" EnableEventValidation="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
@@ -15,7 +15,6 @@
         <div class="text-center">
 			<h5 runat="server" id="alreadySubmittedLabel" visible="false"> Ya se ha realizado una aplicación para esta categoría. Para conocer el estatus, por favor dirigirse a <a href="WebForms/AplicacionesCandidato.aspx"> mis aplicaciones vigentes </a></h5>
 		</div>
-        <form runat="server" id="FormFormulario">
             <asp:Panel runat="server" id="PanelFormulario" class="row question-form">
             </asp:Panel>
             <div class="btn-group-right">
@@ -26,6 +25,5 @@
             </div>
             <asp:Button style="display: none;" id="EnviarBtn" runat="server" onclick="EnviarBttn_Click" 
                     CssClass="ApplicationButton" Text="Enviar aplicación" />
-        </form>
     </div>
 </asp:Content>

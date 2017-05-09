@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraAplicacionesPendientes.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraAplicacionesPendientes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraAplicacionesPendientes.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraAplicacionesPendientes" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script type="text/javascript">
@@ -7,8 +7,6 @@
             return true;
         }
     </script>
-
-    <form id="form1" runat="server" style="all: unset;">
         <asp:hiddenfield id="IdAppHidden" value="" runat="server"/>
         <div class="container fadeView">
             <div class="container">
@@ -68,5 +66,4 @@
                 </div>
             </div>
         </div>
-    </form>
 </asp:Content>

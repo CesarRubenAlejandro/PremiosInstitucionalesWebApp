@@ -1,9 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InformacionPersonalCandidato.aspx.cs"
-    Inherits="PremiosInstitucionales.WebForms.InformacionPersonalCandidato" MasterPageFile="~/mp-Candidato.Master" %>
+    Inherits="PremiosInstitucionales.WebForms.InformacionPersonalCandidato" MasterPageFile="~/mp-Candidato.Master" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="Server">
     <!-- Invite candidate -->
-    <form id="form1" runat="server" style="all: unset;">
         
         <div class="container fadeView">
             <div class="container">
@@ -178,6 +177,4 @@
                 </div>
             </div>
         </div>
-
-    </form>
 </asp:Content>

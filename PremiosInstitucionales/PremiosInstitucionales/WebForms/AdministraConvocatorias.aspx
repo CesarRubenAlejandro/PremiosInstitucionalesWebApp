@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraConvocatorias.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria"%>
+    Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server">
 
     <!-- CSS -->
     <link href='../Resources/css/dataTables.css' rel="stylesheet" type="text/css"/>
@@ -137,6 +136,4 @@
             </div>
         </div>
     </div>
-
-    </form>
 </asp:Content>

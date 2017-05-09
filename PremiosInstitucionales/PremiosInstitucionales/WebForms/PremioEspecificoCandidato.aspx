@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PremioEspecificoCandidato.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.PremioEspecificoCandidato" MasterPageFile="~/MasterPage.Master"%>
+    Inherits="PremiosInstitucionales.WebForms.PremioEspecificoCandidato" MasterPageFile="~/MasterPage.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     

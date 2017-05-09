@@ -1,8 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraPremios.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraPremios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraPremios.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraPremios" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <!-- Crear premio - modal -->
-    <form id="form1" runat="server" style="all: unset;">
         <div class="modal fade" id="modalNewAward" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-big" role="document">
                 <div class="modal-content">
@@ -43,7 +42,6 @@
                 </div>
             </div>
         </div>
-    </form>
     <!-- Contenido -->
     <div class="container fadeView">
 

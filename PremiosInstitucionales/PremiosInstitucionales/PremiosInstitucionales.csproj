@@ -179,6 +179,7 @@
     <Content Include="Resources\css\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Resources\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Resources\css\jquery-ui.css" />
+    <Content Include="Resources\css\sb-admin-2.css" />
     <Content Include="Resources\img\default-award.png" />
     <Content Include="Content\aplicaciones.css" />
     <Content Include="Content\bootstrap-theme.css" />
