@@ -129,6 +129,8 @@ namespace PremiosInstitucionales.WebForms
                 InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString());
             }
 
+            Response.Redirect("InformacionPersonalCandidato.aspx");
+
             
         }
 
