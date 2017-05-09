@@ -1,4 +1,3 @@
-﻿<<<<<<< HEAD
 ﻿<%-- 
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" 
