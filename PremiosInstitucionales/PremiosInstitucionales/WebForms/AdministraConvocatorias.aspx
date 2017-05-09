@@ -2,7 +2,6 @@
     Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server">
 
     <!-- CSS -->
     <link href='../Resources/css/dataTables.css' rel="stylesheet" type="text/css"/>
@@ -137,6 +136,4 @@
             </div>
         </div>
     </div>
-
-    </form>
 </asp:Content>

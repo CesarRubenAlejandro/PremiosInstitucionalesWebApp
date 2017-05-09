@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraInformacionPersonal.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraInformacionPersonal" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server" style="all: unset;">
-        
+
         <div class="container fadeView">
             <div class="container">
                 <div class="row">
@@ -195,7 +194,6 @@
             </div>
         </div>
 
-    </form>
     <asp:Panel class="row" style="margin-top: 20px;" id="alertInfo" runat="server" Visible="false">
       <div class="col-md-6 col-md-offset-3">
       <div class="alert alert-info alert-dismissable">
