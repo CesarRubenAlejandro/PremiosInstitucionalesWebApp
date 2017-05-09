@@ -118,7 +118,7 @@
 --%>
 
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" 
+<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="InicioCandidato.aspx.cs" 
     Inherits="PremiosInstitucionales.WebForms.InicioCandidato" MasterPageFile="~/mp-Candidato.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
