@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Juez" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InicioJuez.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioJuez" %>
+﻿<%@ Page Title="Juez" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InicioJuez.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioJuez" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">

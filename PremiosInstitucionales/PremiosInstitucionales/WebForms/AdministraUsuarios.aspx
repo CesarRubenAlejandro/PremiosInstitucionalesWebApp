@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraUsuarios.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraUsuarios.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraUsuarios" EnableEventValidation="false" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script src="../Resources/js/jquery.dataTables.js" type="text/javascript" defer="defer"></script>
     <script src="../Resources/js/listaUsuariosCandidato.js" type="text/javascript" defer="defer"></script>

@@ -1,5 +1,5 @@
 ﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaPremios.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MasterPage.Master" %>
+    Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MasterPage.Master" EnableEventValidation="false" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 <link href='<%= ResolveUrl("/Content/stylePremios.css")%>'  rel="stylesheet" type="text/css" />

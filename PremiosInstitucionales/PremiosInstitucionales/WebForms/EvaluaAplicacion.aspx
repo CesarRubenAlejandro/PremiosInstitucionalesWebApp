@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="EvaluaAplicacion.aspx.cs" Inherits="PremiosInstitucionales.WebForms.EvaluaAplicacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="EvaluaAplicacion.aspx.cs" Inherits="PremiosInstitucionales.WebForms.EvaluaAplicacion" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="container fadeView">

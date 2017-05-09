@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.Login" MasterPageFile="~/PaginasIniciales.Master"%>
+    Inherits="PremiosInstitucionales.WebForms.Login" MasterPageFile="~/PaginasIniciales.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
       

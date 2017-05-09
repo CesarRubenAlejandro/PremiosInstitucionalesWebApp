@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraAplicacionesPendientes.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraAplicacionesPendientes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraAplicacionesPendientes.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraAplicacionesPendientes" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <script type="text/javascript">

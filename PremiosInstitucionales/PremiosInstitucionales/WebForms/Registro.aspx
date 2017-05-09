@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="PremiosInstitucionales.WebForms.WebForm1" 
-    MasterPageFile="~/PaginasIniciales.Master"%>
+    MasterPageFile="~/PaginasIniciales.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <div class="paginasIniciales" style="text-align:center">

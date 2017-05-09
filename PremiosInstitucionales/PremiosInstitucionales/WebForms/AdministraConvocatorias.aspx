@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraConvocatorias.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria"%>
+    Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 

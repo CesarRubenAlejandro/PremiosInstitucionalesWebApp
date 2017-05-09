@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AplicacionesCandidato.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AplicacionesCandidato" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AplicacionesCandidato.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AplicacionesCandidato" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <link href='<%= ResolveUrl("~/Resources/css/AplicacionesCandidato.css")%>'  rel="stylesheet" type="text/css" />
