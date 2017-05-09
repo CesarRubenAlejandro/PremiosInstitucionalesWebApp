@@ -11,8 +11,13 @@ $(document).ready(function() {
 		window.location = newLocation;
 	}
 
-	var clave = document.getElementById('clave');
 });
+
+function changeAnchor(s, premio) {
+    var x = s[s.selectedIndex].id;
+    document.getElementById(premio).href = "Formulario.aspx?c="+x;
+
+}
 
 var loadingSpinner, changePasswordForm, passwordCheckMark, changeAlert;
 var svLoadingSpinner, svChangePasswordForm, svPasswordCheckMark;
