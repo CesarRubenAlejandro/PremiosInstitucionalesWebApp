@@ -40,16 +40,6 @@
                                         <td>Proin at nibh a eros rutrum lobortis.</td>
                                         <td>Pellentesque risus nisl, feugiat at varius id, bibendum ac diam.</td>
                                     </tr>
-                                    <tr style="text-align: center;">
-                                        <td>
-                                            <input type="number" name="quantity" min="0" max="100" value="0" size="3" style="text-align: center;" /></td>
-                                        <td>
-                                            <input type="number" name="quantity" min="0" max="100" value="0" size="3" style="text-align: center;" /></td>
-                                        <td>
-                                            <input type="number" name="quantity" min="0" max="100" value="0" size="3" style="text-align: center;" /></td>
-                                        <td>
-                                            <input type="number" name="quantity" min="0" max="100" value="0" size="3" style="text-align: center;" /></td>
-                                    </tr>
                                 </tbody>
                             </table>
                             <div style="text-align: center">
