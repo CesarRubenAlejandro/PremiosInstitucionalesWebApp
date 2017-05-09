@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="Server">
     <!-- Invite candidate -->
     <form id="form1" runat="server" style="all: unset;">
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+        
         <div class="container fadeView">
             <div class="container">
                 <div class="row">
@@ -87,10 +87,10 @@
                                             Cambiar contraseña
                                         </button>
                                     </a>
-                                    <a class="no-underline" data-toggle="modal" data-target="#modalAvisoPrivacidad">
+                                    <a runat="server" id="avisoPrivacidad" class="no-underline" data-toggle="modal" data-target="#modalAvisoPrivacidad">
                                         <button type="button" class="btn btn-primary">Guardar Cambios</button>
                                     </a>
-                                    <%-- sendFormAux(); --%>
+                                    <button runat="server" id="guardarCambiosBtn" type="button" class="btn btn-primary" onclick="sendFormAux();">Guardar Cambios</button>
 
                                     <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click" />
                                 </div>
@@ -167,13 +167,13 @@
                             </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus. </p>
 
-                        <input type="checkbox">
+                        <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" >
                         Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a la <a href="#">Ley de Información Personal </a>para el uso del sistema.
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">ACEPTAR</button>
+                        <button type="button" class="btn btn-primary" id="toggleCheckboxButton" onclick="sendFormAux();" disabled>Guardar Cambios</button>
                     </div>
                 </div>
             </div>

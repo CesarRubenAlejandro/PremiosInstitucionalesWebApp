@@ -34,15 +34,15 @@ namespace PremiosInstitucionales.WebForms
         private void MostrarCampos()
         {
 
-            var candidato = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
-            NombresTextBox.Text = candidato.Nombre;
-            ApellidosTextBox.Text = candidato.Apellido;
+            var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
+            NombresTextBox.Text = juez.Nombre;
+            ApellidosTextBox.Text = juez.Apellido;
             
-            if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+            if (juez.NombreImagen != null && juez.NombreImagen.Length > 0)
             {
-                if (File.Exists(Server.MapPath("~/ProfilePictures/" + candidato.NombreImagen)))
+                if (File.Exists(Server.MapPath("~/ProfilePictures/" + juez.NombreImagen)))
                 {
-                    avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + candidato.NombreImagen + ")");
+                    avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + juez.NombreImagen + ")");
                 }
             }
 
@@ -61,10 +61,10 @@ namespace PremiosInstitucionales.WebForms
 
         protected void ActualizarContrasena()
         {
-            var candidato = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
+            var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
 
             string sCurrentPassword = currentPwdTextBox.Text;
-            if (candidato.Password == sCurrentPassword)
+            if (juez.Password == sCurrentPassword)
             {
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
@@ -108,12 +108,12 @@ namespace PremiosInstitucionales.WebForms
                 // Get filename
                 string fileName = Path.GetFileName(FileUploadImage.PostedFile.FileName);
 
-                // Get logged in candidate
-                var candidato = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
-                if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+                // Get logged in judge
+                var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
+                if (juez.NombreImagen != null && juez.NombreImagen.Length > 0)
                 {
                     // Delete previous image...
-                    File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
+                    File.Delete(Server.MapPath("~/ProfilePictures/") + juez.NombreImagen);
                 }
 
                 // Get string image format (png, jpg, etc)

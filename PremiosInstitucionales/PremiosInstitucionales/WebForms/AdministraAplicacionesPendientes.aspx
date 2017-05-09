@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h3 class="section-heading">Aplicaciones pendientes</h3>
+                        <h3 class="section-heading">Registros pendientes</h3>
                         <hr class="shorthr">
                     </div>
                 </div>
