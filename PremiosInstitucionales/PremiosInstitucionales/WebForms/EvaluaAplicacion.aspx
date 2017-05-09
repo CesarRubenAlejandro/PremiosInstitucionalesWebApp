@@ -12,7 +12,6 @@
                 <hr class="shorthr" />
             </div>
         </div>
-        <form runat="server" id="FormFormulario">
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">
             </asp:Panel>
 
@@ -58,6 +57,5 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 </asp:Content>

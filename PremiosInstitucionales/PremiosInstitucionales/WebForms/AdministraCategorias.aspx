@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraCategorias.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraCategorias" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server" style="all: unset;">
         <div class="modal fade" id="modalNewCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -29,7 +28,6 @@
                 </div>
             </div>
         </div>
-    </form>
 
     <!-- Contenido -->
     <div class="container fadeView">

@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="Server">
     <!-- Invite candidate -->
-    <form id="form1" runat="server" style="all: unset;">
         
         <div class="container fadeView">
             <div class="container">
@@ -178,6 +177,4 @@
                 </div>
             </div>
         </div>
-
-    </form>
 </asp:Content>

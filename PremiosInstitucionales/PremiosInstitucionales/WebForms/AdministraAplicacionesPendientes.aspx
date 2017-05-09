@@ -7,8 +7,6 @@
             return true;
         }
     </script>
-
-    <form id="form1" runat="server" style="all: unset;">
         <asp:hiddenfield id="IdAppHidden" value="" runat="server"/>
         <div class="container fadeView">
             <div class="container">
@@ -68,5 +66,4 @@
                 </div>
             </div>
         </div>
-    </form>
 </asp:Content>
