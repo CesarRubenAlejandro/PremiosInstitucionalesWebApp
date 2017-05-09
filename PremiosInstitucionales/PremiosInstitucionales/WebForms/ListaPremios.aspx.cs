@@ -77,7 +77,7 @@ namespace PremiosInstitucionales.WebForms
                                         "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor felis et mi luctus facilisis. Aenean consectetur malesuada facilisis. Cras vitae dolor sollicitudin, gravida lacus sed, pretium tortor. Sed rhoncus eros vitae mauris auctor condimentum. Proin ullamcorper augue mi. Nulla id felis ac ipsum aliquam sollicitudin.</p>" +
                                         "<div class='form-group'>" +
                                         "<label for='sel"+i+"'> Selecciona la categoria correspondiente:</label>"+
-                                        "<select class='form-control' id='sel"+i+"'>";
+                                        "<select class='form-control' onchange='changeAnchor(this,"+premio.cvePremio+")' id ='sel"+i+"'>";
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
                 if (conv == null) return;
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
@@ -94,8 +94,7 @@ namespace PremiosInstitucionales.WebForms
                 lit3.Text= "</select></div></div>"+
                             "<div class='modal-footer'>"+
                                 "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>"+
-                                    // HARD CODED
-                                    "<a id='linkCat' href='Formulario.aspx?c=categoria3'><button type='button' class='btn btn-primary'> Aplicar</button></a>" +
+                                    "<a id='"+premio.cvePremio+"' href='Formulario.aspx?c="+listCat[0].cveCategoria+"'><button type='button' class='btn btn-primary'> Aplicar</button></a>" +
                                     "</div></div></div></div>";
                 modalList.Controls.Add(lit3);
                 panelNuevo.Controls.Add(imgButton);

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="InicioAdmin.aspx.cs" Inherits="PremiosInstitucionales.WebForms.InicioAdmin" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form runat="server">
         <!-- Welcome message -->
         <div class="container welcome-box">
             <!-- Main component for a primary marketing message or call to action -->
@@ -55,6 +54,7 @@
                         </div>
                     </div>
                 </a>
+                <a data-toggle="modal" data-target="#modalInvite">
                 <div class="col-lg-6">
                     <div class="row service-list">
                         <div class="col-xs-4 text-center" style="height: 96px">
@@ -66,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+                    </a>
                 <a href="AdministraUsuarios.aspx?t=juez" class="no-underline">
                     <div class="col-lg-6">
                         <div class="row service-list">
@@ -79,7 +80,7 @@
                         </div>
                     </div>
                 </a>
-                <a data-toggle="modal" data-target="#modalInvite">
+                <a data-toggle="modal" data-target="#modalInviteJ">
                     <div class="col-lg-6">
                         <div class="row service-list">
                             <div class="col-xs-4 text-center" style="height: 96px">
@@ -107,7 +108,7 @@
                 </a>
             </div>
         </div>
-        <div class="modal fade" id="modalInvite" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="modalInviteJ" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -133,5 +134,4 @@
                 </div>
             </div>
         </div>
-    </form>
 </asp:Content>

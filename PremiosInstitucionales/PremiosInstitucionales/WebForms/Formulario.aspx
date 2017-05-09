@@ -15,7 +15,6 @@
         <div class="text-center">
             <h5 runat="server" id="alreadySubmittedLabel" visible="false">Ya se ha realizado una aplicación para esta categoría. Para conocer el estatus, por favor dirigirse a <a href="AplicacionesCandidato.aspx">mis aplicaciones vigentes </a></h5>
         </div>
-        <form runat="server" id="FormFormulario">
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">
             </asp:Panel>
 
@@ -26,7 +25,5 @@
                 <button type="button" class="btn btn-primary" onclick="sendFormAux()">Enviar</button>
                 <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" OnClick="EnviarAplicacion" Text="Enviar aplicación" />
             </div>
-        </form>
-
     </div>
 </asp:Content>
