@@ -7,14 +7,12 @@
             return true;
         }
     </script>
-
-    <form id="form1" runat="server" style="all: unset;">
         <asp:hiddenfield id="IdAppHidden" value="" runat="server"/>
         <div class="container fadeView">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h3 class="section-heading">Aplicaciones pendientes</h3>
+                        <h3 class="section-heading">Registros pendientes</h3>
                         <hr class="shorthr">
                     </div>
                 </div>
@@ -68,5 +66,4 @@
                 </div>
             </div>
         </div>
-    </form>
 </asp:Content>

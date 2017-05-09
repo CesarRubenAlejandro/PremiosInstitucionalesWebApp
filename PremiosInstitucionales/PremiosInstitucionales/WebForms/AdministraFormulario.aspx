@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraFormulario.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraFormulario" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraFormulario.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraFormulario" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
@@ -12,7 +12,6 @@
     <link   href="../Resources/css/dataTables.css" rel="stylesheet" type="text/css" />
 
     <!-- Contenido -->
-    <form runat="server" id="FormularioPreguntas">
         <div class="container fadeView">
 
             <!-- Premio & Categoria (Nombres) -->
@@ -103,5 +102,4 @@
                 </div>
             </div> 
         </div>
-    </form>
 </asp:Content>
