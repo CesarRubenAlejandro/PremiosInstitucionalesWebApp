@@ -4,7 +4,6 @@
 
     <!-- Scripts -->
     <script src="../Resources/js/adminQ.js" type="text/javascript" defer="defer"></script>
-    <script src="../Resources/js/adminQ.js" type="text/javascript" defer="defer"></script>
     <script src="../Resources/js/jquery-ui.js" type="text/javascript" defer="defer"></script>
     <script src="../Resources/js/jquery.dataTables.js" type="text/javascript" defer="defer"></script>
     <script src="../Resources/js/AsignarJuez.js" type="text/javascript" defer="defer"></script>

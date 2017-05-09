@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <link href='<%= ResolveUrl("~/Resources/css/PremiosInstitucionalesJuez.css")%>'  rel="stylesheet" type="text/css" />
+    <link href='<%= ResolveUrl("~/Resources/css/sb-admin-2.css")%>'  rel="stylesheet" type="text/css" />
     <div class="container fadeView">
 
         <div class="container">
