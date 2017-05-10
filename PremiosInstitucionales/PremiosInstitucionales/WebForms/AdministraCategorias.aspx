@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraCategorias.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraCategorias" %>
+﻿<%@ Page Title="" EnableEventValidation="false" Language="C#" MasterPageFile="~/mp-Candidato.Master" AutoEventWireup="true" CodeBehind="AdministraCategorias.aspx.cs" Inherits="PremiosInstitucionales.WebForms.AdministraCategorias"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
         <div class="modal fade" id="modalNewCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

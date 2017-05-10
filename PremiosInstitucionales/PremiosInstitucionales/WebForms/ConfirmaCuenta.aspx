@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ConfirmaCuenta.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.ConfirmaCuenta" MasterPageFile="~/PaginasIniciales.Master"%>
+    Inherits="PremiosInstitucionales.WebForms.ConfirmaCuenta" MasterPageFile="~/PaginasIniciales.Master" EnableEventValidation="false"%>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">

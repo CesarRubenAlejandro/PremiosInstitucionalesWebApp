@@ -34,6 +34,13 @@ namespace PremiosInstitucionales.WebForms
             // crear un panel para cada premio con su link respectivo
             foreach (var premio in listaPremios)
             {
+                var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
+                if (conv == null) break;
+
+                var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
+                if (listCat == null) break;
+                if (listCat.Count == 0) break;
+
                 Literal lit = new Literal();
                 var panelNuevo = new Panel();
                 panelNuevo.CssClass = "premioPanel";
@@ -61,7 +68,7 @@ namespace PremiosInstitucionales.WebForms
 
 
                 lit.Text = "<div class='col-md-6'>" + "<div class='blockquote-box clearfix' style=''><div class='square pull-left'>" +
-                    "<img src = '/AwardPictures/" + premio.NombreImagen + "' class='img-square'/>" + "</div><h4>" + premio.Nombre + "</h4><p>Lorem Ipsum</p>" +
+                    "<img src = '/AwardPictures/" + premio.NombreImagen + "' class='img-square'/>" + "</div><h4>" + premio.Nombre + "</h4><p>" + premio.Descripcion + "</p>" +
                     "<div style='text-align: right; '><button id = '" + premio.cvePremio + "' type = 'button' class='btn btn-sm btn-primary'  data-toggle='modal' data-target='#myModal" + i + "'>Detalles</button></div></div></div>";
                 colPremio.Controls.Add(lit);
                 Literal lit2 = new Literal();
@@ -74,13 +81,12 @@ namespace PremiosInstitucionales.WebForms
                                                 "<hr class='shorthr'>" +
                                                     "</div>" +
                                         "<div class='modal-body'>" +
-                                        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor felis et mi luctus facilisis. Aenean consectetur malesuada facilisis. Cras vitae dolor sollicitudin, gravida lacus sed, pretium tortor. Sed rhoncus eros vitae mauris auctor condimentum. Proin ullamcorper augue mi. Nulla id felis ac ipsum aliquam sollicitudin.</p>" +
+                                        "<p>"+ premio.Descripcion +"</p>" +
                                         "<div class='form-group'>" +
                                         "<label for='sel"+i+"'> Selecciona la categoria correspondiente:</label>"+
-                                        "<select class='form-control' onchange='changeAnchor(this,"+premio.cvePremio+")' id ='sel"+i+"'>";
-                var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
-                if (conv == null) return;
-                var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
+                                        "<select class='form-control' onchange='changeAnchor(this,\""+premio.cvePremio+"\")' id ='sel"+i+"'>";
+                
+                
                 modalList.Controls.Add(lit2);
 
 

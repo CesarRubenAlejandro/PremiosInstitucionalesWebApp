@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Recuperar.aspx.cs" Inherits="PremiosInstitucionales.WebForms.Recuperar" MasterPageFile="~/PaginasIniciales.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Recuperar.aspx.cs" Inherits="PremiosInstitucionales.WebForms.Recuperar" MasterPageFile="~/PaginasIniciales.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <div style="text-align:center">

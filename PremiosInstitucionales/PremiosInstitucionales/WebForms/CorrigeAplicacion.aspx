@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CorrigeAplicacion.aspx.cs" 
-    MasterPageFile="~/mp-Candidato.Master" Inherits="PremiosInstitucionales.WebForms.CorrigeAplicacion" %>
+    MasterPageFile="~/mp-Candidato.Master" Inherits="PremiosInstitucionales.WebForms.CorrigeAplicacion" EnableEventValidation="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
