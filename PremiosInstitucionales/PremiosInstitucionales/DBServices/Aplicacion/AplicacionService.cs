@@ -116,19 +116,28 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
         }
         public static void RemovePregunta(String idForma, String idPregunta)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var query = (from pregunta in dbContext.PI_BA_PreguntasPorForma
-                         where pregunta.cveForma.Equals(idForma) && pregunta.cvePregunta.Equals(idPregunta)
-                         select pregunta).FirstOrDefault();
-            dbContext.PI_BA_PreguntasPorForma.Remove(query);
 
-            dbContext.SaveChanges();
+            try
+            {
+                dbContext = new wPremiosInstitucionalesdbEntities();
+                var query = (from pregunta in dbContext.PI_BA_PreguntasPorForma
+                             where pregunta.cveForma.Equals(idForma) && pregunta.cvePregunta.Equals(idPregunta)
+                             select pregunta).FirstOrDefault();
+                dbContext.PI_BA_PreguntasPorForma.Remove(query);
 
-            var query2 = (from pregunta in dbContext.PI_BA_Pregunta
-                          where pregunta.cvePregunta.Equals(idPregunta)
-                          select pregunta).FirstOrDefault();
-            dbContext.PI_BA_Pregunta.Remove(query2);
-            dbContext.SaveChanges();
+                dbContext.SaveChanges();
+
+                var query2 = (from pregunta in dbContext.PI_BA_Pregunta
+                              where pregunta.cvePregunta.Equals(idPregunta)
+                              select pregunta).FirstOrDefault();
+                dbContext.PI_BA_Pregunta.Remove(query2);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+
         }
         public static void InsertaPregunta(String idForma, String valor, int orden)
         {

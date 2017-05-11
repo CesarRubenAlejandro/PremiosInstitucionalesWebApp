@@ -226,11 +226,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="ProfilePictures\0f704651-076a-412c-96dd-00266ae51ab3.png" />
-    <Content Include="ProfilePictures\1ae1c9c6-d30c-4586-9a5e-419077a51378.jpg" />
-    <Content Include="ProfilePictures\646e2deb-92ce-4206-aece-15696122527d.png" />
-    <Content Include="ProfilePictures\78117067-a037-4e7c-a775-92bb7d5a7dae.jpg" />
-    <Content Include="ProfilePictures\df98d8a3-0978-4aa5-8f20-726e32026bcd.jpg" />
     <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\dataTables.css" />
@@ -297,7 +292,6 @@
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
-    <Content Include="WebForms\CreaJuez.aspx" />
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
     <Content Include="WebForms\InformacionPersonalCandidato.aspx" />
@@ -307,11 +301,8 @@
     <Content Include="WebForms\InicioJuez.aspx" />
     <Content Include="WebForms\ListaParticipantes.aspx" />
     <Content Include="WebForms\ListaPremios.aspx" />
-    <Content Include="WebForms\PremioEspecificoCandidato.aspx" />
     <Content Include="WebForms\PremiosInstitucionalesJuez.aspx" />
     <Content Include="WebForms\RecuperaCuenta.aspx" />
-    <Content Include="WebForms\Recuperar.aspx" />
-    <Content Include="WebForms\Registro.aspx" />
     <Content Include="PaginasIniciales.Master" />
     <Content Include="mp-Candidato.Master" />
     <Content Include="bin\ApplicationInsights.config" />
@@ -535,13 +526,6 @@
     <Compile Include="WebForms\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\CreaJuez.aspx.cs">
-      <DependentUpon>CreaJuez.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\CreaJuez.aspx.designer.cs">
-      <DependentUpon>CreaJuez.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebForms\EvaluaAplicacion.aspx.cs">
       <DependentUpon>EvaluaAplicacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -612,13 +596,6 @@
     <Compile Include="WebForms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\PremioEspecificoCandidato.aspx.cs">
-      <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\PremioEspecificoCandidato.aspx.designer.cs">
-      <DependentUpon>PremioEspecificoCandidato.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebForms\PremiosInstitucionalesJuez.aspx.cs">
       <DependentUpon>PremiosInstitucionalesJuez.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -633,24 +610,11 @@
     <Compile Include="WebForms\RecuperaCuenta.aspx.designer.cs">
       <DependentUpon>RecuperaCuenta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\Recuperar.aspx.cs">
-      <DependentUpon>Recuperar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\Recuperar.aspx.designer.cs">
-      <DependentUpon>Recuperar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForms\Registro.aspx.cs">
-      <DependentUpon>Registro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\Registro.aspx.designer.cs">
-      <DependentUpon>Registro.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="AwardPictures\" />
+    <Folder Include="ProfilePictures\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
   <ItemGroup>

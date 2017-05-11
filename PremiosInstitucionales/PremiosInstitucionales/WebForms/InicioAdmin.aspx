@@ -113,7 +113,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel">Proponer Candidato</h3>
+                        <h3 class="modal-title" id="myModalLabel">Crear Juez</h3>
                         <hr class="shorthr">
                     </div>
                     <div class="modal-body">
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Correo:</label>
                                 <div class="col-lg-8">
-                                    <asp:TextBox ID="correoJuez" ClientIDMode="Static" runat="server" placeholder="Correo de Juez"></asp:TextBox><br />
+                                    <asp:TextBox class="form-control" ID="correoJuez" ClientIDMode="Static" runat="server"></asp:TextBox><br />
                                 </div>
                             </div>
                         </form>
