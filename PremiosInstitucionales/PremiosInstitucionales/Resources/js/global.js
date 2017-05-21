@@ -16,6 +16,12 @@ function validateAnswerCharacters(e) {
     e.target.value = e.target.value.replace(/&/g, "y");
 }
 
+function changeAnchor(s, premio) {
+    var x = s[s.selectedIndex].id;
+    document.getElementById(premio).href = "Formulario.aspx?c=" + x;
+
+}
+
 function updateCharactersLeft(textarea) {
     var charactersMessage = textarea.parentElement.getElementsByTagName("p")[0];
     var actualCharacters = textarea.value.length;

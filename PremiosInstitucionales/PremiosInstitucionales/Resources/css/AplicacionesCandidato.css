@@ -1,3 +1,14 @@
+.div-img{
+    display: inline-block;
+    padding-right: 15px;
+    vertical-align:top;
+}
+
+.div-bpm{
+    display: inline-block;
+    vertical-align:top;
+}
+
 .bpm-process {
 	margin-top:15px;
 	margin-bottom:15px;
@@ -14,12 +25,6 @@
 
 .step {
   margin-top: -2px;
-}
-
-.img-premio{
-	max-width: 100%;
- display:block;
-    margin:auto;
 }
 
 .nav-wizard > li {

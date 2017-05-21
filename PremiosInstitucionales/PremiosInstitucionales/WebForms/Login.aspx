@@ -16,11 +16,11 @@
 					<div class="sign-in-htm">
 						<div class="int-group">
 							<label for="user" class="int-label">Correo Electrónico<span class="req">*</span></label>
-                            <asp:TextBox class="int-input" ID="user" ClientIDMode="Static" runat="server" autocomplete="new-password"></asp:TextBox>
+                            <asp:TextBox class="int-input" ID="user" ClientIDMode="Static" runat="server" autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
 							<label for="passlogin" class="int-label">Contraseña<span class="req">*</span></label>
-                             <asp:TextBox class="int-input" ID="passlogin" runat="server" type="password" autocomplete="new-password" data-type="password"></asp:TextBox>
+                             <asp:TextBox class="int-input" ID="passlogin" runat="server" type="password" autocomplete="new-password" data-type="password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
 							<input id="check" type="checkbox" class="check" checked="checked"/>
@@ -37,23 +37,23 @@
 					<div class="sign-up-htm">
 						<div class="int-group">
 							<label for="name" class="int-label">Nombre(s)<span class="req">*</span></label>
-							<input id="name" class="int-input" type="text"  autocomplete="off"/>
+							<input id="name" class="int-input" type="text"  autocomplete="off" spellcheck="false"/>
 						</div>
 						<div class="int-group">
 							<label for="lname" class="int-label">Apellido(s)<span class="req">*</span></label>
-							<input id="lname" class="int-input" type="text"  autocomplete="off"/>
+							<input id="lname" class="int-input" type="text"  autocomplete="off" spellcheck="false"/>
 						</div>
 						<div class="int-group">
 							<label for="email" class="int-label">Correo Electrónico<span class="req">*</span></label>
-                            <asp:TextBox class="int-input" ID="email" runat="server" ClientIDMode="Static" type="text"></asp:TextBox>
+                            <asp:TextBox class="int-input" ID="email" runat="server" ClientIDMode="Static" type="text" autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
 							<label for="passreg" class="int-label">Contraseña<span class="req">*</span></label>
-                             <asp:TextBox class="int-input" ID="passreg" runat="server" ClientIDMode="Static" TextMode="Password"></asp:TextBox>
+                             <asp:TextBox class="int-input" ID="passreg" runat="server" ClientIDMode="Static" TextMode="Password" autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
 							<label for="passreg2" class="int-label">Confirmar constraseña<span class="req">*</span></label>
-                            <asp:TextBox class="int-input" ID="passreg2" runat="server" type="password" ClientIDMode="Static" data-type="password" TextMode="Password" ></asp:TextBox>
+                            <asp:TextBox class="int-input" ID="passreg2" runat="server" type="password" ClientIDMode="Static" data-type="password" TextMode="Password"  autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
                             <asp:Button class="btn btn-primary" ID="RegisterButton" runat="server" OnClick="Registro_Click" Text="Regístrate" style="width:100%;"/>
@@ -70,7 +70,7 @@
 							</div>
 							<div class="int-group">
 								<label for="userforgot" class="int-label">Correo Electrónico<span class="req">*</span></label>
-                                <asp:TextBox class="int-input" runat="server" ID="userforgot" ClientIDMode="Static"></asp:TextBox>
+                                <asp:TextBox class="int-input" runat="server" ID="userforgot" ClientIDMode="Static" autocomplete="new-password" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
                                 <asp:Button class="btn btn-primary" ID="EnviarBoton" runat="server" Text="Enviar" OnClick="Recover_Click" style="width:100%; margin-top:15px"/>

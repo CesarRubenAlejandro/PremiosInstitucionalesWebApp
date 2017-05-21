@@ -56,20 +56,19 @@ namespace PremiosInstitucionales.WebForms
         public static String crearHtmlMapaEstados(PI_BA_Aplicacion ap, String estados)
         {
             return "<div class=\"panel-heading\">" +
-                        "<h3 class=\"panel-title\" style=\"display: inline-block;\">" +
-                            "<strong> Premio " + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).Nombre.ToString() + "</strong>" +
-                            " - Categoria " + AplicacionService.GetCategoriaByClaveCategoria(ap.cveCategoria).Nombre.ToString() +
+                        "<h3 class=\"panel-title\">" +
+                               "Premio: <strong>" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).Nombre.ToString() + "</strong>" +
+                               "<strong> / </strong>" +
+                               "Categoria: <strong>" + AplicacionService.GetCategoriaByClaveCategoria(ap.cveCategoria).Nombre.ToString() + "</strong>" +
                         "</h3>" +
                     "</div>" +
-                    "<div class=\"row\">" +
-                        "<div class=\"panel-body\">" +
-                            "<div class=\"col-sm-2\">" +
-                                "<img src = /AwardPictures/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-premio\"/>" +
-                            "</div>" +
-                            "<div class=\"col-sm-10\">" +
-                                "Estado de la solicitud:" +
-                                estados +
-                            "</div>" +
+                    "<div class=\"panel-body\">" +
+                        "<div class=\"div-img\">" +
+                            "<img src = /AwardPictures/" + AplicacionService.GetPremioByClaveCategoria(ap.cveCategoria).NombreImagen.ToString() + " class=\"img-square\"/>" +
+                        "</div>" +
+                        "<div class=\"div-bpm\">" +
+                            "Estado de la solicitud:" +
+                            estados +
                         "</div>" +
                     "</div>";
         }
