@@ -4,6 +4,13 @@ body {
 	overflow-x: hidden;
 }
 
+.img-square {
+  object-fit: cover;
+  width:150px;
+  height:150px;
+  padding:2px;
+}
+
 .shorthr{
     max-width: 50px;
     border-color: #00acc1;

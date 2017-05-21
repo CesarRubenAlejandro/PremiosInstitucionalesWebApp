@@ -6,11 +6,19 @@
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-    <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
-        	<!-- Open Sans -->
-	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
-    <link href='<%= ResolveUrl("~/Content/style.css")%>'  rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="favicon.ico" />
+
+
+        <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
+        <link href='<%= ResolveUrl("~/Resources/css/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+        <link href='<%= ResolveUrl("~/Resources/css/style.css")%>'  rel="stylesheet" type="text/css" />
+
+
+        <script src='<%= ResolveUrl("~/Resources/js/jquery.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Resources/js/bootstrap.min.js") %>'></script>
+        <script src='<%= ResolveUrl("~/Resources/js/index.js") %>' defer="defer"></script>
+        <script src='<%= ResolveUrl("~/Resources/js/global.js") %>' defer="defer"></script>
+
+        <!--link rel="shortcut icon" href="favicon.ico" /-->
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -22,13 +30,7 @@
     <form id="form1" runat="server" autocomplete="off">
     <div class="contentpaginasiniciales">
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
-        
         </asp:ContentPlaceHolder>
-
-        <script type="text/javascript" src='<%= ResolveUrl("scripts/jquery-1.9.1.min.js")%>'></script>
-        <script type="text/javascript" src='<%= ResolveUrl("scripts/bootstrap.min.js")%>'></script>
-        <script type="text/javascript" src='<%= ResolveUrl("scripts/index.js")%>'></script>
-        <script type="text/javascript" src='<%= ResolveUrl("scripts/global.js")%>'></script>
     </div>
     </form>
 </body>

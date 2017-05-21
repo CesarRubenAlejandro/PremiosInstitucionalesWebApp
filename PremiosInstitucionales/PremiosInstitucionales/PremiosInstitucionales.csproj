@@ -181,16 +181,8 @@
     <Content Include="Resources\css\jquery-ui.css" />
     <Content Include="Resources\css\sb-admin-2.css" />
     <Content Include="Resources\img\default-award.png" />
-    <Content Include="Content\aplicaciones.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\dataTables.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\style.css" />
-    <Content Include="Content\stylec.css" />
-    <Content Include="Content\stylePremios.css" />
+    <Content Include="Resources\css\style.css" />
+    <Content Include="Resources\css\stylePremios.css" />
     <Content Include="Entities\Models\PremiosInstitucionalesModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
@@ -202,38 +194,18 @@
       <LastGenOutput>PremiosInstitucionalesModels.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="img\elizondo.png" />
-    <Content Include="img\garzasada.jpg" />
-    <Content Include="img\jdbgmgr.jpg" />
-    <Content Include="img\logotec.png" />
-    <Content Include="img\logotec2.png" />
-    <Content Include="img\mater.jpg" />
-    <Content Include="img\romulogarza.PNG" />
-    <Content Include="img\tec.PNG" />
-    <Content Include="img\teclogo.jpg" />
-    <Content Include="img\fondotecazul2.jpg" />
-    <Content Include="img\premiostec3.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Resources\css\AplicacionesCandidato.css" />
     <Content Include="Resources\css\bootstrap.min.css" />
     <Content Include="Resources\css\dataTables.css" />
     <Content Include="Resources\css\PremiosInstitucionalesJuez.css" />
     <Content Include="Resources\css\stylec.css" />
-    <Content Include="Resources\images\sort_asc.png" />
-    <Content Include="Resources\images\sort_both.png" />
-    <Content Include="Resources\images\sort_desc.png" />
+    <Content Include="Resources\css\images\sort_asc.png" />
+    <Content Include="Resources\css\images\sort_both.png" />
+    <Content Include="Resources\css\images\sort_desc.png" />
     <Content Include="Resources\img\default-pp.jpg" />
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
@@ -263,20 +235,7 @@
     <Content Include="Resources\svg\teacher.svg" />
     <Content Include="Resources\svg\team.svg" />
     <Content Include="Resources\js\adminQ.js" />
-    <Content Include="scripts\aplicaciones.js" />
-    <Content Include="scripts\global.js" />
-    <Content Include="scripts\index.js" />
-    <Content Include="scripts\jquery.dataTables.js" />
-    <Content Include="scripts\prueba.js" />
-    <Content Include="scripts\tablaParticipantes.js" />
-    <Content Include="svg\add.svg" />
-    <Content Include="svg\badgebg.svg" />
-    <Content Include="svg\checkmark.svg" />
-    <Content Include="svg\clipboard.svg" />
-    <Content Include="svg\juez.svg" />
-    <Content Include="svg\learning.svg" />
-    <Content Include="svg\logout.svg" />
-    <Content Include="svg\proponer.svg" />
+    <Content Include="Resources\js\index.js" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />
@@ -319,11 +278,6 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.ssdl" />
     <Content Include="obj\Debug\PremiosInstitucionales.csprojResolveAssemblyReference.cache" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\jquery-1.9.1.js" />
-    <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="WebForms\Login.aspx" />
     <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -332,8 +286,6 @@
     <Content Include="Entities\Models\PremiosInstitucionalesModels.edmx.diagram">
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
     </Content>
-    <Content Include="MasterPage.Master" />
-    <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -343,8 +295,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -414,13 +364,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPage.Master.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPage.Master.designer.cs">
-      <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="mp-Candidato.Master.cs">
       <DependentUpon>mp-Candidato.Master</DependentUpon>

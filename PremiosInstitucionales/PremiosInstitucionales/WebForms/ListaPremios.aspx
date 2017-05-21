@@ -1,10 +1,10 @@
 ﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ListaPremios.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MasterPage.Master" EnableEventValidation="false" %>
+    Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/mp-Candidato.Master" EnableEventValidation="false" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-<link href='<%= ResolveUrl("/Content/stylePremios.css")%>'  rel="stylesheet" type="text/css" />
+<link href='<%= ResolveUrl("~/Resources/css/stylePremios.css")%>'  rel="stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
     
             <div runat="server" id="modalList">
 
@@ -29,10 +29,5 @@
 		</div>
     </div>
         </div>
-
-
-</asp:Content>
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
-    <script src='<%= ResolveUrl("/scripts/global.js")%>'></script>
 </asp:Content>
     
