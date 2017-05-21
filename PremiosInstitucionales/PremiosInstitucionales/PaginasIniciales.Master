@@ -7,6 +7,8 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     <link href='<%= ResolveUrl("~/Content/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+        	<!-- Open Sans -->
+	<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
     <link href='<%= ResolveUrl("~/Content/style.css")%>'  rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="favicon.ico" />
     </asp:ContentPlaceHolder>
@@ -17,7 +19,7 @@
 		  <iframe src="https://www.youtube.com/embed/TxDmvPMf6Qo?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=TxDmvPMf6Qo&vq=hd720" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" autocomplete="off">
     <div class="contentpaginasiniciales">
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         
