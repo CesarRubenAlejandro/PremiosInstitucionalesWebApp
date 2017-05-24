@@ -9,7 +9,7 @@
 		    <div class="row">
 			    <div class="col-lg-12 text-center">
 				    <h3 class="section-heading">Mis aplicaciones vigentes</h3>
-				    <hr class="shorthr">
+				    <hr class="shorthr"/>
 			    </div>
 		    </div>
 	    </div>

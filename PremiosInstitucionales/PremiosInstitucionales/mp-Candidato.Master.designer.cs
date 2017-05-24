@@ -22,13 +22,22 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// HeadContent control.
+        /// navInicioPorRol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navInicioPorRol;
+        
+        /// <summary>
+        /// navProfilePicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navProfilePicture;
         
         /// <summary>
         /// ContentPlaceHolder control.
@@ -49,12 +58,12 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.WebControls.TextBox correoCandidato;
         
         /// <summary>
-        /// Button1 control.
+        /// BtnInvitaCandidato control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BtnInvitaCandidato;
     }
 }

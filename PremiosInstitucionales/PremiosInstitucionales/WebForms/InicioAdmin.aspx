@@ -10,7 +10,7 @@
         </div>
 
         <!-- Dividing line -->
-        <hr>
+        <hr/>
 
         <div class="container" style="margin-bottom: 36px;">
             <div class="row" style="margin-left: 5px; margin-right: 5px">
@@ -55,18 +55,18 @@
                     </div>
                 </a>
                 <a data-toggle="modal" data-target="#modalInvite">
-                <div class="col-lg-6">
-                    <div class="row service-list">
-                        <div class="col-xs-4 text-center" style="height: 96px">
-                            <img class="service-icon" src="../Resources/svg/proponer.svg" />
-                        </div>
-                        <div class="col-xs-8">
-                            <h5>Proponer candidato </h5>
-                            <h6>Proponer candidato a registrarse en la convocatoria de Premios Institucionales. </h6>
+                    <div class="col-lg-6">
+                        <div class="row service-list">
+                            <div class="col-xs-4 text-center" style="height: 96px">
+                                <img class="service-icon" src="../Resources/svg/proponer.svg" />
+                            </div>
+                            <div class="col-xs-8">
+                                <h5>Proponer candidato </h5>
+                                <h6>Proponer candidato a registrarse en la convocatoria de Premios Institucionales. </h6>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    </a>
+                </a>
                 <a href="AdministraUsuarios.aspx?t=juez" class="no-underline">
                     <div class="col-lg-6">
                         <div class="row service-list">
@@ -108,28 +108,29 @@
                 </a>
             </div>
         </div>
-        <div class="modal fade" id="modalInviteJ" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        
+        <div class="modal fade" id="modalInviteJ" tabindex="-1" role="dialog" aria-labelledby="myModalLabelJ">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel">Crear Juez</h3>
-                        <hr class="shorthr">
+                        <h3 class="modal-title" id="myModalLabelJ">Crear Juez</h3>
+                        <hr class="shorthr"/>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" role="form">
+                        <div class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Correo:</label>
                                 <div class="col-lg-8">
                                     <asp:TextBox class="form-control" ID="correoJuez" ClientIDMode="Static" runat="server"></asp:TextBox><br />
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <asp:Button class="btn btn-primary" ID="Button1" runat="server" OnClick="Registra_Juez" Text="Registra Juez" />
+                        <asp:Button class="btn btn-primary" id="BtnRegistraJuez" runat="server" OnClick="Registra_Juez" Text="Registra Juez" />
                     </div>
                 </div>
             </div>

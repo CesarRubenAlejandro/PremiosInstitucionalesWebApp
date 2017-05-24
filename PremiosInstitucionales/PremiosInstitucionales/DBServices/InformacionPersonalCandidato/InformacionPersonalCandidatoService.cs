@@ -110,8 +110,6 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalCandidato
             {
                 return false;
             }
-
-
         }
 
         public static bool Set(string correoAntiguo, string nombres, string apellidos, string correoNuevo)

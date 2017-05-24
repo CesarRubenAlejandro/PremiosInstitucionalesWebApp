@@ -81,9 +81,7 @@ function uploadImage() {
 }
 
 function ShowImagePreview(input) {
-    console.log('helo');
     if (input.files && input.files[0]) {
-        console.log('helox2');
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#ContentPlaceHolder_avatarImage').css('background-image', 'url(' + e.target.result + ')');

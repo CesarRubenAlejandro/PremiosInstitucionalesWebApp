@@ -89,8 +89,7 @@
                                     <a runat="server" id="avisoPrivacidad" class="no-underline" data-toggle="modal" data-target="#modalAvisoPrivacidad">
                                         <button type="button" class="btn btn-primary">Guardar Cambios</button>
                                     </a>
-                                    <button runat="server" id="guardarCambiosBtn" type="button" class="btn btn-primary" onclick="sendFormAux();">Guardar Cambios</button>
-
+                                    <button type="button" class="btn btn-primary" onclick="sendFormAux();" runat="server" id="guardarCambiosBtn">Guardar Cambios</button>
                                     <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click" />
                                 </div>
                             </div>

@@ -2,12 +2,7 @@
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -45,7 +40,6 @@ namespace PremiosInstitucionales.WebForms
                     avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + juez.NombreImagen + ")");
                 }
             }
-
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
@@ -79,9 +73,7 @@ namespace PremiosInstitucionales.WebForms
                         // bad
                     }
                 }
-
             }
-
         }
 
         protected void ActualizarDatosGenerales()
@@ -129,14 +121,7 @@ namespace PremiosInstitucionales.WebForms
                 PI_BA_Juez aux = new PI_BA_Juez();
                 aux.NombreImagen = sNombreImagen;
 
-                if (InformacionPersonalJuezService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString()))
-                {
-
-                }
-                else
-                {
-
-                }
+                InformacionPersonalJuezService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString());
 
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

@@ -1,7 +1,7 @@
 .img-square {
   object-fit: cover;
   width:180px;
-  height:180px;
+  height:165px;
   padding:15px;
   padding-bottom: 0px;
 }
@@ -13,13 +13,12 @@
 	padding-right: 15px;
     padding-bottom: 15px;
 	border: 1px solid #e7e7e7;
-    overflow: hidden;	
+    overflow: hidden;
 }
 
 .blockquote-box .square {
 	width: 180px;
-	height: 180px;
-	min-height: 180px;
+	height: 165px;
 	margin-right: 22px;
 }
 

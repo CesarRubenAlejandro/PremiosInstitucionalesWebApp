@@ -2,14 +2,7 @@
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -25,7 +18,6 @@ namespace PremiosInstitucionales.WebForms
                 ResetFields();
             }
             CheckPrivacy();
-
         }
 
         private void CheckPrivacy()
@@ -66,9 +58,6 @@ namespace PremiosInstitucionales.WebForms
                     avatarImage.Attributes.Add("style", "background-image: url(/ProfilePictures/" + candidato.NombreImagen + ")");
                 }
             }
-
-            
-
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
@@ -102,9 +91,7 @@ namespace PremiosInstitucionales.WebForms
                         // bad
                     }
                 }
-
             }
-
         }
 
         protected void ActualizarDatosGenerales()
@@ -126,17 +113,15 @@ namespace PremiosInstitucionales.WebForms
                     aux.FechaPrivacidadDatos = DateTime.Today.Date;
                 }
 
-                InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString());
+                if (InformacionPersonalCandidatoService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
+                {
+
+                }
+                else
+                {
+                    MostrarCampos();
+                }
             }
-
-            Response.Redirect("InformacionPersonalCandidato.aspx");
-
-            
-        }
-
-        protected void EditarBtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void Upload(object sender, EventArgs e)
@@ -154,6 +139,7 @@ namespace PremiosInstitucionales.WebForms
                     File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
                 }
 
+
                 // Get string image format (png, jpg, etc)
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
@@ -167,14 +153,7 @@ namespace PremiosInstitucionales.WebForms
                 PI_BA_Candidato aux = new PI_BA_Candidato();
                 aux.NombreImagen = sNombreImagen;
 
-                if (InformacionPersonalCandidatoService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString()))
-                {
-
-                }
-                else
-                {
-
-                }
+                InformacionPersonalCandidatoService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString());
 
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

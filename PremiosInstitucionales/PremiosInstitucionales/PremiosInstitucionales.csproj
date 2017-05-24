@@ -210,7 +210,7 @@
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
-    <Content Include="Resources\js\AsignarJuez.js" />
+    <Content Include="Resources\js\AdministraFormulario.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\crearConvocatoria.js" />
     <Content Include="Resources\js\global.js" />
@@ -221,7 +221,6 @@
     <Content Include="Resources\js\jquery.min.js" />
     <Content Include="Resources\js\listaUsuariosCandidato.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
-    <Content Include="Resources\js\Sortable.js" />
     <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
@@ -234,7 +233,6 @@
     <Content Include="Resources\svg\shield.svg" />
     <Content Include="Resources\svg\teacher.svg" />
     <Content Include="Resources\svg\team.svg" />
-    <Content Include="Resources\js\adminQ.js" />
     <Content Include="Resources\js\index.js" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />

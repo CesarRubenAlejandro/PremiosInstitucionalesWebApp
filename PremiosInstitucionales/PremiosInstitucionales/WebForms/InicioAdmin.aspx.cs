@@ -1,13 +1,8 @@
 ﻿using PremiosInstitucionales.DBServices.Registro;
 using PremiosInstitucionales.Values;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -44,7 +39,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 using (MailMessage mm = new MailMessage(correoSender, correoJuez.Text.ToString()))
                 {
-                    mm.Subject = "Fuiste Asignado como Juez a lso premios institucionales.";
+                    mm.Subject = "Fuiste Asignado como Juez a los premios institucionales.";
                     mm.IsBodyHtml = true;
                     var bodyContent = "Tu contrasena es  " + contrasena;
                     try
