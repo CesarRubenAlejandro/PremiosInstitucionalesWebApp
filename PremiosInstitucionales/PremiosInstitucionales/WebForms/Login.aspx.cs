@@ -30,7 +30,7 @@ namespace PremiosInstitucionales.WebForms
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-
+            // mail / contraseña
             String user1 = user.Text;
             String password = passlogin.Text;
 
@@ -56,21 +56,21 @@ namespace PremiosInstitucionales.WebForms
                     Session[StringValues.CorreoSesion] = candidato.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolCandidato;
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioCandidato.aspx')", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('Candidato/InicioCandidato.aspx')", true);
                 }
                 else if (tipoUsuario == StringValues.RolJuez)
                 {
                     var juez = LoginService.GetJuez(user1);
                     Session[StringValues.CorreoSesion] = juez.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolJuez;
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioJuez.aspx')", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('Juez/InicioJuez.aspx')", true);
                 }
                 else if (tipoUsuario == StringValues.RolAdmin)
                 {
                     var administrador = LoginService.GetAdministrador(user1);
                     Session[StringValues.CorreoSesion] = administrador.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolAdmin;
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioAdmin.aspx')", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('Administrador/InicioAdmin.aspx')", true);
                 }
             }
         }

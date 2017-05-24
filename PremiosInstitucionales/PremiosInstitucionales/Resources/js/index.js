@@ -83,9 +83,9 @@ function changeTab(isLoginSelected) {
  }
  
  function transformToNavBar(urlUsuario) {
-     // Ver si cambiaron los datos de usuario / contraseña
+     // Guardar u olvidar los datos del usuario, dependiendo de el checkbox
      datosUsuario();
-    
+
     // Elementos que ocultare durante la animacion
     var signIn = document.getElementsByClassName("sign-in-htm")[0];
 	var tabs    = document.getElementsByClassName("option-tabs")[0];
@@ -205,16 +205,16 @@ function recordarUsuario() {
     var eMail = document.getElementsByClassName("int-input")[0].value;
     var psw = document.getElementsByClassName("int-input")[1].value;
 
-    document.cookie = "eMail=" + eMail;
-    document.cookie = "psw=" + psw;
-    document.cookie = "checked=" + "true";
+    setCookie("eMail", eMail);
+    setCookie("psw", psw);
+    setCookie("checked", "true");
 }
 
 // Funcion que 'olvida' las cookies
 function olvidarUsuario() {
-    document.cookie = "eMail=" + "Null";
-    document.cookie = "psw=" + "Null";
-    document.cookie = "checked=" + "false";
+    setCookie("eMail", "Null");
+    setCookie("psw", "Null");
+    setCookie("checked", "false");
 }
 
 // Funcion que retorna el valor de una cookie en especifico
@@ -231,4 +231,15 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+// Funcion que crea una cookie que dura un año
+function setCookie(cname, cvalue) {
+
+    // Crear fecha de expiracion para dentro de un año
+    var expiration_date = new Date();
+    expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+
+    // Crear la cookie
+    document.cookie = cname + "=" + cvalue + "; expires=" + expiration_date.toUTCString();
 }

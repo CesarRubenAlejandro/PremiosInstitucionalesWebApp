@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 using System.Web.UI;
 
 namespace PremiosInstitucionales
@@ -14,10 +9,10 @@ namespace PremiosInstitucionales
         {
             ScriptManager.ScriptResourceMapping.AddDefinition("jquery", new ScriptResourceDefinition
             {
-                Path = "~/scripts/jquery-1.9.1.min.js",
-                DebugPath = "~/scripts/jquery-1.9.1.js",
-                CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-1.9.1.min.js",
-                CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jquery-1.9.1.js"
+                Path = "~/Resources/js/jquery.min.js",
+                DebugPath = "~/Resources/js/jquery.min.js",
+                CdnPath = "~/Resources/js/jquery.min.js",
+                CdnDebugPath = "~/Resources/js/jquery.min.js"
             });
 
 

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecuperaCuenta.aspx.cs" 
-    Inherits="PremiosInstitucionales.WebForms.RecuperaCuenta" MasterPageFile="~/PaginasIniciales.Master" EnableEventValidation="false"%>
+    Inherits="PremiosInstitucionales.WebForms.RecuperaCuenta" MasterPageFile="~/MP-Login.Master" EnableEventValidation="false"%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" Runat="Server">
     <div class="paginasIniciales">
