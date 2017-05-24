@@ -234,6 +234,7 @@
     <Content Include="Resources\svg\teacher.svg" />
     <Content Include="Resources\svg\team.svg" />
     <Content Include="Resources\js\index.js" />
+    <Content Include="Resources\svg\warning.svg" />
     <Content Include="Values\CorreoConfirmaCuenta.txt" />
     <Content Include="Values\CorreoRecuperaPassword.txt" />
     <Content Include="Values\CorreoSolicitudCambio.txt" />

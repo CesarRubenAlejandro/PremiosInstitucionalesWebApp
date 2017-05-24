@@ -1,11 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.Recuperar;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -58,16 +54,17 @@ namespace PremiosInstitucionales.WebForms
             if (sePudo)
             {
                 Mensaje.Text = "Contraseña cambiada exitosamente";
-                PasswordTextBox.Visible = false;
-                ConfirmPasswordTextBox.Visible = false;
-                Boton.Visible = false;
-                HyperLinkRegresar.Visible = true;
             }
             else if (contrasenas)
             {
                 Mensaje.Text = "Error interno.";
             }
-            Mensaje.Visible = true;
+            showErrorMsg();
+        }
+        private void showErrorMsg()
+        {
+            string showMsg_JS = "$('#modalMensaje').modal('show')";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
         }
     }
 }

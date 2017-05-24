@@ -3,6 +3,7 @@ using PremiosInstitucionales.DBServices.Registro;
 using PremiosInstitucionales.Values;
 using System;
 using System.IO;
+using System.Web.UI;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
@@ -29,13 +30,13 @@ namespace PremiosInstitucionales.WebForms
             //Crear sesion o decir que no existe
             if (tipoUsuario == StringValues.RolIncorrecto)
             {
+                showErrorMsg();
                 Label1.Text = "Usuario/Contraseña incorrectos";
-                Label1.Visible = true;
             }
             else if (tipoUsuario == StringValues.RolNotFound)
             {
+                showErrorMsg();
                 Label1.Text = "Usuario no encontrado";
-                Label1.Visible = true;
             }
             else
             {
@@ -101,7 +102,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 Label1.Text = "Contraseñas no coinciden";
             }
-            Label1.Visible = true;
+            showErrorMsg();
         }
 
         private bool EnviarCorreoConfirmacion(String codigoConfirmacion)
@@ -147,6 +148,12 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
+        private void showErrorMsg()
+        {
+            string showMsg_JS = "$('#modalMensaje').modal('show')";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
+        }
+
         protected void Recover_Click(object sender, EventArgs e)
         {
             String email = userforgot.Text.ToString();
@@ -156,8 +163,6 @@ namespace PremiosInstitucionales.WebForms
                 if (EnviarCorreoRecuperacion(email, id))
                 {
                     Label1.Text = "Se envió un correo para la recuperación de la contraseña";
-                    EnviarBoton.Visible = false;
-                    userforgot.Visible = false;
                 }
                 else
                 {
@@ -168,7 +173,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 Label1.Text = "Usuario no existe";
             }
-            Label1.Visible = true;
+            showErrorMsg();
         }
 
         private bool EnviarCorreoRecuperacion(String destinatario, String id)
