@@ -28,7 +28,7 @@ namespace PremiosInstitucionales.DBServices.Registro
 
         }
 
-        public static bool Registrar(String email, String password, String codigoConfirmacion)
+        public static bool Registrar(String email, String password, String nombre, String apellido, String codigoConfirmacion)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
             if (!exists(email))
@@ -38,6 +38,8 @@ namespace PremiosInstitucionales.DBServices.Registro
                 candidato.cveCandidato = Guid.NewGuid().ToString();
                 candidato.Correo = email;
                 candidato.Password = password;
+                candidato.Nombre = nombre;
+                candidato.Apellido = apellido;
                 candidato.CodigoConfirmacion = codigoConfirmacion;
                 dbContext.PI_BA_Candidato.Add(candidato);
                 dbContext.SaveChanges();

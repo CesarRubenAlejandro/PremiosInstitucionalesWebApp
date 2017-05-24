@@ -225,9 +225,9 @@
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\checkmark.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
+    <Content Include="Resources\svg\done.svg" />
     <Content Include="Resources\svg\juez.svg" />
     <Content Include="Resources\svg\learning.svg" />
-    <Content Include="Resources\svg\logout.svg" />
     <Content Include="Resources\svg\plus.svg" />
     <Content Include="Resources\svg\proponer.svg" />
     <Content Include="Resources\svg\shield.svg" />
@@ -248,7 +248,6 @@
     <Content Include="WebForms\AdministraPremios.aspx" />
     <Content Include="WebForms\AdministraUsuarios.aspx" />
     <Content Include="WebForms\AplicacionesCandidato.aspx" />
-    <Content Include="WebForms\ConfirmaCuenta.aspx" />
     <Content Include="WebForms\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\EvaluaAplicacion.aspx" />
     <Content Include="WebForms\Formulario.aspx" />
@@ -453,13 +452,6 @@
     </Compile>
     <Compile Include="WebForms\AplicacionesCandidato.aspx.designer.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForms\ConfirmaCuenta.aspx.cs">
-      <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\ConfirmaCuenta.aspx.designer.cs">
-      <DependentUpon>ConfirmaCuenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\CorrigeAplicacion.aspx.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>

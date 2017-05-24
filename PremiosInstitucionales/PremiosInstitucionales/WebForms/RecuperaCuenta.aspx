@@ -35,7 +35,7 @@
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header text-center">
-                      <h4 class="modal-title"> <img src='<%= ResolveUrl("~/Resources/svg/warning.svg")%>' style="margin-top: -6px; width:32px; height:32px;"/> Advertencia </h4>
+                      <span runat="server" id="modalMensajeTitulo"></span>
                     </div>
                     <div class="modal-body">
                         <asp:Label class="labeliniciales" runat="server" ID="Mensaje" style="color: black;"></asp:Label>

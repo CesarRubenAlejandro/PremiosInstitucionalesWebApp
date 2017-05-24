@@ -26,6 +26,7 @@ namespace PremiosInstitucionales.WebForms
                 Match matchLetra = regexLetra.Match(password1);
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
+                    showErrorMsg("Error");
                     Mensaje.Text = "La contraseña debe ser de al menos 6 caracteres <br/> y contener al menos un número y una letra.";
                 }
                 else
@@ -49,22 +50,43 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                Mensaje.Text = "Contraseñas no coinciden";
+                showErrorMsg("Error");
+                Mensaje.Text = "Contraseñas no coinciden.";
             }
             if (sePudo)
             {
-                Mensaje.Text = "Contraseña cambiada exitosamente";
+                showErrorMsg("Aviso");
+                Mensaje.Text = "Contraseña cambiada exitosamente.";
             }
             else if (contrasenas)
             {
+                showErrorMsg("Error");
                 Mensaje.Text = "Error interno.";
             }
-            showErrorMsg();
         }
-        private void showErrorMsg()
+        private void showErrorMsg(string tipoErrorTitulo)
         {
+            // Creamos el titutlo del Modal
+            modalMensajeTitulo.Controls.Add(new LiteralControl(TituloModal(tipoErrorTitulo)));
+
+            // Mostramos el Modal
             string showMsg_JS = "$('#modalMensaje').modal('show')";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
+        }
+
+        private string TituloModal(string tipoTitulo)
+        {
+            if (tipoTitulo == "Error")
+            {
+                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/warning.svg\" class=\"error-icon\"/> Advertencia </h4>";
+            }
+
+            else if (tipoTitulo == "Aviso")
+            {
+                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/done.svg\" class=\"error-icon\"/> Listo </h4>";
+            }
+
+            return "";
         }
     }
 }

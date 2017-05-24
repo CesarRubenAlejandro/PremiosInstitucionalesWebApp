@@ -3,9 +3,16 @@ body{
 	color:#6a6f8c;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
+
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
 .clearfix:after{clear:both;display:block}
+
+.error-icon {
+    margin-top: -6px;
+    width: 32px;
+    height: 32px;
+}
 
 a, a:hover{
 	color:inherit;

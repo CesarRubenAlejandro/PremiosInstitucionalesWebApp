@@ -8,7 +8,7 @@
 				<div class="login-html">
 					<img id="logoTec" src='<%= ResolveUrl("~/Resources/img/logotec.png")%>' alt="Logo Tec">
 					<div class="option-tabs">
-						<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked/><label for="tab-1" class="tab">Inicio</label>
+						<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked="checked"/><label for="tab-1" class="tab">Inicio</label>
 						<input id="tab-2" type="radio" name="tab" class="sign-up" onchange="changeTab(false)"/><label for="tab-2" class="tab">Registro</label>
 					</div>
 					<div class="login-form">
@@ -22,7 +22,7 @@
 								<asp:TextBox class="int-input" ID="passlogin" runat="server" type="password" autocomplete="new-password" data-type="password" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
-								<input id="check" type="checkbox" class="check" checked="checked"/>
+								<input id="checkBox" type="checkbox" class="check"/>
 								<label for="check"><span class="icon"></span> Recordarme</label>
 							</div>
 							<div class="int-group">
@@ -36,11 +36,11 @@
 						<div class="sign-up-htm">
 							<div class="int-group">
 								<label for="name" class="int-label">Nombre(s)<span class="req">*</span></label>
-								<input id="name" class="int-input" type="text"  autocomplete="off" spellcheck="false"/>
+								<asp:TextBox ID="name" runat="server" class="int-input" type="text"  autocomplete="off" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
 								<label for="lname" class="int-label">Apellido(s)<span class="req">*</span></label>
-								<input id="lname" class="int-input" type="text"  autocomplete="off" spellcheck="false"/>
+								<asp:TextBox ID="lname" runat="server" class="int-input" type="text"  autocomplete="off" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
 								<label for="email" class="int-label">Correo Electrónico<span class="req">*</span></label>
@@ -89,7 +89,7 @@
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header text-center">
-                      <h4 class="modal-title"> <img src="../Resources/svg/warning.svg" style="margin-top: -6px; width:32px; height:32px;"/> Advertencia </h4>
+                      <span runat="server" id="modalMensajeTitulo"></span>
                     </div>
                     <div class="modal-body">
                       <asp:Label ID="Label1" runat="server" Text="Label" style="color: black;"></asp:Label>

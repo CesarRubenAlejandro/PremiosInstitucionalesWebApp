@@ -82,23 +82,13 @@ function changeTab(isLoginSelected) {
 	}
  }
  
- function mailSentSuccessfully() {
-	// Elementos
-	var loginWrap = document.getElementsByClassName("login-wrap")[0];
-	var forgot    = document.getElementsByClassName("hide-content")[0];
-			
-	// Oculto las opciones de Recuperar contraseña
-	forgot.style.transition = "opacity 0s";
-	forgot.style.opacity = 0;
-	forgot.style.zIndex = -1;
- }
- 
- function transformToNavBar(){	
-	var signIn    = document.getElementsByClassName("sign-in-htm")[0];
-	var tabs      = document.getElementsByClassName("option-tabs")[0];
-	var logoTec   = document.getElementById("logoTec");
+ function transformToNavBar(urlUsuario) {
+    var signIn = document.getElementsByClassName("sign-in-htm")[0];
+	var tabs    = document.getElementsByClassName("option-tabs")[0];
+	var logoTec = document.getElementById("logoTec");
+	var videoBG = document.getElementsByClassName("video-background")[0];
 	
-	var disappearItems = [signIn, tabs, logoTec];
+	var disappearItems = [signIn, tabs, logoTec, videoBG];
 	for (i = 0; i < disappearItems.length; i++) {
 		disappearItems[i].style.transition = "opacity .30s";
 		disappearItems[i].style.opacity = 0;
@@ -126,33 +116,95 @@ function changeTab(isLoginSelected) {
 	
 	// Login
 	setTimeout(function(){
-		window.location.href = "inicioCandidato.html";
-	}, 700);
+	    window.location.href = urlUsuario;
+	}, 800);
  }
  
-$('.int-group').find('.int-input, textarea').on('keyup blur focus', function (e) {
-  var $this = $(this),
-      label = $this.prev('.int-label');
+function getCookie(cname) {
+     var name = cname + "=";
+     var ca = document.cookie.split(';');
+     for (var i = 0; i < ca.length; i++) {
+         var c = ca[i];
+         while (c.charAt(0) == ' ') {
+             c = c.substring(1);
+         }
+         if (c.indexOf(name) == 0) {
+             return c.substring(name.length, c.length);
+         }
+     }
+     return "";
+ }
 
-	  if (e.type === 'keyup') {
-			if ($this.val() === '') {
-          label.removeClass('active highlight');
-        } else {
-          label.addClass('active highlight');
+$(document).ready(function () {
+    // Labels e Inputs Interactivos
+    $('.int-group').find('.int-input, textarea').on('keyup blur focus', function (e) {
+        var $this = $(this),
+            label = $this.prev('.int-label');
+
+        if (e.type === 'keyup') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.removeClass('highlight');
+            }
+        } else if (e.type === 'focus') {
+
+            if ($this.val() === '') {
+                label.removeClass('highlight');
+            }
+            else if ($this.val() !== '') {
+                label.addClass('highlight');
+            }
         }
-    } else if (e.type === 'blur') {
-    	if( $this.val() === '' ) {
-    		label.removeClass('active highlight'); 
-			} else {
-		    label.removeClass('highlight');   
-			}   
-    } else if (e.type === 'focus') {
-      
-      if( $this.val() === '' ) {
-    		label.removeClass('highlight'); 
-			} 
-      else if( $this.val() !== '' ) {
-		    label.addClass('highlight');
-			}
+    });
+
+    // Recordar el correo del usuario
+    if (getCookie("eMail") != "Null" && getCookie("eMail") != "") {
+        document.getElementsByClassName("int-input")[0].value = getCookie("eMail");
+    }
+    // Recordar la contraseña del usuario
+    if (getCookie("psw") != "Null" && getCookie("psw") != "") {
+        document.getElementsByClassName("int-input")[1].value = getCookie("psw");
+    }
+
+    // Si no estan vacios los inputs, activar los labels
+    var inputs = document.getElementsByClassName('int-input');
+    var labels = document.getElementsByClassName('int-label');
+
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].value != '') {
+            labels[i].className += " active";
+        }
+    }
+
+    // Almacenar cookies de correo / contraseña, si el usuario lo desea
+    $("#checkBox").on('change', function () {
+        if (this.checked) {
+            var eMail = document.getElementsByClassName("int-input")[0].value;
+            var psw = document.getElementsByClassName("int-input")[1].value;
+            document.cookie = "eMail=" + eMail;
+            document.cookie = "psw=" + psw;
+            document.cookie = "checked=" + "true";
+        }
+        else {
+            document.cookie = "eMail=" + "Null";
+            document.cookie = "psw=" + "Null";
+            document.cookie = "checked=" + "false";
+        }
+    })
+});
+
+$(window).load(function () {
+    if (getCookie("checked") == "true") {
+        document.getElementById("checkBox").checked = true;
+    }
+    else {
+        document.getElementById("checkBox").checked = false;
     }
 });

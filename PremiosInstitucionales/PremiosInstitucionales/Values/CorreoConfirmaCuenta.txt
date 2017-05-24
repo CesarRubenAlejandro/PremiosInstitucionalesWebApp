@@ -6,7 +6,7 @@
 <p>Hemos recibido una solicitud para registrar una cuenta y continuar con tu proceso de inscripción a 
 Premio Institucionales Tec de Monterrey. </p>
 <p>Haz clic en el botón que aparece a continuación para confirmar tu cuenta.</p>
-<a href="http://localhost:2943/WebForms/ConfirmaCuenta.aspx?codigo=%CONFIRMACION%">Confirma tu cuenta</a>
+<a href="http://localhost:2943/WebForms/Login.aspx?c=%CONFIRMACION%">Confirma tu cuenta</a>
 <br>
 <br>
 <hr>

@@ -16,7 +16,17 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Request.QueryString["c"] != null)
+                {
+                    String codigoConfirmacion = Request.QueryString["c"].ToString();
+                    RegistroService.ConfirmarCandidato(codigoConfirmacion);
 
+                    showErrorMsg("Aviso");
+                    Label1.Text = "Su cuenta ha quedado confirmada.";
+                }
+            }
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -30,13 +40,13 @@ namespace PremiosInstitucionales.WebForms
             //Crear sesion o decir que no existe
             if (tipoUsuario == StringValues.RolIncorrecto)
             {
-                showErrorMsg();
-                Label1.Text = "Usuario/Contraseña incorrectos";
+                showErrorMsg("Error");
+                Label1.Text = "Usuario/Contraseña incorrectos.";
             }
             else if (tipoUsuario == StringValues.RolNotFound)
             {
-                showErrorMsg();
-                Label1.Text = "Usuario no encontrado";
+                showErrorMsg("Error");
+                Label1.Text = "Usuario no encontrado.";
             }
             else
             {
@@ -45,25 +55,24 @@ namespace PremiosInstitucionales.WebForms
                     var candidato = LoginService.GetCandidato(user1);
                     Session[StringValues.CorreoSesion] = candidato.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolCandidato;
-                    Response.Redirect("InicioCandidato.aspx");
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioCandidato.aspx')", true);
                 }
                 else if (tipoUsuario == StringValues.RolJuez)
                 {
                     var juez = LoginService.GetJuez(user1);
                     Session[StringValues.CorreoSesion] = juez.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolJuez;
-                    Response.Redirect("InicioJuez.aspx");
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioJuez.aspx')", true);
                 }
                 else if (tipoUsuario == StringValues.RolAdmin)
                 {
                     var administrador = LoginService.GetAdministrador(user1);
                     Session[StringValues.CorreoSesion] = administrador.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolAdmin;
-                    Response.Redirect("InicioAdmin.aspx");
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('InicioAdmin.aspx')", true);
                 }
-
             }
-
         }
 
         protected void Registro_Click(object sender, EventArgs e)
@@ -72,37 +81,47 @@ namespace PremiosInstitucionales.WebForms
             String password2 = passreg2.Text;
             String codigoConfirmacion = Guid.NewGuid().ToString();
 
-            if (password1.Equals(password2))
+            if (email.Text == "" || passreg.Text == "" || passreg2.Text == "" || name.Text == "" || lname.Text == "")
+            {
+                showErrorMsg("Error");
+                Label1.Text = "Debes llenar todos los campos.";
+            }
+            else if (password1.Equals(password2))
             {
                 Regex regexNumero = new Regex(@".*\d.*");
                 Regex regexLetra = new Regex(@".*[a-zA-z].*");
                 Match matchNumero = regexNumero.Match(password1);
                 Match matchLetra = regexLetra.Match(password1);
+
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
-                    Label1.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra";
+                    showErrorMsg("Error");
+                    Label1.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.";
                 }
-                else if (RegistroService.Registrar(email.Text, password1, codigoConfirmacion))
+                else if (RegistroService.Registrar(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
                 {
                     if (EnviarCorreoConfirmacion(codigoConfirmacion))
                     {
-                        Label1.Text = "Se envio un mail al correo registrado. Favor de confirmar cuenta";
+                        showErrorMsg("Aviso");
+                        Label1.Text = "Se envio un mail al correo registrado. Favor de confirmar cuenta.";
                     }
                     else
                     {
-                        Label1.Text = "Dirección de correo no válida";
+                        showErrorMsg("Error");
+                        Label1.Text = "Dirección de correo no válida.";
                     }
                 }
                 else
                 {
-                    Label1.Text = "Usuario ya existe";
+                    showErrorMsg("Error");
+                    Label1.Text = "Usuario ya existe.";
                 }
             }
             else
             {
-                Label1.Text = "Contraseñas no coinciden";
+                showErrorMsg("Error");
+                Label1.Text = "Contraseñas no coinciden.";
             }
-            showErrorMsg();
         }
 
         private bool EnviarCorreoConfirmacion(String codigoConfirmacion)
@@ -113,7 +132,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 using (MailMessage mm = new MailMessage(correoSender, email.Text.ToString()))
                 {
-                    mm.Subject = "Confirma tu cuenta para Premios Institucionales del Tec de Monterrey.";
+                    mm.Subject = "Confirma tu cuenta para Premios Institucionales del Tec de Monterrey";
                     mm.IsBodyHtml = true;
                     var bodyContent = "";
                     try
@@ -148,10 +167,29 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private void showErrorMsg()
+        private void showErrorMsg(string tipoErrorTitulo)
         {
+            // Creamos el titutlo del Modal
+            modalMensajeTitulo.Controls.Add(new LiteralControl(TituloModal(tipoErrorTitulo)));
+
+            // Mostramos el Modal
             string showMsg_JS = "$('#modalMensaje').modal('show')";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
+        }
+
+        private string TituloModal(string tipoTitulo)
+        {
+            if (tipoTitulo == "Error")
+            {
+                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/warning.svg\" class=\"error-icon\"/> Advertencia </h4>";
+            }
+
+            else if (tipoTitulo == "Aviso")
+            {
+                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/done.svg\" class=\"error-icon\"/> Listo </h4>";
+            }
+
+            return "";
         }
 
         protected void Recover_Click(object sender, EventArgs e)
@@ -162,18 +200,20 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (EnviarCorreoRecuperacion(email, id))
                 {
-                    Label1.Text = "Se envió un correo para la recuperación de la contraseña";
+                    showErrorMsg("Aviso");
+                    Label1.Text = "Se envió un correo para la recuperación de la contraseña.";
                 }
                 else
                 {
-                    Label1.Text = "Dirección de correo no válida";
+                    showErrorMsg("Error");
+                    Label1.Text = "Dirección de correo no válida.";
                 }
             }
             else
             {
-                Label1.Text = "Usuario no existe";
+                showErrorMsg("Error");
+                Label1.Text = "Usuario no existe.";
             }
-            showErrorMsg();
         }
 
         private bool EnviarCorreoRecuperacion(String destinatario, String id)
