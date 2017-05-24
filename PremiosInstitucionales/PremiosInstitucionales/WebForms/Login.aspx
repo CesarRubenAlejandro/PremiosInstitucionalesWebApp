@@ -92,7 +92,7 @@
                       <span runat="server" id="modalMensajeTitulo"></span>
                     </div>
                     <div class="modal-body">
-                      <asp:Label ID="Label1" runat="server" Text="Label" style="color: black;"></asp:Label>
+                      <asp:Label ID="Mensaje" runat="server" Text="Label" style="color: black;"></asp:Label>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100%"> Aceptar </button>

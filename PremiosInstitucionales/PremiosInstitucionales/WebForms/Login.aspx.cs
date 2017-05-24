@@ -24,7 +24,7 @@ namespace PremiosInstitucionales.WebForms
                     RegistroService.ConfirmarCandidato(codigoConfirmacion);
 
                     showErrorMsg("Aviso");
-                    Label1.Text = "Su cuenta ha quedado confirmada.";
+                    Mensaje.Text = "Su cuenta ha quedado confirmada.";
                 }
             }
         }
@@ -41,12 +41,12 @@ namespace PremiosInstitucionales.WebForms
             if (tipoUsuario == StringValues.RolIncorrecto)
             {
                 showErrorMsg("Error");
-                Label1.Text = "Usuario/Contraseña incorrectos.";
+                Mensaje.Text = "Usuario/Contraseña incorrectos.";
             }
             else if (tipoUsuario == StringValues.RolNotFound)
             {
                 showErrorMsg("Error");
-                Label1.Text = "Usuario no encontrado.";
+                Mensaje.Text = "Usuario no encontrado.";
             }
             else
             {
@@ -84,7 +84,7 @@ namespace PremiosInstitucionales.WebForms
             if (email.Text == "" || passreg.Text == "" || passreg2.Text == "" || name.Text == "" || lname.Text == "")
             {
                 showErrorMsg("Error");
-                Label1.Text = "Debes llenar todos los campos.";
+                Mensaje.Text = "Debes llenar todos los campos.";
             }
             else if (password1.Equals(password2))
             {
@@ -96,31 +96,31 @@ namespace PremiosInstitucionales.WebForms
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
                     showErrorMsg("Error");
-                    Label1.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.";
+                    Mensaje.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.";
                 }
                 else if (RegistroService.Registrar(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
                 {
                     if (EnviarCorreoConfirmacion(codigoConfirmacion))
                     {
                         showErrorMsg("Aviso");
-                        Label1.Text = "Se envio un mail al correo registrado. Favor de confirmar cuenta.";
+                        Mensaje.Text = "Se envio un mail al correo registrado. Favor de confirmar cuenta.";
                     }
                     else
                     {
                         showErrorMsg("Error");
-                        Label1.Text = "Dirección de correo no válida.";
+                        Mensaje.Text = "Dirección de correo no válida.";
                     }
                 }
                 else
                 {
                     showErrorMsg("Error");
-                    Label1.Text = "Usuario ya existe.";
+                    Mensaje.Text = "Usuario ya existe.";
                 }
             }
             else
             {
                 showErrorMsg("Error");
-                Label1.Text = "Contraseñas no coinciden.";
+                Mensaje.Text = "Contraseñas no coinciden.";
             }
         }
 
@@ -153,7 +153,7 @@ namespace PremiosInstitucionales.WebForms
                         smtp.Port = 587;
                         smtp.Send(mm);
                     }
-                    catch (Exception e)
+                    catch (Exception e1)
                     {
                         return false;
                     }
@@ -161,7 +161,7 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (Exception sfe)
+            catch (Exception e2)
             {
                 return false;
             }
@@ -201,18 +201,18 @@ namespace PremiosInstitucionales.WebForms
                 if (EnviarCorreoRecuperacion(email, id))
                 {
                     showErrorMsg("Aviso");
-                    Label1.Text = "Se envió un correo para la recuperación de la contraseña.";
+                    Mensaje.Text = "Se envió un correo para la recuperación de la contraseña.";
                 }
                 else
                 {
                     showErrorMsg("Error");
-                    Label1.Text = "Dirección de correo no válida.";
+                    Mensaje.Text = "Dirección de correo no válida.";
                 }
             }
             else
             {
                 showErrorMsg("Error");
-                Label1.Text = "Usuario no existe.";
+                Mensaje.Text = "Usuario no existe.";
             }
         }
 
@@ -247,7 +247,7 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (Exception sfe)
+            catch (Exception e1)
             {
                 return false;
             }

@@ -83,6 +83,10 @@ function changeTab(isLoginSelected) {
  }
  
  function transformToNavBar(urlUsuario) {
+     // Ver si cambiaron los datos de usuario / contraseña
+     datosUsuario();
+    
+    // Elementos que ocultare durante la animacion
     var signIn = document.getElementsByClassName("sign-in-htm")[0];
 	var tabs    = document.getElementsByClassName("option-tabs")[0];
 	var logoTec = document.getElementById("logoTec");
@@ -120,21 +124,6 @@ function changeTab(isLoginSelected) {
 	}, 800);
  }
  
-function getCookie(cname) {
-     var name = cname + "=";
-     var ca = document.cookie.split(';');
-     for (var i = 0; i < ca.length; i++) {
-         var c = ca[i];
-         while (c.charAt(0) == ' ') {
-             c = c.substring(1);
-         }
-         if (c.indexOf(name) == 0) {
-             return c.substring(name.length, c.length);
-         }
-     }
-     return "";
- }
-
 $(document).ready(function () {
     // Labels e Inputs Interactivos
     $('.int-group').find('.int-input, textarea').on('keyup blur focus', function (e) {
@@ -164,11 +153,11 @@ $(document).ready(function () {
         }
     });
 
-    // Recordar el correo del usuario
+    // Escribir el correo del usuario si hay alguno guardado en las cookies
     if (getCookie("eMail") != "Null" && getCookie("eMail") != "") {
         document.getElementsByClassName("int-input")[0].value = getCookie("eMail");
     }
-    // Recordar la contraseña del usuario
+    // Escribir la contraseña del usuario si hay alguno guardado en las cookies
     if (getCookie("psw") != "Null" && getCookie("psw") != "") {
         document.getElementsByClassName("int-input")[1].value = getCookie("psw");
     }
@@ -186,25 +175,60 @@ $(document).ready(function () {
     // Almacenar cookies de correo / contraseña, si el usuario lo desea
     $("#checkBox").on('change', function () {
         if (this.checked) {
-            var eMail = document.getElementsByClassName("int-input")[0].value;
-            var psw = document.getElementsByClassName("int-input")[1].value;
-            document.cookie = "eMail=" + eMail;
-            document.cookie = "psw=" + psw;
-            document.cookie = "checked=" + "true";
+            recordarUsuario();
         }
         else {
-            document.cookie = "eMail=" + "Null";
-            document.cookie = "psw=" + "Null";
-            document.cookie = "checked=" + "false";
+            olvidarUsuario();
         }
     })
 });
 
+// Cuando termine de cargar la pagina, llamo a datosUsuario()
 $(window).load(function () {
+    datosUsuario();
+});
+
+// Funcion que guarda u olvida los datos del usuario, dependiendo de el checkbox
+function datosUsuario() {
     if (getCookie("checked") == "true") {
         document.getElementById("checkBox").checked = true;
+        recordarUsuario();
     }
     else {
         document.getElementById("checkBox").checked = false;
+        olvidarUsuario();
     }
-});
+}
+
+// Funcion que guarda en las cookies los campos de email, password y el checkbox
+function recordarUsuario() {
+    var eMail = document.getElementsByClassName("int-input")[0].value;
+    var psw = document.getElementsByClassName("int-input")[1].value;
+
+    document.cookie = "eMail=" + eMail;
+    document.cookie = "psw=" + psw;
+    document.cookie = "checked=" + "true";
+}
+
+// Funcion que 'olvida' las cookies
+function olvidarUsuario() {
+    document.cookie = "eMail=" + "Null";
+    document.cookie = "psw=" + "Null";
+    document.cookie = "checked=" + "false";
+}
+
+// Funcion que retorna el valor de una cookie en especifico
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
