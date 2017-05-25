@@ -207,6 +207,7 @@
     <Content Include="Resources\css\images\sort_both.png" />
     <Content Include="Resources\css\images\sort_desc.png" />
     <Content Include="Resources\img\default-pp.jpg" />
+    <Content Include="Resources\img\loader.gif" />
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
     <Content Include="Resources\img\trophy.png" />

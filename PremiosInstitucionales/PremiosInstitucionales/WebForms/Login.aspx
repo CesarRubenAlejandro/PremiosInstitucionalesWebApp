@@ -6,7 +6,7 @@
 		<div id="vidtop-content">
 			<div class="login-wrap">
 				<div class="login-html">
-					<img id="logoTec" src='<%= ResolveUrl("~/Resources/img/logotec.png")%>' alt="Logo Tec">
+					<img id="logoTec" src='<%= ResolveUrl("~/Resources/img/logotec.png")%>' alt="Logo Tec"/>
 					<div class="option-tabs">
 						<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked="checked"/><label for="tab-1" class="tab">Inicio</label>
 						<input id="tab-2" type="radio" name="tab" class="sign-up" onchange="changeTab(false)"/><label for="tab-2" class="tab">Registro</label>
@@ -36,11 +36,11 @@
 						<div class="sign-up-htm">
 							<div class="int-group">
 								<label for="name" class="int-label">Nombre(s)<span class="req">*</span></label>
-								<asp:TextBox ID="name" runat="server" class="int-input" type="text"  autocomplete="off" spellcheck="false"></asp:TextBox>
+								<asp:TextBox ID="name" runat="server" class="int-input" type="text" autocomplete="off" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
 								<label for="lname" class="int-label">Apellido(s)<span class="req">*</span></label>
-								<asp:TextBox ID="lname" runat="server" class="int-input" type="text"  autocomplete="off" spellcheck="false"></asp:TextBox>
+								<asp:TextBox ID="lname" runat="server" class="int-input" type="text" autocomplete="off" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
 								<label for="email" class="int-label">Correo Electrónico<span class="req">*</span></label>
@@ -83,6 +83,8 @@
 					</div>
 				</div>
 			</div>
+
+            <img id="loader" src='<%= ResolveUrl("~/Resources/img/loader.gif")%>' alt="Cargando" style="display: none;"/>
 
             <!-- Modal para dar un mensaje -->
             <div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" style="margin-top: 150px;">

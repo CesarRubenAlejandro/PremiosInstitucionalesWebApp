@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h3 class="section-heading"> Administrar Premio </h3>
+                    <h3 class="section-heading"> Administrador de convocatorias </h3>
                     <hr class="shorthr"/>
                 </div>
             </div>
@@ -97,6 +97,7 @@
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h3 class="modal-title" id="myModalLabel">Nueva Convocatoria</h3>
+                    <hr class="shorthr"/>
                 </div>
                 <div class="form-horizontal" role="form" id="changePasswordForm">
                     <div class="modal-body">

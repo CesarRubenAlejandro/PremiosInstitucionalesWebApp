@@ -103,6 +103,16 @@ a, a:hover{
 	text-align:center;
 }
 
+#loader {
+   position: absolute;
+   top: 25%;
+   left: 50%;
+   width: 32px;
+   height: 32px;
+   margin-top: -16px; /* Half the height */
+   margin-left: -16px; /* Half the width */
+}
+
 /* Logo Tec */
 
 #logoTec {

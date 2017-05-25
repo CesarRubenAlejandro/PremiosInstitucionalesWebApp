@@ -16,6 +16,8 @@ namespace PremiosInstitucionales.WebForms
         int numPregunta = 0;
         String idCategoria;
         String formaID;
+        TextBox tbCategoria;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -44,8 +46,17 @@ namespace PremiosInstitucionales.WebForms
             // Nombre de Titulos
             nombrePremioCategoria.Controls.Add(new LiteralControl(
                 "<h3> <strong> Premio: </strong>" + nombrePremio + "</h3>" +
-                "<h4> <strong> Categoria: </strong>" + nombreCategoria + "</h4>"
+                "<h4 style=\"display: inline;\"> <strong> Categoria: </strong> </h4>"
             ));
+
+            tbCategoria = new TextBox();
+            tbCategoria.CssClass = "form-control";
+            tbCategoria.Style.Add("display", "inline-block");
+            tbCategoria.Style.Add("font-size", "1.75em");
+            tbCategoria.Style.Add("width", "225px");
+            tbCategoria.Attributes.Add("type", "text");
+            tbCategoria.Text = nombreCategoria;
+            nombrePremioCategoria.Controls.Add(tbCategoria);
 
             LoadJudgeTable();
 
@@ -262,6 +273,7 @@ namespace PremiosInstitucionales.WebForms
             formaID = Request.QueryString["p"];
             Guarda_Jueces();
             Guarda_Formulario();
+            AplicacionService.CambiarNombreCategoria(idCategoria, tbCategoria.Text);
             Response.Redirect("AdministraFormulario.aspx?p=" + formaID);
         }
 

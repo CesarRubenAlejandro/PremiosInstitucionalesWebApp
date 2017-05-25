@@ -121,6 +121,7 @@ function changeTab(isLoginSelected) {
 	// Login
 	setTimeout(function(){
 	    window.location.href = urlUsuario;
+	    document.getElementById("loader").style.display = "inline";
 	}, 800);
  }
  
