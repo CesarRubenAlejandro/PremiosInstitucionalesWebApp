@@ -27,7 +27,7 @@ namespace PremiosInstitucionales.WebForms
             }
 
             var aplicaciones = AplicacionService.GetAplicacionesByCorreo(Session[StringValues.CorreoSesion].ToString());
-            if (aplicaciones != null)
+            if (aplicaciones.Count > 0)
             {
                 foreach (var ap in aplicaciones)
                 {
@@ -44,10 +44,10 @@ namespace PremiosInstitucionales.WebForms
             {
                 //desplegar letrero de no aplicaciones
                 HtmlControl divControl = new HtmlGenericControl("div");
+                divControl.Attributes.Add("class", "text-center");
                 divControl.Visible = true;
+                divControl.Controls.Add(new LiteralControl("<br /> <h4> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </h4>"));
                 estadosaplicaciones.Controls.Add(divControl);
-
-                divControl.Controls.Add(new LiteralControl("<p> Por el momento no tienes aplicaciones a premios institucionales para mostrar. </p>"));
             }
         }
 

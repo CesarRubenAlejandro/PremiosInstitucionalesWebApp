@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div class="container" id="appsdiv" runat="server">
                 <div class="panel-group" id="accordion" runat="server" role="tablist" aria-multiselectable="true">
                 </div>
             </div>

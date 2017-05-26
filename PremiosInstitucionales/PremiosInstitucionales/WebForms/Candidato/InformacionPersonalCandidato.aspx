@@ -157,11 +157,11 @@
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h3 class="modal-title">Aviso de privacidad</h3>
-                        <hr class="shorthr">
+                        <hr class="shorthr"/>
                     </div>
                     <div class="modal-body">
                         <div class="text-center" style="margin-bottom: 16px;">
-                        <img src="../Resources/svg/shield.svg" style="width: 96px; height: 96px;" />
+                        <img src='<%= ResolveUrl("~/Resources/svg/shield.svg") %>' style="width: 96px; height: 96px;" />
                             </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus. </p>
 

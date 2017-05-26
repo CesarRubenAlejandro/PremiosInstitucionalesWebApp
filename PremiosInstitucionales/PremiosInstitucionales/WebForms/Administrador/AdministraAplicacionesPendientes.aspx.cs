@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Web.UI.HtmlControls;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -44,7 +45,7 @@ namespace PremiosInstitucionales.WebForms
             aplicaciones = aplicaciones.OrderBy(a => a.cveCategoria).ToList();
 
 
-            if (aplicaciones != null)
+            if (aplicaciones.Count > 0)
             {
                 int iCont = 0;
                 foreach (var app in aplicaciones)
@@ -93,7 +94,7 @@ namespace PremiosInstitucionales.WebForms
                     // Desplegar preguntas y respuestas
                     var preguntas = AplicacionService.GetFormularioByCategoria(app.cveCategoria);
 
-                    if (preguntas != null)
+                    if (preguntas.Count > 0)
                     {
                         short iNumber = 0;
                         foreach (var pregunta in preguntas)
@@ -148,6 +149,16 @@ namespace PremiosInstitucionales.WebForms
                     iCont++;
                 }
 
+            }
+
+            else
+            {
+                //desplegar letrero de no aplicaciones
+                HtmlControl divControl = new HtmlGenericControl("div");
+                divControl.Attributes.Add("class", "text-center");
+                divControl.Visible = true;
+                divControl.Controls.Add(new LiteralControl("<h4> No hay registros pendientes que mostrar. </h4>"));
+                appsdiv.Controls.Add(divControl);
             }
         }
         protected void bttnEnviarRechazo_Click(object sender, EventArgs e)

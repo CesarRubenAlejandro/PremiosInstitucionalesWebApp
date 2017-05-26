@@ -146,12 +146,12 @@ namespace PremiosInstitucionales.WebForms
             foreach (var categoria in premio.ListaCategorias)
             {
                 htmlContent += "<li>" +
-                                            "<a href = \"#" + categoria.cveCategoria + "\" data-toggle= \"tab\"> " + categoria.Nombre +
-                                                " <span class=\"badge\" style=\"font-weight: bold;\">" +
-                                                    GetAplicacionesAceptadas(categoria.cveCategoria) +
-                                                "</span>" +
-                                            "</a>" +
-                                        "</li>";
+                                    "<a href = \"#" + categoria.cveCategoria + "\" data-toggle= \"tab\"> " + categoria.Nombre +
+                                        " <span class=\"badge\" style=\"font-weight: bold;\">" +
+                                            GetAplicacionesAceptadas(categoria.cveCategoria) +
+                                        "</span>" +
+                                    "</a>" +
+                                "</li>";
             }
 
             htmlContent += "</ul>" +
@@ -187,8 +187,6 @@ namespace PremiosInstitucionales.WebForms
 
             foreach (var categoria in listaCategorias)
             {
-                ///
-
                 categoriaAgregada = false;
 
                 foreach (var premio in listaPremios)
@@ -209,12 +207,24 @@ namespace PremiosInstitucionales.WebForms
 
 
             ///
-            foreach (var premio in listaPremios)
+            if (listaPremios.Count > 0)
             {
+                foreach (var premio in listaPremios)
+                {
+                    HtmlControl divControl = new HtmlGenericControl("div");
+                    divControl.Visible = true;
+                    premiosJuez.Controls.Add(divControl);
+                    premiosJuez.Controls.Add(new LiteralControl("<div class=\"row\">" + CrearPremioHtml(premio) + "</div>"));
+                }
+            }
+            else
+            {
+                //desplegar letrero de no aplicaciones
                 HtmlControl divControl = new HtmlGenericControl("div");
+                divControl.Attributes.Add("class", "text-center");
                 divControl.Visible = true;
+                divControl.Controls.Add(new LiteralControl("<br /> <h4> Por el momento no se te ha asignado ningún premio para calificar. </h4>"));
                 premiosJuez.Controls.Add(divControl);
-                premiosJuez.Controls.Add(new LiteralControl("<div class=\"row\">" + CrearPremioHtml(premio) + "</div>"));
             }
 
         }
