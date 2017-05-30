@@ -107,10 +107,10 @@ a, a:hover{
    position: absolute;
    top: 25%;
    left: 50%;
-   width: 32px;
-   height: 32px;
-   margin-top: -16px; /* Half the height */
-   margin-left: -16px; /* Half the width */
+   width: 64px;
+   height: 64px;
+   margin-top: -32px; /* Half the height */
+   margin-left: -32px; /* Half the width */
 }
 
 /* Logo Tec */

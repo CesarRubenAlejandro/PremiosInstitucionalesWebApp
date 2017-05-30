@@ -118,10 +118,14 @@ function changeTab(isLoginSelected) {
 		loginWrap.style.width = "100%";
 	}, 250);
 	
+     // Loading
+	setTimeout(function () {
+	    document.getElementById("loader").style.display = "inline";
+	}, 425);
+
 	// Login
 	setTimeout(function(){
 	    window.location.href = urlUsuario;
-	    document.getElementById("loader").style.display = "inline";
 	}, 800);
  }
  
