@@ -14,8 +14,7 @@ namespace PremiosInstitucionales.Entities.Models
     
     public partial class PI_SE_Administrador
     {
-        public string CveAdministrador { get; set; }
-        public string UserName { get; set; }
+        public string cveAdministrador { get; set; }
         public string Password { get; set; }
         public string Correo { get; set; }
     }

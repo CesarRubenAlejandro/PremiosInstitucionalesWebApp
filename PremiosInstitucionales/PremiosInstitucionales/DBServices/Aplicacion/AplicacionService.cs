@@ -11,39 +11,6 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
     {
         private static wPremiosInstitucionalesdbEntities dbContext;
 
-        public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Categoria.Where(c => c.cveConvocatoria.Equals(idConvocatoria)).ToList();
-        }
-
-        public static List<PI_BA_Categoria> GetCategoriasByPremio(String idPremio)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            // revisar que el premio cuente con una convocatoria vigente
-            var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(idPremio)).First();
-            if (premio.PI_BA_Convocatoria.Count > 0)
-            {
-                // obtener la convocatoria vigente
-                var convocatoria = (from convo in premio.PI_BA_Convocatoria
-                                    where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
-                                    select convo).FirstOrDefault();
-                // regresar las categorias de la convocatoria
-                try
-                {
-                    return convocatoria.PI_BA_Categoria.ToList();
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public static bool CheckCandidatoInCategoria(String email, String idCategoria)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();
@@ -245,12 +212,18 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
 
         public static PI_BA_Premio GetPremioByClaveCategoria(String idCategoria)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
-            PI_BA_Convocatoria convocatoria = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria.Equals(categoria.cveConvocatoria)).FirstOrDefault();
-            PI_BA_Premio premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(convocatoria.cvePremio)).FirstOrDefault();
-
-            return premio;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetPremioByIdCategoria(idCategoria).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static PI_BA_Categoria GetCategoriaByClaveCategoria(String idCategoria)
@@ -315,9 +288,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 result = -1;
             }
 
-            if (result < 0)
-                return false;
-            else if (result == 0)
+            if (result <= 0)
                 return false;
             else
                 return true;
@@ -341,9 +312,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 result = -1;
             }
 
-            if (result < 0)
-                return false;
-            else if (result == 0)
+            if (result <= 0)
                 return false;
             else
                 return true;

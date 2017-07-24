@@ -96,11 +96,19 @@ namespace PremiosInstitucionales.WebForms
             categoria.cveCategoria = Guid.NewGuid().ToString();
             categoria.Nombre = tbCategoryTitle.Text;
             categoria.cveConvocatoria = Request.QueryString["c"];
+            categoria.FechaCreacion = DateTime.Now;
+            categoria.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+            categoria.FechaEdicion = DateTime.Now;
+            categoria.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
             ConvocatoriaService.CreateCategoria(categoria);
 
             PI_BA_Forma forma = new PI_BA_Forma();
             forma.cveForma = Guid.NewGuid().ToString();
             forma.cveCategoria = categoria.cveCategoria;
+            forma.FechaCreacion = DateTime.Now;
+            forma.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+            forma.FechaEdicion = DateTime.Now;
+            forma.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
             ConvocatoriaService.CreateForma(forma);
 
             ResetFields();

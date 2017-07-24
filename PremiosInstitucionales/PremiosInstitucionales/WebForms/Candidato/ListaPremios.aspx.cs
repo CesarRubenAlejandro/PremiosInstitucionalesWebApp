@@ -33,12 +33,12 @@ namespace PremiosInstitucionales.WebForms
             {
                 // Si no hay convocatoria, no muestro el premio
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
-                if (conv == null) break;
+                if (conv == null) continue;
 
                 // Si no hay categorias en la convocatoria, no muestro el premio
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
-                if (listCat == null) break;
-                if (listCat.Count == 0) break;
+                if (listCat == null) continue;
+                if (listCat.Count == 0) continue;
 
                 Literal lit = new Literal();
 

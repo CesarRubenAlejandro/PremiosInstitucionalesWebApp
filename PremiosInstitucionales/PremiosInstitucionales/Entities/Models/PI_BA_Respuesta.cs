@@ -20,7 +20,6 @@ namespace PremiosInstitucionales.Entities.Models
         public string cveAplicacion { get; set; }
     
         public virtual PI_BA_Aplicacion PI_BA_Aplicacion { get; set; }
-        public virtual PI_BA_Evaluacion PI_BA_Evaluacion { get; set; }
         public virtual PI_BA_Pregunta PI_BA_Pregunta { get; set; }
     }
 }

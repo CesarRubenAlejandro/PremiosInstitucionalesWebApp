@@ -1,325 +1,310 @@
 ﻿using PremiosInstitucionales.Entities.Models;
-using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 
 namespace PremiosInstitucionales.DBServices.Convocatoria
 {
-    
     public class ConvocatoriaService
     {
-        private static wPremiosInstitucionalesdbEntities dbContext;
         public static List<PI_BA_Premio> GetAllPremios()
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Premio.ToList();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetPremio(null).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
-        public static void CreatePremio(PI_BA_Premio premio)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            dbContext.PI_BA_Premio.Add(premio);
-            dbContext.SaveChanges();
-        }
-
-        public static void CreateCategoria(PI_BA_Categoria categoria)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            dbContext.PI_BA_Categoria.Add(categoria);
-            dbContext.SaveChanges();
-        }
-
-        public static void CreateForma(PI_BA_Forma forma)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            dbContext.PI_BA_Forma.Add(forma);
-            dbContext.SaveChanges();
-        }
-
-        public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
-        {
-            var query = (from cat in dbContext.PI_BA_Categoria
-                         where cat.cveConvocatoria.Equals(idConvocatoria)
-                         orderby cat.Nombre descending
-                         select cat).ToList();
-            return query;
-        }
         public static PI_BA_Premio GetPremioById(String idPremio)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
-                    .FirstOrDefault();
-        }
-
-        public static PI_BA_Forma GetFormaByCategoria(string idCategoria) {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Forma.Where(p => p.cveCategoria == idCategoria).FirstOrDefault();
-        }
-
-        public static PI_BA_Forma GetFormaByID(string idForma) {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Forma.Where(p => p.cveForma == idForma).FirstOrDefault();
-        }
-
-        public static PI_BA_Categoria GetCategoriaById(String idCategoria)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Categoria.Where(p => p.cveCategoria == idCategoria)
-                    .FirstOrDefault();
-        }
-
-        public static PI_BA_Convocatoria GetConvocatoriaById(String idConvocatoria)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            return dbContext.PI_BA_Convocatoria.Where(cvc => cvc.cveConvocatoria == idConvocatoria)
-                    .FirstOrDefault();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetPremio(idPremio).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static PI_BA_Premio GetPremioByCategoria(string idCategoria)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-
-            var categoria = GetCategoriaById(idCategoria);
-            if (categoria != null)
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                var convocatoria = GetConvocatoriaById(categoria.cveConvocatoria);
-                if(categoria != null)
+                try
                 {
-                    var premio = GetPremioById(convocatoria.cvePremio);
-                    return premio;
+                    return dbContext.GetPremioByIdCategoria(idCategoria).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
                 }
             }
-
-            return null;
         }
 
-        public static void SaveNewConvocatoria(string idPremio, PI_BA_Convocatoria nuevaConvocatoria)
+        public static void CreatePremio(PI_BA_Premio pr)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            nuevaConvocatoria.cvePremio = idPremio;
-            dbContext.PI_BA_Convocatoria.Add(nuevaConvocatoria);
-            dbContext.SaveChanges();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.AddPremio(pr.cvePremio, pr.Nombre, pr.NombreImagen, pr.Descripcion, pr.FechaCreacion, pr.UsuarioCreacion, pr.FechaEdicion, pr.UsuarioEdicion);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
+        }
+
+        public static void ActualizarPremio(string idPremio, string titulo, string descripcion, string imagenurl, string user)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    var pr = GetPremioById(idPremio);
+                    dbContext.UpdatePremio(pr.cvePremio, titulo, imagenurl, descripcion, pr.FechaCreacion, pr.UsuarioCreacion, DateTime.Now, user);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
+        }
+
+        public static void CreateCategoria(PI_BA_Categoria cat)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.AddCategoria(cat.cveCategoria, cat.Nombre, cat.cveConvocatoria, cat.cveAplicacionGanadora, cat.FechaCreacion, cat.UsuarioCreacion, cat.FechaEdicion, cat.UsuarioEdicion);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
+        }
+
+        public static PI_BA_Categoria GetCategoriaById(String idCategoria)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetCategoria(idCategoria, null).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
+        }
+
+        public static List<PI_BA_Categoria> GetCategoriasByConvocatoria(String idConvocatoria)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetCategoria(null, idConvocatoria).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
+        }
+
+        public static void CreateForma(PI_BA_Forma fr)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.AddForma(fr.cveForma, fr.cveCategoria, fr.FechaCreacion, fr.UsuarioCreacion, fr.FechaEdicion, fr.UsuarioEdicion);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
+        }
+
+        public static PI_BA_Forma GetFormaByID(string idForma)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetForma(idForma).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
+        }
+
+        public static void CreateConvocatoria(string idPremio, PI_BA_Convocatoria cv)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.AddConvocatoria(cv.cveConvocatoria, cv.Descripcion, cv.FechaInicio, cv.FechaFin, idPremio, cv.TituloConvocatoria, cv.FechaVeredicto, cv.FechaCreacion, cv.UsuarioCreacion, cv.FechaEdicion, cv.UsuarioEdicion);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
+        }
+
+        public static PI_BA_Convocatoria GetConvocatoriaById(String idConvocatoria)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetConvocatoria(idConvocatoria).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static PI_BA_Convocatoria GetMostRecentConvocatoria(string idPremio)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var query = (from convo in dbContext.PI_BA_Convocatoria
-                         where convo.cvePremio.Equals(idPremio)
-                         orderby convo.FechaFin descending
-                         select convo).FirstOrDefault();
-            return query;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetMostRecentConvocatoria(idPremio).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static List<PI_BA_Convocatoria> GetConvocatoriasPremio(string idPremio)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var query = (from convo in dbContext.PI_BA_Convocatoria
-                         where convo.cvePremio.Equals(idPremio)
-                         orderby convo.FechaFin descending
-                         select convo).ToList();
-            return query;
-        }
-
-        public static void ActualizarConvocatoria(string idConvocatoria, string descripcion, string titulo)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var convo = dbContext.PI_BA_Convocatoria.Where(c => c.cveConvocatoria == idConvocatoria)
-                .FirstOrDefault<PI_BA_Convocatoria>();
-            convo.Descripcion = descripcion;
-            convo.TituloConvocatoria = titulo;
-            dbContext.SaveChanges();
-        }
-
-        public static void ActualizarPremio(string idPremio, string titulo, string descripcion, string imagenurl)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio == idPremio)
-                .FirstOrDefault<PI_BA_Premio>();
-            premio.Nombre = titulo;
-            premio.Descripcion = descripcion;
-            premio.NombreImagen = imagenurl;
-            dbContext.SaveChanges();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetMostRecentConvocatoria(idPremio).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static Dictionary<PI_BA_Aplicacion, PI_BA_Candidato> JuezObtenerCandidatosPorAplicaciones(List<PI_BA_Aplicacion> listaAplicaciones)
         {// Obtengo lista de aplicaciones, regreso diccionario de aplicaciones con candidatos
-
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var lista = new Dictionary<PI_BA_Aplicacion, PI_BA_Candidato>();
-
-            foreach (var aplicacion in listaAplicaciones)
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                var candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato == aplicacion.cveCandidato)
-                    .FirstOrDefault<PI_BA_Candidato>();
-
-                // Se despliegan las aplicaciones aceptadas unicamente
-                if (aplicacion.Status == Values.StringValues.Aceptado)
-                {
-                    lista.Add(aplicacion, candidato);
-                }
-
-            }
-
-            return lista;
-        }
-
-        public static Dictionary<PI_BA_Aplicacion, PI_BA_Candidato> AdminObtenerCandidatosPorAplicaciones(List<PI_BA_Aplicacion> listaAplicaciones)
-        {// Obtengo lista de aplicaciones, regreso diccionario de aplicaciones con candidatos
-
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var lista = new Dictionary<PI_BA_Aplicacion, PI_BA_Candidato>();
-
-            foreach (var aplicacion in listaAplicaciones)
-            {
-                var candidato = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato == aplicacion.cveCandidato)
-                    .FirstOrDefault<PI_BA_Candidato>();
-
-                // No se despliegan las aplicaciones rechazadas
-                if(aplicacion.Status!= Values.StringValues.Rechazado)
-                {
-                    lista.Add(aplicacion, candidato);
-                }
-                
-            }
-
-            return lista;  
-        }
-
-        public static List<PI_BA_Aplicacion> ObtenerAplicacionesPorCategoria(string cve_categoria)
-        {// Obtengo lista de aplicaciones dada una categoria
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            try
-            {
-                var categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(cve_categoria))
-                .First();
-
-                if (categoria.PI_BA_Aplicacion != null)
-                    return categoria.PI_BA_Aplicacion.ToList();
-                else
-                    return null;
-            } catch (Exception e)
-            {
-                return null;
-            }          
-        }
-
-        public static List<PI_BA_Aplicacion> JuezObtenerAplicacionesPorCategoria(string cve_categoria)
-        {// Obtengo lista de aplicaciones dada una categoria
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            try
-            {
-                var categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(cve_categoria))
-                .First();
-
-                if (categoria.PI_BA_Aplicacion != null)
-                    return categoria.PI_BA_Aplicacion.Where(a=> a.Status.Equals(StringValues.Aceptado)).ToList();
-                else
-                    return null;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public static Dictionary<string, string[]> ObtenerPreguntasConRespuestasPorAplicacion(PI_BA_Aplicacion aplicacion)
-        { //Se obtiene un diccionario de preguntas y respuestas por aplicacion, ordenado por clave aplicacion
-
-            dbContext = new wPremiosInstitucionalesdbEntities();
-
-            var respuestas = dbContext.PI_BA_Respuesta.Where(c => c.cveAplicacion == aplicacion.cveAplicacion).ToList();
-            var query = (from resp in dbContext.PI_BA_Respuesta
-                         where resp.cveAplicacion.Equals(aplicacion.cveAplicacion)
-                         join pr in dbContext.PI_BA_Pregunta on resp.cvePregunta equals pr.cvePregunta
-                         orderby pr.Orden
-                         select new
-                         {
-                             idResp = resp.cveRespuesta,
-                             txtPreg = pr.Texto,
-                             valorResp = resp.Valor
-                         }).ToList();
-            var diccionarioPregResp = new Dictionary<string,string[]>();
-            foreach (var auxPregResp in query)
-            {
-                diccionarioPregResp.Add(auxPregResp.idResp, new string[] { auxPregResp.txtPreg, auxPregResp.valorResp });
-            }
-
-            return diccionarioPregResp;
-
-        }
-
-        public static String GetNombreCandidatoByAplicacion(String cveAplicacion)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var app = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveAplicacion)).First();
-            var result = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(app.cveCandidato)).First().Nombre;
-            return result;
-        }
-
-        public static String GetCorreoCandidatoByAplicacion(String cveAplicacion)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var app = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveAplicacion)).First();
-            var result = dbContext.PI_BA_Candidato.Where(c => c.cveCandidato.Equals(app.cveCandidato)).First().Correo;
-            return result;
-        }
-
-        public static List<PI_BA_Categoria> GetCategoriasByPremio(String idPremio)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            // revisar que el premio cuente con una convocatoria vigente
-            var premio = dbContext.PI_BA_Premio.Where(p => p.cvePremio.Equals(idPremio)).First();
-
-            if (premio.PI_BA_Convocatoria.Count > 0)
-            {
-                // obtener la convocatoria vigente
-                var convocatoria = (from convo in premio.PI_BA_Convocatoria
-                                    where DateTime.Today >= convo.FechaInicio && DateTime.Today <= convo.FechaFin
-                                    select convo).FirstOrDefault();
-                // regresar las categorias de la convocatoria
                 try
                 {
-                    return convocatoria.PI_BA_Categoria.ToList();
-                } catch (Exception e)
+                    var lista = new Dictionary<PI_BA_Aplicacion, PI_BA_Candidato>();
+
+                    foreach (var aplicacion in listaAplicaciones)
+                    {
+                        var candidato = InformacionPersonalCandidatoService.GetCandidatoById(aplicacion.cveCandidato);
+
+                        // Se despliegan las aplicaciones aceptadas unicamente
+                        if (aplicacion.Status == Values.StringValues.Aceptado)
+                        {
+                            lista.Add(aplicacion, candidato);
+                        }
+
+                    }
+                    return lista;
+                }
+                catch (Exception Ex)
                 {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                     return null;
                 }
             }
-            else
+        }
+
+        public static List<PI_BA_Aplicacion> ObtenerAplicacionesPorCategoria(string idCategoria)
+        {// Obtengo lista de aplicaciones dada una categoria
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                return null;
+                try
+                {
+                    // TODO
+                    return dbContext.PI_BA_Aplicacion.Where(a => a.cveCategoria.Equals(idCategoria)).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
             }
         }
 
         public static List<PI_BA_Categoria> GetCategoriasPendientes()
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var categorias = dbContext.PI_BA_Categoria.Where(a => a.cveAplicacionGanadora == null).ToList();
-
-            if (categorias == null)
-                return categorias;
-
-            List<PI_BA_Categoria> validCategories = new List<PI_BA_Categoria>();
-
-            foreach(var c in categorias)
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                var convo = GetConvocatoriaById(c.cveConvocatoria);
-                if(DateTime.Today >= convo.FechaInicio)
+                try
                 {
-                    validCategories.Add(c);
+                    var categorias = dbContext.GetCategoriasPendientes().ToList();
+                    List<PI_BA_Categoria> validCategories = new List<PI_BA_Categoria>();
+
+                    foreach (var c in categorias)
+                    {
+                        var convo = GetConvocatoriaById(c.cveConvocatoria);
+                        if (DateTime.Today >= convo.FechaInicio)
+                        {
+                            validCategories.Add(c);
+                        }
+                    }
+
+                    return validCategories;
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
                 }
             }
-
-            if (validCategories.Count == 0)
-                return null;
-
-            return validCategories;
         }
-
     }
-
-    
 }

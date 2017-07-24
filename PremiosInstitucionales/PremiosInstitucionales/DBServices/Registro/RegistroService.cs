@@ -1,71 +1,95 @@
 ﻿using PremiosInstitucionales.Entities.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace PremiosInstitucionales.DBServices.Registro
 {
     public class RegistroService
     {
-        private static wPremiosInstitucionalesdbEntities dbContext;
-
-        public static bool RegistraJuez(String correo, String contrasena)
+        public static bool RegistraJuez(string correo, string contrasena)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            if (!existJuez(correo))
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                PI_BA_Juez juez = new PI_BA_Juez();
-                juez.cveJuez = Guid.NewGuid().ToString();
-                juez.Correo = correo;
-                juez.Password = contrasena;
-                dbContext.PI_BA_Juez.Add(juez);
-                dbContext.SaveChanges();
-                return true;
-            }
-            else
-                return false;
+                try
+                {
+                    // Si no hay ningun usuario registrado con ese correo
+                    if (!ExisteUsuario(correo))
+                    {
+                        dbContext.AddJuez(Guid.NewGuid().ToString(), contrasena, null, null, correo, null);
+                        dbContext.SaveChanges();
+                        return true;
+                    }
 
-        }
-
-        public static bool Registrar(String email, String password, String nombre, String apellido, String codigoConfirmacion)
-        {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            if (!exists(email))
-            {
-                dbContext = new wPremiosInstitucionalesdbEntities();
-                PI_BA_Candidato candidato = new PI_BA_Candidato();
-                candidato.cveCandidato = Guid.NewGuid().ToString();
-                candidato.Correo = email;
-                candidato.Password = password;
-                candidato.Nombre = nombre;
-                candidato.Apellido = apellido;
-                candidato.CodigoConfirmacion = codigoConfirmacion;
-                dbContext.PI_BA_Candidato.Add(candidato);
-                dbContext.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
+                    // Si alguien ya esta registrado con este correo
+                    return false;
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return false;
+                }
             }
         }
 
-        private static bool exists(String email)
+        public static bool RegistraCandidato(string email, string password, string nombre, string apellido, string codigoConfirmacion)
         {
-            return dbContext.PI_BA_Candidato.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
-        }
-        private static bool existJuez(String email)
-        {
-            return dbContext.PI_BA_Juez.Where(c => c.Correo.Equals(email)).ToList().Count > 0;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    // Si no hay ningun usuario registrado con ese correo
+                    if (!ExisteUsuario(email))
+                    {
+                        dbContext.AddCandidato(Guid.NewGuid().ToString(), password, nombre, apellido, null, email, codigoConfirmacion, null, null, null, null, null, null);
+                        dbContext.SaveChanges();
+                        return true;
+                    }
+
+                    // Si alguien ya esta registrado con este correo
+                    return false;
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return false;
+                }
+            }
         }
 
-        public static void ConfirmarCandidato(String codigoConfirmacion)
+        private static bool ExisteUsuario(string email)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var candidato = dbContext.PI_BA_Candidato.Where(c => c.CodigoConfirmacion.Equals(codigoConfirmacion)).FirstOrDefault();
-            candidato.Confirmado = true;
-            dbContext.SaveChanges();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    int cantCandidatos = dbContext.GetCandidato(email, null).ToList().Count;
+                    int cantJueces     = dbContext.GetJuez(email, null).ToList().Count;
+                    int cantAdmins     = dbContext.GetAdministrador(email, null).ToList().Count;
+
+                    return (cantCandidatos + cantJueces + cantAdmins) > 0;
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return false;
+                }
+            }
+        }
+
+        public static void ConfirmarCandidato(string codigoConfirmacion)
+        {
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.ConfirmarCandidato(codigoConfirmacion);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
         }
     }
 }

@@ -105,7 +105,10 @@ namespace PremiosInstitucionales.WebForms
             premio.Nombre = tbAwardTitle.Text;
             premio.Descripcion = tbAwardDescription.Text;
             premio.NombreImagen = UploadImage();
-
+            premio.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+            premio.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
+            premio.FechaCreacion = DateTime.Now;
+            premio.FechaEdicion = DateTime.Now;
             ConvocatoriaService.CreatePremio(premio);
 
             ResetFields();

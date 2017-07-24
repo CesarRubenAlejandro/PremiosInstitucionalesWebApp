@@ -2,79 +2,126 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 
 namespace PremiosInstitucionales.DBServices.Evaluacion
 {
     public class EvaluacionService
     {
-        private static wPremiosInstitucionalesdbEntities dbContext;
-
         public static List<PI_BA_Categoria> GetCategoriaByJuez(String email)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var juez = dbContext.PI_BA_Juez.Where(j => j.Correo.Equals(email)).First();
-            var result = (from jc in dbContext.PI_BA_JuezPorCategoria
-                          from cat in dbContext.PI_BA_Categoria
-                          where jc.cveJuez.Equals(juez.cveJuez) && cat.cveCategoria.Equals(jc.cveCategoria)
-                          select cat).ToList();
-            return result;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    var juez = InformacionPersonalJuezService.GetJuezByCorreo(email);
+                    return dbContext.GetCategoriaByIdJuez(juez.cveJuez).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
-        public static PI_BA_Premio GetNombrePremioByCategoria(String categoriaId)
+        public static PI_BA_Premio GetPremioByCategoria(String categoriaId)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var result = (from p in dbContext.PI_BA_Premio
-                          join convo in dbContext.PI_BA_Convocatoria on p.cvePremio equals convo.cvePremio
-                          join cat in dbContext.PI_BA_Categoria on convo.cveConvocatoria equals cat.cveConvocatoria
-                          where cat.cveCategoria.Equals(categoriaId)
-                          select p).First();
-            return result;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetPremioByIdCategoria(categoriaId).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
-        public static void CrearEvaluacion(PI_BA_Evaluacion evaluacion)
+        public static void CrearEvaluacion(PI_BA_Evaluacion ev)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            dbContext.PI_BA_Evaluacion.Add(evaluacion);
-            dbContext.SaveChanges();
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    dbContext.AddEvaluacion(ev.cveEvaluacion, ev.Calificacion, ev.cveAplicacion, ev.cveJuez);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
+            }
         }
 
+        /// Pending
         public static void ActualizaEvaluacion(String sEvalId, short calif)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var eval = GetEvaluacionById(sEvalId);
-            if(eval != null)
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
-                eval.Calificacion = calif;
+                try
+                {
+                    var eval = GetEvaluacionById(sEvalId);
+                    dbContext.UpdateEvaluacion(eval.cveEvaluacion, calif, eval.cveAplicacion, eval.cveJuez);
+                    dbContext.SaveChanges();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                }
             }
-            dbContext.SaveChanges();
         }
 
         public static PI_BA_Evaluacion GetEvaluacionById(String evalId)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var eval = dbContext.PI_BA_Evaluacion.Where(e => e.cveEvaluacion.Equals(evalId)).FirstOrDefault();
-            return eval;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetEvaluacion(evalId, null, null).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static List<PI_BA_Evaluacion> GetEvaluacionesByAplicacion(String appId)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var eval = dbContext.PI_BA_Evaluacion.Where(e => e.cveAplicacion.Equals(appId)).ToList();
-            return eval;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    return dbContext.GetEvaluacion(null, appId, null).ToList();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
 
         public static PI_BA_Evaluacion GetEvaluacionByAplicacionAndJuez(String juezMail, String appId)
         {
-            dbContext = new wPremiosInstitucionalesdbEntities();
-            var juez = dbContext.PI_BA_Juez.Where(j => j.Correo.Equals(juezMail)).First();
-
-            if (juez == null)
-                return null;
-
-            var evaluacion = dbContext.PI_BA_Evaluacion.Where(e => e.cveJuez.Equals(juez.cveJuez) && e.cveAplicacion.Equals(appId)).FirstOrDefault();
-
-            return evaluacion;
+            using (var dbContext = new wPremiosInstitucionalesdbEntities())
+            {
+                try
+                {
+                    var juez = InformacionPersonalJuezService.GetJuezByCorreo(juezMail);
+                    return dbContext.GetEvaluacion(null, appId, juez.cveJuez).FirstOrDefault();
+                }
+                catch (Exception Ex)
+                {
+                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return null;
+                }
+            }
         }
     }
 }

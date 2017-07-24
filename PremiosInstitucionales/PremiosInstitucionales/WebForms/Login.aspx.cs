@@ -98,7 +98,7 @@ namespace PremiosInstitucionales.WebForms
                     showErrorMsg("Error");
                     Mensaje.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.";
                 }
-                else if (RegistroService.Registrar(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
+                else if (RegistroService.RegistraCandidato(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
                 {
                     if (EnviarCorreoConfirmacion(codigoConfirmacion))
                     {
@@ -232,7 +232,7 @@ namespace PremiosInstitucionales.WebForms
                     // formatear contenidos de string
                     bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
                     bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
-                        InformacionPersonalCandidatoService.GetNombre(destinatario).Item1);
+                        InformacionPersonalCandidatoService.GetCandidatoByCorreo(destinatario).Nombre);
                     bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoId, id);
                     mm.Body = bodyContent;
                     // enviar

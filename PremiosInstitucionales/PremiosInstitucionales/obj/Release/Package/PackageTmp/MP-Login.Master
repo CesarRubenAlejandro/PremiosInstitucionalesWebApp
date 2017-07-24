@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MP-Login.Master.cs" Inherits="PremiosInstitucionales.PaginasIniciales" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head runat="server">
+        <!-- Meta -->
+        <meta charset="UTF-8"/>
+	    <meta name="viewport" content="width=device-width"/>
+        
+        <!-- Titulo de la pagina -->
+        <title> Premios Institucionales </title>
+
+        <!-- Importar hojas de estilo y scripts -->
+        <asp:ContentPlaceHolder ID="head" runat="server">
+            <!-- CSS -->
+            <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'/>
+            <link href='<%= ResolveUrl("~/Resources/css/bootstrap.min.css")%>'  rel="stylesheet" type="text/css" />
+            <link href='<%= ResolveUrl("~/Resources/css/style.css")%>'  rel="stylesheet" type="text/css" />
+
+            <!-- JS -->
+            <script src='<%= ResolveUrl("~/Resources/js/jquery.min.js") %>'></script>
+            <script src='<%= ResolveUrl("~/Resources/js/bootstrap.min.js") %>'></script>
+            <script src='<%= ResolveUrl("~/Resources/js/index.js") %>'></script>
+            <script src='<%= ResolveUrl("~/Resources/js/global.js") %>' defer="defer"></script>
+        </asp:ContentPlaceHolder>
+    </head>
+    <body>
+        <div class="video-background">
+		    <div class="video-foreground">
+		      <iframe src="https://www.youtube.com/embed/TxDmvPMf6Qo?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=TxDmvPMf6Qo&vq=hd720" frameborder="0" allowfullscreen></iframe>
+		    </div>
+	    </div>
+        <form id="form1" runat="server" autocomplete="off">
+            <div class="contentpaginasiniciales">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </body>
+</html>

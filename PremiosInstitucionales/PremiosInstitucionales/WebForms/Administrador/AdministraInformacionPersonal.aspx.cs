@@ -153,9 +153,7 @@ namespace PremiosInstitucionales.WebForms
 
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    PI_BA_Juez aux = new PI_BA_Juez();
-                    aux.Password = newPwdTextBox.Text;
-                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(aux, juez.Correo))
+                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(juez.Correo, newPwdTextBox.Text))
                     {
                         // good
                     }
@@ -171,9 +169,7 @@ namespace PremiosInstitucionales.WebForms
 
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    PI_BA_Candidato aux = new PI_BA_Candidato();
-                    aux.Password = newPwdTextBox.Text;
-                    if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(aux, candidato.Correo))
+                    if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(candidato.Correo, newPwdTextBox.Text))
                     {
                         // good
                     }
@@ -199,12 +195,9 @@ namespace PremiosInstitucionales.WebForms
                 var juez = InformacionPersonalJuezService.GetJuezById(sUserId);
                 if (juez != null)
                 {
-                    PI_BA_Juez aux = new PI_BA_Juez();
-                    aux.Nombre = jNombresTextBox.Text;
-                    aux.Apellido = jApellidosTextBox.Text;
-
-                    InformacionPersonalJuezService.GuardarCambios(aux, juez.Correo);
-
+                    juez.Nombre = jNombresTextBox.Text;
+                    juez.Apellido = jApellidosTextBox.Text;
+                    InformacionPersonalJuezService.UpdateJuez(juez);
                 }
             }
             else if (sUserType.Equals("candidato"))
@@ -212,20 +205,19 @@ namespace PremiosInstitucionales.WebForms
                 var candidato = InformacionPersonalCandidatoService.GetCandidatoById(sUserId);
                 if (candidato != null)
                 {
-                    PI_BA_Candidato aux = new PI_BA_Candidato();
-                    aux.Nombre = NombresTextBox.Text;
-                    aux.Apellido = ApellidosTextBox.Text;
-                    aux.Direccion = DomicilioTextBox.Text.ToString();
-                    aux.Nacionalidad = NacionalidadTextBox.Text.ToString();
-                    aux.RFC = RFCTextBox.Text.ToString();
-                    aux.Telefono = TelefonoTextBox.Text.ToString();
+                    candidato.Nombre = NombresTextBox.Text;
+                    candidato.Apellido = ApellidosTextBox.Text;
+                    candidato.Direccion = DomicilioTextBox.Text.ToString();
+                    candidato.Nacionalidad = NacionalidadTextBox.Text.ToString();
+                    candidato.RFC = RFCTextBox.Text.ToString();
+                    candidato.Telefono = TelefonoTextBox.Text.ToString();
 
                     if (!candidato.FechaPrivacidadDatos.HasValue)
                     {
-                        aux.FechaPrivacidadDatos = DateTime.Today.Date;
+                        candidato.FechaPrivacidadDatos = DateTime.Today.Date;
                     }
 
-                    InformacionPersonalCandidatoService.GuardarCambios(aux, candidato.Correo);
+                    InformacionPersonalCandidatoService.UpdateCandidato(candidato);
                 }
             }
 
@@ -275,19 +267,11 @@ namespace PremiosInstitucionales.WebForms
                 // Update data in database
                 if (sUserType.Equals("juez"))
                 {
-                    var juez = InformacionPersonalJuezService.GetJuezById(sUserId);
-                    PI_BA_Juez aux = new PI_BA_Juez();
-                    aux.NombreImagen = sNombreImagen;
-
-                    InformacionPersonalJuezService.CambiaImagen(aux, juez.Correo);
+                    InformacionPersonalJuezService.CambiaImagen(sUserId, null, sNombreImagen);
                 }
                 else if (sUserType.Equals("candidato"))
                 {
-                    var candidato = InformacionPersonalCandidatoService.GetCandidatoById(sUserId);
-                    PI_BA_Candidato aux = new PI_BA_Candidato();
-                    aux.NombreImagen = sNombreImagen;
-
-                    InformacionPersonalCandidatoService.CambiaImagen(aux, candidato.Correo);
+                    InformacionPersonalCandidatoService.CambiaImagen(sUserId, null, sNombreImagen);
                 }
 
                 Response.Redirect(Request.Url.AbsoluteUri);

@@ -22,6 +22,10 @@ namespace PremiosInstitucionales.Entities.Models
     
         public string cveForma { get; set; }
         public string cveCategoria { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        public string UsuarioCreacion { get; set; }
+        public Nullable<System.DateTime> FechaEdicion { get; set; }
+        public string UsuarioEdicion { get; set; }
     
         public virtual PI_BA_Categoria PI_BA_Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

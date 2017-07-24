@@ -33,7 +33,7 @@ namespace PremiosInstitucionales.WebForms
             var juez = InformacionPersonalJuezService.GetJuezByCorreo(correo);
 
             if (juez == null)
-                Response.Redirect("Login.aspx");
+                Response.Redirect("~/WebForms/Login.aspx");
 
             if(juez.Nombre != null && juez.Nombre.Length > 0)
             {

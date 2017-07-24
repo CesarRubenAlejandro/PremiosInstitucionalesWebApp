@@ -105,9 +105,12 @@ namespace PremiosInstitucionales.WebForms
                            System.Globalization.CultureInfo.InvariantCulture);
             nuevaConvo.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
                            System.Globalization.CultureInfo.InvariantCulture);
-
+            nuevaConvo.FechaCreacion = DateTime.Now;
+            nuevaConvo.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+            nuevaConvo.FechaEdicion = DateTime.Now;
+            nuevaConvo.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
             // guardar nueva convocatoria
-            ConvocatoriaService.SaveNewConvocatoria(premioActual.cvePremio, nuevaConvo);
+            ConvocatoriaService.CreateConvocatoria(premioActual.cvePremio, nuevaConvo);
 
             // limpiar campos de nueva convocatoria
             TituloNuevaConvocatoriaTB.Text = "";
@@ -146,7 +149,8 @@ namespace PremiosInstitucionales.WebForms
                 imgUrl = premioActual.NombreImagen;
             }
 
-            ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl);
+            string user = Session[StringValues.CorreoSesion].ToString();
+            ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
             Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
         }
 

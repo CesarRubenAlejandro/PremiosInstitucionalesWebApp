@@ -59,52 +59,55 @@ namespace PremiosInstitucionales.WebForms
 
                 // obtener candidatos ligados a estas aplicaciones
                 var listaCandidatos = ConvocatoriaService.JuezObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
-                foreach(var cand in listaCandidatos)
+                if (listaCandidatos != null)
                 {
-                    TableRow tr = new TableRow();
-                    tr.Attributes.Add("onclick", "window.open('EvaluaAplicacion.aspx?a=" + cand.Key.cveAplicacion + "');");
-                    // profile image column
-                    TableCell tdIP = new TableCell();
-                    tdIP.CssClass = "dt-profile-pic";
-
-                    Image ipImage = new Image();
-                    ipImage.ImageUrl = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
-                    ipImage.CssClass = "avatar img-circle";
-                    ipImage.AlternateText = "avatar";
-                    ipImage.Style.Add("max-width", "28px");
-
-                    tdIP.Controls.Add(ipImage);
-
-                    // name column
-                    TableCell tdName = new TableCell();
-                    tdName.Text = cand.Value.Nombre;
-
-                    // last name column
-                    TableCell tdLastName = new TableCell();
-                    tdLastName.Text = cand.Value.Apellido;
-
-                    // status column
-                    TableCell tdStatus = new TableCell();
-                    var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
-                    if(Eval != null)
+                    foreach (var cand in listaCandidatos)
                     {
-                        tdStatus.Style.Add("color", "#4caf50");
-                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 0 </div> Completo </strong>");
-                        tdStatus.Controls.Add(lcStatus);
-                    }
-                    else
-                    {
-                        tdStatus.Style.Add("color", "#f44336");
-                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
-                        tdStatus.Controls.Add(lcStatus);
-                    }
-                    
-                    tr.Controls.Add(tdIP);
-                    tr.Controls.Add(tdName);
-                    tr.Controls.Add(tdLastName);
-                    tr.Controls.Add(tdStatus);
+                        TableRow tr = new TableRow();
+                        tr.Attributes.Add("onclick", "window.open('EvaluaAplicacion.aspx?a=" + cand.Key.cveAplicacion + "');");
+                        // profile image column
+                        TableCell tdIP = new TableCell();
+                        tdIP.CssClass = "dt-profile-pic";
 
-                    listaParticipantesTableBody.Controls.Add(tr);
+                        Image ipImage = new Image();
+                        ipImage.ImageUrl = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+                        ipImage.CssClass = "avatar img-circle";
+                        ipImage.AlternateText = "avatar";
+                        ipImage.Style.Add("max-width", "28px");
+
+                        tdIP.Controls.Add(ipImage);
+
+                        // name column
+                        TableCell tdName = new TableCell();
+                        tdName.Text = cand.Value.Nombre;
+
+                        // last name column
+                        TableCell tdLastName = new TableCell();
+                        tdLastName.Text = cand.Value.Apellido;
+
+                        // status column
+                        TableCell tdStatus = new TableCell();
+                        var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
+                        if (Eval != null)
+                        {
+                            tdStatus.Style.Add("color", "#4caf50");
+                            LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 0 </div> Completo </strong>");
+                            tdStatus.Controls.Add(lcStatus);
+                        }
+                        else
+                        {
+                            tdStatus.Style.Add("color", "#f44336");
+                            LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 2 </div> Nuevo </strong>");
+                            tdStatus.Controls.Add(lcStatus);
+                        }
+
+                        tr.Controls.Add(tdIP);
+                        tr.Controls.Add(tdName);
+                        tr.Controls.Add(tdLastName);
+                        tr.Controls.Add(tdStatus);
+
+                        listaParticipantesTableBody.Controls.Add(tr);
+                    }
                 }
                 
             }

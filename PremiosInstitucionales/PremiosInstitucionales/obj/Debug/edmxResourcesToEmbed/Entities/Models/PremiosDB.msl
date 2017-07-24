@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="wPremiosInstitucionalesdbModelStoreContainer" CdmEntityContainer="PremiosPruebas">
+    <EntitySetMapping Name="PI_BA_Aplicacion">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion">
+        <MappingFragment StoreEntitySet="PI_BA_Aplicacion">
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Candidato">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
+        <MappingFragment StoreEntitySet="PI_BA_Candidato">
+          <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="CodigoConfirmacion" ColumnName="CodigoConfirmacion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+          <ScalarProperty Name="FechaPrivacidadDatos" ColumnName="FechaPrivacidadDatos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Categoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Categoria">
+        <MappingFragment StoreEntitySet="PI_BA_Categoria">
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Convocatoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
+        <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="TituloConvocatoria" ColumnName="TituloConvocatoria" />
+          <ScalarProperty Name="FechaVeredicto" ColumnName="FechaVeredicto" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Evaluacion">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Evaluacion">
+        <MappingFragment StoreEntitySet="PI_BA_Evaluacion">
+          <ScalarProperty Name="cveEvaluacion" ColumnName="cveEvaluacion" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Forma">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Forma">
+        <MappingFragment StoreEntitySet="PI_BA_Forma">
+          <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Juez">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Juez">
+        <MappingFragment StoreEntitySet="PI_BA_Juez">
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_JuezPorCategoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_JuezPorCategoria">
+        <MappingFragment StoreEntitySet="PI_BA_JuezPorCategoria">
+          <ScalarProperty Name="cveJuezPorCategoria" ColumnName="cveJuezPorCategoria" />
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Pregunta">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Pregunta">
+        <MappingFragment StoreEntitySet="PI_BA_Pregunta">
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_PreguntasPorForma">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_PreguntasPorForma">
+        <MappingFragment StoreEntitySet="PI_BA_PreguntasPorForma">
+          <ScalarProperty Name="cvePreguntaPorForma" ColumnName="cvePreguntaPorForma" />
+          <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Premio">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Premio">
+        <MappingFragment StoreEntitySet="PI_BA_Premio">
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Respuesta">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Respuesta">
+        <MappingFragment StoreEntitySet="PI_BA_Respuesta">
+          <ScalarProperty Name="cveRespuesta" ColumnName="cveRespuesta" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_SE_Administrador">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_SE_Administrador">
+        <MappingFragment StoreEntitySet="PI_SE_Administrador">
+          <ScalarProperty Name="cveAdministrador" ColumnName="cveAdministrador" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.AddCandidato" />
+    <FunctionImportMapping FunctionImportName="AddCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.AddCategoria" />
+    <FunctionImportMapping FunctionImportName="AddConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.AddConvocatoria" />
+    <FunctionImportMapping FunctionImportName="AddEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.AddEvaluacion" />
+    <FunctionImportMapping FunctionImportName="AddForma" FunctionName="wPremiosInstitucionalesdbModel.Store.AddForma" />
+    <FunctionImportMapping FunctionImportName="AddJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.AddJuez" />
+    <FunctionImportMapping FunctionImportName="AddPremio" FunctionName="wPremiosInstitucionalesdbModel.Store.AddPremio" />
+    <FunctionImportMapping FunctionImportName="ConfirmarCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.ConfirmarCandidato" />
+    <FunctionImportMapping FunctionImportName="GetAdministrador" FunctionName="wPremiosInstitucionalesdbModel.Store.GetAdministrador">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetAdministrador_Result">
+          <ScalarProperty Name="cveAdministrador" ColumnName="cveAdministrador" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCandidato">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetCandidato_Result">
+          <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="CodigoConfirmacion" ColumnName="CodigoConfirmacion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="RFC" ColumnName="RFC" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+          <ScalarProperty Name="FechaPrivacidadDatos" ColumnName="FechaPrivacidadDatos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetCategoria_Result">
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCategoriaByIdJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoriaByIdJuez">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetCategoriaByIdJuez_Result">
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCategoriasPendientes" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoriasPendientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetCategoriasPendientes_Result">
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetConvocatoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetConvocatoria_Result">
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="TituloConvocatoria" ColumnName="TituloConvocatoria" />
+          <ScalarProperty Name="FechaVeredicto" ColumnName="FechaVeredicto" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.GetEvaluacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetEvaluacion_Result">
+          <ScalarProperty Name="cveEvaluacion" ColumnName="cveEvaluacion" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetForma" FunctionName="wPremiosInstitucionalesdbModel.Store.GetForma">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetForma_Result">
+          <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.GetJuez">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetJuez_Result">
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetMostRecentConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetMostRecentConvocatoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetMostRecentConvocatoria_Result">
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="TituloConvocatoria" ColumnName="TituloConvocatoria" />
+          <ScalarProperty Name="FechaVeredicto" ColumnName="FechaVeredicto" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPremio" FunctionName="wPremiosInstitucionalesdbModel.Store.GetPremio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetPremio_Result">
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPremioByIdCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetPremioByIdCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="wPremiosInstitucionalesdbModel.GetPremioByIdCategoria_Result">
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+          <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateAdministrador" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateAdministrador" />
+    <FunctionImportMapping FunctionImportName="UpdateCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateCandidato" />
+    <FunctionImportMapping FunctionImportName="UpdateEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateEvaluacion" />
+    <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
+    <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
+  </EntityContainerMapping>
+</Mapping>

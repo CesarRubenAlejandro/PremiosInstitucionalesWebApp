@@ -48,10 +48,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -157,6 +159,16 @@
     <Content Include="bin\System.Net.Http.Formatting.xml" />
     <Content Include="bin\System.Web.Http.WebHost.xml" />
     <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="Entities\Models\PremiosPruebasDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PremiosPruebasDB.edmx</DependentUpon>
+      <LastGenOutput>PremiosPruebasDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Models\PremiosPruebasDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PremiosPruebasDB.edmx</DependentUpon>
+      <LastGenOutput>PremiosPruebasDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\PremiosInstitucionales.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\PremiosInstitucionales.dll" />
@@ -199,16 +211,6 @@
     <Content Include="Resources\img\default-award.png" />
     <Content Include="Resources\css\style.css" />
     <Content Include="Resources\css\stylePremios.css" />
-    <Content Include="Entities\Models\PremiosInstitucionalesModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
-      <LastGenOutput>PremiosInstitucionalesModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\Models\PremiosInstitucionalesModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
-      <LastGenOutput>PremiosInstitucionalesModels.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -294,13 +296,15 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PremiosInstitucionalesModels.ssdl" />
     <Content Include="obj\Debug\PremiosInstitucionales.csprojResolveAssemblyReference.cache" />
     <Content Include="WebForms\Login.aspx" />
-    <EntityDeploy Include="Entities\Models\PremiosInstitucionalesModels.edmx">
+    <Content Include="packages.config" />
+    <EntityDeploy Include="Entities\Models\PremiosPruebasDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PremiosInstitucionalesModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>PremiosPruebasDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entities\Models\PremiosInstitucionalesModels.edmx.diagram">
-      <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
+    <Content Include="Entities\Models\PremiosPruebasDB.edmx.diagram">
+      <DependentUpon>PremiosPruebasDB.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\RubenCV.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -318,63 +322,100 @@
     <Compile Include="DBServices\Convocatoria\ConvocatoriaService.cs" />
     <Compile Include="DBServices\Evaluacion\EvaluacionService.cs" />
     <Compile Include="DBServices\InformacionPersonalCandidato\InformacionPersonalCandidatoService.cs" />
+    <Compile Include="DBServices\InformacionPersonalAdministrador\InformacionPersonalAdministrador.cs" />
     <Compile Include="DBServices\InformacionPersonalJuez\InformacionPersonalJuezService.cs" />
     <Compile Include="DBServices\Login\LoginService.cs" />
     <Compile Include="DBServices\Recuperar\RecuperarService.cs" />
     <Compile Include="DBServices\Registro\RegistroService.cs" />
+    <Compile Include="Entities\Models\GetAdministrador_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetCandidato_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetCategoriaByIdJuez_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetCategoriasPendientes_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetCategoria_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetConvocatoria_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetEvaluacion_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetForma_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetJuez_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetMostRecentConvocatoria_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetPremioByIdCategoria_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Models\GetPremio_Result.cs">
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Models\PI_BA_Aplicacion.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Candidato.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Categoria.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Convocatoria.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Evaluacion.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Forma.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Juez.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_JuezPorCategoria.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Pregunta.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_PreguntasPorForma.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Premio.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_BA_Respuesta.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Models\PI_SE_Administrador.cs">
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Models\PremiosInstitucionalesModels.Context.cs">
+    <Compile Include="Entities\Models\PremiosPruebasDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PremiosInstitucionalesModels.Context.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Models\PremiosInstitucionalesModels.cs">
+    <Compile Include="Entities\Models\PremiosPruebasDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PremiosInstitucionalesModels.tt</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Models\PremiosInstitucionalesModels.Designer.cs">
+    <Compile Include="Entities\Models\PremiosPruebasDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PremiosInstitucionalesModels.edmx</DependentUpon>
+      <DependentUpon>PremiosPruebasDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

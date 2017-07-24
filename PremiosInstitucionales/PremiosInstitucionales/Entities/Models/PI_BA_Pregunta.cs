@@ -23,8 +23,6 @@ namespace PremiosInstitucionales.Entities.Models
     
         public string cvePregunta { get; set; }
         public string Texto { get; set; }
-        public string IdentificadorObjeto { get; set; }
-        public string TipoCampo { get; set; }
         public Nullable<int> Orden { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

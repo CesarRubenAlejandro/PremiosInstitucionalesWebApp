@@ -74,9 +74,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    PI_BA_Juez aux = new PI_BA_Juez();
-                    aux.Password = newPwdTextBox.Text;
-                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(aux, Session[StringValues.CorreoSesion].ToString()))
+                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(Session[StringValues.CorreoSesion].ToString(), newPwdTextBox.Text))
                     {
                         // good
                     }
@@ -90,19 +88,22 @@ namespace PremiosInstitucionales.WebForms
 
         protected void ActualizarDatosGenerales()
         {
-
-            PI_BA_Juez aux = new PI_BA_Juez();
-            aux.Nombre = NombresTextBox.Text;
-            aux.Apellido = ApellidosTextBox.Text;
-
-            if (InformacionPersonalJuezService.GuardarCambios(aux, Session[StringValues.CorreoSesion].ToString()))
+            var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if (juez != null)
             {
+                juez.Nombre = NombresTextBox.Text;
+                juez.Apellido = ApellidosTextBox.Text;
 
+                if (InformacionPersonalJuezService.UpdateJuez(juez))
+                {
+
+                }
+                else
+                {
+                    MostrarCampos();
+                }
             }
-            else
-            {
-                MostrarCampos();
-            }
+
         }
 
         protected void Upload(object sender, EventArgs e)
@@ -130,10 +131,7 @@ namespace PremiosInstitucionales.WebForms
                 FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
 
                 // Update data in database
-                PI_BA_Juez aux = new PI_BA_Juez();
-                aux.NombreImagen = sNombreImagen;
-
-                InformacionPersonalJuezService.CambiaImagen(aux, Session[StringValues.CorreoSesion].ToString());
+                InformacionPersonalJuezService.CambiaImagen(null, Session[StringValues.CorreoSesion].ToString(), sNombreImagen);
 
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

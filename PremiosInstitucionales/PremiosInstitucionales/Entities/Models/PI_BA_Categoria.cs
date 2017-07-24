@@ -17,24 +17,27 @@ namespace PremiosInstitucionales.Entities.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PI_BA_Categoria()
         {
-            this.PI_BA_Forma = new HashSet<PI_BA_Forma>();
             this.PI_BA_Aplicacion = new HashSet<PI_BA_Aplicacion>();
-            this.PI_BA_JuezPorCategoria1 = new HashSet<PI_BA_JuezPorCategoria>();
+            this.PI_BA_Forma = new HashSet<PI_BA_Forma>();
+            this.PI_BA_JuezPorCategoria = new HashSet<PI_BA_JuezPorCategoria>();
         }
     
         public string cveCategoria { get; set; }
         public string Nombre { get; set; }
         public string cveConvocatoria { get; set; }
         public string cveAplicacionGanadora { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        public string UsuarioCreacion { get; set; }
+        public Nullable<System.DateTime> FechaEdicion { get; set; }
+        public string UsuarioEdicion { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PI_BA_Aplicacion> PI_BA_Aplicacion { get; set; }
+        public virtual PI_BA_Aplicacion PI_BA_Aplicacion1 { get; set; }
         public virtual PI_BA_Convocatoria PI_BA_Convocatoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI_BA_Forma> PI_BA_Forma { get; set; }
-        public virtual PI_BA_JuezPorCategoria PI_BA_JuezPorCategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PI_BA_Aplicacion> PI_BA_Aplicacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PI_BA_JuezPorCategoria> PI_BA_JuezPorCategoria1 { get; set; }
-        public virtual PI_BA_Aplicacion PI_BA_Aplicacion1 { get; set; }
+        public virtual ICollection<PI_BA_JuezPorCategoria> PI_BA_JuezPorCategoria { get; set; }
     }
 }

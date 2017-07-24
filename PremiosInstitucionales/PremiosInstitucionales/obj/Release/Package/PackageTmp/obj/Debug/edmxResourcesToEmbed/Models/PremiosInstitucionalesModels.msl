@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="wPremiosInstitucionalesdbModelStoreContainer" CdmEntityContainer="wPremiosInstitucionalesdbEntities">
+    <EntitySetMapping Name="PI_BA_Aplicacion">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion">
+        <MappingFragment StoreEntitySet="PI_BA_Aplicacion">
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+          <ScalarProperty Name="Ganador" ColumnName="Ganador" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Candidato">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
+        <MappingFragment StoreEntitySet="PI_BA_Candidato">
+          <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Categoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Categoria">
+        <MappingFragment StoreEntitySet="PI_BA_Categoria">
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Convocatoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
+        <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
+          <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Evaluacion">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Evaluacion">
+        <MappingFragment StoreEntitySet="PI_BA_Evaluacion">
+          <ScalarProperty Name="cveEvaluacion" ColumnName="cveEvaluacion" />
+          <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+          <ScalarProperty Name="cveRespuesta" ColumnName="cveRespuesta" />
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Forma">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Forma">
+        <MappingFragment StoreEntitySet="PI_BA_Forma">
+          <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Juez">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Juez">
+        <MappingFragment StoreEntitySet="PI_BA_Juez">
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_JuezPorCategoria">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_JuezPorCategoria">
+        <MappingFragment StoreEntitySet="PI_BA_JuezPorCategoria">
+          <ScalarProperty Name="cveJuezPorCategoria" ColumnName="cveJuezPorCategoria" />
+          <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+          <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Pregunta">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Pregunta">
+        <MappingFragment StoreEntitySet="PI_BA_Pregunta">
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="IdentificadorObjeto" ColumnName="IdentificadorObjeto" />
+          <ScalarProperty Name="TipoCampo" ColumnName="TipoCampo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_PreguntasPorForma">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_PreguntasPorForma">
+        <MappingFragment StoreEntitySet="PI_BA_PreguntasPorForma">
+          <ScalarProperty Name="cvePreguntaPorForma" ColumnName="cvePreguntaPorForma" />
+          <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Premio">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Premio">
+        <MappingFragment StoreEntitySet="PI_BA_Premio">
+          <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_BA_Respuesta">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Respuesta">
+        <MappingFragment StoreEntitySet="PI_BA_Respuesta">
+          <ScalarProperty Name="cveRespuesta" ColumnName="cveRespuesta" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+          <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PI_SE_Administrador">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_SE_Administrador">
+        <MappingFragment StoreEntitySet="PI_SE_Administrador">
+          <ScalarProperty Name="CveAdministrador" ColumnName="CveAdministrador" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

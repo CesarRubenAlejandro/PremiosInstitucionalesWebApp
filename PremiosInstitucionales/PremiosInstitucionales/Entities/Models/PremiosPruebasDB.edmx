@@ -1,0 +1,1455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="wPremiosInstitucionalesdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PI_BA_Aplicacion">
+          <Key>
+            <PropertyRef Name="cveAplicacion" />
+          </Key>
+          <Property Name="cveAplicacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="cveCandidato" Type="varchar" MaxLength="50" />
+          <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
+          <Property Name="NombreArchivo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Candidato">
+          <Key>
+            <PropertyRef Name="cveCandidato" />
+          </Key>
+          <Property Name="cveCandidato" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Confirmado" Type="bit" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="CodigoConfirmacion" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="RFC" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+          <Property Name="FechaPrivacidadDatos" Type="date" />
+        </EntityType>
+        <EntityType Name="PI_BA_Categoria">
+          <Key>
+            <PropertyRef Name="cveCategoria" />
+          </Key>
+          <Property Name="cveCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" />
+          <Property Name="cveAplicacionGanadora" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaEdicion" Type="date" />
+          <Property Name="UsuarioEdicion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Convocatoria">
+          <Key>
+            <PropertyRef Name="cveConvocatoria" />
+          </Key>
+          <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="FechaInicio" Type="date" />
+          <Property Name="FechaFin" Type="date" />
+          <Property Name="cvePremio" Type="varchar" MaxLength="50" />
+          <Property Name="TituloConvocatoria" Type="varchar" MaxLength="100" />
+          <Property Name="FechaVeredicto" Type="date" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaEdicion" Type="date" />
+          <Property Name="UsuarioEdicion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Evaluacion">
+          <Key>
+            <PropertyRef Name="cveEvaluacion" />
+          </Key>
+          <Property Name="cveEvaluacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Calificacion" Type="smallint" />
+          <Property Name="cveAplicacion" Type="varchar" MaxLength="50" />
+          <Property Name="cveJuez" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Forma">
+          <Key>
+            <PropertyRef Name="cveForma" />
+          </Key>
+          <Property Name="cveForma" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cveCategoria" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaEdicion" Type="date" />
+          <Property Name="UsuarioEdicion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Juez">
+          <Key>
+            <PropertyRef Name="cveJuez" />
+          </Key>
+          <Property Name="cveJuez" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_JuezPorCategoria">
+          <Key>
+            <PropertyRef Name="cveJuezPorCategoria" />
+          </Key>
+          <Property Name="cveJuezPorCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cveJuez" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cveCategoria" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PI_BA_Pregunta">
+          <Key>
+            <PropertyRef Name="cvePregunta" />
+          </Key>
+          <Property Name="cvePregunta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Texto" Type="varchar" MaxLength="100" />
+          <Property Name="Orden" Type="int" />
+        </EntityType>
+        <EntityType Name="PI_BA_PreguntasPorForma">
+          <Key>
+            <PropertyRef Name="cvePreguntaPorForma" />
+          </Key>
+          <Property Name="cvePreguntaPorForma" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cveForma" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cvePregunta" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PI_BA_Premio">
+          <Key>
+            <PropertyRef Name="cvePremio" />
+          </Key>
+          <Property Name="cvePremio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="NombreImagen" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="FechaCreacion" Type="date" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaEdicion" Type="date" />
+          <Property Name="UsuarioEdicion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_BA_Respuesta">
+          <Key>
+            <PropertyRef Name="cveRespuesta" />
+          </Key>
+          <Property Name="cveRespuesta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="500" />
+          <Property Name="cvePregunta" Type="varchar" MaxLength="50" />
+          <Property Name="cveAplicacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PI_SE_Administrador">
+          <Key>
+            <PropertyRef Name="cveAdministrador" />
+          </Key>
+          <Property Name="cveAdministrador" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
+          <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Candidato">
+              <PropertyRef Name="cveCandidato" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCandidato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Categoria_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Categoria">
+              <PropertyRef Name="cveAplicacionGanadora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Categoria_PI_BA_Convocatoria">
+          <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Convocatoria">
+              <PropertyRef Name="cveConvocatoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Categoria">
+              <PropertyRef Name="cveConvocatoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Convocatoria_PI_BA_Premio">
+          <End Role="PI_BA_Premio" Type="Self.PI_BA_Premio" Multiplicity="0..1" />
+          <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Premio">
+              <PropertyRef Name="cvePremio" />
+            </Principal>
+            <Dependent Role="PI_BA_Convocatoria">
+              <PropertyRef Name="cvePremio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Evaluacion_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Evaluacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Evaluacion_PI_BA_Juez">
+          <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="0..1" />
+          <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Juez">
+              <PropertyRef Name="cveJuez" />
+            </Principal>
+            <Dependent Role="PI_BA_Evaluacion">
+              <PropertyRef Name="cveJuez" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Forma_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Forma">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="1" />
+          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_JuezPorCategoria">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+          <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="1" />
+          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Juez">
+              <PropertyRef Name="cveJuez" />
+            </Principal>
+            <Dependent Role="PI_BA_JuezPorCategoria">
+              <PropertyRef Name="cveJuez" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+          <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="1" />
+          <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Forma">
+              <PropertyRef Name="cveForma" />
+            </Principal>
+            <Dependent Role="PI_BA_PreguntasPorForma">
+              <PropertyRef Name="cveForma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+          <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="1" />
+          <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Pregunta">
+              <PropertyRef Name="cvePregunta" />
+            </Principal>
+            <Dependent Role="PI_BA_PreguntasPorForma">
+              <PropertyRef Name="cvePregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Respuesta">
+              <PropertyRef Name="cveAplicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Respuesta_PI_BA_Pregunta">
+          <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="0..1" />
+          <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Pregunta">
+              <PropertyRef Name="cvePregunta" />
+            </Principal>
+            <Dependent Role="PI_BA_Respuesta">
+              <PropertyRef Name="cvePregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddCandidato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveCandidato" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Confirmado" Type="bit" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoConfirmacion" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Nacionalidad" Type="varchar" Mode="In" />
+          <Parameter Name="RFC" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+          <Parameter Name="FechaPrivacidadDatos" Type="date" Mode="In" />
+        </Function>
+        <Function Name="AddCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveCategoria" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
+          <Parameter Name="cveAplicacionGanadora" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+          <Parameter Name="TituloConvocatoria" Type="varchar" Mode="In" />
+          <Parameter Name="FechaVeredicto" Type="date" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddEvaluacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveEvaluacion" Type="varchar" Mode="In" />
+          <Parameter Name="Calificacion" Type="smallint" Mode="In" />
+          <Parameter Name="cveAplicacion" Type="varchar" Mode="In" />
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddForma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveForma" Type="varchar" Mode="In" />
+          <Parameter Name="cveCategoria" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddJuez" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddPremio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ConfirmarCandidato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CodigoConfirmacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="cveAdministrador" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCandidato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="cveCandidato" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveCategoria" Type="varchar" Mode="In" />
+          <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCategoriaByIdJuez" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetCategoriasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetEvaluacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveEvaluacion" Type="varchar" Mode="In" />
+          <Parameter Name="cveAplicacion" Type="varchar" Mode="In" />
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetForma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveForma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetJuez" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetMostRecentConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetPremio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetPremioByIdCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveCategoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveAdministrador" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateCandidato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveCandidato" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Confirmado" Type="bit" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoConfirmacion" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Nacionalidad" Type="varchar" Mode="In" />
+          <Parameter Name="RFC" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+          <Parameter Name="FechaPrivacidadDatos" Type="date" Mode="In" />
+        </Function>
+        <Function Name="UpdateEvaluacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveEvaluacion" Type="varchar" Mode="In" />
+          <Parameter Name="Calificacion" Type="smallint" Mode="In" />
+          <Parameter Name="cveAplicacion" Type="varchar" Mode="In" />
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateJuez" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveJuez" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdatePremio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="wPremiosInstitucionalesdbModelStoreContainer">
+          <EntitySet Name="PI_BA_Aplicacion" EntityType="Self.PI_BA_Aplicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Candidato" EntityType="Self.PI_BA_Candidato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Categoria" EntityType="Self.PI_BA_Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Convocatoria" EntityType="Self.PI_BA_Convocatoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Evaluacion" EntityType="Self.PI_BA_Evaluacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Forma" EntityType="Self.PI_BA_Forma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Juez" EntityType="Self.PI_BA_Juez" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_JuezPorCategoria" EntityType="Self.PI_BA_JuezPorCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Pregunta" EntityType="Self.PI_BA_Pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_PreguntasPorForma" EntityType="Self.PI_BA_PreguntasPorForma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Premio" EntityType="Self.PI_BA_Premio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_BA_Respuesta" EntityType="Self.PI_BA_Respuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_SE_Administrador" EntityType="Self.PI_SE_Administrador" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Candidato" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato">
+            <End Role="PI_BA_Candidato" EntitySet="PI_BA_Candidato" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Categoria_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Convocatoria" Association="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria">
+            <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Convocatoria_PI_BA_Premio" Association="Self.FK_PI_BA_Convocatoria_PI_BA_Premio">
+            <End Role="PI_BA_Premio" EntitySet="PI_BA_Premio" />
+            <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Juez" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Juez">
+            <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+            <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Forma_PI_BA_Categoria" Association="Self.FK_PI_BA_Forma_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+            <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+            <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+            <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+            <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+            <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+            <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Pregunta" Association="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta">
+            <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+            <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wPremiosInstitucionalesdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PI_BA_Aplicacion">
+          <Key>
+            <PropertyRef Name="cveAplicacion" />
+          </Key>
+          <Property Name="cveAplicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cveCandidato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreArchivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Candidato" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Candidato" />
+          <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Categoria" />
+          <NavigationProperty Name="PI_BA_Categoria1" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Aplicacion" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Categoria" />
+          <NavigationProperty Name="PI_BA_Evaluacion" Relationship="Self.FK_PI_BA_Evaluacion_PI_BA_Aplicacion" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Evaluacion" />
+          <NavigationProperty Name="PI_BA_Respuesta" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion" FromRole="PI_BA_Aplicacion" ToRole="PI_BA_Respuesta" />
+        </EntityType>
+        <EntityType Name="PI_BA_Candidato">
+          <Key>
+            <PropertyRef Name="cveCandidato" />
+          </Key>
+          <Property Name="cveCandidato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Confirmado" Type="Boolean" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoConfirmacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaPrivacidadDatos" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PI_BA_Aplicacion" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato" FromRole="PI_BA_Candidato" ToRole="PI_BA_Aplicacion" />
+        </EntityType>
+        <EntityType Name="PI_BA_Categoria">
+          <Key>
+            <PropertyRef Name="cveCategoria" />
+          </Key>
+          <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cveConvocatoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cveAplicacionGanadora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEdicion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioEdicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Aplicacion" Relationship="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Aplicacion" />
+          <NavigationProperty Name="PI_BA_Aplicacion1" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Aplicacion" FromRole="PI_BA_Categoria" ToRole="PI_BA_Aplicacion" />
+          <NavigationProperty Name="PI_BA_Convocatoria" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Convocatoria" />
+          <NavigationProperty Name="PI_BA_Forma" Relationship="Self.FK_PI_BA_Forma_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_Forma" />
+          <NavigationProperty Name="PI_BA_JuezPorCategoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" FromRole="PI_BA_Categoria" ToRole="PI_BA_JuezPorCategoria" />
+        </EntityType>
+        <EntityType Name="PI_BA_Convocatoria">
+          <Key>
+            <PropertyRef Name="cveConvocatoria" />
+          </Key>
+          <Property Name="cveConvocatoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Precision="0" />
+          <Property Name="cvePremio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TituloConvocatoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVeredicto" Type="DateTime" Precision="0" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEdicion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioEdicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria" FromRole="PI_BA_Convocatoria" ToRole="PI_BA_Categoria" />
+          <NavigationProperty Name="PI_BA_Premio" Relationship="Self.FK_PI_BA_Convocatoria_PI_BA_Premio" FromRole="PI_BA_Convocatoria" ToRole="PI_BA_Premio" />
+        </EntityType>
+        <EntityType Name="PI_BA_Evaluacion">
+          <Key>
+            <PropertyRef Name="cveEvaluacion" />
+          </Key>
+          <Property Name="cveEvaluacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Calificacion" Type="Int16" />
+          <Property Name="cveAplicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cveJuez" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Aplicacion" Relationship="Self.FK_PI_BA_Evaluacion_PI_BA_Aplicacion" FromRole="PI_BA_Evaluacion" ToRole="PI_BA_Aplicacion" />
+          <NavigationProperty Name="PI_BA_Juez" Relationship="Self.FK_PI_BA_Evaluacion_PI_BA_Juez" FromRole="PI_BA_Evaluacion" ToRole="PI_BA_Juez" />
+        </EntityType>
+        <EntityType Name="PI_BA_Forma">
+          <Key>
+            <PropertyRef Name="cveForma" />
+          </Key>
+          <Property Name="cveForma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEdicion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioEdicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_Forma_PI_BA_Categoria" FromRole="PI_BA_Forma" ToRole="PI_BA_Categoria" />
+          <NavigationProperty Name="PI_BA_PreguntasPorForma" Relationship="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Forma" FromRole="PI_BA_Forma" ToRole="PI_BA_PreguntasPorForma" />
+        </EntityType>
+        <EntityType Name="PI_BA_Juez">
+          <Key>
+            <PropertyRef Name="cveJuez" />
+          </Key>
+          <Property Name="cveJuez" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Evaluacion" Relationship="Self.FK_PI_BA_Evaluacion_PI_BA_Juez" FromRole="PI_BA_Juez" ToRole="PI_BA_Evaluacion" />
+          <NavigationProperty Name="PI_BA_JuezPorCategoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" FromRole="PI_BA_Juez" ToRole="PI_BA_JuezPorCategoria" />
+        </EntityType>
+        <EntityType Name="PI_BA_JuezPorCategoria">
+          <Key>
+            <PropertyRef Name="cveJuezPorCategoria" />
+          </Key>
+          <Property Name="cveJuezPorCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cveJuez" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cveCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PI_BA_Categoria" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" FromRole="PI_BA_JuezPorCategoria" ToRole="PI_BA_Categoria" />
+          <NavigationProperty Name="PI_BA_Juez" Relationship="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" FromRole="PI_BA_JuezPorCategoria" ToRole="PI_BA_Juez" />
+        </EntityType>
+        <EntityType Name="PI_BA_Pregunta">
+          <Key>
+            <PropertyRef Name="cvePregunta" />
+          </Key>
+          <Property Name="cvePregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Texto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Int32" />
+          <NavigationProperty Name="PI_BA_PreguntasPorForma" Relationship="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" FromRole="PI_BA_Pregunta" ToRole="PI_BA_PreguntasPorForma" />
+          <NavigationProperty Name="PI_BA_Respuesta" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta" FromRole="PI_BA_Pregunta" ToRole="PI_BA_Respuesta" />
+        </EntityType>
+        <EntityType Name="PI_BA_PreguntasPorForma">
+          <Key>
+            <PropertyRef Name="cvePreguntaPorForma" />
+          </Key>
+          <Property Name="cvePreguntaPorForma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cveForma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvePregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PI_BA_Forma" Relationship="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Forma" FromRole="PI_BA_PreguntasPorForma" ToRole="PI_BA_Forma" />
+          <NavigationProperty Name="PI_BA_Pregunta" Relationship="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" FromRole="PI_BA_PreguntasPorForma" ToRole="PI_BA_Pregunta" />
+        </EntityType>
+        <EntityType Name="PI_BA_Premio">
+          <Key>
+            <PropertyRef Name="cvePremio" />
+          </Key>
+          <Property Name="cvePremio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEdicion" Type="DateTime" Precision="0" />
+          <Property Name="UsuarioEdicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Convocatoria" Relationship="Self.FK_PI_BA_Convocatoria_PI_BA_Premio" FromRole="PI_BA_Premio" ToRole="PI_BA_Convocatoria" />
+        </EntityType>
+        <EntityType Name="PI_BA_Respuesta">
+          <Key>
+            <PropertyRef Name="cveRespuesta" />
+          </Key>
+          <Property Name="cveRespuesta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="cvePregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cveAplicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PI_BA_Aplicacion" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion" FromRole="PI_BA_Respuesta" ToRole="PI_BA_Aplicacion" />
+          <NavigationProperty Name="PI_BA_Pregunta" Relationship="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta" FromRole="PI_BA_Respuesta" ToRole="PI_BA_Pregunta" />
+        </EntityType>
+        <EntityType Name="PI_SE_Administrador">
+          <Key>
+            <PropertyRef Name="cveAdministrador" />
+          </Key>
+          <Property Name="cveAdministrador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
+          <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Candidato">
+              <PropertyRef Name="cveCandidato" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCandidato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Aplicacion_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Categoria_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Categoria">
+              <PropertyRef Name="cveAplicacionGanadora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Evaluacion_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Evaluacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+          <End Role="PI_BA_Aplicacion" Type="Self.PI_BA_Aplicacion" Multiplicity="0..1" />
+          <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Aplicacion">
+              <PropertyRef Name="cveAplicacion" />
+            </Principal>
+            <Dependent Role="PI_BA_Respuesta">
+              <PropertyRef Name="cveAplicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Categoria_PI_BA_Convocatoria">
+          <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Convocatoria">
+              <PropertyRef Name="cveConvocatoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Categoria">
+              <PropertyRef Name="cveConvocatoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Forma_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="0..1" />
+          <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_Forma">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+          <End Role="PI_BA_Categoria" Type="Self.PI_BA_Categoria" Multiplicity="1" />
+          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Categoria">
+              <PropertyRef Name="cveCategoria" />
+            </Principal>
+            <Dependent Role="PI_BA_JuezPorCategoria">
+              <PropertyRef Name="cveCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Convocatoria_PI_BA_Premio">
+          <End Role="PI_BA_Premio" Type="Self.PI_BA_Premio" Multiplicity="0..1" />
+          <End Role="PI_BA_Convocatoria" Type="Self.PI_BA_Convocatoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Premio">
+              <PropertyRef Name="cvePremio" />
+            </Principal>
+            <Dependent Role="PI_BA_Convocatoria">
+              <PropertyRef Name="cvePremio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Evaluacion_PI_BA_Juez">
+          <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="0..1" />
+          <End Role="PI_BA_Evaluacion" Type="Self.PI_BA_Evaluacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Juez">
+              <PropertyRef Name="cveJuez" />
+            </Principal>
+            <Dependent Role="PI_BA_Evaluacion">
+              <PropertyRef Name="cveJuez" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+          <End Role="PI_BA_Forma" Type="Self.PI_BA_Forma" Multiplicity="1" />
+          <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Forma">
+              <PropertyRef Name="cveForma" />
+            </Principal>
+            <Dependent Role="PI_BA_PreguntasPorForma">
+              <PropertyRef Name="cveForma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+          <End Role="PI_BA_Juez" Type="Self.PI_BA_Juez" Multiplicity="1" />
+          <End Role="PI_BA_JuezPorCategoria" Type="Self.PI_BA_JuezPorCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Juez">
+              <PropertyRef Name="cveJuez" />
+            </Principal>
+            <Dependent Role="PI_BA_JuezPorCategoria">
+              <PropertyRef Name="cveJuez" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+          <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="1" />
+          <End Role="PI_BA_PreguntasPorForma" Type="Self.PI_BA_PreguntasPorForma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Pregunta">
+              <PropertyRef Name="cvePregunta" />
+            </Principal>
+            <Dependent Role="PI_BA_PreguntasPorForma">
+              <PropertyRef Name="cvePregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_BA_Respuesta_PI_BA_Pregunta">
+          <End Role="PI_BA_Pregunta" Type="Self.PI_BA_Pregunta" Multiplicity="0..1" />
+          <End Role="PI_BA_Respuesta" Type="Self.PI_BA_Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI_BA_Pregunta">
+              <PropertyRef Name="cvePregunta" />
+            </Principal>
+            <Dependent Role="PI_BA_Respuesta">
+              <PropertyRef Name="cvePregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wPremiosInstitucionalesdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PI_BA_Aplicacion" EntityType="Self.PI_BA_Aplicacion" />
+          <EntitySet Name="PI_BA_Candidato" EntityType="Self.PI_BA_Candidato" />
+          <EntitySet Name="PI_BA_Categoria" EntityType="Self.PI_BA_Categoria" />
+          <EntitySet Name="PI_BA_Convocatoria" EntityType="Self.PI_BA_Convocatoria" />
+          <EntitySet Name="PI_BA_Evaluacion" EntityType="Self.PI_BA_Evaluacion" />
+          <EntitySet Name="PI_BA_Forma" EntityType="Self.PI_BA_Forma" />
+          <EntitySet Name="PI_BA_Juez" EntityType="Self.PI_BA_Juez" />
+          <EntitySet Name="PI_BA_JuezPorCategoria" EntityType="Self.PI_BA_JuezPorCategoria" />
+          <EntitySet Name="PI_BA_Pregunta" EntityType="Self.PI_BA_Pregunta" />
+          <EntitySet Name="PI_BA_PreguntasPorForma" EntityType="Self.PI_BA_PreguntasPorForma" />
+          <EntitySet Name="PI_BA_Premio" EntityType="Self.PI_BA_Premio" />
+          <EntitySet Name="PI_BA_Respuesta" EntityType="Self.PI_BA_Respuesta" />
+          <EntitySet Name="PI_SE_Administrador" EntityType="Self.PI_SE_Administrador" />
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Candidato" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato">
+            <End Role="PI_BA_Candidato" EntitySet="PI_BA_Candidato" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Categoria" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Categoria_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Aplicacion" Association="Self.FK_PI_BA_Respuesta_PI_BA_Aplicacion">
+            <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
+            <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Categoria_PI_BA_Convocatoria" Association="Self.FK_PI_BA_Categoria_PI_BA_Convocatoria">
+            <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Forma_PI_BA_Categoria" Association="Self.FK_PI_BA_Forma_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria">
+            <End Role="PI_BA_Categoria" EntitySet="PI_BA_Categoria" />
+            <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Convocatoria_PI_BA_Premio" Association="Self.FK_PI_BA_Convocatoria_PI_BA_Premio">
+            <End Role="PI_BA_Premio" EntitySet="PI_BA_Premio" />
+            <End Role="PI_BA_Convocatoria" EntitySet="PI_BA_Convocatoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Evaluacion_PI_BA_Juez" Association="Self.FK_PI_BA_Evaluacion_PI_BA_Juez">
+            <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+            <End Role="PI_BA_Evaluacion" EntitySet="PI_BA_Evaluacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Forma" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Forma">
+            <End Role="PI_BA_Forma" EntitySet="PI_BA_Forma" />
+            <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_JuezPorCategoria_PI_BA_Juez" Association="Self.FK_PI_BA_JuezPorCategoria_PI_BA_Juez">
+            <End Role="PI_BA_Juez" EntitySet="PI_BA_Juez" />
+            <End Role="PI_BA_JuezPorCategoria" EntitySet="PI_BA_JuezPorCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" Association="Self.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta">
+            <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+            <End Role="PI_BA_PreguntasPorForma" EntitySet="PI_BA_PreguntasPorForma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_BA_Respuesta_PI_BA_Pregunta" Association="Self.FK_PI_BA_Respuesta_PI_BA_Pregunta">
+            <End Role="PI_BA_Pregunta" EntitySet="PI_BA_Pregunta" />
+            <End Role="PI_BA_Respuesta" EntitySet="PI_BA_Respuesta" />
+          </AssociationSet>
+          <FunctionImport Name="AddCandidato">
+            <Parameter Name="cveCandidato" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Confirmado" Mode="In" Type="Boolean" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="CodigoConfirmacion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+            <Parameter Name="RFC" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+            <Parameter Name="FechaPrivacidadDatos" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="AddCategoria">
+            <Parameter Name="cveCategoria" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+            <Parameter Name="cveAplicacionGanadora" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddConvocatoria">
+            <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="cvePremio" Mode="In" Type="String" />
+            <Parameter Name="TituloConvocatoria" Mode="In" Type="String" />
+            <Parameter Name="FechaVeredicto" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddEvaluacion">
+            <Parameter Name="cveEvaluacion" Mode="In" Type="String" />
+            <Parameter Name="Calificacion" Mode="In" Type="Int16" />
+            <Parameter Name="cveAplicacion" Mode="In" Type="String" />
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddForma">
+            <Parameter Name="cveForma" Mode="In" Type="String" />
+            <Parameter Name="cveCategoria" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddJuez">
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddPremio">
+            <Parameter Name="cvePremio" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ConfirmarCandidato">
+          <Parameter Name="CodigoConfirmacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAdministrador" EntitySet="PI_SE_Administrador" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_SE_Administrador)">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="cveAdministrador" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCandidato" EntitySet="PI_BA_Candidato" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Candidato)">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="cveCandidato" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCategoria" EntitySet="PI_BA_Categoria" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Categoria)">
+            <Parameter Name="cveCategoria" Mode="In" Type="String" />
+            <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCategoriaByIdJuez" EntitySet="PI_BA_Categoria" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Categoria)">
+          <Parameter Name="cveJuez" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCategoriasPendientes" EntitySet="PI_BA_Categoria" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Categoria)" />
+          <FunctionImport Name="GetConvocatoria" EntitySet="PI_BA_Convocatoria" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Convocatoria)">
+          <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEvaluacion" EntitySet="PI_BA_Evaluacion" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Evaluacion)">
+            <Parameter Name="cveEvaluacion" Mode="In" Type="String" />
+            <Parameter Name="cveAplicacion" Mode="In" Type="String" />
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetForma" EntitySet="PI_BA_Forma" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Forma)">
+          <Parameter Name="cveForma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetJuez" EntitySet="PI_BA_Juez" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Juez)">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetMostRecentConvocatoria" EntitySet="PI_BA_Convocatoria" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Convocatoria)">
+          <Parameter Name="cvePremio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPremio" EntitySet="PI_BA_Premio" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Premio)">
+          <Parameter Name="cvePremio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPremioByIdCategoria" EntitySet="PI_BA_Premio" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_BA_Premio)">
+          <Parameter Name="cveCategoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAdministrador">
+            <Parameter Name="cveAdministrador" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCandidato">
+            <Parameter Name="cveCandidato" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Confirmado" Mode="In" Type="Boolean" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="CodigoConfirmacion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+            <Parameter Name="RFC" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+            <Parameter Name="FechaPrivacidadDatos" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEvaluacion">
+            <Parameter Name="cveEvaluacion" Mode="In" Type="String" />
+            <Parameter Name="Calificacion" Mode="In" Type="Int16" />
+            <Parameter Name="cveAplicacion" Mode="In" Type="String" />
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateJuez">
+            <Parameter Name="cveJuez" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePremio">
+            <Parameter Name="cvePremio" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="NombreImagen" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAdministrador_Result">
+          <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetCandidato_Result">
+          <Property Type="String" Name="cveCandidato" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Confirmado" Nullable="true" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodigoConfirmacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nacionalidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RFC" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaPrivacidadDatos" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCategoria_Result">
+          <Property Type="String" Name="cveCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cveConvocatoria" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cveAplicacionGanadora" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetCategoriaByIdJuez_Result">
+          <Property Type="String" Name="cveCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cveConvocatoria" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cveAplicacionGanadora" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetCategoriasPendientes_Result">
+          <Property Type="String" Name="cveCategoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cveConvocatoria" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cveAplicacionGanadora" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetConvocatoria_Result">
+          <Property Type="String" Name="cveConvocatoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+          <Property Type="String" Name="cvePremio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TituloConvocatoria" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaVeredicto" Nullable="true" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetEvaluacion_Result">
+          <Property Type="String" Name="cveEvaluacion" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="Calificacion" Nullable="true" />
+          <Property Type="String" Name="cveAplicacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cveJuez" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetForma_Result">
+          <Property Type="String" Name="cveForma" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="cveCategoria" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetJuez_Result">
+          <Property Type="String" Name="cveJuez" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetMostRecentConvocatoria_Result">
+          <Property Type="String" Name="cveConvocatoria" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+          <Property Type="String" Name="cvePremio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TituloConvocatoria" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaVeredicto" Nullable="true" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetPremio_Result">
+          <Property Type="String" Name="cvePremio" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetPremioByIdCategoria_Result">
+          <Property Type="String" Name="cvePremio" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreImagen" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
+          <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wPremiosInstitucionalesdbModelStoreContainer" CdmEntityContainer="wPremiosInstitucionalesdbEntities">
+          <EntitySetMapping Name="PI_BA_Aplicacion">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion">
+              <MappingFragment StoreEntitySet="PI_BA_Aplicacion">
+                <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+                <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Candidato">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Candidato">
+              <MappingFragment StoreEntitySet="PI_BA_Candidato">
+                <ScalarProperty Name="cveCandidato" ColumnName="cveCandidato" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="CodigoConfirmacion" ColumnName="CodigoConfirmacion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="FechaPrivacidadDatos" ColumnName="FechaPrivacidadDatos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Categoria">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Categoria">
+              <MappingFragment StoreEntitySet="PI_BA_Categoria">
+                <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+                <ScalarProperty Name="cveAplicacionGanadora" ColumnName="cveAplicacionGanadora" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+                <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Convocatoria">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
+              <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
+                <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+                <ScalarProperty Name="TituloConvocatoria" ColumnName="TituloConvocatoria" />
+                <ScalarProperty Name="FechaVeredicto" ColumnName="FechaVeredicto" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+                <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Evaluacion">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Evaluacion">
+              <MappingFragment StoreEntitySet="PI_BA_Evaluacion">
+                <ScalarProperty Name="cveEvaluacion" ColumnName="cveEvaluacion" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+                <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Forma">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Forma">
+              <MappingFragment StoreEntitySet="PI_BA_Forma">
+                <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+                <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+                <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Juez">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Juez">
+              <MappingFragment StoreEntitySet="PI_BA_Juez">
+                <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_JuezPorCategoria">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_JuezPorCategoria">
+              <MappingFragment StoreEntitySet="PI_BA_JuezPorCategoria">
+                <ScalarProperty Name="cveJuezPorCategoria" ColumnName="cveJuezPorCategoria" />
+                <ScalarProperty Name="cveJuez" ColumnName="cveJuez" />
+                <ScalarProperty Name="cveCategoria" ColumnName="cveCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Pregunta">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Pregunta">
+              <MappingFragment StoreEntitySet="PI_BA_Pregunta">
+                <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_PreguntasPorForma">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_PreguntasPorForma">
+              <MappingFragment StoreEntitySet="PI_BA_PreguntasPorForma">
+                <ScalarProperty Name="cvePreguntaPorForma" ColumnName="cvePreguntaPorForma" />
+                <ScalarProperty Name="cveForma" ColumnName="cveForma" />
+                <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Premio">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Premio">
+              <MappingFragment StoreEntitySet="PI_BA_Premio">
+                <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NombreImagen" ColumnName="NombreImagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaEdicion" ColumnName="FechaEdicion" />
+                <ScalarProperty Name="UsuarioEdicion" ColumnName="UsuarioEdicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_BA_Respuesta">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Respuesta">
+              <MappingFragment StoreEntitySet="PI_BA_Respuesta">
+                <ScalarProperty Name="cveRespuesta" ColumnName="cveRespuesta" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="cvePregunta" ColumnName="cvePregunta" />
+                <ScalarProperty Name="cveAplicacion" ColumnName="cveAplicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PI_SE_Administrador">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_SE_Administrador">
+              <MappingFragment StoreEntitySet="PI_SE_Administrador">
+                <ScalarProperty Name="cveAdministrador" ColumnName="cveAdministrador" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.AddCandidato" />
+          <FunctionImportMapping FunctionImportName="AddCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.AddCategoria" />
+          <FunctionImportMapping FunctionImportName="AddConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.AddConvocatoria" />
+          <FunctionImportMapping FunctionImportName="AddEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.AddEvaluacion" />
+          <FunctionImportMapping FunctionImportName="AddForma" FunctionName="wPremiosInstitucionalesdbModel.Store.AddForma" />
+          <FunctionImportMapping FunctionImportName="AddJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.AddJuez" />
+          <FunctionImportMapping FunctionImportName="AddPremio" FunctionName="wPremiosInstitucionalesdbModel.Store.AddPremio" />
+          <FunctionImportMapping FunctionImportName="ConfirmarCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.ConfirmarCandidato" />
+          <FunctionImportMapping FunctionImportName="GetAdministrador" FunctionName="wPremiosInstitucionalesdbModel.Store.GetAdministrador">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCandidato">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoria">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCategoriaByIdJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoriaByIdJuez">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCategoriasPendientes" FunctionName="wPremiosInstitucionalesdbModel.Store.GetCategoriasPendientes">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetConvocatoria">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.GetEvaluacion">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetForma" FunctionName="wPremiosInstitucionalesdbModel.Store.GetForma">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.GetJuez">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMostRecentConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetMostRecentConvocatoria">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPremio" FunctionName="wPremiosInstitucionalesdbModel.Store.GetPremio">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPremioByIdCategoria" FunctionName="wPremiosInstitucionalesdbModel.Store.GetPremioByIdCategoria">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateAdministrador" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateAdministrador" />
+          <FunctionImportMapping FunctionImportName="UpdateCandidato" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateCandidato" />
+          <FunctionImportMapping FunctionImportName="UpdateEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateEvaluacion" />
+          <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
+          <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

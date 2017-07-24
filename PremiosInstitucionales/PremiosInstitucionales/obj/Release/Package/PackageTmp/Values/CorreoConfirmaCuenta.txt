@@ -1,0 +1,19 @@
+﻿<html>
+<body>
+<img src="http://expresotec.mty.itesm.mx/web/imagenes/logo_ITESM.gif">
+<p style="text-align:left">%FECHA%</p>
+<p>Hola %CORREO%</p>
+<p>Hemos recibido una solicitud para registrar una cuenta y continuar con tu proceso de inscripción a 
+Premio Institucionales Tec de Monterrey. </p>
+<p>Haz clic en el botón que aparece a continuación para confirmar tu cuenta.</p>
+<a href="http://localhost:2943/WebForms/Login.aspx?c=%CONFIRMACION%">Confirma tu cuenta</a>
+<br>
+<br>
+<hr>
+<div style="text-align:center">
+<p>Premios institucionales</p>
+<p>Tec de Monterrey</p>
+</div>
+<p>AV. EUGENIO GARZA SADA 2501 SUR COL. TECNOLÓGICO C.P. 64849 | MONTERREY, NUEVO LEÓN, MÉXICO | TEL. +52 (81) 8358-2000 D.R.© INSTITUTO TECNOLÓGICO Y DE ESTUDIOS SUPERIORES DE MONTERREY, MÉXICO. 2016</p>
+</body>
+</html>

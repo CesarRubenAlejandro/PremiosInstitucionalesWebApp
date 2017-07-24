@@ -167,9 +167,12 @@ namespace PremiosInstitucionales.WebForms
             int cantidad = 0;
             List<PI_BA_Aplicacion> apliciones = ConvocatoriaService.ObtenerAplicacionesPorCategoria(idCategoria);
 
-            foreach (var aplicacion in apliciones)
-            {
-                if (aplicacion.Status == "aceptada") cantidad++;
+            if (apliciones != null)
+            { 
+                foreach (var aplicacion in apliciones)
+                {
+                    if (aplicacion.Status == "aceptada") cantidad++;
+                }
             }
 
             return cantidad;
@@ -185,23 +188,26 @@ namespace PremiosInstitucionales.WebForms
             List<Premio> listaPremios = new List<Premio>();
             bool categoriaAgregada;
 
-            foreach (var categoria in listaCategorias)
+            if (listaCategorias != null)
             {
-                categoriaAgregada = false;
+                foreach (var categoria in listaCategorias)
+                {
+                    categoriaAgregada = false;
 
-                foreach (var premio in listaPremios)
-                {
-                    if (premio.Nombre == EvaluacionService.GetNombrePremioByCategoria(categoria.cveCategoria).Nombre)
+                    foreach (var premio in listaPremios)
                     {
-                        premio.ListaCategorias.Add(categoria);
-                        categoriaAgregada = true;
+                        if (premio.Nombre == EvaluacionService.GetPremioByCategoria(categoria.cveCategoria).Nombre)
+                        {
+                            premio.ListaCategorias.Add(categoria);
+                            categoriaAgregada = true;
+                        }
                     }
-                }
-                if (!categoriaAgregada)
-                {
-                    List<PI_BA_Categoria> nuevaLista = new List<PI_BA_Categoria>();
-                    nuevaLista.Add(categoria);
-                    listaPremios.Add(new Premio(EvaluacionService.GetNombrePremioByCategoria(categoria.cveCategoria), nuevaLista));
+                    if (!categoriaAgregada)
+                    {
+                        List<PI_BA_Categoria> nuevaLista = new List<PI_BA_Categoria>();
+                        nuevaLista.Add(categoria);
+                        listaPremios.Add(new Premio(EvaluacionService.GetPremioByCategoria(categoria.cveCategoria), nuevaLista));
+                    }
                 }
             }
 
@@ -254,22 +260,24 @@ namespace PremiosInstitucionales.WebForms
 
                 // obtener candidatos ligados a estas aplicaciones
                 var listaCandidatos = ConvocatoriaService.JuezObtenerCandidatosPorAplicaciones(aplicacionesACategoria);
-                foreach (var cand in listaCandidatos)
+                if (listaCandidatos != null)
                 {
-                    // status column
-                    var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
-                    if (Eval != null)
+                    foreach (var cand in listaCandidatos)
                     {
-                        //Completo
-                        CompletoNuevo[0]++;
-                    }
-                    else
-                    {
-                        //Nuevo
-                        CompletoNuevo[1]++;
+                        // status column
+                        var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cand.Key.cveAplicacion);
+                        if (Eval != null)
+                        {
+                            //Completo
+                            CompletoNuevo[0]++;
+                        }
+                        else
+                        {
+                            //Nuevo
+                            CompletoNuevo[1]++;
+                        }
                     }
                 }
-
             }
 
             return CompletoNuevo;
