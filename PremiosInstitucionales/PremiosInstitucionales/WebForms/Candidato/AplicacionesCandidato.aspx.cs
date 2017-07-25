@@ -177,5 +177,10 @@ namespace PremiosInstitucionales.WebForms
                 return "";
             }
         }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioCandidato.aspx");
+        }
     }
 }

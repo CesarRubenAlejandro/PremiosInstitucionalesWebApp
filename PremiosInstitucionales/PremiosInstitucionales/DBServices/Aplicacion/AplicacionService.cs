@@ -196,6 +196,35 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             }
         }
 
+        public static PI_BA_Aplicacion GetAplicacionById(String cveApp)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var aplicacion = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveApp)).ToList().FirstOrDefault();
+                return aplicacion;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static void UpdateAplicacionArchivo(String cveApp, String sArchivo)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            try
+            {
+                var aplicacion = dbContext.PI_BA_Aplicacion.Where(a => a.cveAplicacion.Equals(cveApp)).ToList().FirstOrDefault();
+                aplicacion.NombreArchivo = sArchivo;
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         public static List<PI_BA_Aplicacion> GetAplicacionesByStatus(String status)
         {
             dbContext = new wPremiosInstitucionalesdbEntities();

@@ -90,6 +90,13 @@ namespace PremiosInstitucionales.WebForms
 
         }
 
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            string sConvocatoriaID = Request.QueryString["c"];
+            var convocatoria = ConvocatoriaService.GetConvocatoriaById(sConvocatoriaID);
+            Response.Redirect("AdministraConvocatorias.aspx?p="+convocatoria.cvePremio);
+        }
+
         private void CreateCategory()
         {
             PI_BA_Categoria categoria = new PI_BA_Categoria();

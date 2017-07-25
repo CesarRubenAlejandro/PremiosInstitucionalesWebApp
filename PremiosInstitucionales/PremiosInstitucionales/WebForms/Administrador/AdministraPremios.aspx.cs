@@ -98,6 +98,11 @@ namespace PremiosInstitucionales.WebForms
 
         }
 
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioAdmin.aspx");
+        }
+
         private void CreateAward()
         {
             PI_BA_Premio premio = new PI_BA_Premio();

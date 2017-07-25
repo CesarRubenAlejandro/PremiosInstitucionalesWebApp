@@ -109,17 +109,21 @@ namespace PremiosInstitucionales.WebForms
                         tdCalificacion.Controls.Add(lcStatus);
                     }
 
+                    TableCell tdGanador = new TableCell();
+                    tdGanador.CssClass = "dt-profile-pic";
+                    LiteralControl lcGanador = new LiteralControl("<center><input type=\"radio\" name=\"ganador\" value=\"" + cand.Nombre + " " + cand.Apellido + "\"/></center>");
+                    tdGanador.Controls.Add(lcGanador);
+
                     tr.Controls.Add(tdIP);
                     tr.Controls.Add(tdName);
                     tr.Controls.Add(tdLastName);
                     tr.Controls.Add(tdCalificacion);
                     tr.Controls.Add(tdCantEvals);
+                    tr.Controls.Add(tdGanador);
 
                     listaParticipantesTableBody.Controls.Add(tr);
-
                 }
             }
-
         }
 
         private double GetPromedioEvaluaciones(List<PI_BA_Evaluacion> evaluaciones)
@@ -128,6 +132,11 @@ namespace PremiosInstitucionales.WebForms
             if (result.HasValue)
                 return result.Value;
             return -1;
+        }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministraGanadores.aspx");
         }
     }
 }

@@ -277,5 +277,13 @@ namespace PremiosInstitucionales.WebForms
             Response.Redirect("AdministraFormulario.aspx?p=" + formaID);
         }
 
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            formaID = Request.QueryString["p"];
+            var cveCategoria = ConvocatoriaService.GetFormaByID(formaID).cveCategoria;
+            var cveConvocatoria = ConvocatoriaService.GetCategoriaById(cveCategoria).cveConvocatoria;
+
+            Response.Redirect("AdministraCategorias.aspx?c=" + cveConvocatoria);
+        }
     }
 }

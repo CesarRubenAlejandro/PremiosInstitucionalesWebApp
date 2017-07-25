@@ -42,8 +42,11 @@
                 </div>
             </div>
         </div>
+
     <!-- Contenido -->
     <div class="container fadeView">
+
+       <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
 
         <div class="container">
             <div class="row">

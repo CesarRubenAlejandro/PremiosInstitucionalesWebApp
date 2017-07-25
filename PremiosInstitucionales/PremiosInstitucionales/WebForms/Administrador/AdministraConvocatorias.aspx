@@ -15,6 +15,8 @@
     <!-- Content -->
     <div class="container fadeView">
 
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
         <!-- Titulo -->
         <div class="container">
             <div class="row">

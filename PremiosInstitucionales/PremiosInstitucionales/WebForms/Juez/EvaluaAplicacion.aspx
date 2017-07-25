@@ -12,6 +12,10 @@
                 <hr class="shorthr" />
             </div>
         </div>
+
+            <asp:Panel runat="server" ID="PanelArchivo" class="row question-form">
+            </asp:Panel>
+
             <asp:Panel runat="server" ID="PanelFormulario" class="row question-form">
             </asp:Panel>
 

@@ -295,6 +295,10 @@ namespace PremiosInstitucionales.WebForms
             return false;
         }
 
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioJuez.aspx");
+        }
 
     }
 }

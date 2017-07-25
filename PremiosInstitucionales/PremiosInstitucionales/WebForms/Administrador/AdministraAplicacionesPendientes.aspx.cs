@@ -86,6 +86,16 @@ namespace PremiosInstitucionales.WebForms
 
                     panelCollapseBody.Controls.Add(lcUserProfile);
 
+                    LinkButton lbDocumento = new LinkButton();
+                    lbDocumento.Text = "Descargar archivo";
+                    lbDocumento.Style.Add("font-size", "16pt");
+                    lbDocumento.Style.Add("color", "#00acc1");
+                    lbDocumento.Style.Add("text-decoration", "underline");
+                    lbDocumento.Style.Add("margin", "1.5em 0");
+                    lbDocumento.Command += new CommandEventHandler(DownloadFile);
+                    lbDocumento.CommandArgument = app.cveAplicacion;
+                    panelCollapseBody.Controls.Add(lbDocumento);
+
                     Panel panelCollapseBodyQuestions = new Panel();
                     panelCollapseBodyQuestions.CssClass = "row question-form";
                     panelCollapseBodyQuestions.Style.Add("margin-left", "10px");
@@ -178,6 +188,31 @@ namespace PremiosInstitucionales.WebForms
             Response.Redirect(Request.Url.AbsoluteUri);
         }
 
+        public void DownloadFile(object sender, CommandEventArgs e)
+        {
+            var app = AplicacionService.GetAplicacionById(e.CommandArgument.ToString());
+            string FileName = app.NombreArchivo;
+            string FilePath = Server.MapPath("~/UsersAppsFiles/") + FileName;
+            FileInfo fs = new FileInfo(FilePath);
+            int FileLength = Convert.ToInt32(fs.Length);
+
+            if (File.Exists(FilePath))
+            {
+                Response.Clear();
+                Response.BufferOutput = false;
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Length", FileLength.ToString());
+                Response.AddHeader("content-disposition", "attachment; filename=" + FileName);
+                Response.TransmitFile(FilePath);
+                Response.Flush();
+            }
+            else
+            {
+                //lblMsg.Text = "Error: File not found!";
+            }
+
+        }
+
         private bool EnviarCorreoConfirmacion(String razon, String claveAplicacion)
         {
             var aplicacion = AplicacionService.ObtenerAplicacionDeClave(claveAplicacion);
@@ -224,6 +259,12 @@ namespace PremiosInstitucionales.WebForms
             AplicacionService.AceptarAplicacion(aplicacionID);
             // cargar nuevamente el acordeon de respuestas forzando un postback
             Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioAdmin.aspx");
+
         }
     }
 }

@@ -7,6 +7,9 @@ Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MP-Glo
     <div runat="server" id="modalList"></div>
 
     <div class="container fadeView">
+
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
 	    <div class="container">
 		    <div class="row">
 			    <div class="col-lg-12 text-center">

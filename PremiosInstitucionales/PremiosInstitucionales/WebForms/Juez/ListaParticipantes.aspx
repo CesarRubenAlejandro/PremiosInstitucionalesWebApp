@@ -6,6 +6,8 @@
     <link href='<%= ResolveUrl("~/Resources/css/dataTables.css")%>' rel="stylesheet" type="text/css" />
     <div class="container fadeView">
 
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
         <h3><asp:Literal ID="litTituloPremio" runat="server" /></h3>
         <h4><asp:Literal ID="litTituloCategoria" runat="server" /></h4>
 

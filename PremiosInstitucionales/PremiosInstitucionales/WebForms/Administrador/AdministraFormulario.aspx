@@ -13,6 +13,8 @@
     <!-- Contenido -->
         <div class="container fadeView">
 
+            <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
             <!-- Premio & Categoria (Nombres) -->
             <div id="nombrePremioCategoria" runat="server"></div>
             

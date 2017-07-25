@@ -140,6 +140,12 @@ namespace PremiosInstitucionales.WebForms
             return null;
         }
 
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdministraPremios.aspx");
+
+        }
+
         protected void UpdateInfo(object sender, EventArgs e)
         {
             string imgUrl = UploadImage();

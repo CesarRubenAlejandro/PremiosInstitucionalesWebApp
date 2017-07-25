@@ -6,8 +6,11 @@
     <script src='<%= ResolveUrl("~/Resources/js/listaUsuariosCandidato.js")%>' type="text/javascript" defer="defer"></script>
     <link href='<%= ResolveUrl("~/Resources/css/dataTables.css")%>' rel="stylesheet" type="text/css" /> 
 
+    <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
     <div class="container fadeView" style="position:relative;">
 		
+
 		<h3>Información personal</h3>
 		<h4>
             <asp:Literal ID="litUsuarios" runat="server" />

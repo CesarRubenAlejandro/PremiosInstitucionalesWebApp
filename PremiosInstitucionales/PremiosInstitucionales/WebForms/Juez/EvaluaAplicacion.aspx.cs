@@ -6,6 +6,7 @@ using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +16,8 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CrearArchivo();
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de juez
@@ -31,7 +34,6 @@ namespace PremiosInstitucionales.WebForms
 
                 // confirmar que la aplicacion haya sido rechazada
                 String idApp = Request.QueryString["a"];
-
                 if (idApp != null)
                 {
                     String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
@@ -69,6 +71,20 @@ namespace PremiosInstitucionales.WebForms
                 }
                 Response.Redirect("inicioJuez.aspx");
             }
+        }
+
+        private void CrearArchivo()
+        {
+            string appId = Request.QueryString["a"];
+            LinkButton lbDocumento = new LinkButton();
+            lbDocumento.Text = "Descargar archivo";
+            lbDocumento.Style.Add("font-size", "16pt");
+            lbDocumento.Style.Add("color", "#00acc1");
+            lbDocumento.Style.Add("text-decoration", "underline");
+            lbDocumento.Style.Add("margin", "1.5em 0");
+            lbDocumento.Command += new CommandEventHandler(DownloadFile);
+            lbDocumento.CommandArgument = appId;
+            PanelArchivo.Controls.Add(lbDocumento);
         }
 
         private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
@@ -145,6 +161,30 @@ namespace PremiosInstitucionales.WebForms
 
         }
 
+        public void DownloadFile(object sender, CommandEventArgs e)
+        {
+            var app = AplicacionService.GetAplicacionById(e.CommandArgument.ToString());
+            string FileName = app.NombreArchivo;
+            string FilePath = Server.MapPath("~/UsersAppsFiles/") + FileName;
+            FileInfo fs = new FileInfo(FilePath);
+            int FileLength = Convert.ToInt32(fs.Length);
+
+            if (File.Exists(FilePath))
+            {
+                Response.Clear();
+                Response.BufferOutput = false;
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Length", FileLength.ToString());
+                Response.AddHeader("content-disposition", "attachment; filename=" + FileName);
+                Response.TransmitFile(FilePath);
+                Response.Flush();
+            }
+            else
+            {
+                //lblMsg.Text = "Error: File not found!";
+            }
+
+        }
         protected void ModificarAplicacion(object sender, EventArgs e)
         {
             try

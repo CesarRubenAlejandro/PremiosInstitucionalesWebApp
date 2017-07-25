@@ -3,6 +3,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="container fadeView">
 
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
         <!-- Header -->
         <div class="container">
             <div class="row">

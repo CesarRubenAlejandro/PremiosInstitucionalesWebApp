@@ -32,3 +32,7 @@ function sendFormAux() {
 function changePage(url) {
     window.open(url, '_blank');
 }
+
+function loadPage(url) {
+    location.href = url;
+}

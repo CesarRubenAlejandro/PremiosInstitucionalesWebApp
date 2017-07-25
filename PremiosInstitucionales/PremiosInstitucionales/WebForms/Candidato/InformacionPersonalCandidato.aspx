@@ -5,6 +5,9 @@
     <!-- Invite candidate -->
         
         <div class="container fadeView">
+
+            <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -76,11 +79,6 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="InicioCandidato.aspx" class="no-underline">
-                                        <button type="button" class="btn btn-default">
-                                            Cancelar
-                                        </button>
-                                    </a>
                                     <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
                                         <button type="button" class="btn btn-default">
                                             Cambiar contraseña

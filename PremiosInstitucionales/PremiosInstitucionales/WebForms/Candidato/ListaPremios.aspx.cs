@@ -91,7 +91,7 @@ namespace PremiosInstitucionales.WebForms
                 Literal lit3 = new Literal();
                 lit3.Text= "</select></div></div>"+
                             "<div class='modal-footer'>"+
-                                "<button type='button' class='btn btn-default' data-dismiss='modal'>" +
+                                "<button type='button' class='btn btn-default' style=\"margin-right: 10px;\" data-dismiss='modal'>" +
                                     "Cancelar" +
                                 "</button>"+
                                 "<a id='"+premio.cvePremio+"' href='Formulario.aspx?c="+listCat[0].cveCategoria+"'>" +
@@ -106,5 +106,11 @@ namespace PremiosInstitucionales.WebForms
                 i = i + 1;
             }
         }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioCandidato.aspx");
+        }
+
     }
 }

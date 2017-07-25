@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Web;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -76,8 +78,9 @@ namespace PremiosInstitucionales.WebForms
                 // obtener lista de preguntas para la categoria y desplegar el formulario
                 var preguntas = AplicacionService.GetFormularioByCategoria(categoria.cveCategoria);
 
-                if (preguntas != null)
+                if (preguntas != null && preguntas.Count > 0)
                 {
+                    uploadFile.Visible = true;
                     short iNumber = 0;
                     foreach (var pregunta in preguntas)
                     {
@@ -160,6 +163,7 @@ namespace PremiosInstitucionales.WebForms
 
             if (ltRespuestas.Count == preguntas.Count)
             {
+                aplicacionNueva.NombreArchivo = UploadFile();
                 AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
                 Response.Redirect("AplicacionesCandidato.aspx");
             }
@@ -176,6 +180,33 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
             return -1;
+        }
+
+        protected string UploadFile()
+        {
+            HttpPostedFile file = Request.Files["file"];
+
+            //check file was submitted
+            if (file != null && file.ContentLength > 0)
+            {
+                string fname = Path.GetFileName(file.FileName);
+
+                // Delete previous image...
+                //File.Delete(Server.MapPath("~/UsersAppsFiles/") + candidato.NombreImagen);
+
+                // Get string image format (png, jpg, etc)
+                var startIndex = fname.LastIndexOf(".");
+                var endIndex = fname.Length - startIndex;
+                string sFormat = fname.Substring(startIndex, endIndex);
+                string sName = fname.Substring(0, fname.Length - sFormat.Length);
+                string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
+
+                // Upload image to server
+                file.SaveAs(Server.MapPath(Path.Combine("~/UsersAppsFiles/", sNombreArchivo)));
+                return sNombreArchivo;
+            }
+
+            return null;
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
+using System.IO;
+using System.Web;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -59,11 +61,19 @@ namespace PremiosInstitucionales.WebForms
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
 
+            string idApp = Request.QueryString["aplicacion"];
+            string FileName = AplicacionService.GetAplicacionById(idApp).NombreArchivo;
+            if (FileName != null)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "hwa", "writeName('"+FileName+"');", true);
+            }
+
             // obtener lista de preguntas y respuestas para la aplicacion
             var preguntas = AplicacionService.GetFormularioByCategoria(sCategoriaID);
 
             if (preguntas != null)
             {
+                uploadFile.Visible = true;
                 short iNumber = 0;
                 foreach (var pregunta in preguntas)
                 {
@@ -138,6 +148,14 @@ namespace PremiosInstitucionales.WebForms
 
             // cambiar status de la aplicacion a Modificado
             AplicacionService.SetAplicacionModificada(Request.QueryString["aplicacion"]);
+
+            // actualizar archivo
+            string sArchivo = UploadFile();
+            if (sArchivo != null)
+            {
+                AplicacionService.UpdateAplicacionArchivo(Request.QueryString["aplicacion"], sArchivo);
+            }
+
             // redireccionar a inicio
             Response.Redirect("InicioCandidato.aspx");
         }
@@ -153,6 +171,38 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
             return -1;
+        }
+
+        protected string UploadFile()
+        {
+            HttpPostedFile file = Request.Files["file"];
+
+            //check file was submitted
+            if (file != null && file.ContentLength > 0)
+            {
+                string fname = Path.GetFileName(file.FileName);
+
+                // Delete previous image...
+                string idApp = Request.QueryString["aplicacion"];
+                string FileName = AplicacionService.GetAplicacionById(idApp).NombreArchivo;
+                if (FileName != null && FileName.Length > 0)
+                {
+                    File.Delete(Server.MapPath("~/UsersAppsFiles/") + FileName);
+                }
+
+                // Get string image format (png, jpg, etc)
+                var startIndex = fname.LastIndexOf(".");
+                var endIndex = fname.Length - startIndex;
+                string sFormat = fname.Substring(startIndex, endIndex);
+                string sName = fname.Substring(0, fname.Length - sFormat.Length);
+                string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
+
+                // Upload image to server
+                file.SaveAs(Server.MapPath(Path.Combine("~/UsersAppsFiles/", sNombreArchivo)));
+                return sNombreArchivo;
+            }
+
+            return null;
         }
     }
 }

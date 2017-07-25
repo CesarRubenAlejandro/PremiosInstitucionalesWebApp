@@ -499,5 +499,11 @@ namespace PremiosInstitucionales.WebForms
                 ex.ToString();
             }
         }
+
+        protected void BackBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InicioAdmin.aspx");
+        }
+
     }
 }

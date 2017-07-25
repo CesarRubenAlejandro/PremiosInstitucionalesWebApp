@@ -16,7 +16,7 @@ namespace PremiosInstitucionales
             // Si no hay sesion, regreso a Login
             if (Session[StringValues.RolSesion] == null)
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("~/WebForms/Login.aspx");
             }
 
             // Cargo el tipo de liga hacia inicio segun el rol de la cuenta
@@ -182,7 +182,7 @@ namespace PremiosInstitucionales
             Session.Abandon();
 
             // Redirecciono a la pagina de inicio de sesion
-            Response.Redirect("/WebForms/Login.aspx");
+            Response.Redirect("~/WebForms/Login.aspx");
         }
 
     }
