@@ -82,20 +82,20 @@
 }
 
 .inputfile + label {
-    border: 1px solid rgba(38, 50, 56, .90);
-    background-color: rgba(38, 50, 56, .10);
+    border: 1px solid #e0e0e0;
+    background-color: white;
     padding: 0;
 }
 
 .inputfile:focus + label,
 .inputfile.has-focus + label,
 .inputfile + label:hover {
-    border-color: rgba(38, 50, 56, 1);
+    border-color: #bdbdbd;
 }
 
 .inputfile + label span,
 .inputfile + label strong {
-    padding: 0.625rem 1.25rem;
+    padding: 0.62rem 1.25rem;
     /* 10px 20px */
 }
 

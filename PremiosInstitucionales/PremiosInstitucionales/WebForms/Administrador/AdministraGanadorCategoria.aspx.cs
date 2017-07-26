@@ -69,23 +69,35 @@ namespace PremiosInstitucionales.WebForms
                     tdIP.CssClass = "dt-profile-pic";
 
                     Image ipImage = new Image();
-                    ipImage.ImageUrl = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+                    if (cand.NombreImagen != null)
+                    {
+                        ipImage.ImageUrl = "/ProfilePictures/" + cand.NombreImagen;
+                    }
+                    else
+                    {
+                        ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
+                    }
                     ipImage.CssClass = "avatar img-circle";
                     ipImage.AlternateText = "avatar";
-                    ipImage.Style.Add("max-width", "28px");
+                    ipImage.Style.Add("width", "28px");
+                    ipImage.Style.Add("height", "28px");
 
                     tdIP.Controls.Add(ipImage);
+                    tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
 
                     // name column
                     TableCell tdName = new TableCell();
                     tdName.Text = cand.Nombre;
+                    tdName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
 
                     // last name column
                     TableCell tdLastName = new TableCell();
                     tdLastName.Text = cand.Apellido;
+                    tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
 
                     TableCell tdCantEvals = new TableCell();
                     tdCantEvals.Text = evaluaciones.Count.ToString();
+                    tdCantEvals.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
 
                     // status column
                     TableCell tdCalificacion = new TableCell();
@@ -99,15 +111,16 @@ namespace PremiosInstitucionales.WebForms
                     else if (prom >= 0)
                     {
                         tdCalificacion.Style.Add("color", "#f9a825");
-                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> " + (prom - 100) + " </div> " + prom + " </strong>");
-                        tdCalificacion.Controls.Add(lcStatus);
+                        LiteralControl lcCalificacion = new LiteralControl("<strong> <div style=\"display: none; \"> " + (prom - 100) + " </div> " + prom + " </strong>");
+                        tdCalificacion.Controls.Add(lcCalificacion);
                     }
                     else
                     {
                         tdCalificacion.Style.Add("color", "#f44336");
-                        LiteralControl lcStatus = new LiteralControl("<strong> <div style=\"display: none; \"> 1000 </div> Sin evaluaciones </strong>");
-                        tdCalificacion.Controls.Add(lcStatus);
+                        LiteralControl lcCalificacion = new LiteralControl("<strong> <div style=\"display: none; \"> 1000 </div> Sin evaluaciones </strong>");
+                        tdCalificacion.Controls.Add(lcCalificacion);
                     }
+                    tdCalificacion.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
 
                     TableCell tdGanador = new TableCell();
                     tdGanador.CssClass = "dt-profile-pic";

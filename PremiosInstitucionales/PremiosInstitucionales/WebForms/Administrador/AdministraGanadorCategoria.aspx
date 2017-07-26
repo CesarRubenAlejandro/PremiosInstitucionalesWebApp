@@ -42,10 +42,66 @@
 
         <br />
 
-         <!-- Boton Guardar -->
+         <!-- Botones -->
         <div style="width: 100%; text-align: right;">
-            <asp:Button class="btn" ID="VeredictoFinal" Text="Veredicto Final" runat="server" style="margin-right: 10px;"/>
-            <asp:Button class="btn btn-primary" ID="AsignarGanador" Text="Asignar Ganador" runat="server"/>
+            <a data-toggle="modal" data-target="#modalVeredicto">
+                <button class="btn" id="VeredictoFinal" style="margin-right: 10px; color: black;">Veredicto Final</button>
+            </a>
+            <a data-toggle="modal" data-target="#modalGanador">
+                <button class="btn btn-primary" id="AsignarGanador">Asignar Ganador</button>
+            </a>
+	    </div>
+
+        <!-- Modal para asignar ganador -->
+	    <div class="modal fade" id="modalGanador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		    <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+
+                    <!-- Encabezado del modal -->		
+				    <div class="modal-header text-center">
+					    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					    <h3 class="modal-title" id="myModalLabel">Asignar Ganador</h3>
+					    <hr class="shorthr"/>
+				    </div>
+
+                    <!-- Cuerpo del modal -->
+				    <div class="modal-body">
+                         Lorem ipsum...................
+				    </div>
+
+                    <!-- Pie del modal -->
+				    <div class="modal-footer">
+					    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					    <asp:Button class="btn btn-primary" id="BtnAsginarGanador" runat="server" Text="Asignar"/>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+
+        <!-- Modal para veredicto final -->
+	    <div class="modal fade" id="modalVeredicto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		    <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+
+                    <!-- Encabezado del modal -->		
+				    <div class="modal-header text-center">
+					    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					    <h3 class="modal-title" id="myModalLabel2">Veredicto Final</h3>
+					    <hr class="shorthr"/>
+				    </div>
+
+                    <!-- Cuerpo del modal -->
+				    <div class="modal-body">
+                         Correo
+				    </div>
+
+                    <!-- Pie del modal -->
+				    <div class="modal-footer">
+					    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					    <asp:Button class="btn btn-primary" id="BtnVeredictoFinal" runat="server" Text="Enviar Correos"/>
+				    </div>
+			    </div>
+		    </div>
 	    </div>
 
     </div>

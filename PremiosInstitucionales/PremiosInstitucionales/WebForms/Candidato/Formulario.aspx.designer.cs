@@ -40,15 +40,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alreadySubmittedLabel;
         
         /// <summary>
-        /// uploadFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uploadFile;
-        
-        /// <summary>
         /// PanelFormulario control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace PremiosInstitucionales.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PanelFormulario;
+        
+        /// <summary>
+        /// uploadFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uploadFile;
         
         /// <summary>
         /// btnManager control.

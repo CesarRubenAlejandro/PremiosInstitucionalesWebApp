@@ -40,21 +40,21 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl listaParticipantesTableBody;
         
         /// <summary>
-        /// VeredictoFinal control.
+        /// BtnAsginarGanador control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button VeredictoFinal;
+        protected global::System.Web.UI.WebControls.Button BtnAsginarGanador;
         
         /// <summary>
-        /// AsignarGanador control.
+        /// BtnVeredictoFinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AsignarGanador;
+        protected global::System.Web.UI.WebControls.Button BtnVeredictoFinal;
     }
 }

@@ -70,10 +70,18 @@ namespace PremiosInstitucionales.WebForms
                         tdIP.CssClass = "dt-profile-pic";
 
                         Image ipImage = new Image();
-                        ipImage.ImageUrl = "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg";
+                        if (cand.Value.NombreImagen != null)
+                        {
+                            ipImage.ImageUrl = "/ProfilePictures/" + cand.Value.NombreImagen;
+                        }
+                        else
+                        {
+                            ipImage.ImageUrl = "/Resources/img/default-pp.jpg";
+                        }
                         ipImage.CssClass = "avatar img-circle";
                         ipImage.AlternateText = "avatar";
-                        ipImage.Style.Add("max-width", "28px");
+                        ipImage.Style.Add("width", "28px");
+                        ipImage.Style.Add("height", "28px");
 
                         tdIP.Controls.Add(ipImage);
 
