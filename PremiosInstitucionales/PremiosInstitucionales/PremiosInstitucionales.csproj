@@ -230,11 +230,13 @@
     <Content Include="Resources\img\logotec.png" />
     <Content Include="Resources\img\logotec2.png" />
     <Content Include="Resources\img\trophy.png" />
+    <Content Include="Resources\js\adminGanadorCategoria.js" />
     <Content Include="Resources\js\AplicacionesCandidato.js" />
     <Content Include="Resources\js\AdministraFormulario.js" />
     <Content Include="Resources\js\bootstrap.min.js" />
     <Content Include="Resources\js\crearConvocatoria.js" />
     <Content Include="Resources\js\custom-file-input.js" />
+    <Content Include="Resources\js\editarConvocatoria.js" />
     <Content Include="Resources\js\global.js" />
     <Content Include="Resources\js\InformacionPersonalCandidato.js" />
     <Content Include="Resources\js\jquery-ui.js" />
@@ -253,6 +255,7 @@
     <Content Include="Resources\svg\learning.svg" />
     <Content Include="Resources\svg\plus.svg" />
     <Content Include="Resources\svg\proponer.svg" />
+    <Content Include="Resources\svg\reports.svg" />
     <Content Include="Resources\svg\shield.svg" />
     <Content Include="Resources\svg\teacher.svg" />
     <Content Include="Resources\svg\team.svg" />
@@ -270,6 +273,7 @@
     <Content Include="WebForms\Administrador\AdministraInformacionPersonal.aspx" />
     <Content Include="WebForms\Administrador\AdministraPremios.aspx" />
     <Content Include="WebForms\Administrador\AdministraUsuarios.aspx" />
+    <Content Include="WebForms\Administrador\ObservaAplicacion.aspx" />
     <Content Include="WebForms\Candidato\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\Candidato\CorrigeAplicacion.aspx" />
     <Content Include="WebForms\Juez\EvaluaAplicacion.aspx" />
@@ -506,6 +510,13 @@
     </Compile>
     <Compile Include="WebForms\Administrador\AdministraUsuarios.aspx.designer.cs">
       <DependentUpon>AdministraUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Administrador\ObservaAplicacion.aspx.cs">
+      <DependentUpon>ObservaAplicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Administrador\ObservaAplicacion.aspx.designer.cs">
+      <DependentUpon>ObservaAplicacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Candidato\AplicacionesCandidato.aspx.cs">
       <DependentUpon>AplicacionesCandidato.aspx</DependentUpon>

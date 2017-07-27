@@ -82,9 +82,17 @@ namespace PremiosInstitucionales.WebForms
                     Panel panelCollapseBody = new Panel();
                     panelCollapseBody.CssClass = "panel-body";
 
-                    LiteralControl lcUserProfile = new LiteralControl("<a href=\"AdministraInformacionPersonal.aspx?id=" + candidato.cveCandidato + "&t=candidato\" style=\"text-decoration: underline\"> <h5 style=\"color: #00acc1\"> Perfil de candidato </h5> </a>");
+                    LinkButton lbUserProfile = new LinkButton();
+                    lbUserProfile.Text = "Perfil de candidato";
+                    lbUserProfile.Style.Add("font-size", "16pt");
+                    lbUserProfile.Style.Add("color", "#00acc1");
+                    lbUserProfile.Style.Add("text-decoration", "underline");
+                    lbUserProfile.Style.Add("margin", "1.5em 0");
+                    lbUserProfile.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + candidato.cveCandidato + "&t=candidato');");
+                    panelCollapseBody.Controls.Add(lbUserProfile);
 
-                    panelCollapseBody.Controls.Add(lcUserProfile);
+                    LiteralControl lcSpace = new LiteralControl("<br/>");
+                    panelCollapseBody.Controls.Add(lcSpace);
 
                     LinkButton lbDocumento = new LinkButton();
                     lbDocumento.Text = "Descargar archivo";

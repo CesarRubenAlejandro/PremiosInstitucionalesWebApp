@@ -10,13 +10,19 @@
 
     <div class="container fadeView" style="position:relative;">
 		
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+		            <h3>Información personal</h3>
+		            <h4>
+                        <asp:Literal ID="litUsuarios" runat="server" />
+                    </h4>
+                    <hr class="shorthr" />
+                </div>
+            </div>
+        </div>
 
-		<h3>Información personal</h3>
-		<h4>
-            <asp:Literal ID="litUsuarios" runat="server" />
-        </h4>
-
-        <div style="position: absolute; top: 50px; right: 0px;">
+        <div style="position: absolute; top: 85px; right: 5px;">
             <asp:Button class="btn" ID="Button1" Text="Descargar" OnClick="GetExcel_Click" runat="server"/>
 		</div>
 

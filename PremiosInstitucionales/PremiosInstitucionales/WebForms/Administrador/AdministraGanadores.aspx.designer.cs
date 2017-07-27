@@ -13,12 +13,21 @@ namespace PremiosInstitucionales.WebForms {
     public partial class AdministraGanadores {
         
         /// <summary>
-        /// PanelCategoriasPorPremio control.
+        /// PanelCategoriasPendientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelCategoriasPorPremio;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelCategoriasPendientes;
+        
+        /// <summary>
+        /// PanelCategoriasTerminadas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PanelCategoriasTerminadas;
     }
 }

@@ -10,14 +10,29 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="section-heading text-center">Asignar ganador</h3>
-                    <hr class="shorthr"/>
+                    <ul class="nav nav-tabs">
+                        <li class="active li-center"><a data-toggle="tab" href="#Pendientes"><strong>Pendientes</strong></a></li>
+                        <li class="li-center"><a data-toggle="tab" href="#Terminados"><strong>Terminados</strong></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- content -->
-        <div class="container">
-            <div class="row" runat="server" id="PanelCategoriasPorPremio">
+        <!-- Contenido Tabs -->
+        <div class="tab-content">
+
+            <!-- Pendientes -->
+            <div id="Pendientes" class="tab-pane fade in active">
+                <div class="container">
+                    <div class="row" runat="server" id="PanelCategoriasPendientes"></div>
+                </div>
+            </div>
+
+            <!-- Pendientes -->
+            <div id="Terminados" class="tab-pane fade in active">
+                <div class="container">
+                    <div class="row" runat="server" id="PanelCategoriasTerminadas"></div>
+                </div>
             </div>
         </div>
     </div>

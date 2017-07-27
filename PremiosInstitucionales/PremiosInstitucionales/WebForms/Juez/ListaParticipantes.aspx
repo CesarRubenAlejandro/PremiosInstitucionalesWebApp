@@ -8,8 +8,15 @@
 
         <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
 
-        <h3><asp:Literal ID="litTituloPremio" runat="server" /></h3>
-        <h4><asp:Literal ID="litTituloCategoria" runat="server" /></h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+		            <h3><asp:Literal ID="litTituloPremio" runat="server" /></h3>
+                    <h4><asp:Literal ID="litTituloCategoria" runat="server" /></h4>
+                    <hr class="shorthr" />
+                </div>
+            </div>
+        </div>
 
         <div class="container">
             <table id="listaParticipantesTable" class="display" cellspacing="0" width="100%">

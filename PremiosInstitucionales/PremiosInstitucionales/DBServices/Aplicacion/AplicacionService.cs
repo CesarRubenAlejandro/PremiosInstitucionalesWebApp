@@ -270,6 +270,14 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             categoria.Nombre = nombre;
             dbContext.SaveChanges();
         }
+        
+        public static void AsignarGanadorCategoria(String idCategoria, String cveApp)
+        {
+            dbContext = new wPremiosInstitucionalesdbEntities();
+            PI_BA_Categoria categoria = GetCategoriaByClaveCategoria(idCategoria);
+            categoria.cveAplicacionGanadora = cveApp;
+            dbContext.SaveChanges();
+        }
 
         public static void RechazarAplicacion(String claveAplicacion)
         {

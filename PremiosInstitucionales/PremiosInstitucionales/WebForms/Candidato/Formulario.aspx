@@ -46,7 +46,7 @@
         </div>
 
         <div class="btn-group-right" id="btnManager" runat="server">
-            <a href="ListaPremios.aspx">
+            <a href="ListaPremios.aspx" class="no-underline">
                 <button type="button" class="btn btn-default">Cancelar</button>
             </a>
             <button type="button" class="btn btn-primary" onclick="sendFormAux()">Enviar</button>

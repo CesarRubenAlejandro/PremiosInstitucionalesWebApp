@@ -143,7 +143,6 @@ namespace PremiosInstitucionales.WebForms
         protected void BackBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdministraPremios.aspx");
-
         }
 
         protected void UpdateInfo(object sender, EventArgs e)
@@ -159,7 +158,5 @@ namespace PremiosInstitucionales.WebForms
             ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
             Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
         }
-
-
     }
 }

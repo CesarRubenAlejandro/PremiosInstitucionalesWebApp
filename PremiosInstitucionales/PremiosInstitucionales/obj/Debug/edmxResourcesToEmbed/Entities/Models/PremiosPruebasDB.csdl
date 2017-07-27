@@ -565,6 +565,19 @@
       <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
       <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UpdateConvocatoria">
+      <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="cvePremio" Mode="In" Type="String" />
+      <Parameter Name="TituloConvocatoria" Mode="In" Type="String" />
+      <Parameter Name="FechaVeredicto" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+      <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+      <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+      <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAdministrador_Result">
     <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />

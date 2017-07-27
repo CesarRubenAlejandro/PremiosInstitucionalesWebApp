@@ -417,6 +417,11 @@ div.award-header{
 	line-height: normal;
 }
 
+.item-description-patch{
+	margin-top: -22.5px !important;
+}
+
+
 .award-description-fix{
 	line-height: 45px;
 	overflow-y: none;

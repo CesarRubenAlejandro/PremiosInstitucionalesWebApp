@@ -181,5 +181,6 @@
     <FunctionImportMapping FunctionImportName="UpdateEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateEvaluacion" />
     <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
     <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
+    <FunctionImportMapping FunctionImportName="UpdateConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateConvocatoria" />
   </EntityContainerMapping>
 </Mapping>

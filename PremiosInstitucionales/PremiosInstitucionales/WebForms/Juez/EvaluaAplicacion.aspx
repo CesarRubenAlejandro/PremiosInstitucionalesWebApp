@@ -51,7 +51,7 @@
                                 %
                             </div>
                             <div class="btn-group-mid">
-                                <a href="InicioJuez.aspx">
+                                <a href="InicioJuez.aspx" class="no-underline">
                                     <button type="button" class="btn btn-default">Cancelar</button>
                                 </a>
                                 <asp:Button ID="evaluateApplicationBtn" runat="server" OnClick="EvaluarAplicacion" Text="Enviar" class="btn btn-primary" />

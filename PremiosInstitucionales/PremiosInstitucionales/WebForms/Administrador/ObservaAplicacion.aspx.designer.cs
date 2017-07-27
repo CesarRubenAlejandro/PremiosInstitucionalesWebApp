@@ -10,7 +10,7 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class AdministraGanadorCategoria {
+    public partial class ObservaAplicacion {
         
         /// <summary>
         /// litTituloPremio control.
@@ -31,39 +31,21 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.Literal litTituloCategoria;
         
         /// <summary>
-        /// listaParticipantesTableBody control.
+        /// PanelArchivo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl listaParticipantesTableBody;
+        protected global::System.Web.UI.WebControls.Panel PanelArchivo;
         
         /// <summary>
-        /// AsignarGanador control.
+        /// PanelFormulario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AsignarGanador;
-        
-        /// <summary>
-        /// hiddenControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenControl;
-        
-        /// <summary>
-        /// BtnVeredictoFinal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnVeredictoFinal;
+        protected global::System.Web.UI.WebControls.Panel PanelFormulario;
     }
 }

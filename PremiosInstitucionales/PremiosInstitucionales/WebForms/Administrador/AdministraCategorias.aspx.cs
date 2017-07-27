@@ -48,8 +48,14 @@ namespace PremiosInstitucionales.WebForms
 
         private void LoadCategories(PI_BA_Premio premio, PI_BA_Convocatoria convocatoria)
         {
-            litTituloPremio.Text = "<h4> <strong> Premio: </strong> " + premio.Nombre + " </h4>";
-            litTituloConvocatoria.Text = "<h5> <strong> Convocatoria: </strong> " + convocatoria.TituloConvocatoria + " </h5>";
+            litTituloPremio.Text = premio.Nombre;
+            TituloNuevaConvocatoriaTB.Text = convocatoria.TituloConvocatoria;
+
+            String fInicio = "'" + convocatoria.FechaInicio.ToString().Substring(0, 10) + "' ,";
+            String fFin =       "'" + convocatoria.FechaFin.ToString().Substring(0, 10) + "' ,";
+            String fVeredicto = "'" + convocatoria.FechaVeredicto.ToString().Substring(0, 10) + "'";
+
+            ClientScript.RegisterStartupScript(GetType(), "sD", "setDates("+ fInicio + fFin + fVeredicto +");", true);
 
             var categorias = ConvocatoriaService.GetCategoriasByConvocatoria(convocatoria.cveConvocatoria);
             int iCounter = 0;
@@ -121,6 +127,28 @@ namespace PremiosInstitucionales.WebForms
             ResetFields();
         }
 
+        protected void GuardarBttn_Click(object sender, EventArgs e)
+        {
+            // Obtener el obj convocatoria actual
+            var cvEditada = ConvocatoriaService.GetConvocatoriaById(Request.QueryString["c"]);
+
+            // Actualizar los campos que el admin haya cambiado
+            cvEditada.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
+            cvEditada.FechaInicio = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaInicioNuevaConvo"]), "MM/dd/yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            cvEditada.FechaFin = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaFinNuevaConvo"]), "MM/dd/yyyy",
+                           System.Globalization.CultureInfo.InvariantCulture);
+            cvEditada.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
+                           System.Globalization.CultureInfo.InvariantCulture);
+            cvEditada.FechaEdicion = DateTime.Now;
+            cvEditada.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
+
+            // guardar convocatoria editada
+            ConvocatoriaService.ActualizarConvocatoria(cvEditada);
+
+            // forzar el refresh de la pagina para traer los cambios
+            Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"]);
+        }
         private void ResetFields ()
         {
             tbCategoryTitle.Text = "";

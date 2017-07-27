@@ -45,7 +45,7 @@
         </div>
 
         <div class="btn-group-right">
-            <a href="AplicacionesCandidato.aspx">
+            <a href="AplicacionesCandidato.aspx" class="no-underline">
                 <button type="button" class="btn btn-default">Cancelar</button>
             </a>
             <button type="button" class="btn btn-primary" onclick="sendFormAux()">Enviar</button>

@@ -6,6 +6,8 @@ using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +17,7 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
@@ -28,16 +31,13 @@ namespace PremiosInstitucionales.WebForms
                 {
                     Response.Redirect("~/WebForms/Login.aspx");
                 }
-
-                var categoria = Request.QueryString["c"];
-                if (categoria != null)
-                {
-                    LoadCandidatesWithEvaluations(categoria);
-                    return;
-                }
-                Response.Redirect("InicioAdmin.aspx");
             }
 
+            var categoria = Request.QueryString["c"];
+            if (categoria != null)
+            {
+                LoadCandidatesWithEvaluations(categoria);
+            }
         }
 
         private void LoadCandidatesWithEvaluations(string categoriaId)
@@ -47,8 +47,10 @@ namespace PremiosInstitucionales.WebForms
             var premio = AplicacionService.GetPremioByClaveCategoria(categoriaId);
 
             if (categoria == null && premio == null)
+            {
                 return;
-
+            }
+                
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
 
@@ -63,7 +65,7 @@ namespace PremiosInstitucionales.WebForms
                     var cand = InformacionPersonalCandidatoService.GetCandidatoById(app.cveCandidato);
 
                     TableRow tr = new TableRow();
-                    // tr.Attributes.Add("onclick", "window.open('Pending.aspx?a=" + cand.cveCandidato + "');");
+
                     // profile image column
                     TableCell tdIP = new TableCell();
                     tdIP.CssClass = "dt-profile-pic";
@@ -83,21 +85,21 @@ namespace PremiosInstitucionales.WebForms
                     ipImage.Style.Add("height", "28px");
 
                     tdIP.Controls.Add(ipImage);
-                    tdIP.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
+                    tdIP.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion +"');");
 
                     // name column
                     TableCell tdName = new TableCell();
                     tdName.Text = cand.Nombre;
-                    tdName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
+                    tdName.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion + "');");
 
                     // last name column
                     TableCell tdLastName = new TableCell();
                     tdLastName.Text = cand.Apellido;
-                    tdLastName.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
+                    tdLastName.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion + "');");
 
                     TableCell tdCantEvals = new TableCell();
                     tdCantEvals.Text = evaluaciones.Count.ToString();
-                    tdCantEvals.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
+                    tdCantEvals.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion + "');");
 
                     // status column
                     TableCell tdCalificacion = new TableCell();
@@ -120,11 +122,11 @@ namespace PremiosInstitucionales.WebForms
                         LiteralControl lcCalificacion = new LiteralControl("<strong> <div style=\"display: none; \"> 1000 </div> Sin evaluaciones </strong>");
                         tdCalificacion.Controls.Add(lcCalificacion);
                     }
-                    tdCalificacion.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + cand.cveCandidato + "&t=" + "candidato" + "');");
+                    tdCalificacion.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion + "');");
 
                     TableCell tdGanador = new TableCell();
                     tdGanador.CssClass = "dt-profile-pic";
-                    LiteralControl lcGanador = new LiteralControl("<center><input type=\"radio\" name=\"ganador\" value=\"" + cand.Nombre + " " + cand.Apellido + "\"/></center>");
+                    LiteralControl lcGanador = new LiteralControl("<center><input type=\"radio\" name=\"ganador\" value=\"" + app.cveAplicacion + "\"/></center>");
                     tdGanador.Controls.Add(lcGanador);
 
                     tr.Controls.Add(tdIP);
@@ -136,6 +138,14 @@ namespace PremiosInstitucionales.WebForms
 
                     listaParticipantesTableBody.Controls.Add(tr);
                 }
+            }
+
+            // Mostrar Botones / Ganador
+            if (categoria.cveAplicacionGanadora != null)
+            {
+                ClientScript.RegisterStartupScript(GetType(), "svf", "showVeredictoFinal();", true);
+                ClientScript.RegisterStartupScript(GetType(), "sag", "showAsignarGanador();", true);
+                ClientScript.RegisterStartupScript(GetType(), "sg", "selectGanador('"+ categoria.cveAplicacionGanadora + "');", true);
             }
         }
 
@@ -150,6 +160,83 @@ namespace PremiosInstitucionales.WebForms
         protected void BackBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("AdministraGanadores.aspx");
+        }
+
+        protected void GanadorBtn_Click(object sender, EventArgs e)
+        {
+            var cveAppSeleccionada = hiddenControl.Value;
+            var cveCategoria = Request.QueryString["c"];
+
+            AplicacionService.AsignarGanadorCategoria(cveCategoria, cveAppSeleccionada);
+            Response.Redirect("AdministraGanadorCategoria.aspx?c=" + cveCategoria);
+        }
+
+        private String getMails()
+        {
+            String Mails = "";
+
+            var cveCategoria = Request.QueryString["c"];
+            List<PI_BA_Aplicacion> TotalApps = AplicacionService.GetAplicacionesByCategoria(cveCategoria);
+            List<PI_BA_Aplicacion> AcepApps = new List<PI_BA_Aplicacion>();
+
+            // Obtengo todas las aplicaciones aceptadas de dicha categoria
+            foreach (PI_BA_Aplicacion App in TotalApps)
+            {
+                if (App.Status == StringValues.Aceptado)
+                {
+                    AcepApps.Add(App);
+                }
+            }
+
+            // Concateno mails usando comas
+            foreach (PI_BA_Aplicacion App in AcepApps)
+            {
+                Mails += "," + App.PI_BA_Candidato.Correo;
+            }
+
+            // Elimino primer coma
+            Mails = Mails.Substring(1, Mails.Length - 1);
+
+            return Mails;
+        }
+
+        protected void VeredictoBtn_Click(object sender, EventArgs e)
+        {
+            String correoSender = "empresa.ejemplo.mail@gmail.com";
+            String pswSender = "proyectointegrador";
+            String toMails = getMails();
+
+            try
+            {
+                using (MailMessage mm = new MailMessage(correoSender, toMails))
+                {
+                    mm.Subject = "Veredicto Final.";
+                    mm.IsBodyHtml = true;
+                    var bodyContent = "Ya existe un ganador";
+                    try
+                    {
+                        mm.Body = bodyContent;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+                    }
+                    catch (Exception e2)
+                    {
+                        return; //error
+                    }
+
+                }
+                return; // bien
+            }
+            catch (Exception sfe)
+            {
+                return; // error
+            }
         }
     }
 }

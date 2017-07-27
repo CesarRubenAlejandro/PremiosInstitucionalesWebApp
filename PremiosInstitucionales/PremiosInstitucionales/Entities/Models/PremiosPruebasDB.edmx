@@ -448,6 +448,19 @@
           <Parameter Name="NombreImagen" Type="varchar" Mode="In" />
           <Parameter Name="FechaPrivacidadDatos" Type="date" Mode="In" />
         </Function>
+        <Function Name="UpdateConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="cvePremio" Type="varchar" Mode="In" />
+          <Parameter Name="TituloConvocatoria" Type="varchar" Mode="In" />
+          <Parameter Name="FechaVeredicto" Type="date" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="FechaEdicion" Type="date" Mode="In" />
+          <Parameter Name="UsuarioEdicion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UpdateEvaluacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cveEvaluacion" Type="varchar" Mode="In" />
           <Parameter Name="Calificacion" Type="smallint" Mode="In" />
@@ -1112,6 +1125,19 @@
             <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
             <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UpdateConvocatoria">
+            <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="cvePremio" Mode="In" Type="String" />
+            <Parameter Name="TituloConvocatoria" Mode="In" Type="String" />
+            <Parameter Name="FechaVeredicto" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAdministrador_Result">
           <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
@@ -1429,6 +1455,7 @@
           <FunctionImportMapping FunctionImportName="UpdateEvaluacion" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateEvaluacion" />
           <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
           <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
+          <FunctionImportMapping FunctionImportName="UpdateConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateConvocatoria" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

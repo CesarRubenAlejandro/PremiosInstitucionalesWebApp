@@ -3,8 +3,6 @@ using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,13 +34,33 @@ namespace PremiosInstitucionales.WebForms
                     Response.Redirect("~/WebForms/Login.aspx");
                 }
 
-                GetPendingCategories();
+                // Tab Categorias Pendientes
+                var categoriesP = ConvocatoriaService.GetCategoriasPendientes();
+                GetPendingCategories(categoriesP, "PanelCategoriasPendientes");
+
+                // Tab Categorias Termindas
+                var categories = ConvocatoriaService.GetCategorias();
+                List<PI_BA_Categoria> categoriesT = new List<PI_BA_Categoria>();
+                foreach (var item in categories)
+                {
+                    if (item.cveAplicacionGanadora != null)
+                    {
+                        categoriesT.Add(item);
+                    }
+                }
+                GetPendingCategories(categoriesT, "PanelCategoriasTerminadas");
             }
         }
 
-        private void GetPendingCategories()
+        private void GetPendingCategories(List<PI_BA_Categoria> categories, string panel)
         {
-            var categories = ConvocatoriaService.GetCategoriasPendientes();
+            // Por default Pendientes
+            var panelControl = PanelCategoriasPendientes;
+            if (panel == "PanelCategoriasTerminadas")
+            {
+                panelControl = PanelCategoriasTerminadas;
+            }
+
             if (categories != null)
             {
                 List<CategoriasPendientes> ctgPendientes = new List<CategoriasPendientes>();
@@ -68,7 +86,6 @@ namespace PremiosInstitucionales.WebForms
                         cp.categorias = new List<PI_BA_Categoria>();
                         cp.categorias.Add(c);
 
-
                         ctgPendientes.Add(cp);
                     }
                 }
@@ -81,7 +98,7 @@ namespace PremiosInstitucionales.WebForms
                     main.Style.Add("margin-bottom", "12px");
 
                     LiteralControl lcPremio = new LiteralControl("<h4> Premio " + c.pPremio.Nombre + " </h4>");
-                    LiteralControl lcCategoria = new LiteralControl("<h5> Categorías sin ganador: </h5>");
+                    LiteralControl lcCategoria = new LiteralControl("<h5> Categorías: </h5>");
 
                     Panel row = new Panel();
                     row.CssClass = "row";
@@ -98,10 +115,21 @@ namespace PremiosInstitucionales.WebForms
                         colItem.CssClass = "create-item item-description-fix";
                         colItem.Style.Add("background-color", sColor);
 
-                        LiteralControl lcColItemCategory = new LiteralControl("<h5 class=\"item-description\">" + cat.Nombre
+                        Panel pUserHeader = new Panel();
+                        pUserHeader.CssClass = "award-header";
+                        LiteralControl lcColItemCategory = new LiteralControl("<h5 class=\"item-description item-description-patch\">" + cat.Nombre
                             + " </h5>");
+                        pUserHeader.Controls.Add(lcColItemCategory);
 
-                        colItem.Controls.Add(lcColItemCategory);
+                        var convo = ConvocatoriaService.GetConvocatoriaById(cat.cveConvocatoria);
+
+                        Panel pAwardTitle = new Panel();
+                        pAwardTitle.CssClass = "award-description-fix text-center";
+                        LiteralControl spanTitle = new LiteralControl("<span class=\"award-description\"> " + convo.TituloConvocatoria + "</span>");
+                        pAwardTitle.Controls.Add(spanTitle);
+
+                        colItem.Controls.Add(pUserHeader);
+                        colItem.Controls.Add(pAwardTitle);
                         col.Controls.Add(colItem);
 
                         row.Controls.Add(new LiteralControl("<a href=AdministraGanadorCategoria.aspx?c=" + cat.cveCategoria + ">"));
@@ -115,12 +143,8 @@ namespace PremiosInstitucionales.WebForms
                     main.Controls.Add(lcCategoria);
                     main.Controls.Add(row);
 
-                    PanelCategoriasPorPremio.Controls.Add(main);
+                    panelControl.Controls.Add(main);
                 }
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("shit");
             }
         }
 

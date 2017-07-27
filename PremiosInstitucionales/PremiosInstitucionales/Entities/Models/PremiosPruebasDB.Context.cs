@@ -725,5 +725,54 @@ namespace PremiosInstitucionales.Entities.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdatePremio", cvePremioParameter, nombreParameter, nombreImagenParameter, descripcionParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
+    
+        public virtual int UpdateConvocatoria(string cveConvocatoria, string descripcion, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string cvePremio, string tituloConvocatoria, Nullable<System.DateTime> fechaVeredicto, Nullable<System.DateTime> fechaCreacion, string usuarioCreacion, Nullable<System.DateTime> fechaEdicion, string usuarioEdicion)
+        {
+            var cveConvocatoriaParameter = cveConvocatoria != null ?
+                new ObjectParameter("cveConvocatoria", cveConvocatoria) :
+                new ObjectParameter("cveConvocatoria", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var cvePremioParameter = cvePremio != null ?
+                new ObjectParameter("cvePremio", cvePremio) :
+                new ObjectParameter("cvePremio", typeof(string));
+    
+            var tituloConvocatoriaParameter = tituloConvocatoria != null ?
+                new ObjectParameter("TituloConvocatoria", tituloConvocatoria) :
+                new ObjectParameter("TituloConvocatoria", typeof(string));
+    
+            var fechaVeredictoParameter = fechaVeredicto.HasValue ?
+                new ObjectParameter("FechaVeredicto", fechaVeredicto) :
+                new ObjectParameter("FechaVeredicto", typeof(System.DateTime));
+    
+            var fechaCreacionParameter = fechaCreacion.HasValue ?
+                new ObjectParameter("FechaCreacion", fechaCreacion) :
+                new ObjectParameter("FechaCreacion", typeof(System.DateTime));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            var fechaEdicionParameter = fechaEdicion.HasValue ?
+                new ObjectParameter("FechaEdicion", fechaEdicion) :
+                new ObjectParameter("FechaEdicion", typeof(System.DateTime));
+    
+            var usuarioEdicionParameter = usuarioEdicion != null ?
+                new ObjectParameter("UsuarioEdicion", usuarioEdicion) :
+                new ObjectParameter("UsuarioEdicion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateConvocatoria", cveConvocatoriaParameter, descripcionParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
+        }
     }
 }
