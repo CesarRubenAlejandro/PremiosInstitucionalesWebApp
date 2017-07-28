@@ -11,7 +11,6 @@ function validateAnswerCharacters(e) {
 function changeAnchor(s, premio) {
     var x = s[s.selectedIndex].id;
     document.getElementById(premio).href = "Formulario.aspx?c=" + x;
-
 }
 
 function updateCharactersLeft(textarea) {

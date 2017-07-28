@@ -14,17 +14,21 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class Login : System.Web.UI.Page
     {
+
+        MP_Login MasterPage = new MP_Login();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            MasterPage = (MP_Login)Page.Master;
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["c"] != null)
                 {
                     String codigoConfirmacion = Request.QueryString["c"].ToString();
                     RegistroService.ConfirmarCandidato(codigoConfirmacion);
-
-                    showErrorMsg("Aviso");
-                    Mensaje.Text = "Su cuenta ha quedado confirmada.";
+                    MasterPage.showErrorMsg("Aviso", "Su cuenta ha quedado confirmada.");
                 }
             }
         }
@@ -40,13 +44,11 @@ namespace PremiosInstitucionales.WebForms
             //Crear sesion o decir que no existe
             if (tipoUsuario == StringValues.RolIncorrecto)
             {
-                showErrorMsg("Error");
-                Mensaje.Text = "Usuario/Contraseña incorrectos.";
+                MasterPage.showErrorMsg("Error", "Usuario/Contraseña incorrectos.");
             }
             else if (tipoUsuario == StringValues.RolNotFound)
             {
-                showErrorMsg("Error");
-                Mensaje.Text = "Usuario no encontrado.";
+                MasterPage.showErrorMsg("Error", "Usuario no encontrado.");
             }
             else
             {
@@ -83,8 +85,7 @@ namespace PremiosInstitucionales.WebForms
 
             if (email.Text == "" || passreg.Text == "" || passreg2.Text == "" || name.Text == "" || lname.Text == "")
             {
-                showErrorMsg("Error");
-                Mensaje.Text = "Debes llenar todos los campos.";
+                MasterPage.showErrorMsg("Error", "Debes llenar todos los campos.");
             }
             else if (password1.Equals(password2))
             {
@@ -95,32 +96,27 @@ namespace PremiosInstitucionales.WebForms
 
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
-                    showErrorMsg("Error");
-                    Mensaje.Text = "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.";
+                    MasterPage.showErrorMsg("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.");
                 }
                 else if (RegistroService.RegistraCandidato(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
                 {
                     if (EnviarCorreoConfirmacion(codigoConfirmacion))
                     {
-                        showErrorMsg("Aviso");
-                        Mensaje.Text = "Se envio un mail al correo registrado. Favor de confirmar cuenta.";
+                        MasterPage.showErrorMsg("Aviso", "Se envio un mail al correo registrado. Favor de confirmar cuenta.");
                     }
                     else
                     {
-                        showErrorMsg("Error");
-                        Mensaje.Text = "Dirección de correo no válida.";
+                        MasterPage.showErrorMsg("Error", "Dirección de correo no válida.");
                     }
                 }
                 else
                 {
-                    showErrorMsg("Error");
-                    Mensaje.Text = "Usuario ya existe.";
+                    MasterPage.showErrorMsg("Error", "Usuario ya existe.");
                 }
             }
             else
             {
-                showErrorMsg("Error");
-                Mensaje.Text = "Contraseñas no coinciden.";
+                MasterPage.showErrorMsg("Error", "Contraseñas no coinciden.");
             }
         }
 
@@ -167,31 +163,6 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private void showErrorMsg(string tipoErrorTitulo)
-        {
-            // Creamos el titutlo del Modal
-            modalMensajeTitulo.Controls.Add(new LiteralControl(TituloModal(tipoErrorTitulo)));
-
-            // Mostramos el Modal
-            string showMsg_JS = "$('#modalMensaje').modal('show')";
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
-        }
-
-        private string TituloModal(string tipoTitulo)
-        {
-            if (tipoTitulo == "Error")
-            {
-                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/warning.svg\" class=\"error-icon\"/> Advertencia </h4>";
-            }
-
-            else if (tipoTitulo == "Aviso")
-            {
-                return "<h4 class=\"modal-title\"> <img src=\"../Resources/svg/done.svg\" class=\"error-icon\"/> Listo </h4>";
-            }
-
-            return "";
-        }
-
         protected void Recover_Click(object sender, EventArgs e)
         {
             String email = userforgot.Text.ToString();
@@ -200,19 +171,16 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (EnviarCorreoRecuperacion(email, id))
                 {
-                    showErrorMsg("Aviso");
-                    Mensaje.Text = "Se envió un correo para la recuperación de la contraseña.";
+                    MasterPage.showErrorMsg("Aviso", "Se envió un correo para la recuperación de la contraseña.");
                 }
                 else
                 {
-                    showErrorMsg("Error");
-                    Mensaje.Text = "Dirección de correo no válida.";
+                    MasterPage.showErrorMsg("Error", "Dirección de correo no válida.");
                 }
             }
             else
             {
-                showErrorMsg("Error");
-                Mensaje.Text = "Usuario no existe.";
+                MasterPage.showErrorMsg("Error", "Usuario no existe.");
             }
         }
 
@@ -253,6 +221,4 @@ namespace PremiosInstitucionales.WebForms
             }
         }
     }
-
-
 }

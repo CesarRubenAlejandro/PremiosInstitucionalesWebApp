@@ -4,6 +4,17 @@ body {
 	overflow-x: hidden;
 }
 
+.error-icon {
+    margin-top: -6px;
+    width: 32px;
+    height: 32px;
+}
+
+.error-msg {
+    color: #444444;
+    font: 600 16px/18px 'Open Sans', sans-serif;
+}
+
 .img-square {
   object-fit: cover;
   width:150px;

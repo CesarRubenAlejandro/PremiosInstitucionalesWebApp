@@ -14,8 +14,6 @@ namespace PremiosInstitucionales
                 CdnPath = "~/Resources/js/jquery.min.js",
                 CdnDebugPath = "~/Resources/js/jquery.min.js"
             });
-
-
         }
     }
 }

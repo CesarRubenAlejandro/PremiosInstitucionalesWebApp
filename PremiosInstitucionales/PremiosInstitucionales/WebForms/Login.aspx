@@ -83,25 +83,7 @@
 					</div>
 				</div>
 			</div>
-
             <img id="loader" src='<%= ResolveUrl("~/Resources/img/loader.gif")%>' alt="Cargando" style="display: none;"/>
-
-            <!-- Modal para dar un mensaje -->
-            <div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" style="margin-top: 150px;">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header text-center">
-                      <span runat="server" id="modalMensajeTitulo"></span>
-                    </div>
-                    <div class="modal-body">
-                      <asp:Label ID="Mensaje" runat="server" Text="Label" style="color: black;"></asp:Label>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100%"> Aceptar </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
 		</div>
 	</div>
 </asp:Content>

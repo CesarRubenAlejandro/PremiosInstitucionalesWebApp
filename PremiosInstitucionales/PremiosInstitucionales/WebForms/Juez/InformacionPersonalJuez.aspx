@@ -53,25 +53,13 @@
                             <div class="col-md-11">
                                 <div class="btn-group-right">
                                     <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
-                                        <button type="button" class="btn btn-default"> Cambiar contraseña
-                                        </button>
+                                        <button type="button" class="btn btn-default"> Cambiar contraseña </button>
                                     </a>
                                     <button type="button" class="btn btn-primary" onclick="sendFormAux();">Guardar Cambios</button>
                                     <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click" />
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alerta de cambios guardados... -->
-            <div class="row" id="changealert" style="margin-top: 20px; opacity: 0;">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" onclick="closeAlert()">×</a>
-                        <i class="fa fa-coffee"></i>
-                        Los <strong>cambios</strong> han sido guardados.
                     </div>
                 </div>
             </div>
@@ -111,8 +99,6 @@
                             <asp:Button ID="ButtonChangePassword" class="btn btn-primary" runat="server" Text="Cambiar" OnClick="CambiarContrasena_Click" />
                         </div>
                     </div>
-                    <div class="sp sp-circle" id="loadingspinner"></div>
-                    <img class="change-password-success" id="passwordcheckmark" src='<%= ResolveUrl("~/Resources/svg/checkmark.svg") %>'></img>
                 </div>
             </div>
         </div>

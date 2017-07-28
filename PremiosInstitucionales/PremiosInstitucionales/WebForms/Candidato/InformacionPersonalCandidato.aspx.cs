@@ -8,9 +8,10 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class InformacionPersonalCandidato : System.Web.UI.Page
     {
-
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
@@ -76,6 +77,7 @@ namespace PremiosInstitucionales.WebForms
         {
             ActualizarDatosGenerales();
             Upload(sender, e);
+            MasterPage.showErrorMsg("Aviso", "Cambios realizados con exito.");
         }
 
         protected void CambiarContrasena_Click(object sender, EventArgs e)

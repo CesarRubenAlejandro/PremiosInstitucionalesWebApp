@@ -248,7 +248,6 @@
     <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\back.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
-    <Content Include="Resources\svg\checkmark.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
     <Content Include="Resources\svg\done.svg" />
     <Content Include="Resources\svg\juez.svg" />
