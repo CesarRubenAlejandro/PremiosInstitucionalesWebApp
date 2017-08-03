@@ -8,7 +8,7 @@
           <!-- Main component for a primary marketing message or call to action -->
           <div class="jumbotron">
             <asp:Literal ID="litBienvenidoUsuario" runat="server" /> <!-- Bienvenido -->
-            <p>FEMSA y el Tecnológico de Monterrey agradecen su contribución como miembro del Jurado. Su labor permite que los ideales y valores de don Eugenio Garza Sada continúen vigentes. </p>
+            <p>El Premio Eugenio Garza Sada fue instaurado con el fin de perpetuar los valores que en vida distinguieron a don Eugenio Garza Sada. FEMSA y el Tecnológico de Monterrey agradecen su contribución como miembro del Jurado, pues su labor permite que los ideales y valores de don Eugenio continúen vigentes.</p>
           </div>
         </div>
 
@@ -23,7 +23,7 @@
 					    <a href="PremiosInstitucionalesJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/juez.svg") %>'/></a>
 					    <h3>Premios Institucionales</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
-					    <p class="text-muted">Accede a los registros de candidatos a evaluar.</p>
+					    <p class="text-muted">Seleccione el Premio en el que participa como Jurado e ingrese a los registros de los candidatos a evaluar.</p>
 				    </div>
 			    </div>
 			    <div class="col-lg-6 col-md-6 text-center">
@@ -31,7 +31,7 @@
 					    <a href="InformacionPersonalJuez.aspx"><img class="service-icons" src='<%= ResolveUrl("/Resources/svg/learning.svg") %>'/></a>
 					    <h3>Informacion Personal</h3>
 					    <hr class="shorthr" style="margin-bottom:10px;"/>
-					    <p class="text-muted">Datos proporcionados para la creación de tu cuenta como miembro del Jurado.</p>
+					    <p class="text-muted">Información de la cuenta como miembro del Jurado. En esta sección puede actualizar los datos de contacto.</p>
 				    </div>
 			    </div>
 		    </div>

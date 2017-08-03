@@ -5,6 +5,9 @@
     <!-- Invite candidate -->
         
         <div class="container fadeView">
+
+            <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -76,11 +79,6 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="InicioCandidato.aspx" class="no-underline">
-                                        <button type="button" class="btn btn-default">
-                                            Cancelar
-                                        </button>
-                                    </a>
                                     <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
                                         <button type="button" class="btn btn-default">
                                             Cambiar contraseña
@@ -94,17 +92,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Alerta de cambios guardados... -->
-            <div class="row" id="changealert" style="margin-top: 20px; opacity: 0;">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" onclick="closeAlert()">×</a>
-                        <i class="fa fa-coffee"></i>
-                        Los <strong>cambios</strong> han sido guardados.
                     </div>
                 </div>
             </div>
@@ -144,8 +131,6 @@
                             <asp:Button ID="ButtonChangePassword" class="btn btn-primary" runat="server" Text="Cambiar" OnClick="CambiarContrasena_Click" />
                         </div>
                     </div>
-                    <div class="sp sp-circle" id="loadingspinner"></div>
-                    <img class="change-password-success" id="passwordcheckmark" src='<%= ResolveUrl("~/Resources/svg/checkmark.svg") %>'></img>
                 </div>
             </div>
         </div>
@@ -165,7 +150,7 @@
                             </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus. </p>
 
-                        <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" >
+                        <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" />
                         Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a la <a href="#">Ley de Información Personal </a>para el uso del sistema.
 
                     </div>

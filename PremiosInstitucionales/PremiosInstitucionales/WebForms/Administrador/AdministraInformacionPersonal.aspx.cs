@@ -4,13 +4,16 @@ using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PremiosInstitucionales.WebForms
 {
     public partial class AdministraInformacionPersonal : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
@@ -18,17 +21,19 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 string sUserType = Request.QueryString["t"];
                 string sUserId = Request.QueryString["id"];
                 if (sUserType != null && sUserId != null)
                 {
+                    ResetFields();
+
                     if (sUserType.Equals("juez"))
                     {
                         LoadJudgeInformation(sUserId);
@@ -40,7 +45,7 @@ namespace PremiosInstitucionales.WebForms
                         return;
                     }
                 }
-                Response.Redirect("InicioAdmin.aspx");
+                Response.Redirect("InicioAdmin.aspx", false);
             }
         }
 
@@ -102,7 +107,7 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                Response.Redirect("InicioAdmin.aspx");
+                Response.Redirect("InicioAdmin.aspx", false);
             }
         }
 
@@ -127,22 +132,26 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                Response.Redirect("InicioAdmin.aspx");
+                Response.Redirect("InicioAdmin.aspx", false);
             }
         }
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
-            ActualizarDatosGenerales();
-            Upload(sender, e);
+            try
+            {
+                ActualizarDatosGenerales();
+                Upload(sender, e);
+                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
         }
 
         protected void CambiarContrasena_Click(object sender, EventArgs e)
-        {
-            ActualizarContrasena();
-        }
-
-        protected void ActualizarContrasena()
         {
             string sUserType = Request.QueryString["t"];
             string sUserId = Request.QueryString["id"];
@@ -153,14 +162,34 @@ namespace PremiosInstitucionales.WebForms
 
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(juez.Correo, newPwdTextBox.Text))
+                    Regex regexNumero = new Regex(@".*\d.*");
+                    Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                    Match matchNumero = regexNumero.Match(newPwdTextBox.Text);
+                    Match matchLetra = regexLetra.Match(newPwdTextBox.Text);
+
+                    if (newPwdTextBox.Text.Length >= 6 && matchNumero.Success && matchLetra.Success)
                     {
-                        // good
+                        if (juez != null)
+                        {
+                            juez.Password = newPwdTextBox.Text;
+                            if (InformacionPersonalJuezService.UpdateJuez(juez))
+                            {
+                                MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
+                            }
+                            else
+                            {
+                                LoadJudgeInformation(sUserId);
+                            }
+                        }
                     }
                     else
                     {
-                        // bad
+                        MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
                     }
+                }
+                else
+                {
+                    MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
                 }
             }
             else if (sUserType.Equals("candidato"))
@@ -169,20 +198,44 @@ namespace PremiosInstitucionales.WebForms
 
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(candidato.Correo, newPwdTextBox.Text))
+                    Regex regexNumero = new Regex(@".*\d.*");
+                    Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                    Match matchNumero = regexNumero.Match(newPwdTextBox.Text);
+                    Match matchLetra = regexLetra.Match(newPwdTextBox.Text);
+
+                    if (newPwdTextBox.Text.Length >= 6 && matchNumero.Success && matchLetra.Success)
                     {
-                        // good
+                        if (candidato != null)
+                        {
+                            candidato.Password = newPwdTextBox.Text;
+                            if (InformacionPersonalCandidatoService.UpdateCandidato(candidato))
+                            {
+                                MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
+                            }
+                            else
+                            {
+                                LoadCandidateInformation(sUserId);
+                            }
+                        }
                     }
                     else
                     {
-                        // bad
+                        MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
                     }
                 }
-
-
+                else
+                {
+                    MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
+                }
             }
+            ResetFields();
+        }
 
-
+        private void ResetFields()
+        {
+            newPwdTextBox.Text = "";
+            confirmNewPwdTextBox.Text = "";
+            CorreoTextBox.Text = Session[StringValues.CorreoSesion].ToString();
         }
 
         protected void ActualizarDatosGenerales()
@@ -220,9 +273,6 @@ namespace PremiosInstitucionales.WebForms
                     InformacionPersonalCandidatoService.UpdateCandidato(candidato);
                 }
             }
-
-
-
         }
 
         protected void Upload(object sender, EventArgs e)
@@ -274,9 +324,13 @@ namespace PremiosInstitucionales.WebForms
                     InformacionPersonalCandidatoService.CambiaImagen(sUserId, null, sNombreImagen);
                 }
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri, false);
             }
         }
 
+        protected void CloseBtn_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
+        }
     }
 }

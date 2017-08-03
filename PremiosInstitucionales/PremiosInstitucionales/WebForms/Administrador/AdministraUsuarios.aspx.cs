@@ -22,11 +22,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 string sUserType = Request.QueryString["t"];
@@ -43,7 +43,7 @@ namespace PremiosInstitucionales.WebForms
                         return;
                     }
                 }
-                Response.Redirect("InicioAdmin.aspx");
+                Response.Redirect("InicioAdmin.aspx", false);
             }
         }
 
@@ -301,7 +301,8 @@ namespace PremiosInstitucionales.WebForms
             {
                 FileName = "ListaCandidatos.xlsx";
             }
-            else {
+            else
+            {
                 FileName = "ListaJueces.xlsx";
             }
 
@@ -340,6 +341,7 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
         }
+
         public string GetParents(string FilePath, string TempFilePath, DataTable DTTBL)
         {
             File.Copy(Path.Combine(FilePath), Path.Combine(TempFilePath), true);
@@ -347,18 +349,16 @@ namespace PremiosInstitucionales.WebForms
             try
             {
                 DatatableToExcel(DTTBL, TempFilePath, 0);
-
                 return TempFilePath;
-
             }
 
-            catch (Exception ex)
+            catch (Exception Ex)
             {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                 return "";
             }
 
         }
-
 
         public static string MimeType(string Extension)
         {
@@ -372,7 +372,6 @@ namespace PremiosInstitucionales.WebForms
             return mime;
         }
 
-
         static bool DeleteOrganisationtoSupplierTemplate(string filePath)
         {
             try
@@ -385,7 +384,6 @@ namespace PremiosInstitucionales.WebForms
                 return false;
             }
         }
-
 
         public void DatatableToExcel(DataTable dtable, string pFilePath, int excelSheetIndex = 1)
         {
@@ -430,7 +428,6 @@ namespace PremiosInstitucionales.WebForms
                                             }
                                         }
                                         break;
-
                                     case "System.String":
                                         if (cellValue != DBNull.Value)
                                         {
@@ -467,7 +464,6 @@ namespace PremiosInstitucionales.WebForms
                                             cell.SetCellValue(Convert.ToDouble(cellValue));
                                         }
                                         break;
-
                                     case "System.DateTime":
                                         if (cellValue != DBNull.Value)
                                         {
@@ -494,15 +490,15 @@ namespace PremiosInstitucionales.WebForms
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                ex.ToString();
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
             }
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioAdmin.aspx");
+            Response.Redirect("InicioAdmin.aspx", false);
         }
 
     }

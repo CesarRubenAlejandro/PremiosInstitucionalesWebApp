@@ -14,29 +14,51 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class EvaluaAplicacion : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
+        String cveAplicacion = null;
+
+        int cveMensaje;
+        List<Tuple<String, String>> MessagesList = new List<Tuple<String, String>>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            CrearArchivo();
+            // Load Globals
+            MasterPage = (MP_Global)Page.Master;
+            cveAplicacion = Request.QueryString["a"];
+            
+            // Load Page
+            LoadFile();
+            LoadMessages();
 
             if (!IsPostBack)
             {
+                // Show Message
+                if (int.TryParse(Request.QueryString["m"], out cveMensaje))
+                {
+                    if (cveMensaje >= 0 && cveMensaje < MessagesList.Count)
+                    {
+                        MasterPage.ShowMessage(MessagesList[cveMensaje].Item1, MessagesList[cveMensaje].Item2);
+                    }    
+                }
+                    
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de juez
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
+                    {
                         // si no es juez, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
-                // confirmar que la aplicacion haya sido rechazada
-                String idApp = Request.QueryString["a"];
-                if (idApp != null)
+                // Mostrar Caificación guardada / Mostrar botones correctos 
+                if (cveAplicacion != null)
                 {
-                    String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(idApp);
+                    String sCategoriaID = AplicacionService.GetCveCategoriaByAplicacion(cveAplicacion);
                     if (sCategoriaID != null)
                     {
                         var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
@@ -47,44 +69,66 @@ namespace PremiosInstitucionales.WebForms
                             string sMail = Session[StringValues.CorreoSesion].ToString();
                             var listaCategorias = EvaluacionService.GetCategoriaByJuez(sMail);
                             bool bValidJudge = CheckValidCategory(listaCategorias, sCategoriaID);
-                            var eval = CheckExistenceOfEvaluation(sMail, idApp);
+                            var Eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, cveAplicacion);
                             if (bValidJudge)
                             {
-                                if (eval != null)
+                                if (Eval != null)
                                 {
                                     evaluateApplicationBtn.Visible = false;
                                     modifiyEvaluationBtn.Visible = true;
-                                    aplicationEvaluationNumber.Text = eval.Calificacion.ToString();
+                                    aplicationEvaluationNumber.Text = Eval.Calificacion.ToString();
                                 }
                                 else
                                 {
                                     evaluateApplicationBtn.Visible = true;
                                     modifiyEvaluationBtn.Visible = false;
-
                                 }
+
                                 CrearFormulario(sCategoriaID, premio, categoria);
                                 return;
-
                             }
                         }
                     }
                 }
-                Response.Redirect("inicioJuez.aspx");
+                Response.Redirect("inicioJuez.aspx", false);
             }
         }
 
-        private void CrearArchivo()
+        private void LoadFile()
         {
-            string appId = Request.QueryString["a"];
+            var Aplicacion = AplicacionService.GetAplicacionById(cveAplicacion);
+
+            PanelArchivo.Controls.Add(new LiteralControl("<div class='row text-center'>"+
+                "<div class='col-sm-6'>"+
+                    "<h5>"+
+                        "<strong> Candidato: </strong> <br/><br/>" + Aplicacion.PI_BA_Candidato.Nombre + " " + Aplicacion.PI_BA_Candidato.Apellido +
+                    "</h5>"+
+                "</div>"+
+                    "<div class='col-sm-6'>"+
+                    "<h5> <strong> Archivo proporcionado: </strong> </h5>"));
+
+            // Archivo a descargar
             LinkButton lbDocumento = new LinkButton();
-            lbDocumento.Text = "Descargar archivo";
+            lbDocumento.Text = Aplicacion.NombreArchivo;
             lbDocumento.Style.Add("font-size", "16pt");
             lbDocumento.Style.Add("color", "#00acc1");
             lbDocumento.Style.Add("text-decoration", "underline");
             lbDocumento.Style.Add("margin", "1.5em 0");
             lbDocumento.Command += new CommandEventHandler(DownloadFile);
-            lbDocumento.CommandArgument = appId;
+            lbDocumento.CommandArgument = cveAplicacion;
             PanelArchivo.Controls.Add(lbDocumento);
+
+            PanelArchivo.Controls.Add(new LiteralControl("</div> </div>"));
+        }
+
+        private void LoadMessages()
+        {
+            // Mensaje 0
+            MessagesList.Add(Tuple.Create("Error", "El servidor encontró un error al procesar la solicitud."));
+            // Mensaje 1
+            MessagesList.Add(Tuple.Create("Aviso", "Evaluación guardada con éxito."));
+            // Mensaje 2
+            MessagesList.Add(Tuple.Create("Error", "Evaluación no encontrada."));
         }
 
         private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
@@ -106,7 +150,7 @@ namespace PremiosInstitucionales.WebForms
                     LiteralControl lcPregunta = new LiteralControl("<h5> <strong>" + (iNumber + 1) + ". " + pregunta.Texto + "</strong> </h5>");
                     panel.Controls.Add(lcPregunta);
 
-                    var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, Request.QueryString["a"]);
+                    var respuesta = AplicacionService.GetRespuestaByPreguntaAndAplicacion(pregunta.cvePregunta, cveAplicacion);
                     string[] lines = respuesta.Valor.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                     for (int i = 0; i < lines.Length; i++)
                     {
@@ -114,13 +158,10 @@ namespace PremiosInstitucionales.WebForms
                         panel.Controls.Add(lcRespuesta);
                     }
 
-
                     PanelFormulario.Controls.Add(panel);
-
                     iNumber++;
                 }
             }
-
         }
 
         private bool CheckValidCategory(List<PI_BA_Categoria> ltCategories, string sCategoryID)
@@ -135,30 +176,36 @@ namespace PremiosInstitucionales.WebForms
             return false;
         }
 
-        private PI_BA_Evaluacion CheckExistenceOfEvaluation(string sMail, string sAppId)
-        {
-            var eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(sMail, sAppId);
-            return eval;
-        }
-
         protected void EvaluarAplicacion(object sender, EventArgs e)
         {
             try
             {
-                PI_BA_Evaluacion ev = new PI_BA_Evaluacion();
-                ev.cveEvaluacion = Guid.NewGuid().ToString();
-                ev.cveAplicacion = Request.QueryString["a"];
-                ev.cveJuez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString()).cveJuez;
-                ev.Calificacion = short.Parse(aplicationEvaluationNumber.Text);
-
-                EvaluacionService.CrearEvaluacion(ev);
-                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+                String cveJuez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString()).cveJuez;
+                // Verificar que no exista ya una evaluación
+                if (EvaluacionService.GetEvaluacionByAplicacionAndJuez(cveAplicacion, cveJuez) == null)
+                {
+                    short evaluacion = 0;
+                    short.TryParse(aplicationEvaluationNumber.Text, out evaluacion);
+                    PI_BA_Evaluacion ev = new PI_BA_Evaluacion();
+                    ev.cveEvaluacion = Guid.NewGuid().ToString();
+                    ev.cveAplicacion = cveAplicacion;
+                    ev.cveJuez = cveJuez;
+                    ev.Calificacion = evaluacion;
+                    EvaluacionService.CrearEvaluacion(ev);
+                    cveMensaje = 1;
+                }
+                // Si ya existe
+                else
+                {
+                    ModificarAplicacion(sender, e);
+                }
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                cveMensaje = 0;
             }
-
+            Response.Redirect("EvaluaAplicacion.aspx" + "?m=" + cveMensaje + "&a=" + cveAplicacion, false);
         }
 
         public void DownloadFile(object sender, CommandEventArgs e)
@@ -181,37 +228,44 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                //lblMsg.Text = "Error: File not found!";
+                MasterPage.ShowMessage("Error", "El servidor no encontró el archivo.");
             }
-
         }
+
         protected void ModificarAplicacion(object sender, EventArgs e)
         {
             try
             {
-                var aplicacion = Request.QueryString["a"];
                 var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
-
-                var eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(juez.Correo, aplicacion);
+                var eval = EvaluacionService.GetEvaluacionByAplicacionAndJuez(juez.Correo, cveAplicacion);
                 if(eval != null)
                 {
                     try
                     {
-                        EvaluacionService.ActualizaEvaluacion(eval.cveEvaluacion, short.Parse(aplicationEvaluationNumber.Text));
-                    }
-                    catch (Exception exception)
-                    {
+                        short evaluacion = 0;
+                        short.TryParse(aplicationEvaluationNumber.Text, out evaluacion);
 
+                        EvaluacionService.ActualizaEvaluacion(eval.cveEvaluacion, evaluacion);
+                        cveMensaje = 1;
+                    }
+                    catch (Exception Ex2)
+                    {
+                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
+                        cveMensaje = 2;
                     }
                 }
-
-                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
             }
-            catch (Exception ex)
+            catch (Exception Ex)
             {
-                Response.Redirect("EvaluaAplicacion.aspx" + "?a=" + Request.QueryString["a"]);
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                cveMensaje = 0;
             }
+            Response.Redirect("EvaluaAplicacion.aspx" + "?m=" + cveMensaje + "&a=" + cveAplicacion, false);
+        }
 
+        protected void CloseBtn_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
         }
     }
 }

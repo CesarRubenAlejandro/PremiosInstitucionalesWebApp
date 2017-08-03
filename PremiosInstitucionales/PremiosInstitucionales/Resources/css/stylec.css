@@ -524,7 +524,7 @@ div.award-header{
 }
 
 .service-icon{
-	max-height:96px;
+	max-height: 96px;
 	max-width: 96px;
 	width: 100%;
 	height: auto;
@@ -572,7 +572,7 @@ input[type=number]::-webkit-outer-spin-button {
     text-align:center;
 }
 
-.nav-profilepic{
+.nav-profilepic {
     width: 32px;
     height: 32px;
     margin-top: -3px;
@@ -580,7 +580,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: 2px solid white;
 }
 
-.backBtn {
+.backBtn, .closeBtn {
 	position: absolute; 
 	top: 82px; 
 	left: 42px;
@@ -589,7 +589,14 @@ input[type=number]::-webkit-outer-spin-button {
 	z-index: 99; /* Make sure it does not overlap */
 	border: none; /* Remove borders */
 	outline: none; /* Remove outline */
-	background:url(../../../Resources/svg/back.svg) no-repeat;
 	background-size: 100% 100%;
 	cursor: pointer; /* Add a mouse pointer on hover */
+}
+
+.backBtn {
+	background:url(../../../Resources/svg/back.svg) no-repeat;
+}
+
+.closeBtn {
+	background:url(../../../Resources/svg/close.svg) no-repeat;
 }

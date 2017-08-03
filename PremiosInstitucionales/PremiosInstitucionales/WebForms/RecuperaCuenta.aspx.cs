@@ -27,7 +27,7 @@ namespace PremiosInstitucionales.WebForms
                 Match matchLetra = regexLetra.Match(password1);
                 if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                 {
-                    MasterPage.showErrorMsg("Error", "La contraseña debe ser de al menos 6 caracteres <br/> y contener al menos un número y una letra.");
+                    MasterPage.ShowMessage("Error", "La contraseña debe ser de al menos 6 caracteres <br/> y contener al menos un número y una letra.");
                 }
                 else
                 {
@@ -50,15 +50,15 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                MasterPage.showErrorMsg("Error", "Contraseñas no coinciden.");
+                MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
             }
             if (sePudo)
             {
-                MasterPage.showErrorMsg("Aviso", "Contraseña cambiada exitosamente.");
+                MasterPage.ShowMessage("Aviso", "Contraseña cambiada exitosamente.");
             }
             else if (contrasenas)
             {
-                MasterPage.showErrorMsg("Error", "Error interno.");
+                MasterPage.ShowMessage("Error", "Error interno.");
             }
         }
     }

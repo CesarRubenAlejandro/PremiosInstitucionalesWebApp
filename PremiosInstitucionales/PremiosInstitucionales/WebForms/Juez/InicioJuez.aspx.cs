@@ -16,11 +16,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
                         // si no es juez, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 LoadMessage();
@@ -33,7 +33,7 @@ namespace PremiosInstitucionales.WebForms
             var juez = InformacionPersonalJuezService.GetJuezByCorreo(correo);
 
             if (juez == null)
-                Response.Redirect("~/WebForms/Login.aspx");
+                Response.Redirect("~/WebForms/Login.aspx", false);
 
             if(juez.Nombre != null && juez.Nombre.Length > 0)
             {

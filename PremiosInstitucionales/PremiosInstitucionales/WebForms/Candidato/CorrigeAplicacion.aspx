@@ -24,7 +24,6 @@
           	
 		<div class="row">
 			<div class="col-lg-12 text-center">
-                <h2>Modificación de solicitud de registro</h2>
 				<h3 class="section-heading"><asp:Literal ID="litTituloPremio" runat="server" /></h3>
 				<h4> <asp:Literal ID="litTituloCategoria" runat="server" /></h4>
 				<hr class="shorthr"/>

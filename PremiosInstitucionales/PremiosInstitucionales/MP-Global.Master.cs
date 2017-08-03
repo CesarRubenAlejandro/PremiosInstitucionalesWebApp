@@ -6,6 +6,7 @@ using System.Web.UI;
 using PremiosInstitucionales.Values;
 using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
+using System.Text.RegularExpressions;
 
 namespace PremiosInstitucionales
 {
@@ -16,7 +17,7 @@ namespace PremiosInstitucionales
             // Si no hay sesion, regreso a Login
             if (Session[StringValues.RolSesion] == null)
             {
-                Response.Redirect("~/WebForms/Login.aspx");
+                Response.Redirect("~/WebForms/Login.aspx", false);
             }
 
             // Cargo el tipo de liga hacia inicio segun el rol de la cuenta
@@ -29,6 +30,16 @@ namespace PremiosInstitucionales
         {
             // Correo de la persona que invitare
             String correoInvitar = correoCandidato.Text;
+
+            Regex regexCorreo = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
+
+            Match matchCorreo = regexCorreo.Match(correoInvitar);
+
+            if (!matchCorreo.Success)
+            {
+                ShowMessage("Error", "Dirección de correo no válida.");
+                return;
+            }
 
             // Correo de la institucion
             String correoSender = "empresa.ejemplo.mail@gmail.com";
@@ -60,18 +71,23 @@ namespace PremiosInstitucionales
                         smtp.Port = 587;
                         smtp.Send(mm);
                     }
-
-                    catch (Exception e1)
+                    catch (Exception Ex2)
                     {
                         // No pude enviar el correo a ese destinatario
+                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
+                        ShowMessage("Error", "El correo no pudo enviarse a ese destinatario, verifica que el correo sea el correcto.");
                     }
                 }
+
                 // Ya envie el correo a ese destinatario 
+                ShowMessage("Aviso", "Invitación enviada con éxito.");
             }
 
-            catch (Exception e2)
+            catch (Exception Ex)
             {
                 // No me pude conectar al servicio del mail
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
             }
         }
 
@@ -182,25 +198,25 @@ namespace PremiosInstitucionales
             Session.Abandon();
 
             // Redirecciono a la pagina de inicio de sesion
-            Response.Redirect("~/WebForms/Login.aspx");
+            Response.Redirect("~/WebForms/Login.aspx", false);
         }
 
-        public void showErrorMsg(string tipoErrorTitulo, string sMensaje)
+        public void ShowMessage(String MessageType, String Message)
         {
             // Creamos el titutlo del Modal
-            modalMensajeTitulo.Controls.Add(new LiteralControl(TituloModal(tipoErrorTitulo)));
+            modalMensajeTitulo.Controls.Add(new LiteralControl(ModalTitle(MessageType)));
 
             // Mensaje del Modal
-            Mensaje.Text = sMensaje;
+            Mensaje.Text = Message;
 
             // Mostramos el Modal
-            string showMsg_JS = "$('#modalMensaje').modal('show')";
+            String showMsg_JS = "$('#modalMensaje').modal('show')";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "showE", showMsg_JS, true);
         }
 
-        public string TituloModal(string tipoTitulo)
+        public String ModalTitle(String Title)
         {
-            switch (tipoTitulo)
+            switch (Title)
             {
                 case "Error":
                     return "<h4 class=\"modal-title\"> <img src=\"../../Resources/svg/warning.svg\" class=\"error-icon\"/> Advertencia </h4>";

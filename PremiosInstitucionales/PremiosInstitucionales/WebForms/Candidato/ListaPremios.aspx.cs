@@ -16,11 +16,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
 
@@ -35,6 +35,10 @@ namespace PremiosInstitucionales.WebForms
                 var conv = ConvocatoriaService.GetMostRecentConvocatoria(premio.cvePremio);
                 if (conv == null) continue;
 
+                // Checar si la convocatoria ya vencio
+                if (conv.FechaInicio > DateTime.Today || conv.FechaFin < DateTime.Today)
+                    continue;
+
                 // Si no hay categorias en la convocatoria, no muestro el premio
                 var listCat = ConvocatoriaService.GetCategoriasByConvocatoria(conv.cveConvocatoria);
                 if (listCat == null) continue;
@@ -45,15 +49,17 @@ namespace PremiosInstitucionales.WebForms
                 // Un panel para cada premio (imagen, descripcion y boton de detalle)
                 lit.Text = "<div class='col-md-6'>" +
                                 "<div class='blockquote-box clearfix' style=''>" +
-                                    "<div class='square pull-left'>" +
-                                        "<img src = '/AwardPictures/" + premio.NombreImagen + "' class=\"img-square\"/>" +
+                                    "<div class=\"col-sm-4 prem-img\">" +
+                                        "<img src = /AwardPictures/" + premio.NombreImagen + " class=\"img-square\" style=\"margin-top: 15px; margin-bottom: 15px; \"/>" +
                                     "</div>" +
-                                    "<h4>Premio: <strong>" + premio.Nombre + "</strong></h4>" +
-                                    "<p>" + premio.Descripcion + "</p>" +
-                                    "<div style='text-align: right; '>" +
-                                        "<button id = '" + premio.cvePremio + "' type = 'button' class='btn btn-sm btn-primary'  data-toggle='modal' data-target='#myModal" + i + "'>" +
-                                            "Detalles" +
-                                        "</button>" +
+                                     "<div class=\"tab-content col-sm-8\">" +
+                                        "<h4>Premio: <strong>" + premio.Nombre + "</strong></h4>" +
+                                        "<p class='descPremio'>" + premio.Descripcion + "</p>" +
+                                        "<div class='div-prem-btn'>" +
+                                            "<button id = '" + premio.cvePremio + "' type = 'button' class='btn btn-sm btn-primary'  data-toggle='modal' data-target='#myModal" + i + "'>" +
+                                                "Detalles" +
+                                            "</button>" +
+                                        "</div>" +
                                     "</div>" +
                                 "</div>" +
                             "</div>";
@@ -109,7 +115,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioCandidato.aspx");
+            Response.Redirect("InicioCandidato.aspx", false);
         }
 
     }

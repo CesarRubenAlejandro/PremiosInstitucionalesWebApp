@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MP-Login.Master.cs" Inherits="PremiosInstitucionales.PaginasIniciales" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MP-Login.Master.cs" Inherits="PremiosInstitucionales.MP_Login" %>
 
 <!DOCTYPE html>
 
@@ -31,9 +31,27 @@
 		      <iframe src="https://www.youtube.com/embed/TxDmvPMf6Qo?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=TxDmvPMf6Qo&vq=hd720" frameborder="0" allowfullscreen></iframe>
 		    </div>
 	    </div>
-        <form id="form1" runat="server" autocomplete="off">
+
+        <form runat="server" autocomplete="off">
             <div class="contentpaginasiniciales">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server"></asp:ContentPlaceHolder>
+            </div>
+
+            <!-- Modal para dar un mensaje -->
+            <div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" style="margin-top: 150px;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <span runat="server" id="modalMensajeTitulo"></span>
+                        </div>
+                        <div class="modal-body">
+                            <asp:Label ID="Mensaje" runat="server" Text="Label" style="color: black;"></asp:Label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100%"> Aceptar </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </body>

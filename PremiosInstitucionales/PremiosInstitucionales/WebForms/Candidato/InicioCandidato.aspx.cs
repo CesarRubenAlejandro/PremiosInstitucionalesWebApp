@@ -15,11 +15,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 LoadMessage();
@@ -32,7 +32,7 @@ namespace PremiosInstitucionales.WebForms
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(correo);
 
             if (candidato == null)
-                Response.Redirect("~/WebForms/Login.aspx");
+                Response.Redirect("~/WebForms/Login.aspx", false);
 
             if (candidato.Nombre != null && candidato.Nombre.Length > 0)
             {

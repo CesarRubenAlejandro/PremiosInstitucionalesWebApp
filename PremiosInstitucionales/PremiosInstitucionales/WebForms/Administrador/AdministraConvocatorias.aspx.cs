@@ -10,12 +10,25 @@ namespace PremiosInstitucionales.WebForms
     public partial class AdministrarConvocatoria : System.Web.UI.Page
     {
         private PI_BA_Premio premioActual;
-
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
             // obtener el premio usando el query string de su id
             String idPremio = Request.QueryString["p"];
             premioActual = ConvocatoriaService.GetPremioById(idPremio);
+
+            MasterPage = (MP_Global)Page.Master;
+
+            // Mensaje si pude editar los datos del premio
+            switch (Request.QueryString["s"])
+            {
+                case "success":
+                    MasterPage.ShowMessage("Aviso", "Los cambios fueron realizados con éxito.");
+                    break;
+                case "failed":
+                    MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+                    break;
+            }
 
             if (!IsPostBack)
             {
@@ -24,11 +37,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 if (premioActual != null)
@@ -142,21 +155,29 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdministraPremios.aspx");
+            Response.Redirect("AdministraPremios.aspx", false);
         }
 
         protected void UpdateInfo(object sender, EventArgs e)
         {
-            string imgUrl = UploadImage();
-
-            if (UploadImage() == null)
+            try
             {
-                imgUrl = premioActual.NombreImagen;
-            }
+                string imgUrl = UploadImage();
 
-            string user = Session[StringValues.CorreoSesion].ToString();
-            ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
-            Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
+                if (UploadImage() == null)
+                {
+                    imgUrl = premioActual.NombreImagen;
+                }
+
+                string user = Session[StringValues.CorreoSesion].ToString();
+                ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
+                Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "success", false);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "failed", false);
+            }
         }
     }
 }

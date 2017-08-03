@@ -33,7 +33,19 @@ $(document).ready(function(){
 
         }
     });
+
+
 });
+
+function updateCharactersLeft2(textarea) {
+    var charactersMessage = textarea.parentElement.getElementsByTagName("p")[0];
+    var actualCharacters = textarea.value.length;
+    var maxCharacters = 500;
+
+    var result = maxCharacters - actualCharacters;
+
+    charactersMessage.innerHTML = result + ' caracteres restantes.';
+}
 
 function printDates(date) {
             

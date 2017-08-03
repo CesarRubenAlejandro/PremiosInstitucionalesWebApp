@@ -4,9 +4,7 @@ using PremiosInstitucionales.Values;
 using System;
 using System.Net;
 using System.Net.Mail;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
@@ -16,8 +14,10 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class AdministraAplicacionesPendientes : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
@@ -25,11 +25,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
 
@@ -43,7 +43,6 @@ namespace PremiosInstitucionales.WebForms
             aplicaciones.AddRange(aplicacionesModificadas);
 
             aplicaciones = aplicaciones.OrderBy(a => a.cveCategoria).ToList();
-
 
             if (aplicaciones.Count > 0)
             {
@@ -82,27 +81,28 @@ namespace PremiosInstitucionales.WebForms
                     Panel panelCollapseBody = new Panel();
                     panelCollapseBody.CssClass = "panel-body";
 
+                    panelCollapseBody.Controls.Add(new LiteralControl("<div class='row text-center'> <div class='col-sm-6'> <h5> <strong> Candidato: </strong> </h5>"));
+
                     LinkButton lbUserProfile = new LinkButton();
-                    lbUserProfile.Text = "Perfil de candidato";
-                    lbUserProfile.Style.Add("font-size", "16pt");
+                    lbUserProfile.Text = candidato.Nombre + " " + candidato.Apellido;
+                    lbUserProfile.Style.Add("font-size", "14pt");
                     lbUserProfile.Style.Add("color", "#00acc1");
                     lbUserProfile.Style.Add("text-decoration", "underline");
-                    lbUserProfile.Style.Add("margin", "1.5em 0");
                     lbUserProfile.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + candidato.cveCandidato + "&t=candidato');");
                     panelCollapseBody.Controls.Add(lbUserProfile);
 
-                    LiteralControl lcSpace = new LiteralControl("<br/>");
-                    panelCollapseBody.Controls.Add(lcSpace);
+                    panelCollapseBody.Controls.Add(new LiteralControl("</div> <div class='col-sm-6'> <h5> <strong> Archivo proporcionado: </strong> </h5>"));
 
                     LinkButton lbDocumento = new LinkButton();
-                    lbDocumento.Text = "Descargar archivo";
-                    lbDocumento.Style.Add("font-size", "16pt");
+                    lbDocumento.Text = app.NombreArchivo;
+                    lbDocumento.Style.Add("font-size", "14pt");
                     lbDocumento.Style.Add("color", "#00acc1");
                     lbDocumento.Style.Add("text-decoration", "underline");
-                    lbDocumento.Style.Add("margin", "1.5em 0");
                     lbDocumento.Command += new CommandEventHandler(DownloadFile);
                     lbDocumento.CommandArgument = app.cveAplicacion;
                     panelCollapseBody.Controls.Add(lbDocumento);
+
+                    panelCollapseBody.Controls.Add(new LiteralControl("</div> </div>"));
 
                     Panel panelCollapseBodyQuestions = new Panel();
                     panelCollapseBodyQuestions.CssClass = "row question-form";
@@ -134,9 +134,7 @@ namespace PremiosInstitucionales.WebForms
                                 panelQuestion.Controls.Add(lcRespuesta);
                             }
 
-
                             panelCollapseBodyQuestions.Controls.Add(panelQuestion);
-
                             iNumber++;
                         }
                     }
@@ -147,7 +145,7 @@ namespace PremiosInstitucionales.WebForms
                     LiteralControl btnGroupAcceptReject = new LiteralControl("" +
                         "<div class=\"btn-group-right\" style=\"padding: 0px\">" +
                                 "<a data-toggle=\"modal\" data-target=\"#modalRechazApp\" style=\"text-decoration: none\">" +
-                                    "<button type = \"button\" class=\"btn btn-default\">Rechazar Aplicacion</button>" +
+                                    "<button type = \"button\" class=\"btn btn-default\" style='margin-right: 5px;'>Rechazar Aplicacion</button>" +
                                 "</a>" +
                                 "<a data-toggle= \"modal\" data-target= \"#modalAcceptApp\" style= \"text-decoration: none\" >" +
                                     "<button type=\"button\" class=\"btn btn-primary\">Aceptar Aplicacion</button>" +
@@ -155,15 +153,11 @@ namespace PremiosInstitucionales.WebForms
                             "</div>"
                         );
                     panelCollapseBody.Controls.Add(btnGroupAcceptReject);
-
-
                     panelCollapse.Controls.Add(panelCollapseBody);
                     panelMain.Controls.Add(panelHeader);
                     panelMain.Controls.Add(panelCollapse);
-
                     accordion.Controls.Add(panelMain);
 
-                    //
                     iCont++;
                 }
 
@@ -193,7 +187,7 @@ namespace PremiosInstitucionales.WebForms
 
             // cargar nuevamente el acordeon de respuestas forzando un postback
             razonTB.Text = "";
-            Response.Redirect(Request.Url.AbsoluteUri);
+            Response.Redirect(Request.Url.AbsoluteUri, false);
         }
 
         public void DownloadFile(object sender, CommandEventArgs e)
@@ -216,7 +210,7 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                //lblMsg.Text = "Error: File not found!";
+                MasterPage.ShowMessage("Error", "El servidor no encontró el archivo.");
             }
 
         }
@@ -254,8 +248,9 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (Exception e)
+            catch (Exception Ex)
             {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                 return false;
             }
         }
@@ -266,13 +261,12 @@ namespace PremiosInstitucionales.WebForms
             // cambiar el status de la aplicacion a Aceptado
             AplicacionService.AceptarAplicacion(aplicacionID);
             // cargar nuevamente el acordeon de respuestas forzando un postback
-            Response.Redirect(Request.Url.AbsoluteUri);
+            Response.Redirect(Request.Url.AbsoluteUri, false);
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioAdmin.aspx");
-
+            Response.Redirect("InicioAdmin.aspx", false);
         }
     }
 }

@@ -4,13 +4,13 @@ $(document).ready(function () {
     }
 });
 
-function validateAnswerCharacters(e) {
-    e.target.value = e.target.value.replace(/&/g, "y");
-}
-
 function changeAnchor(s, premio) {
     var x = s[s.selectedIndex].id;
     document.getElementById(premio).href = "Formulario.aspx?c=" + x;
+}
+
+function validateAnswerCharacters(e) {
+    e.target.value = e.target.value.replace(/&/g, "y");
 }
 
 function updateCharactersLeft(textarea) {

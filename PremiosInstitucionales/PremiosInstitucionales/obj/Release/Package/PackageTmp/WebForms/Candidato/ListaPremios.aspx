@@ -3,10 +3,14 @@ Inherits="PremiosInstitucionales.WebForms.ListaPremios" MasterPageFile="~/MP-Glo
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
   <link href='<%= ResolveUrl("~/Resources/css/stylePremios.css")%>'  rel="stylesheet" type="text/css" />  
-  
+  <script src='<%= ResolveUrl("~/Resources/js/listaPremiosCandidato.js") %>'></script>
+
     <div runat="server" id="modalList"></div>
 
     <div class="container fadeView">
+
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
 	    <div class="container">
 		    <div class="row">
 			    <div class="col-lg-12 text-center">

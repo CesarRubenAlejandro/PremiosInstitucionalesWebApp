@@ -1,0 +1,14 @@
+<svg width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+
+  <g>
+    <title>background</title>
+    <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  </g>
+  
+   <path id="svg_3" fill="#263238" d="m27,1l0,0c14.359,0 26,11.641 26,26l0,0c0,14.359 -11.641,26 -26,26l0,0c-14.359,0 -26,-11.641 -26,-26l0,0c0,-14.359 11.641,-26 26,-26z"/>
+   <path id="svg_4" fill="#263238" d="m27,54c-14.888,0 -27,-12.112 -27,-27s12.112,-27 27,-27s27,12.112 27,27s-12.112,27 -27,27zm0,-52c-13.785,0 -25,11.215 -25,25s11.215,25 25,25s25,-11.215 25,-25s-11.215,-25 -25,-25z"/>
+  <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="18,36 27,27 36,18 
+	"/>
+  <polyline style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" points="18,18 27,27 36,36 
+	"/>
+</svg>

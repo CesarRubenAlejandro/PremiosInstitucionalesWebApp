@@ -47,18 +47,18 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
         }
 
         private void CrearArchivo()
         {
-            LiteralControl lcPregunta = new LiteralControl("<h5> <strong>" + "Archivo proporcionado:" + "</strong> </h5>");
+            LiteralControl lcPregunta = new LiteralControl("<div class='col-sm-4'> <h5> <strong>" + "Archivo proporcionado:" + "</strong> </h5>");
             PanelArchivo.Controls.Add(lcPregunta);
 
             string appId = Request.QueryString["a"];
@@ -72,6 +72,7 @@ namespace PremiosInstitucionales.WebForms
             lbDocumento.Command += new CommandEventHandler(DownloadFile);
             lbDocumento.CommandArgument = appId;
             PanelArchivo.Controls.Add(lbDocumento);
+            PanelArchivo.Controls.Add(new LiteralControl("</div> </div> <br/>"));
         }
 
         private void PerfilCandidato()
@@ -81,7 +82,7 @@ namespace PremiosInstitucionales.WebForms
             var app = AplicacionService.GetAplicacionById(idApp);
             var candidato = InformacionPersonalCandidatoService.GetCandidatoById(app.cveCandidato);
 
-            LiteralControl lcPerfil = new LiteralControl("<h5> <strong>" + "Candidato:" + "</strong> </h5>");
+            LiteralControl lcPerfil = new LiteralControl("<div class='row text-center'> <div class='col-sm-4'> <h5> <strong>" + "Candidato:" + "</strong> </h5>");
             PanelArchivo.Controls.Add(lcPerfil);
 
             LinkButton lbUserProfile = new LinkButton();
@@ -91,9 +92,10 @@ namespace PremiosInstitucionales.WebForms
             lbUserProfile.Style.Add("text-decoration", "underline");
             lbUserProfile.Attributes.Add("onclick", "window.open('AdministraInformacionPersonal.aspx?id=" + candidato.cveCandidato + "&t=candidato');");
             PanelArchivo.Controls.Add(lbUserProfile);
+            PanelArchivo.Controls.Add(new LiteralControl("</div>"));
 
             // Calif. Promedio
-            LiteralControl lcPregunta = new LiteralControl("<h5> <strong>" + "Calificación promedio:" + "</strong> </h5>");
+            LiteralControl lcPregunta = new LiteralControl("<div class='col-sm-4'> <h5> <strong>" + "Calificación promedio:" + "</strong> </h5>");
             PanelArchivo.Controls.Add(lcPregunta);
 
             LiteralControl lcCalificacion = new LiteralControl();
@@ -112,6 +114,7 @@ namespace PremiosInstitucionales.WebForms
                 lcCalificacion = new LiteralControl("<h5 style=\"color: #f44336;\"> <div style=\"display: none; \"> 1000 </div> Sin evaluaciones </h5>");
             }
             PanelArchivo.Controls.Add(lcCalificacion);
+            PanelArchivo.Controls.Add(new LiteralControl("</div>"));
         }
 
         private void CrearFormulario(String sCategoriaID, PI_BA_Premio premio, PI_BA_Categoria categoria)
@@ -185,6 +188,11 @@ namespace PremiosInstitucionales.WebForms
                 //lblMsg.Text = "Error: File not found!";
             }
 
+        }
+
+        protected void CloseBtn_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
         }
     }
 }

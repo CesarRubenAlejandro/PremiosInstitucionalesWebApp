@@ -243,12 +243,14 @@
     <Content Include="Resources\js\jquery-ui.multidatespicker.js" />
     <Content Include="Resources\js\jquery.dataTables.js" />
     <Content Include="Resources\js\jquery.min.js" />
+    <Content Include="Resources\js\listaPremiosCandidato.js" />
     <Content Include="Resources\js\listaUsuariosCandidato.js" />
     <Content Include="Resources\js\listaParticipantes.js" />
     <Content Include="Resources\svg\add.svg" />
     <Content Include="Resources\svg\back.svg" />
     <Content Include="Resources\svg\badgebg.svg" />
     <Content Include="Resources\svg\clipboard.svg" />
+    <Content Include="Resources\svg\close.svg" />
     <Content Include="Resources\svg\done.svg" />
     <Content Include="Resources\svg\juez.svg" />
     <Content Include="Resources\svg\learning.svg" />
@@ -311,7 +313,10 @@
     <Content Include="Entities\Models\PremiosPruebasDB.edmx.diagram">
       <DependentUpon>PremiosPruebasDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Document\ListaCandidatos.xlsx" />
+    <Content Include="Document\ListaJueces.xlsx" />
     <None Include="Properties\PublishProfiles\RubenCV.pubxml" />
+    <Content Include="Values\POLITICAS_DE_PRIVACIDAD_Tec.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -619,7 +624,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="AwardPictures\" />
-    <Folder Include="Document\" />
     <Folder Include="ProfilePictures\" />
     <Folder Include="Resources\fonts\" />
     <Folder Include="UserControls\" />

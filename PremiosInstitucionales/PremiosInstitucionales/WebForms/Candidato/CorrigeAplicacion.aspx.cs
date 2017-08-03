@@ -23,11 +23,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 // confirmar que la aplicacion haya sido rechazada
                 String idApp = Request.QueryString["aplicacion"];
@@ -48,7 +48,7 @@ namespace PremiosInstitucionales.WebForms
                         }
                     }
                 }
-                Response.Redirect("inicioCandidato.aspx");
+                Response.Redirect("inicioCandidato.aspx", false);
             }
             
         }
@@ -157,7 +157,7 @@ namespace PremiosInstitucionales.WebForms
             }
 
             // redireccionar a inicio
-            Response.Redirect("InicioCandidato.aspx");
+            Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
         }
 
         private int GetIndexFromArray(String[] arr, String value)

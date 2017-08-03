@@ -273,6 +273,8 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
         
         public static void AsignarGanadorCategoria(String idCategoria, String cveApp)
         {
+            if (idCategoria == null || cveApp == null) return;
+
             dbContext = new wPremiosInstitucionalesdbEntities();
             PI_BA_Categoria categoria = GetCategoriaByClaveCategoria(idCategoria);
             categoria.cveAplicacionGanadora = cveApp;

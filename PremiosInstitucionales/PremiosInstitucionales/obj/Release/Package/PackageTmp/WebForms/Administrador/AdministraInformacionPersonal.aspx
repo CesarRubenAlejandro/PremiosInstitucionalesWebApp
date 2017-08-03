@@ -2,6 +2,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
         <div class="container fadeView">
+
+            <asp:Button type="button" class="closeBtn" runat="server" OnClick="CloseBtn_Click"/>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -73,11 +76,6 @@
                         <div class="form-group" runat="server" id="dataOptionsCandidato">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="InicioAdmin.aspx" class="no-underline">
-                                        <button type="button" class="btn btn-default">
-                                            Cancelar
-                                        </button>
-                                    </a>
                                     <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
                                         <button type="button" class="btn btn-default">
                                             Cambiar contraseña
@@ -116,10 +114,6 @@
                         <div class="form-group">
                             <div class="col-md-11">
                                 <div class="btn-group-right">
-                                    <a href="InicioAdmin.aspx" class="no-underline">
-                                        <button type="button" class="btn btn-default"> Cancelar
-                                        </button>
-                                    </a>
                                     <a class="no-underline" data-toggle="modal" data-target="#modalChangePassword" onclick="openChangePasswordModal()">
                                         <button type="button" class="btn btn-default"> Cambiar contraseña
                                         </button>
@@ -166,34 +160,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal aviso de privacidad -->
-        <div class="modal fade" id="modalAvisoPrivacidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title">Aviso de privacidad</h3>
-                        <hr class="shorthr">
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center" style="margin-bottom: 16px;">
-                        <img src="../Resources/svg/shield.svg" style="width: 96px; height: 96px;" />
-                            </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus. </p>
-
-                        <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" >
-                        Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a la <a href="#">Ley de Información Personal </a>para el uso del sistema.
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="toggleCheckboxButton" onclick="sendFormAux();" disabled>Guardar Cambios</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     <asp:Panel class="row" style="margin-top: 20px;" id="alertInfo" runat="server" Visible="false">
       <div class="col-md-6 col-md-offset-3">
       <div class="alert alert-info alert-dismissable">

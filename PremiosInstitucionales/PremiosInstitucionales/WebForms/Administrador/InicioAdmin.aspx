@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-xs-8">
                                 <h5>Proponer candidato </h5>
-                                <h6>Proponer candidato a registrarse en la convocatoria de Premios Institucionales. </h6>
+                                <h6>Invíta a un posible candidato a unirse a la plataforma de Premios Institucionales. </h6>
                             </div>
                         </div>
                     </div>
@@ -113,8 +113,8 @@
                                 <img class="service-icon" src='<%= ResolveUrl("/Resources/svg/reports.svg") %>'/>
                             </div>
                             <div class="col-xs-8">
-                                <h5>Reportes </h5>
-                                <h6>Lorem </h6>
+                                <h5>Reportes <strong>[Próximamente]</strong></h5>
+                                <h6>Aquí podras descargar diferentes reportes en formato excel.</h6>
                             </div>
                         </div>
                     </div>

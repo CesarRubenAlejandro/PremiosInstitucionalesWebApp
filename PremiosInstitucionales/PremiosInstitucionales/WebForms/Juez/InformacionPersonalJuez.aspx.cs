@@ -1,27 +1,31 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
-using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PremiosInstitucionales.WebForms
 {
     public partial class InformacionPersonalJuez : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de juez
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
+                    {
                         // si no es juez, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
@@ -40,7 +44,6 @@ namespace PremiosInstitucionales.WebForms
 
         private void MostrarCampos()
         {
-
             var juez = InformacionPersonalJuezService.GetJuezByCorreo(Session[StringValues.CorreoSesion].ToString());
             NombresTextBox.Text = juez.Nombre;
             ApellidosTextBox.Text = juez.Apellido;
@@ -56,13 +59,30 @@ namespace PremiosInstitucionales.WebForms
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
-            ActualizarDatosGenerales();
-            Upload(sender, e);
+            try
+            {
+                ActualizarDatosGenerales();
+                Upload(sender, e);
+                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
         }
 
         protected void CambiarContrasena_Click(object sender, EventArgs e)
         {
-            ActualizarContrasena();
+            try
+            {
+                ActualizarContrasena();
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
         }
 
         protected void ActualizarContrasena()
@@ -74,16 +94,42 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    if (InformacionPersonalJuezService.GuardaNuevaContrasena(Session[StringValues.CorreoSesion].ToString(), newPwdTextBox.Text))
+                    Regex regexNumero = new Regex(@".*\d.*");
+                    Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                    Match matchNumero = regexNumero.Match(newPwdTextBox.Text);
+                    Match matchLetra = regexLetra.Match(newPwdTextBox.Text);
+
+                    if (newPwdTextBox.Text.Length >= 6 && matchNumero.Success && matchLetra.Success)
                     {
-                        // good
+                        if (juez != null)
+                        {
+                            juez.Password = newPwdTextBox.Text;
+                            if (InformacionPersonalJuezService.UpdateJuez(juez))
+                            {
+                                MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
+                            }
+                            else
+                            {
+                                MostrarCampos();
+                            }
+                        }
                     }
                     else
                     {
-                        // bad
+                        MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
                     }
                 }
+                else
+                {
+                    MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
+                }
             }
+            else
+            {
+                MasterPage.ShowMessage("Error", "Contraseña actual incorrecta.");
+            }
+
+            ResetFields();
         }
 
         protected void ActualizarDatosGenerales()
@@ -94,16 +140,11 @@ namespace PremiosInstitucionales.WebForms
                 juez.Nombre = NombresTextBox.Text;
                 juez.Apellido = ApellidosTextBox.Text;
 
-                if (InformacionPersonalJuezService.UpdateJuez(juez))
-                {
-
-                }
-                else
+                if (!InformacionPersonalJuezService.UpdateJuez(juez))
                 {
                     MostrarCampos();
                 }
             }
-
         }
 
         protected void Upload(object sender, EventArgs e)
@@ -133,13 +174,13 @@ namespace PremiosInstitucionales.WebForms
                 // Update data in database
                 InformacionPersonalJuezService.CambiaImagen(null, Session[StringValues.CorreoSesion].ToString(), sNombreImagen);
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri, false);
             }
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioJuez.aspx");
+            Response.Redirect("InicioJuez.aspx", false);
         }
     }
 }

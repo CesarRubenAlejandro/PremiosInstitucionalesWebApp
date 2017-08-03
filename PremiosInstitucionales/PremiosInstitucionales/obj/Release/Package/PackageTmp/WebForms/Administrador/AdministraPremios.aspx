@@ -18,7 +18,7 @@
                                 </div>
                                 <asp:FileUpload ID="FileUploadImage" runat="server" class="text-center center-block well well-sm" Style="display: none;" onchange="ShowImagePreview(this);" />
                                 <div class="btn-group-mid">
-                                    <button type="button" class="btn btn-default" onclick="uploadImage();">Cambiar imagen de perfil</button>
+                                    <button type="button" class="btn btn-default" onclick="uploadImage();">Carga una imagen</button>
                                 </div>
                             </div>
                             <div class="col-md-6" style="padding-right: 35px; padding-left: 35px">
@@ -26,7 +26,7 @@
                                     <label class="col-lg-12 control-label control-title" style="margin-top: 0px">Nombre:</label>
                                     <asp:TextBox runat="server" class="form-control" placeholder="Eugenio Garza Sada" type="text" ID="tbAwardTitle" />
                                     <label class="col-lg-12 control-label control-title">Descripción:</label>
-                                    <asp:TextBox runat="server" class="form-control form-text-area scrollbar-custom" MaxLength="500" Rows="4" onkeyup="updateCharactersLeft(this);" ID="tbAwardDescription" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox runat="server" class="form-control form-text-area scrollbar-custom" maxlength="500" Rows="4" onkeyup="updateCharactersLeft(this);" ID="tbAwardDescription" TextMode="MultiLine"></asp:TextBox>
 
                                     <p>500 caracteres restantes </p>
                                 </div>
@@ -42,8 +42,11 @@
                 </div>
             </div>
         </div>
+
     <!-- Contenido -->
     <div class="container fadeView">
+
+       <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
 
         <div class="container">
             <div class="row">

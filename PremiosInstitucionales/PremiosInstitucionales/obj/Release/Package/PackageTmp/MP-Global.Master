@@ -1,8 +1,8 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MP-Global.Master.cs" Inherits="PremiosInstitucionales.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MP-Global.Master.cs" Inherits="PremiosInstitucionales.MP_Global" %>
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
     <head runat="server">
         <!-- Meta -->
         <meta charset="UTF-8"/>
@@ -27,7 +27,7 @@
     </head>
     <body>
         <!-- Forma Global -->
-        <form runat="server">
+        <form runat="server" enctype="multipart/form-data">
 
             <!-- Barra de navegacion -->
 	        <nav class="navbar navbar-default navbar-fixed-top">
@@ -90,6 +90,23 @@
 			        </div>
 		        </div>
 	        </div>
+
+            <!-- Modal para dar un mensaje -->
+            <div class="modal fade" id="modalMensaje" tabindex="-1" role="dialog" style="margin-top: 150px;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <span runat="server" id="modalMensajeTitulo"></span>
+                        </div>
+                        <div class="modal-body">
+                            <asp:Label ID="Mensaje" runat="server" Text="Label" class="error-msg"></asp:Label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="width: 100%"> Aceptar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </body>
 </html>

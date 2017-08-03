@@ -76,7 +76,7 @@ namespace PremiosInstitucionales.DBServices.Registro
             }
         }
 
-        public static void ConfirmarCandidato(string codigoConfirmacion)
+        public static bool ConfirmarCandidato(string codigoConfirmacion)
         {
             using (var dbContext = new wPremiosInstitucionalesdbEntities())
             {
@@ -84,10 +84,12 @@ namespace PremiosInstitucionales.DBServices.Registro
                 {
                     dbContext.ConfirmarCandidato(codigoConfirmacion);
                     dbContext.SaveChanges();
+                    return true;
                 }
                 catch (Exception Ex)
                 {
                     Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                    return false;
                 }
             }
         }

@@ -21,11 +21,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
                         // si no es juez, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 string sCategoriaID = Request.QueryString["c"];
@@ -121,7 +121,7 @@ namespace PremiosInstitucionales.WebForms
             }
             else
             {
-                Response.Redirect("InicioJuez.aspx");
+                Response.Redirect("InicioJuez.aspx", false);
             }
         }
 
@@ -139,7 +139,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PremiosInstitucionalesJuez.aspx");
+            Response.Redirect("PremiosInstitucionalesJuez.aspx", false);
         }
     }
 }

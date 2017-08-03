@@ -19,16 +19,20 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             MasterPage = (MP_Login)Page.Master;
-
             if (!IsPostBack)
             {
                 if (Request.QueryString["c"] != null)
                 {
                     String codigoConfirmacion = Request.QueryString["c"].ToString();
-                    RegistroService.ConfirmarCandidato(codigoConfirmacion);
-                    MasterPage.showErrorMsg("Aviso", "Su cuenta ha quedado confirmada.");
+                    if (RegistroService.ConfirmarCandidato(codigoConfirmacion))
+                    {
+                        MasterPage.ShowMessage("Aviso", "Su cuenta ha quedado confirmada.");
+                    }
+                    else
+                    {
+                        MasterPage.ShowMessage("Error", "Código de confirmación inválido.");
+                    }
                 }
             }
         }
@@ -44,11 +48,11 @@ namespace PremiosInstitucionales.WebForms
             //Crear sesion o decir que no existe
             if (tipoUsuario == StringValues.RolIncorrecto)
             {
-                MasterPage.showErrorMsg("Error", "Usuario/Contraseña incorrectos.");
+                MasterPage.ShowMessage("Error", "Usuario/Contraseña incorrectos.");
             }
             else if (tipoUsuario == StringValues.RolNotFound)
             {
-                MasterPage.showErrorMsg("Error", "Usuario no encontrado.");
+                MasterPage.ShowMessage("Error", "Usuario no encontrado.");
             }
             else
             {
@@ -81,42 +85,53 @@ namespace PremiosInstitucionales.WebForms
         {
             String password1 = passreg.Text;
             String password2 = passreg2.Text;
+            String correo = email.Text;
             String codigoConfirmacion = Guid.NewGuid().ToString();
 
             if (email.Text == "" || passreg.Text == "" || passreg2.Text == "" || name.Text == "" || lname.Text == "")
             {
-                MasterPage.showErrorMsg("Error", "Debes llenar todos los campos.");
+                MasterPage.ShowMessage("Error", "Debes llenar todos los campos.");
             }
             else if (password1.Equals(password2))
             {
                 Regex regexNumero = new Regex(@".*\d.*");
                 Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                Regex regexCorreo = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
+
                 Match matchNumero = regexNumero.Match(password1);
                 Match matchLetra = regexLetra.Match(password1);
+                Match matchCorreo = regexCorreo.Match(correo);
 
-                if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
+                if (!matchCorreo.Success)
                 {
-                    MasterPage.showErrorMsg("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un numero y una letra.");
+                    MasterPage.ShowMessage("Error", "Dirección de correo no válida.");
                 }
-                else if (RegistroService.RegistraCandidato(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
-                {
-                    if (EnviarCorreoConfirmacion(codigoConfirmacion))
+                else
+                { 
+                    if (password1.Length < 6 || !matchNumero.Success || !matchLetra.Success)
                     {
-                        MasterPage.showErrorMsg("Aviso", "Se envio un mail al correo registrado. Favor de confirmar cuenta.");
+                        MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
+                    }
+                    else if (RegistroService.RegistraCandidato(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
+                    {
+                        if (EnviarCorreoConfirmacion(codigoConfirmacion))
+                        {
+                            MasterPage.ShowMessage("Aviso", "Se envió un mail al correo registrado. Favor de confirmar cuenta.");
+                        }
+                        else
+                        {
+                            MasterPage.ShowMessage("Error", "Dirección de correo no válida.");
+                        }
                     }
                     else
                     {
-                        MasterPage.showErrorMsg("Error", "Dirección de correo no válida.");
+                        MasterPage.ShowMessage("Error", "Ya existe un usuario registrado a ese correo.");
                     }
-                }
-                else
-                {
-                    MasterPage.showErrorMsg("Error", "Usuario ya existe.");
                 }
             }
             else
             {
-                MasterPage.showErrorMsg("Error", "Contraseñas no coinciden.");
+                MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
             }
         }
 
@@ -149,16 +164,18 @@ namespace PremiosInstitucionales.WebForms
                         smtp.Port = 587;
                         smtp.Send(mm);
                     }
-                    catch (Exception e1)
+                    catch (Exception Ex2)
                     {
+                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
                         return false;
                     }
 
                 }
                 return true;
             }
-            catch (Exception e2)
+            catch (Exception Ex)
             {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                 return false;
             }
         }
@@ -171,16 +188,16 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (EnviarCorreoRecuperacion(email, id))
                 {
-                    MasterPage.showErrorMsg("Aviso", "Se envió un correo para la recuperación de la contraseña.");
+                    MasterPage.ShowMessage("Aviso", "Se envió un correo para la recuperación de la contraseña.");
                 }
                 else
                 {
-                    MasterPage.showErrorMsg("Error", "Dirección de correo no válida.");
+                    MasterPage.ShowMessage("Error", "Dirección de correo no válida.");
                 }
             }
             else
             {
-                MasterPage.showErrorMsg("Error", "Usuario no existe.");
+                MasterPage.ShowMessage("Error", "No existe ningún usuario registrado con ese correo.");
             }
         }
 
@@ -215,8 +232,9 @@ namespace PremiosInstitucionales.WebForms
                 }
                 return true;
             }
-            catch (Exception e1)
+            catch (Exception Ex)
             {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                 return false;
             }
         }

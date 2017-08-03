@@ -15,8 +15,10 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class AdministraGanadorCategoria : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
 
             if (!IsPostBack)
             {
@@ -25,11 +27,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
 
@@ -37,6 +39,23 @@ namespace PremiosInstitucionales.WebForms
             if (categoria != null)
             {
                 LoadCandidatesWithEvaluations(categoria);
+            }
+
+            String statusGanador = Request.QueryString["sg"];
+            String statusVeredicto = Request.QueryString["sv"];
+
+            // Mensaje si pude asignar a un ganador
+            if (statusGanador != null)
+            {
+                if (statusGanador == "success") MasterPage.ShowMessage("Aviso", "Se ha asignado al ganador con éxito.");
+                else if (statusGanador == "failed") MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
+
+            // Mensaje si se pudieron mandar los correos del veredicto final
+            if (statusVeredicto != null)
+            {
+                if (statusVeredicto == "success") MasterPage.ShowMessage("Aviso", "Los correos se enviaron exitosamente.");
+                else if (statusVeredicto == "failed") MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
             }
         }
 
@@ -50,7 +69,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 return;
             }
-                
+
             litTituloPremio.Text = "Premio " + premio.Nombre;
             litTituloCategoria.Text = "Categoría: " + categoria.Nombre;
 
@@ -85,7 +104,7 @@ namespace PremiosInstitucionales.WebForms
                     ipImage.Style.Add("height", "28px");
 
                     tdIP.Controls.Add(ipImage);
-                    tdIP.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion +"');");
+                    tdIP.Attributes.Add("onclick", "window.open('ObservaAplicacion.aspx?a=" + app.cveAplicacion + "');");
 
                     // name column
                     TableCell tdName = new TableCell();
@@ -145,7 +164,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 ClientScript.RegisterStartupScript(GetType(), "svf", "showVeredictoFinal();", true);
                 ClientScript.RegisterStartupScript(GetType(), "sag", "showAsignarGanador();", true);
-                ClientScript.RegisterStartupScript(GetType(), "sg", "selectGanador('"+ categoria.cveAplicacionGanadora + "');", true);
+                ClientScript.RegisterStartupScript(GetType(), "sg", "selectGanador('" + categoria.cveAplicacionGanadora + "');", true);
             }
         }
 
@@ -159,7 +178,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AdministraGanadores.aspx");
+            Response.Redirect("AdministraGanadores.aspx", false);
         }
 
         protected void GanadorBtn_Click(object sender, EventArgs e)
@@ -167,8 +186,16 @@ namespace PremiosInstitucionales.WebForms
             var cveAppSeleccionada = hiddenControl.Value;
             var cveCategoria = Request.QueryString["c"];
 
-            AplicacionService.AsignarGanadorCategoria(cveCategoria, cveAppSeleccionada);
-            Response.Redirect("AdministraGanadorCategoria.aspx?c=" + cveCategoria);
+            try
+            {
+                AplicacionService.AsignarGanadorCategoria(cveCategoria, cveAppSeleccionada);
+                Response.Redirect("AdministraGanadorCategoria.aspx?c=" + cveCategoria + "&sg=success", false);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                Response.Redirect("AdministraGanadorCategoria.aspx?c=" + cveCategoria + "&sg=failed", false);
+            }
         }
 
         private String getMails()
@@ -195,9 +222,7 @@ namespace PremiosInstitucionales.WebForms
             }
 
             // Elimino primer coma
-            Mails = Mails.Substring(1, Mails.Length - 1);
-
-            return Mails;
+            return Mails.Substring(1, Mails.Length - 1);
         }
 
         protected void VeredictoBtn_Click(object sender, EventArgs e)
@@ -225,17 +250,21 @@ namespace PremiosInstitucionales.WebForms
                         smtp.Port = 587;
                         smtp.Send(mm);
                     }
-                    catch (Exception e2)
+                    catch (Exception Ex2)
                     {
-                        return; //error
+                        // No pude enviar el correo a ese destinatario
+                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
+                        Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=failed", false);
                     }
-
                 }
-                return; // bien
+                // Ya envie el correo a ese destinatario 
+                Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=success", false);
             }
-            catch (Exception sfe)
+            catch (Exception Ex)
             {
-                return; // error
+                // No me pude conectar al servicio del mail
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=failed", false);
             }
         }
     }

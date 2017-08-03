@@ -4,6 +4,7 @@ using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace PremiosInstitucionales.WebForms
@@ -27,11 +28,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 // Tab Categorias Pendientes
@@ -63,87 +64,100 @@ namespace PremiosInstitucionales.WebForms
 
             if (categories != null)
             {
-                List<CategoriasPendientes> ctgPendientes = new List<CategoriasPendientes>();
-                foreach (var c in categories)
+                if (categories.Count > 0)
                 {
-                    var premioActual = ConvocatoriaService.GetPremioByCategoria(c.cveCategoria);
-                    // si ya tengo el premio almenos una vez, agrego la categoria
-                    if (CheckExistenceInList(premioActual, ctgPendientes))
+                    List<CategoriasPendientes> ctgPendientes = new List<CategoriasPendientes>();
+                    foreach (var c in categories)
                     {
-                        foreach (var ctg in ctgPendientes)
+                        var premioActual = ConvocatoriaService.GetPremioByCategoria(c.cveCategoria);
+                        // si ya tengo el premio almenos una vez, agrego la categoria
+                        if (CheckExistenceInList(premioActual, ctgPendientes))
                         {
-                            if (ctg.pPremio.cvePremio.Equals(premioActual.cvePremio))
+                            foreach (var ctg in ctgPendientes)
                             {
-                                ctg.categorias.Add(c);
+                                if (ctg.pPremio.cvePremio.Equals(premioActual.cvePremio))
+                                {
+                                    ctg.categorias.Add(c);
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        // si no tengo es premio, agrego el premio con la categoria actual
-                        CategoriasPendientes cp = new CategoriasPendientes();
-                        cp.pPremio = premioActual;
-                        cp.categorias = new List<PI_BA_Categoria>();
-                        cp.categorias.Add(c);
+                        else
+                        {
+                            // si no tengo es premio, agrego el premio con la categoria actual
+                            CategoriasPendientes cp = new CategoriasPendientes();
+                            cp.pPremio = premioActual;
+                            cp.categorias = new List<PI_BA_Categoria>();
+                            cp.categorias.Add(c);
 
-                        ctgPendientes.Add(cp);
+                            ctgPendientes.Add(cp);
+                        }
+                    }
+
+                    // render stuff
+                    foreach (var c in ctgPendientes)
+                    {
+                        Panel main = new Panel();
+                        main.CssClass = "col-md-10 col-md-offset-1";
+                        main.Style.Add("margin-bottom", "12px");
+
+                        LiteralControl lcPremio = new LiteralControl("<h4> Premio " + c.pPremio.Nombre + " </h4>");
+                        LiteralControl lcCategoria = new LiteralControl("<h5> Categorías: </h5>");
+
+                        Panel row = new Panel();
+                        row.CssClass = "row";
+
+                        short iCounter = 0;
+                        foreach (var cat in c.categorias)
+                        {
+                            Panel col = new Panel();
+                            col.CssClass = "col-md-4 item-list text-center";
+                            col.Style.Add("margin-top", "0px");
+
+                            Panel colItem = new Panel();
+                            string sColor = ltColors[iCounter % ltColors.Count];
+                            colItem.CssClass = "create-item item-description-fix";
+                            colItem.Style.Add("background-color", sColor);
+
+                            Panel pUserHeader = new Panel();
+                            pUserHeader.CssClass = "award-header";
+                            LiteralControl lcColItemCategory = new LiteralControl("<h5 class=\"item-description item-description-patch\">" + cat.Nombre
+                                + " </h5>");
+                            pUserHeader.Controls.Add(lcColItemCategory);
+
+                            var convo = ConvocatoriaService.GetConvocatoriaById(cat.cveConvocatoria);
+
+                            Panel pAwardTitle = new Panel();
+                            pAwardTitle.CssClass = "award-description-fix text-center";
+                            LiteralControl spanTitle = new LiteralControl("<span class=\"award-description\"> " + convo.TituloConvocatoria + "</span>");
+                            pAwardTitle.Controls.Add(spanTitle);
+
+                            colItem.Controls.Add(pUserHeader);
+                            colItem.Controls.Add(pAwardTitle);
+                            col.Controls.Add(colItem);
+
+                            row.Controls.Add(new LiteralControl("<a href=AdministraGanadorCategoria.aspx?c=" + cat.cveCategoria + ">"));
+                            row.Controls.Add(col);
+                            row.Controls.Add(new LiteralControl("</a>"));
+
+                            iCounter++;
+                        }
+
+                        main.Controls.Add(lcPremio);
+                        main.Controls.Add(lcCategoria);
+                        main.Controls.Add(row);
+
+                        panelControl.Controls.Add(main);
                     }
                 }
 
-                // render stuff
-                foreach(var c in ctgPendientes)
+                else
                 {
-                    Panel main = new Panel();
-                    main.CssClass = "col-md-10 col-md-offset-1";
-                    main.Style.Add("margin-bottom", "12px");
-
-                    LiteralControl lcPremio = new LiteralControl("<h4> Premio " + c.pPremio.Nombre + " </h4>");
-                    LiteralControl lcCategoria = new LiteralControl("<h5> Categorías: </h5>");
-
-                    Panel row = new Panel();
-                    row.CssClass = "row";
-
-                    short iCounter = 0;
-                    foreach(var cat in c.categorias)
-                    {
-                        Panel col = new Panel();
-                        col.CssClass = "col-md-4 item-list text-center";
-                        col.Style.Add("margin-top", "0px");
-
-                        Panel colItem = new Panel();
-                        string sColor = ltColors[iCounter % ltColors.Count];
-                        colItem.CssClass = "create-item item-description-fix";
-                        colItem.Style.Add("background-color", sColor);
-
-                        Panel pUserHeader = new Panel();
-                        pUserHeader.CssClass = "award-header";
-                        LiteralControl lcColItemCategory = new LiteralControl("<h5 class=\"item-description item-description-patch\">" + cat.Nombre
-                            + " </h5>");
-                        pUserHeader.Controls.Add(lcColItemCategory);
-
-                        var convo = ConvocatoriaService.GetConvocatoriaById(cat.cveConvocatoria);
-
-                        Panel pAwardTitle = new Panel();
-                        pAwardTitle.CssClass = "award-description-fix text-center";
-                        LiteralControl spanTitle = new LiteralControl("<span class=\"award-description\"> " + convo.TituloConvocatoria + "</span>");
-                        pAwardTitle.Controls.Add(spanTitle);
-
-                        colItem.Controls.Add(pUserHeader);
-                        colItem.Controls.Add(pAwardTitle);
-                        col.Controls.Add(colItem);
-
-                        row.Controls.Add(new LiteralControl("<a href=AdministraGanadorCategoria.aspx?c=" + cat.cveCategoria + ">"));
-                        row.Controls.Add(col);
-                        row.Controls.Add(new LiteralControl("</a>"));
-
-                        iCounter++;
-                    }
-
-                    main.Controls.Add(lcPremio);
-                    main.Controls.Add(lcCategoria);
-                    main.Controls.Add(row);
-
-                    panelControl.Controls.Add(main);
+                    //desplegar letrero de no aplicaciones
+                    HtmlControl divControl = new HtmlGenericControl("div");
+                    divControl.Attributes.Add("class", "text-center");
+                    divControl.Visible = true;
+                    divControl.Controls.Add(new LiteralControl("<br /> <h4> No hay categorias que mostrar. </h4>"));
+                    panelControl.Controls.Add(divControl);
                 }
             }
         }
@@ -163,7 +177,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioAdmin.aspx");
+            Response.Redirect("InicioAdmin.aspx", false);
         }
     }
 }

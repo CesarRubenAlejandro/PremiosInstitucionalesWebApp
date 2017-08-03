@@ -1,8 +1,8 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
-using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -19,11 +19,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:getProfileReferences(); ", true);
@@ -39,9 +39,11 @@ namespace PremiosInstitucionales.WebForms
             if (!candidato.FechaPrivacidadDatos.HasValue)
             {
                 guardarCambiosBtn.Style.Add("display", "none");
+                avisoPrivacidad.Style.Add("display", "inline-block");
             }
             else
             {
+                guardarCambiosBtn.Style.Add("display", "inline-block");
                 avisoPrivacidad.Style.Add("display", "none");
             }
         }
@@ -75,14 +77,31 @@ namespace PremiosInstitucionales.WebForms
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
-            ActualizarDatosGenerales();
-            Upload(sender, e);
-            MasterPage.showErrorMsg("Aviso", "Cambios realizados con exito.");
+            try
+            {
+                ActualizarDatosGenerales();
+                Upload(sender, e);
+                CheckPrivacy();
+                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
         }
 
         protected void CambiarContrasena_Click(object sender, EventArgs e)
         {
-            ActualizarContrasena();
+            try
+            {
+                ActualizarContrasena();
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+            }
         }
 
         protected void ActualizarContrasena()
@@ -94,16 +113,42 @@ namespace PremiosInstitucionales.WebForms
             {
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
-                    if (InformacionPersonalCandidatoService.GuardaNuevaContrasena(Session[StringValues.CorreoSesion].ToString(), newPwdTextBox.Text))
+                    Regex regexNumero = new Regex(@".*\d.*");
+                    Regex regexLetra = new Regex(@".*[a-zA-z].*");
+                    Match matchNumero = regexNumero.Match(newPwdTextBox.Text);
+                    Match matchLetra = regexLetra.Match(newPwdTextBox.Text);
+
+                    if (newPwdTextBox.Text.Length >= 6 && matchNumero.Success && matchLetra.Success)
                     {
-                        // good
+                        if (candidato != null)
+                        {
+                            candidato.Password = newPwdTextBox.Text;
+                            if (InformacionPersonalCandidatoService.UpdateCandidato(candidato))
+                            {
+                                MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
+                            }
+                            else
+                            {
+                                MostrarCampos();
+                            }
+                        }
                     }
                     else
                     {
-                        // bad
+                        MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
                     }
                 }
+                else
+                {
+                    MasterPage.ShowMessage("Error", "Contraseñas no coinciden.");
+                }
             }
+            else
+            {
+                MasterPage.ShowMessage("Error", "Contraseña actual incorrecta.");
+            }
+
+            ResetFields();
         }
 
         protected void ActualizarDatosGenerales()
@@ -123,11 +168,7 @@ namespace PremiosInstitucionales.WebForms
                     candidato.FechaPrivacidadDatos = DateTime.Today.Date;
                 }
 
-                if (InformacionPersonalCandidatoService.UpdateCandidato(candidato))
-                {
-
-                }
-                else
+                if (!InformacionPersonalCandidatoService.UpdateCandidato(candidato))
                 {
                     MostrarCampos();
                 }
@@ -159,15 +200,16 @@ namespace PremiosInstitucionales.WebForms
                 // Upload image to server
                 FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
 
+                // Update data in database
                 InformacionPersonalCandidatoService.CambiaImagen(null, Session[StringValues.CorreoSesion].ToString(), sNombreImagen);
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.Url.AbsoluteUri, false);
             }
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioCandidato.aspx");
+            Response.Redirect("InicioCandidato.aspx", false);
         }
 
     }

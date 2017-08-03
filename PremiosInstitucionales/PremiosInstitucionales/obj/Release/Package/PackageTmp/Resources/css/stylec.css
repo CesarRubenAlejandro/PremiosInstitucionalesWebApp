@@ -4,6 +4,17 @@ body {
 	overflow-x: hidden;
 }
 
+.error-icon {
+    margin-top: -6px;
+    width: 32px;
+    height: 32px;
+}
+
+.error-msg {
+    color: #444444;
+    font: 600 16px/18px 'Open Sans', sans-serif;
+}
+
 .img-square {
   object-fit: cover;
   width:150px;
@@ -417,6 +428,11 @@ div.award-header{
 	line-height: normal;
 }
 
+.item-description-patch{
+	margin-top: -22.5px !important;
+}
+
+
 .award-description-fix{
 	line-height: 45px;
 	overflow-y: none;
@@ -508,7 +524,7 @@ div.award-header{
 }
 
 .service-icon{
-	max-height:96px;
+	max-height: 96px;
 	max-width: 96px;
 	width: 100%;
 	height: auto;
@@ -556,10 +572,31 @@ input[type=number]::-webkit-outer-spin-button {
     text-align:center;
 }
 
-.nav-profilepic{
+.nav-profilepic {
     width: 32px;
     height: 32px;
     margin-top: -3px;
     margin-left: 8px;
     border: 2px solid white;
+}
+
+.backBtn, .closeBtn {
+	position: absolute; 
+	top: 82px; 
+	left: 42px;
+    width: 56px;
+    height: 56px;
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	background-size: 100% 100%;
+	cursor: pointer; /* Add a mouse pointer on hover */
+}
+
+.backBtn {
+	background:url(../../../Resources/svg/back.svg) no-repeat;
+}
+
+.closeBtn {
+	background:url(../../../Resources/svg/close.svg) no-repeat;
 }

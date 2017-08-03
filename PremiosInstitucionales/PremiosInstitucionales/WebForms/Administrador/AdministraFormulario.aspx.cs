@@ -17,9 +17,11 @@ namespace PremiosInstitucionales.WebForms
         String idCategoria;
         String formaID;
         TextBox tbCategoria;
+        MP_Global MasterPage = new MP_Global();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
 
             if (!IsPostBack)
             {
@@ -28,12 +30,22 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
+            }
+
+            switch (Request.QueryString["s"])
+            {
+                case "success":
+                    MasterPage.ShowMessage("Aviso", "Los cambios fueron realizados con éxito.");
+                    break;
+                case "failed":
+                    MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+                    break;
             }
 
             // Obtener Ids
@@ -81,7 +93,7 @@ namespace PremiosInstitucionales.WebForms
                         }
                     }
                 }
-                Response.Redirect("inicioAdmin.aspx");
+                Response.Redirect("inicioAdmin.aspx", false);
             }
         }
 
@@ -124,9 +136,6 @@ namespace PremiosInstitucionales.WebForms
 
             }
             numPregunta++;
-
-            //<div class="list-group-item"><input class="pregunta form-control" type="text" name="mytext[]" placeholder= "Pregunta"/><a href="#" class="remove">Eliminar</a></div>
-            //Guid.NewGuid().ToString();
         }
 
         private void LoadJudgeTable()
@@ -270,11 +279,19 @@ namespace PremiosInstitucionales.WebForms
 
         protected void SaveChanges(object sender, EventArgs e)
         {
-            formaID = Request.QueryString["p"];
-            Guarda_Jueces();
-            Guarda_Formulario();
-            AplicacionService.CambiarNombreCategoria(idCategoria, tbCategoria.Text);
-            Response.Redirect("AdministraFormulario.aspx?p=" + formaID);
+            try
+            {
+                formaID = Request.QueryString["p"];
+                Guarda_Jueces();
+                Guarda_Formulario();
+                AplicacionService.CambiarNombreCategoria(idCategoria, tbCategoria.Text);
+                Response.Redirect("AdministraFormulario.aspx?p=" + formaID + "&s=" + "success", false);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                Response.Redirect("AdministraFormulario.aspx?p=" + formaID + "&s=" + "failed", false);
+            }
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
@@ -283,7 +300,7 @@ namespace PremiosInstitucionales.WebForms
             var cveCategoria = ConvocatoriaService.GetFormaByID(formaID).cveCategoria;
             var cveConvocatoria = ConvocatoriaService.GetCategoriaById(cveCategoria).cveConvocatoria;
 
-            Response.Redirect("AdministraCategorias.aspx?c=" + cveConvocatoria);
+            Response.Redirect("AdministraCategorias.aspx?c=" + cveConvocatoria, false);
         }
     }
 }

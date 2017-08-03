@@ -9,8 +9,17 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class AplicacionesCandidato : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
+            
+            // Si viene de la página del formulario
+            if(Request.QueryString["r"] == "true")
+            {
+                MasterPage.ShowMessage("Aviso", "Tu aplicación ha sido enviada éxitosamente.");
+            }
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
@@ -18,11 +27,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
 
@@ -180,7 +189,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioCandidato.aspx");
+            Response.Redirect("InicioCandidato.aspx", false);
         }
     }
 }

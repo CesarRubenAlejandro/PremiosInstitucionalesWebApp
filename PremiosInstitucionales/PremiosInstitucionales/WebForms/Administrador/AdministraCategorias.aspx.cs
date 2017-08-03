@@ -12,8 +12,11 @@ namespace PremiosInstitucionales.WebForms
     public partial class AdministraCategorias : System.Web.UI.Page
     {
         List<string> ltColors = new List<string> { "#f44336", "#4caf50", "#2196f3", "#ffc107" };
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
@@ -21,11 +24,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 string sConvocatoriaID = Request.QueryString["c"];
                 if (sConvocatoriaID != null)
@@ -42,7 +45,7 @@ namespace PremiosInstitucionales.WebForms
                         }
                     }
                 }
-                Response.Redirect("inicioAdmin.aspx");
+                Response.Redirect("inicioAdmin.aspx", false);
             }
         }
 
@@ -56,6 +59,17 @@ namespace PremiosInstitucionales.WebForms
             String fVeredicto = "'" + convocatoria.FechaVeredicto.ToString().Substring(0, 10) + "'";
 
             ClientScript.RegisterStartupScript(GetType(), "sD", "setDates("+ fInicio + fFin + fVeredicto +");", true);
+
+            // Mensaje si pude editar los datos del premio
+            switch (Request.QueryString["s"])
+            {
+                case "success":
+                    MasterPage.ShowMessage("Aviso", "Los cambios fueron realizados con éxito.");
+                    break;
+                case "failed":
+                    MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+                    break;
+            }
 
             var categorias = ConvocatoriaService.GetCategoriasByConvocatoria(convocatoria.cveConvocatoria);
             int iCounter = 0;
@@ -92,7 +106,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 CreateCategory();
             }
-            Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"]);
+            Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"], false);
 
         }
 
@@ -100,7 +114,7 @@ namespace PremiosInstitucionales.WebForms
         {
             string sConvocatoriaID = Request.QueryString["c"];
             var convocatoria = ConvocatoriaService.GetConvocatoriaById(sConvocatoriaID);
-            Response.Redirect("AdministraConvocatorias.aspx?p="+convocatoria.cvePremio);
+            Response.Redirect("AdministraConvocatorias.aspx?p="+convocatoria.cvePremio, false);
         }
 
         private void CreateCategory()
@@ -124,34 +138,38 @@ namespace PremiosInstitucionales.WebForms
             forma.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
             ConvocatoriaService.CreateForma(forma);
 
-            ResetFields();
+            tbCategoryTitle.Text = "";
         }
 
         protected void GuardarBttn_Click(object sender, EventArgs e)
         {
-            // Obtener el obj convocatoria actual
-            var cvEditada = ConvocatoriaService.GetConvocatoriaById(Request.QueryString["c"]);
+            try
+            { 
+                // Obtener el obj convocatoria actual
+                var cvEditada = ConvocatoriaService.GetConvocatoriaById(Request.QueryString["c"]);
 
-            // Actualizar los campos que el admin haya cambiado
-            cvEditada.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
-            cvEditada.FechaInicio = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaInicioNuevaConvo"]), "MM/dd/yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            cvEditada.FechaFin = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaFinNuevaConvo"]), "MM/dd/yyyy",
-                           System.Globalization.CultureInfo.InvariantCulture);
-            cvEditada.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
-                           System.Globalization.CultureInfo.InvariantCulture);
-            cvEditada.FechaEdicion = DateTime.Now;
-            cvEditada.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
+                // Actualizar los campos que el admin haya cambiado
+                cvEditada.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
+                cvEditada.FechaInicio = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaInicioNuevaConvo"]), "MM/dd/yyyy",
+                                           System.Globalization.CultureInfo.InvariantCulture);
+                cvEditada.FechaFin = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaFinNuevaConvo"]), "MM/dd/yyyy",
+                               System.Globalization.CultureInfo.InvariantCulture);
+                cvEditada.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
+                               System.Globalization.CultureInfo.InvariantCulture);
+                cvEditada.FechaEdicion = DateTime.Now;
+                cvEditada.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
 
-            // guardar convocatoria editada
-            ConvocatoriaService.ActualizarConvocatoria(cvEditada);
+                // guardar convocatoria editada
+                ConvocatoriaService.ActualizarConvocatoria(cvEditada);
 
-            // forzar el refresh de la pagina para traer los cambios
-            Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"]);
-        }
-        private void ResetFields ()
-        {
-            tbCategoryTitle.Text = "";
+                // forzar el refresh de la pagina para traer los cambios
+                Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"] + "&s=" + "success", false);
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                Response.Redirect("AdministraCategorias.aspx?c=" + Request.QueryString["c"] + "&s=" + "failed", false);
+            }
         }
     }
 }

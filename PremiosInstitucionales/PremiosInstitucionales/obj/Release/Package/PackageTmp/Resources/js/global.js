@@ -4,14 +4,13 @@ $(document).ready(function () {
     }
 });
 
-function validateAnswerCharacters(e) {
-    e.target.value = e.target.value.replace(/&/g, "y");
-}
-
 function changeAnchor(s, premio) {
     var x = s[s.selectedIndex].id;
     document.getElementById(premio).href = "Formulario.aspx?c=" + x;
+}
 
+function validateAnswerCharacters(e) {
+    e.target.value = e.target.value.replace(/&/g, "y");
 }
 
 function updateCharactersLeft(textarea) {
@@ -31,4 +30,8 @@ function sendFormAux() {
 
 function changePage(url) {
     window.open(url, '_blank');
+}
+
+function loadPage(url) {
+    location.href = url;
 }

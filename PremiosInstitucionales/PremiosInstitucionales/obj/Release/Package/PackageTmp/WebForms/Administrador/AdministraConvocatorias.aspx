@@ -15,6 +15,8 @@
     <!-- Content -->
     <div class="container fadeView">
 
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
         <!-- Titulo -->
         <div class="container">
             <div class="row">
@@ -52,7 +54,7 @@
                         </div>
                         <label class="col-lg-3 control-label">Descripción Premio:</label>
                         <div class="question-box col-lg-8">
-                            <asp:TextBox runat="server" class="form-control form-text-area scrollbar-custom" Rows="5" onkeyup="updateCharactersLeft(this);" MaxLength="500" ID="DescripcionPremioSeleccionado" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox runat="server" class="form-control form-text-area scrollbar-custom" maxlength="500" Rows="5" onkeyup="updateCharactersLeft2(this);"  ID="DescripcionPremioSeleccionado" TextMode="MultiLine"></asp:TextBox>
                             <p> 500 caracteres restantes </p>
                         </div>
                     </div>

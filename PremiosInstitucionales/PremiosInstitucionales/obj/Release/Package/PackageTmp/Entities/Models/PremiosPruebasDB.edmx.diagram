@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d4f73b168bf4c1b83ef9a0ac1b25168" Name="Diagram1">
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Aplicacion" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Candidato" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Categoria" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Evaluacion" Width="1.5" PointX="8.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Forma" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Juez" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_JuezPorCategoria" Width="1.5" PointX="10.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Pregunta" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_PreguntasPorForma" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Premio" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_BA_Respuesta" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wPremiosInstitucionalesdbModel.PI_SE_Administrador" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Candidato" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Aplicacion_PI_BA_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Categoria_PI_BA_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Respuesta_PI_BA_Aplicacion" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Categoria_PI_BA_Convocatoria" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Forma_PI_BA_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Convocatoria_PI_BA_Premio" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Evaluacion_PI_BA_Juez" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_PreguntasPorForma_PI_BA_Forma" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_JuezPorCategoria_PI_BA_Juez" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_PreguntasPorForma_PI_BA_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="wPremiosInstitucionalesdbModel.FK_PI_BA_Respuesta_PI_BA_Pregunta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

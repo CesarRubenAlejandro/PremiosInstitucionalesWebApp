@@ -16,9 +16,11 @@ namespace PremiosInstitucionales.WebForms
 
         private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
         private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
+        MP_Global MasterPage = new MP_Global();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
@@ -26,11 +28,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
                         // si no es candidato, redireccionar a login
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 string sCategoriaID = Request.QueryString["c"];
@@ -45,13 +47,13 @@ namespace PremiosInstitucionales.WebForms
                     }
                     else
                     {
-                        Response.Redirect("inicioCandidato.aspx");
+                        Response.Redirect("inicioCandidato.aspx", false);
                     }
 
                 }
                 else
                 {
-                    Response.Redirect("inicioCandidato.aspx");
+                    Response.Redirect("inicioCandidato.aspx", false);
                 }
             }
         }
@@ -165,7 +167,7 @@ namespace PremiosInstitucionales.WebForms
             {
                 aplicacionNueva.NombreArchivo = UploadFile();
                 AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
-                Response.Redirect("AplicacionesCandidato.aspx");
+                Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
             }
         }
 
@@ -190,9 +192,6 @@ namespace PremiosInstitucionales.WebForms
             if (file != null && file.ContentLength > 0)
             {
                 string fname = Path.GetFileName(file.FileName);
-
-                // Delete previous image...
-                //File.Delete(Server.MapPath("~/UsersAppsFiles/") + candidato.NombreImagen);
 
                 // Get string image format (png, jpg, etc)
                 var startIndex = fname.LastIndexOf(".");

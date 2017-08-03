@@ -5,6 +5,8 @@
     <script src='<%= ResolveUrl("~/Resources/js/AplicacionesCandidato.js") %>'></script>
     <div class="container fadeView">
 
+        <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
         <div class="container">
 		    <div class="row">
 			    <div class="col-lg-12 text-center">

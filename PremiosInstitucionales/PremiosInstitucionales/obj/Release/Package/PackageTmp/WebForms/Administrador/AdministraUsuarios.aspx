@@ -6,14 +6,23 @@
     <script src='<%= ResolveUrl("~/Resources/js/listaUsuariosCandidato.js")%>' type="text/javascript" defer="defer"></script>
     <link href='<%= ResolveUrl("~/Resources/css/dataTables.css")%>' rel="stylesheet" type="text/css" /> 
 
+    <asp:Button type="button" runat="server" OnClick="BackBtn_Click" class="backBtn"/>
+
     <div class="container fadeView" style="position:relative;">
 		
-		<h3>Información personal</h3>
-		<h4>
-            <asp:Literal ID="litUsuarios" runat="server" />
-        </h4>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+		            <h3>Información personal</h3>
+		            <h4>
+                        <asp:Literal ID="litUsuarios" runat="server" />
+                    </h4>
+                    <hr class="shorthr" />
+                </div>
+            </div>
+        </div>
 
-        <div style="position: absolute; top: 50px; right: 0px;">
+        <div style="position: absolute; top: 85px; right: 5px;">
             <asp:Button class="btn" ID="Button1" Text="Descargar" OnClick="GetExcel_Click" runat="server"/>
 		</div>
 

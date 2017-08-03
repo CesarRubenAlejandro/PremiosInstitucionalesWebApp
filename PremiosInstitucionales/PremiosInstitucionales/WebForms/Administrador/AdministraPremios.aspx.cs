@@ -19,11 +19,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
                         // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 LoadAwards();
@@ -94,13 +94,13 @@ namespace PremiosInstitucionales.WebForms
             {
                 CreateAward();
             }
-            Response.Redirect("AdministraPremios.aspx");
+            Response.Redirect("AdministraPremios.aspx", false);
 
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioAdmin.aspx");
+            Response.Redirect("InicioAdmin.aspx", false);
         }
 
         private void CreateAward()

@@ -28,8 +28,8 @@
                 </div>
             </div>
 
-            <!-- Pendientes -->
-            <div id="Terminados" class="tab-pane fade in active">
+            <!-- Terminadas -->
+            <div id="Terminados" class="tab-pane fade">
                 <div class="container">
                     <div class="row" runat="server" id="PanelCategoriasTerminadas"></div>
                 </div>

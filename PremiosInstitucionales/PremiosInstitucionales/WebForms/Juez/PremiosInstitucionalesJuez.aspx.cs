@@ -34,11 +34,11 @@ namespace PremiosInstitucionales.WebForms
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
                         // si no es juez, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx");
+                        Response.Redirect("~/WebForms/Login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/WebForms/Login.aspx");
+                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
 
                 CargarAplicaciones();
@@ -187,26 +187,33 @@ namespace PremiosInstitucionales.WebForms
 
             List<Premio> listaPremios = new List<Premio>();
             bool categoriaAgregada;
+            var today = DateTime.Today;
 
             if (listaCategorias != null)
             {
                 foreach (var categoria in listaCategorias)
                 {
-                    categoriaAgregada = false;
+                    var convocatoria = ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria);
 
-                    foreach (var premio in listaPremios)
+                    // Checar si la convocatoria ya vencio
+                    if (!(convocatoria.FechaInicio > today) && !(convocatoria.FechaVeredicto < today))
                     {
-                        if (premio.Nombre == EvaluacionService.GetPremioByCategoria(categoria.cveCategoria).Nombre)
+                        categoriaAgregada = false;
+
+                        foreach (var premio in listaPremios)
                         {
-                            premio.ListaCategorias.Add(categoria);
-                            categoriaAgregada = true;
+                            if (premio.Nombre == EvaluacionService.GetPremioByCategoria(categoria.cveCategoria).Nombre)
+                            {
+                                premio.ListaCategorias.Add(categoria);
+                                categoriaAgregada = true;
+                            }
                         }
-                    }
-                    if (!categoriaAgregada)
-                    {
-                        List<PI_BA_Categoria> nuevaLista = new List<PI_BA_Categoria>();
-                        nuevaLista.Add(categoria);
-                        listaPremios.Add(new Premio(EvaluacionService.GetPremioByCategoria(categoria.cveCategoria), nuevaLista));
+                        if (!categoriaAgregada)
+                        {
+                            List<PI_BA_Categoria> nuevaLista = new List<PI_BA_Categoria>();
+                            nuevaLista.Add(categoria);
+                            listaPremios.Add(new Premio(EvaluacionService.GetPremioByCategoria(categoria.cveCategoria), nuevaLista));
+                        }
                     }
                 }
             }
@@ -297,7 +304,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InicioJuez.aspx");
+            Response.Redirect("InicioJuez.aspx", false);
         }
 
     }

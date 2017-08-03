@@ -65,7 +65,7 @@
 						<div class="forgot-htm">
 							<div class="hide-content">
 								<div class="option-tabs">
-									<label class="tab">Recuperar Contraseña</label>
+									<label id="tab-3" class="tab">Recuperar Contraseña</label>
 								</div>
 								<div class="int-group">
 									<label for="userforgot" class="int-label">Correo Electrónico<span class="req">*</span></label>

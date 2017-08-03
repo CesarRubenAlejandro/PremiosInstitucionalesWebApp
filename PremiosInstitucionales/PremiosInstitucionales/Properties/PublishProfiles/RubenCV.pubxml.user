@@ -67,10 +67,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2016 15:35:26</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll">
-      <publishTime>07/24/2017 15:42:12</publishTime>
+      <publishTime>08/03/2017 09:55:29</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll.config">
-      <publishTime>05/10/2017 16:03:52</publishTime>
+      <publishTime>07/24/2017 17:56:50</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>03/22/2017 16:41:09</publishTime>
@@ -117,8 +117,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/System.Web.Http.xml">
       <publishTime>03/22/2017 16:41:09</publishTime>
     </File>
+    <File Include="Document/ListaCandidatos.xlsx">
+      <publishTime>05/29/2017 20:45:24</publishTime>
+    </File>
+    <File Include="Document/ListaJueces.xlsx">
+      <publishTime>05/29/2017 20:58:34</publishTime>
+    </File>
     <File Include="Entities/Models/PremiosInstitucionalesModels.edmx.diagram">
       <publishTime>05/07/2017 17:14:41</publishTime>
+    </File>
+    <File Include="Entities/Models/PremiosPruebasDB.edmx.diagram">
+      <publishTime>07/24/2017 16:19:22</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>01/26/2017 12:11:09</publishTime>
@@ -127,13 +136,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2017 16:11:18</publishTime>
     </File>
     <File Include="MP-Global.Master">
-      <publishTime>05/24/2017 16:43:47</publishTime>
+      <publishTime>07/28/2017 02:06:53</publishTime>
     </File>
     <File Include="MP-Login.Master">
-      <publishTime>05/24/2017 16:43:39</publishTime>
+      <publishTime>07/28/2017 01:30:42</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>07/24/2017 15:55:11</publishTime>
     </File>
     <File Include="Resources/css/AplicacionesCandidato.css">
       <publishTime>05/21/2017 16:46:35</publishTime>
+    </File>
+    <File Include="Resources/css/archivoFormas.css">
+      <publishTime>07/25/2017 14:30:26</publishTime>
     </File>
     <File Include="Resources/css/bootstrap.min.css">
       <publishTime>03/22/2017 16:41:09</publishTime>
@@ -240,6 +255,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Resources/css/jquery-ui.css">
       <publishTime>05/07/2017 17:14:41</publishTime>
     </File>
+    <File Include="Resources/css/normalize.css">
+      <publishTime>07/24/2017 22:02:28</publishTime>
+    </File>
     <File Include="Resources/css/PremiosInstitucionalesJuez.css">
       <publishTime>05/21/2017 15:49:04</publishTime>
     </File>
@@ -247,13 +265,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/08/2017 23:47:33</publishTime>
     </File>
     <File Include="Resources/css/style.css">
-      <publishTime>05/26/2017 21:10:22</publishTime>
+      <publishTime>07/28/2017 02:05:59</publishTime>
     </File>
     <File Include="Resources/css/stylec.css">
-      <publishTime>05/23/2017 21:12:46</publishTime>
+      <publishTime>08/03/2017 09:18:08</publishTime>
     </File>
     <File Include="Resources/css/stylePremios.css">
-      <publishTime>05/21/2017 21:41:49</publishTime>
+      <publishTime>08/02/2017 17:25:26</publishTime>
     </File>
     <File Include="Resources/img/default-award.png">
       <publishTime>05/07/2017 17:14:41</publishTime>
@@ -273,6 +291,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Resources/img/trophy.png">
       <publishTime>05/24/2017 15:27:30</publishTime>
     </File>
+    <File Include="Resources/js/adminGanadorCategoria.js">
+      <publishTime>07/26/2017 16:50:36</publishTime>
+    </File>
     <File Include="Resources/js/AdministraFormulario.js">
       <publishTime>05/21/2017 21:36:03</publishTime>
     </File>
@@ -283,16 +304,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/22/2017 16:41:09</publishTime>
     </File>
     <File Include="Resources/js/crearConvocatoria.js">
-      <publishTime>05/22/2017 11:44:37</publishTime>
+      <publishTime>08/03/2017 08:40:11</publishTime>
+    </File>
+    <File Include="Resources/js/custom-file-input.js">
+      <publishTime>07/25/2017 00:48:12</publishTime>
+    </File>
+    <File Include="Resources/js/editarConvocatoria.js">
+      <publishTime>07/27/2017 12:38:59</publishTime>
     </File>
     <File Include="Resources/js/global.js">
-      <publishTime>05/24/2017 16:39:37</publishTime>
+      <publishTime>08/03/2017 08:16:08</publishTime>
     </File>
     <File Include="Resources/js/index.js">
       <publishTime>05/26/2017 21:13:43</publishTime>
     </File>
     <File Include="Resources/js/InformacionPersonalCandidato.js">
-      <publishTime>05/23/2017 02:00:23</publishTime>
+      <publishTime>07/28/2017 02:17:24</publishTime>
     </File>
     <File Include="Resources/js/jquery-ui.js">
       <publishTime>05/07/2017 17:14:41</publishTime>
@@ -309,35 +336,47 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Resources/js/listaParticipantes.js">
       <publishTime>05/07/2017 17:14:42</publishTime>
     </File>
+    <File Include="Resources/js/listaPremiosCandidato.js">
+      <publishTime>08/02/2017 17:04:07</publishTime>
+    </File>
     <File Include="Resources/js/listaUsuariosCandidato.js">
       <publishTime>05/08/2017 15:44:48</publishTime>
     </File>
     <File Include="Resources/svg/add.svg">
       <publishTime>05/07/2017 17:14:42</publishTime>
     </File>
+    <File Include="Resources/svg/back.svg">
+      <publishTime>08/03/2017 09:24:54</publishTime>
+    </File>
     <File Include="Resources/svg/badgebg.svg">
-      <publishTime>03/22/2017 16:41:09</publishTime>
+      <publishTime>08/03/2017 09:21:08</publishTime>
     </File>
     <File Include="Resources/svg/checkmark.svg">
       <publishTime>03/22/2017 16:41:09</publishTime>
     </File>
     <File Include="Resources/svg/clipboard.svg">
-      <publishTime>03/22/2017 16:41:09</publishTime>
+      <publishTime>08/03/2017 09:22:35</publishTime>
+    </File>
+    <File Include="Resources/svg/close.svg">
+      <publishTime>08/03/2017 09:28:32</publishTime>
     </File>
     <File Include="Resources/svg/done.svg">
       <publishTime>05/24/2017 11:03:21</publishTime>
     </File>
     <File Include="Resources/svg/juez.svg">
-      <publishTime>03/22/2017 16:41:09</publishTime>
+      <publishTime>08/03/2017 09:22:10</publishTime>
     </File>
     <File Include="Resources/svg/learning.svg">
       <publishTime>03/22/2017 16:41:09</publishTime>
     </File>
     <File Include="Resources/svg/plus.svg">
-      <publishTime>05/07/2017 17:14:42</publishTime>
+      <publishTime>08/03/2017 09:23:54</publishTime>
     </File>
     <File Include="Resources/svg/proponer.svg">
-      <publishTime>03/22/2017 16:41:09</publishTime>
+      <publishTime>08/03/2017 09:21:47</publishTime>
+    </File>
+    <File Include="Resources/svg/reports.svg">
+      <publishTime>07/27/2017 13:12:39</publishTime>
     </File>
     <File Include="Resources/svg/shield.svg">
       <publishTime>05/07/2017 17:14:42</publishTime>
@@ -360,77 +399,83 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Values/CorreoSolicitudCambio.txt">
       <publishTime>01/26/2017 12:11:08</publishTime>
     </File>
+    <File Include="Values/POLITICAS_DE_PRIVACIDAD_Tec.pdf">
+      <publishTime>08/03/2017 09:32:13</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>07/24/2017 15:42:16</publishTime>
+      <publishTime>08/03/2017 09:34:04</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraAplicacionesPendientes.aspx">
-      <publishTime>05/26/2017 11:56:30</publishTime>
+      <publishTime>07/24/2017 20:19:06</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraCategorias.aspx">
-      <publishTime>05/24/2017 15:57:31</publishTime>
+      <publishTime>07/27/2017 13:24:19</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraConvocatorias.aspx">
-      <publishTime>05/24/2017 23:28:31</publishTime>
+      <publishTime>08/03/2017 08:52:05</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraFormulario.aspx">
-      <publishTime>05/24/2017 15:57:50</publishTime>
+      <publishTime>07/24/2017 20:05:34</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraGanadorCategoria.aspx">
-      <publishTime>05/24/2017 15:58:02</publishTime>
+      <publishTime>07/27/2017 13:16:12</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraGanadores.aspx">
-      <publishTime>05/24/2017 15:58:11</publishTime>
+      <publishTime>08/03/2017 05:57:09</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraInformacionPersonal.aspx">
-      <publishTime>07/05/2017 00:10:28</publishTime>
+      <publishTime>08/02/2017 15:26:44</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraPremios.aspx">
-      <publishTime>05/24/2017 15:58:35</publishTime>
+      <publishTime>08/03/2017 08:50:04</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraUsuarios.aspx">
-      <publishTime>05/29/2017 21:17:47</publishTime>
+      <publishTime>07/26/2017 15:15:44</publishTime>
     </File>
     <File Include="WebForms/Administrador/InicioAdmin.aspx">
-      <publishTime>05/24/2017 15:59:02</publishTime>
+      <publishTime>08/03/2017 05:13:20</publishTime>
+    </File>
+    <File Include="WebForms/Administrador/ObservaAplicacion.aspx">
+      <publishTime>08/02/2017 15:58:30</publishTime>
     </File>
     <File Include="WebForms/Candidato/AplicacionesCandidato.aspx">
-      <publishTime>05/24/2017 15:59:15</publishTime>
+      <publishTime>07/24/2017 20:28:31</publishTime>
     </File>
     <File Include="WebForms/Candidato/CorrigeAplicacion.aspx">
-      <publishTime>05/24/2017 15:59:23</publishTime>
+      <publishTime>08/02/2017 16:29:38</publishTime>
     </File>
     <File Include="WebForms/Candidato/Formulario.aspx">
-      <publishTime>05/24/2017 15:59:34</publishTime>
+      <publishTime>07/27/2017 13:18:57</publishTime>
     </File>
     <File Include="WebForms/Candidato/InformacionPersonalCandidato.aspx">
-      <publishTime>05/25/2017 18:00:27</publishTime>
+      <publishTime>07/28/2017 02:16:17</publishTime>
     </File>
     <File Include="WebForms/Candidato/InicioCandidato.aspx">
-      <publishTime>05/24/2017 15:59:50</publishTime>
+      <publishTime>08/03/2017 09:31:20</publishTime>
     </File>
     <File Include="WebForms/Candidato/ListaPremios.aspx">
-      <publishTime>05/24/2017 16:23:13</publishTime>
+      <publishTime>08/02/2017 17:00:02</publishTime>
     </File>
     <File Include="WebForms/Juez/EvaluaAplicacion.aspx">
-      <publishTime>05/24/2017 16:00:09</publishTime>
+      <publishTime>08/02/2017 16:06:33</publishTime>
     </File>
     <File Include="WebForms/Juez/InformacionPersonalJuez.aspx">
-      <publishTime>05/24/2017 16:00:18</publishTime>
+      <publishTime>08/02/2017 11:48:42</publishTime>
     </File>
     <File Include="WebForms/Juez/InicioJuez.aspx">
-      <publishTime>05/24/2017 16:00:24</publishTime>
+      <publishTime>08/03/2017 09:29:59</publishTime>
     </File>
     <File Include="WebForms/Juez/ListaParticipantes.aspx">
-      <publishTime>05/24/2017 16:00:39</publishTime>
+      <publishTime>07/26/2017 15:18:30</publishTime>
     </File>
     <File Include="WebForms/Juez/PremiosInstitucionalesJuez.aspx">
-      <publishTime>05/24/2017 16:00:31</publishTime>
+      <publishTime>07/24/2017 20:56:38</publishTime>
     </File>
     <File Include="WebForms/Login.aspx">
-      <publishTime>05/24/2017 23:54:47</publishTime>
+      <publishTime>08/02/2017 11:06:21</publishTime>
     </File>
     <File Include="WebForms/RecuperaCuenta.aspx">
-      <publishTime>05/24/2017 16:01:46</publishTime>
+      <publishTime>07/28/2017 01:21:14</publishTime>
     </File>
   </ItemGroup>
 </Project>
