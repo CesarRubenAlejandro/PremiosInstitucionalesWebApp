@@ -316,7 +316,7 @@
     <Content Include="Document\ListaCandidatos.xlsx" />
     <Content Include="Document\ListaJueces.xlsx" />
     <None Include="Properties\PublishProfiles\RubenCV.pubxml" />
-    <Content Include="Values\POLITICAS_DE_PRIVACIDAD_Tec.pdf" />
+    <Content Include="Document\POLITICAS_DE_PRIVACIDAD_Tec.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

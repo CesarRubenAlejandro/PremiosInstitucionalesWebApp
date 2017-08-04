@@ -105,7 +105,7 @@ namespace PremiosInstitucionales.DBServices.InformacionPersonalJuez
                 {
                     if (sUserId != null)
                     {
-                        var juez = GetJuezByCorreo(sCorreo);
+                        var juez = GetJuezById(sUserId);
                         juez.NombreImagen = sNombreImagen;
                         UpdateJuez(juez);
                         return true;

@@ -15,7 +15,8 @@ function resetDateInputs(dates){
 
     // New value to inputs
     for (var i = 0; i < dates.length; i++){
-        $(dateInputs[i]).val(dates[i]);
+        var formattedDate = dates[i].substr(3, 2) + "-" + dates[i].substr(0, 2) + "-" + dates[i].substr(6, 4);
+        $(dateInputs[i]).val(formattedDate);
     }
 }
 
@@ -40,19 +41,14 @@ $(document).ready(function () {
     });
 
     // InitLabels
-    $("#FechaInicioNuevaConvo").val(fInicio.substr(3, 2)+"/"+fInicio.substr(0, 2)+"/"+fInicio.substr(6, 4));
-    $("#FechaFinNuevaConvo").val(fFin.substr(3, 2)+"/"+fFin.substr(0, 2)+"/"+fFin.substr(6, 4));
-    $("#FechaVeredicto").val(fVeredicto.substr(3, 2)+"/"+fVeredicto.substr(0, 2)+"/"+fVeredicto.substr(6, 4));
+    $("#FechaInicioNuevaConvo").val(fInicio.replace(/\//g , "-"));
+    $("#FechaFinNuevaConvo").val(fFin.replace(/\//g, "-"));
+    $("#FechaVeredicto").val(fVeredicto.replace(/\//g, "-"));
 
     // Create Date Objects
-    fInicio = fInicio.split("/");
-    var dInicio = new Date(fInicio[2], parseInt(fInicio[1], 10) - 1, fInicio[0]);
-
-    fFin = fFin.split("/");
-    var dFin = new Date(fFin[2], parseInt(fFin[1], 10) - 1, fFin[0]);
-
-    fVeredicto = fVeredicto.split("/");
-    var dVeredicto = new Date(fVeredicto[2], parseInt(fVeredicto[1], 10) - 1, fVeredicto[0]);
+    var dInicio = new Date(fInicio.substr(3, 2) + "/" + fInicio.substr(0, 2) + "/" + fInicio.substr(6, 4));
+    var dFin = new Date(fFin.substr(3, 2) + "/" + fFin.substr(0, 2) + "/" + fFin.substr(6, 4));
+    var dVeredicto = new Date(fVeredicto.substr(3, 2) + "/" + fVeredicto.substr(0, 2) + "/" + fVeredicto.substr(6, 4));
     
     // Select Dates 
     $('#datepicker').multiDatesPicker('addDates', [dInicio, dFin, dVeredicto]);

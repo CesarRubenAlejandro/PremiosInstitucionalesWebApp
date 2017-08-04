@@ -30,11 +30,8 @@ $(document).ready(function(){
                 "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-
         }
     });
-
-
 });
 
 function updateCharactersLeft2(textarea) {
@@ -64,8 +61,9 @@ function resetDateInputs(dates){
     }
 
     // New value to inputs
-    for (var i = 0; i < dates.length; i++){
-        $(dateInputs[i]).val(dates[i]);
+    for (var i = 0; i < dates.length; i++) {
+        var formattedDate = dates[i].substr(3, 2) + "-" + dates[i].substr(0, 2) + "-" + dates[i].substr(6, 4);
+        $(dateInputs[i]).val(formattedDate);
     }
 }
 

@@ -265,6 +265,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void CloseBtn_Click(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(GetType(), "ReloadParent", "if (window.opener && !window.opener.closed) { window.opener.location.reload(true); }", true);
             ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
         }
     }

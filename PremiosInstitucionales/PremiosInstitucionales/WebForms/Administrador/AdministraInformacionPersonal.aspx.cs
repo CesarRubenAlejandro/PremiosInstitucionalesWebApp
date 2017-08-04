@@ -1,6 +1,5 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
-using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.IO;
@@ -330,6 +329,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void CloseBtn_Click(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(GetType(), "ReloadParent", "if (window.opener && !window.opener.closed) { window.opener.location.reload(true); }", true);
             ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
         }
     }

@@ -5,6 +5,8 @@ using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
@@ -126,7 +128,7 @@ namespace PremiosInstitucionales.WebForms
                                         "<div class=\"col-sm-6\">" +
                                             "<p>" +
                                                 "<h4>Categoria: <strong>" + categoria.Nombre + "</strong></h4>" +
-                                                "Recuerda que tienes hasta el día <strong>" + ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria).FechaFin.ToString().Substring(0, 10) + "</strong> para evaluar todas tus aplicaciones." +
+                                                "Recuerda que tienes hasta el día <strong>" + FormatearStringFecha(ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria).FechaVeredicto.ToString()) + "</strong> para evaluar todas tus aplicaciones." +
                                             "</p>" +
 
                                             // <!-- Botton -->
@@ -300,6 +302,48 @@ namespace PremiosInstitucionales.WebForms
                 }
             }
             return false;
+        }
+
+        protected String FormatearStringFecha(String sFecha)
+        {
+            String returnValue = sFecha;
+
+            if (sFecha[2] == '/')
+            {
+                if (sFecha[5] == '/')
+                {
+                    returnValue = (sFecha).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    returnValue = (sFecha.Substring(0, 3) + '0' + sFecha.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+            else if (sFecha[1] == '/')
+            {
+                if (sFecha[4] == '/')
+                {
+                    returnValue = (sFecha.Substring(0, 0) + '0' + sFecha.Substring(0)).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    var aux = sFecha.Substring(0, 0) + '0' + sFecha.Substring(0);
+                    returnValue = (aux.Substring(0, 3) + '0' + aux.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+
+            return LocaleStringFecha(returnValue.Replace('/', '-').Substring(0, 10));
+        }
+
+        protected String LocaleStringFecha(String sFecha)
+        {
+            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+
+            if (currentCulture.Name.Substring(0, 2) == "en")
+            {
+                sFecha = sFecha.Substring(3, 2) + "-" + sFecha.Substring(0, 2) + "-" + sFecha.Substring(6, 4);
+            }
+            return sFecha;
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)

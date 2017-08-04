@@ -116,17 +116,17 @@ function changeTab(isLoginSelected) {
 	setTimeout(function(){
 		loginWrap.style.transition = "width .40s ease-in, height .20s ease-in, background-color .20s ease-in, box-shadow .20s ease-in";
 		loginWrap.style.width = "100%";
-	}, 250);
+	}, 100);
 	
      // Loading
 	setTimeout(function () {
 	    document.getElementById("loader").style.display = "inline";
-	}, 425);
+	}, 200);
 
 	// Login
 	setTimeout(function(){
 	    window.location.href = urlUsuario;
-	}, 800);
+	}, 300);
  }
  
 $(document).ready(function () {

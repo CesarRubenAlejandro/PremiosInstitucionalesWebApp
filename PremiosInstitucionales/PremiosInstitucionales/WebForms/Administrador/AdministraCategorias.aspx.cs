@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PremiosInstitucionales.Values;
+using System.Globalization;
+using System.Threading;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -49,14 +51,56 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
+        protected String FormatearStringFecha(String sFecha)
+        {
+            String returnValue = sFecha;
+
+            if (sFecha[2] == '/')
+            {
+                if (sFecha[5] == '/')
+                {
+                    returnValue = (sFecha).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    returnValue = (sFecha.Substring(0, 3) + '0' + sFecha.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+            else if (sFecha[1] == '/')
+            {
+                if (sFecha[4] == '/')
+                {
+                    returnValue = (sFecha.Substring(0, 0) + '0' + sFecha.Substring(0)).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    var aux = sFecha.Substring(0, 0) + '0' + sFecha.Substring(0);
+                    returnValue = (aux.Substring(0, 3) + '0' + aux.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+
+            return LocaleStringFecha(returnValue.Replace('/', '-').Substring(0, 10));
+        }
+
+        protected String LocaleStringFecha(String sFecha)
+        {
+            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+
+            if (currentCulture.Name.Substring(0, 2) == "en")
+            {
+                sFecha = sFecha.Substring(3, 2) + "-" + sFecha.Substring(0, 2) + "-" + sFecha.Substring(6, 4);
+            }
+            return sFecha;
+        }
+
         private void LoadCategories(PI_BA_Premio premio, PI_BA_Convocatoria convocatoria)
         {
             litTituloPremio.Text = premio.Nombre;
             TituloNuevaConvocatoriaTB.Text = convocatoria.TituloConvocatoria;
 
-            String fInicio = "'" + convocatoria.FechaInicio.ToString().Substring(0, 10) + "' ,";
-            String fFin =       "'" + convocatoria.FechaFin.ToString().Substring(0, 10) + "' ,";
-            String fVeredicto = "'" + convocatoria.FechaVeredicto.ToString().Substring(0, 10) + "'";
+            String fInicio = "'" + FormatearStringFecha(convocatoria.FechaInicio.ToString()) + "' ,";
+            String fFin =       "'" + FormatearStringFecha(convocatoria.FechaFin.ToString()) + "' ,";
+            String fVeredicto = "'" + FormatearStringFecha(convocatoria.FechaVeredicto.ToString()) + "'";
 
             ClientScript.RegisterStartupScript(GetType(), "sD", "setDates("+ fInicio + fFin + fVeredicto +");", true);
 
@@ -150,12 +194,14 @@ namespace PremiosInstitucionales.WebForms
 
                 // Actualizar los campos que el admin haya cambiado
                 cvEditada.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
-                cvEditada.FechaInicio = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaInicioNuevaConvo"]), "MM/dd/yyyy",
-                                           System.Globalization.CultureInfo.InvariantCulture);
-                cvEditada.FechaFin = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaFinNuevaConvo"]), "MM/dd/yyyy",
-                               System.Globalization.CultureInfo.InvariantCulture);
-                cvEditada.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
-                               System.Globalization.CultureInfo.InvariantCulture);
+
+                IFormatProvider FormatProvider = System.Globalization.CultureInfo.InvariantCulture;
+                String idParam = "{0}";
+
+                cvEditada.FechaInicio = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaInicioNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+                cvEditada.FechaFin = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaFinNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+                cvEditada.FechaVeredicto = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaVeredicto"]), "dd-MM-yyyy", FormatProvider);
+
                 cvEditada.FechaEdicion = DateTime.Now;
                 cvEditada.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
 

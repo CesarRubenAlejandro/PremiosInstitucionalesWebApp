@@ -67,7 +67,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2016 15:35:26</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll">
-      <publishTime>08/03/2017 09:55:29</publishTime>
+      <publishTime>08/04/2017 13:05:48</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll.config">
       <publishTime>07/24/2017 17:56:50</publishTime>
@@ -122,6 +122,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Document/ListaJueces.xlsx">
       <publishTime>05/29/2017 20:58:34</publishTime>
+    </File>
+    <File Include="Document/POLITICAS_DE_PRIVACIDAD_Tec.pdf">
+      <publishTime>08/03/2017 09:32:13</publishTime>
     </File>
     <File Include="Entities/Models/PremiosInstitucionalesModels.edmx.diagram">
       <publishTime>05/07/2017 17:14:41</publishTime>
@@ -304,25 +307,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/22/2017 16:41:09</publishTime>
     </File>
     <File Include="Resources/js/crearConvocatoria.js">
-      <publishTime>08/03/2017 08:40:11</publishTime>
+      <publishTime>08/04/2017 10:44:38</publishTime>
     </File>
     <File Include="Resources/js/custom-file-input.js">
       <publishTime>07/25/2017 00:48:12</publishTime>
     </File>
     <File Include="Resources/js/editarConvocatoria.js">
-      <publishTime>07/27/2017 12:38:59</publishTime>
+      <publishTime>08/04/2017 10:53:35</publishTime>
     </File>
     <File Include="Resources/js/global.js">
       <publishTime>08/03/2017 08:16:08</publishTime>
     </File>
     <File Include="Resources/js/index.js">
-      <publishTime>05/26/2017 21:13:43</publishTime>
+      <publishTime>08/04/2017 13:13:30</publishTime>
     </File>
     <File Include="Resources/js/InformacionPersonalCandidato.js">
       <publishTime>07/28/2017 02:17:24</publishTime>
     </File>
     <File Include="Resources/js/jquery-ui.js">
-      <publishTime>05/07/2017 17:14:41</publishTime>
+      <publishTime>08/04/2017 11:28:09</publishTime>
     </File>
     <File Include="Resources/js/jquery-ui.multidatespicker.js">
       <publishTime>05/07/2017 17:14:41</publishTime>
@@ -412,7 +415,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/27/2017 13:24:19</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraConvocatorias.aspx">
-      <publishTime>08/03/2017 08:52:05</publishTime>
+      <publishTime>08/04/2017 12:38:50</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraFormulario.aspx">
       <publishTime>07/24/2017 20:05:34</publishTime>

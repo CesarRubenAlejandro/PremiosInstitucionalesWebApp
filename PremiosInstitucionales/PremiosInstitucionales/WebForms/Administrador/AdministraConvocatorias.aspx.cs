@@ -2,7 +2,9 @@
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Web.UI;
 
 namespace PremiosInstitucionales.WebForms
@@ -70,15 +72,57 @@ namespace PremiosInstitucionales.WebForms
                                      "<img src = \"/Resources/img/trophy.png\" class=\"avatar img-circle\" alt=\"avatar\" style=\"max-width: 28px;\">" +
                                 "</td>" +
                                 "<td>" + convocatoria.TituloConvocatoria.ToString() + "</td>" +
-                                "<td>" + convocatoria.FechaInicio.ToString().Substring(0, 10) + "</td>" +
-                                "<td>" + convocatoria.FechaFin.ToString().Substring(0, 10) + "</td>" +
-                                "<td>" + convocatoria.FechaVeredicto.ToString().Substring(0, 10) + "</td>" +
+                                "<td>" + FormatearStringFecha(convocatoria.FechaInicio.ToString()) + "</td>" +
+                                "<td>" + FormatearStringFecha(convocatoria.FechaFin.ToString()) + "</td>" +
+                                "<td>" + FormatearStringFecha(convocatoria.FechaVeredicto.ToString()) + "</td>" +
                                 ConvocatoriaStatus(convocatoria.FechaVeredicto) +
                             "</tr>"
                         ));
                     }
                 }
             }
+        }
+
+        protected String FormatearStringFecha(String sFecha)
+        {
+            String returnValue = sFecha;
+
+            if (sFecha[2] == '/')
+            {
+                if (sFecha[5] == '/')
+                {
+                    returnValue = (sFecha).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    returnValue = (sFecha.Substring(0, 3) + '0' + sFecha.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+            else if (sFecha[1] == '/')
+            {
+                if (sFecha[4] == '/')
+                {
+                    returnValue = (sFecha.Substring(0, 0) + '0' + sFecha.Substring(0)).Replace('/', '-').Substring(0, 10);
+                }
+                else
+                {
+                    var aux = sFecha.Substring(0, 0) + '0' + sFecha.Substring(0);
+                    returnValue = (aux.Substring(0, 3) + '0' + aux.Substring(3)).Replace('/', '-').Substring(0, 10);
+                }
+            }
+
+            return LocaleStringFecha(returnValue.Replace('/', '-').Substring(0, 10));
+        }
+
+        protected String LocaleStringFecha(String sFecha)
+        {
+            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+
+            if (currentCulture.Name.Substring(0, 2) == "en")
+            {
+                sFecha = sFecha.Substring(3, 2) + "-" + sFecha.Substring(0, 2) + "-" + sFecha.Substring(6, 4);
+            }
+            return sFecha;
         }
 
         protected String ConvocatoriaStatus(DateTime? fechaVeredicto)
@@ -112,12 +156,13 @@ namespace PremiosInstitucionales.WebForms
             nuevaConvo.cveConvocatoria = Guid.NewGuid().ToString();
             nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
 
-            nuevaConvo.FechaInicio = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaInicioNuevaConvo"]), "MM/dd/yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-            nuevaConvo.FechaFin = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaFinNuevaConvo"]), "MM/dd/yyyy",
-                           System.Globalization.CultureInfo.InvariantCulture);
-            nuevaConvo.FechaVeredicto = DateTime.ParseExact(String.Format("{0}", Request.Form["FechaVeredicto"]), "MM/dd/yyyy",
-                           System.Globalization.CultureInfo.InvariantCulture);
+            IFormatProvider FormatProvider = System.Globalization.CultureInfo.InvariantCulture;
+            String idParam = "{0}";
+
+            nuevaConvo.FechaInicio = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaInicioNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+            nuevaConvo.FechaFin = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaFinNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+            nuevaConvo.FechaVeredicto = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaVeredicto"]), "dd-MM-yyyy", FormatProvider);
+
             nuevaConvo.FechaCreacion = DateTime.Now;
             nuevaConvo.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
             nuevaConvo.FechaEdicion = DateTime.Now;
