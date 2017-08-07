@@ -145,14 +145,19 @@
                         <hr class="shorthr"/>
                     </div>
                     <div class="modal-body">
+                        <!-- Imagen de escudo -->
                         <div class="text-center" style="margin-bottom: 16px;">
-                        <img src='<%= ResolveUrl("~/Resources/svg/shield.svg") %>' style="width: 96px; height: 96px;" />
-                            </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus. </p>
-
+                            <img src='<%= ResolveUrl("~/Resources/svg/shield.svg") %>' style="width: 96px; height: 96px;" />
+                        </div>
+                        <!-- Texto Corto -->
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus.
+                        </p>
+                        <!-- Ver PDF -->
                         <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" />
-                        Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a la <a href="#">Ley de Información Personal </a>para el uso del sistema.
-
+                        Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a las
+                            <a target="_blank" type="application/pdf" href='<%= ResolveUrl("~/Document/PoliticasDePrivacidadTec.pdf") %>'> políticas de privacidad </a>
+                        para el uso del sistema.
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

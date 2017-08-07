@@ -21,6 +21,7 @@ namespace PremiosInstitucionales.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             MasterPage = (MP_Global)Page.Master;
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
@@ -34,28 +35,30 @@ namespace PremiosInstitucionales.WebForms
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
                 }
+            }
+            
+            // Cargar Formulario
+            string sCategoriaID = Request.QueryString["c"];
+            if (sCategoriaID != null)
+            {
+                var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
+                var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
 
-                string sCategoriaID = Request.QueryString["c"];
-                if (sCategoriaID != null)
+                if (premio != null && categoria != null)
                 {
-                    var premio = ConvocatoriaService.GetPremioByCategoria(sCategoriaID);
-                    var categoria = ConvocatoriaService.GetCategoriaById(sCategoriaID);
-
-                    if (premio != null && categoria != null)
-                    {
-                        SetForm(premio, categoria);
-                    }
-                    else
-                    {
-                        Response.Redirect("inicioCandidato.aspx", false);
-                    }
-
+                    SetForm(premio, categoria);
                 }
                 else
                 {
                     Response.Redirect("inicioCandidato.aspx", false);
                 }
+
             }
+            else
+            {
+                Response.Redirect("inicioCandidato.aspx", false);
+            }
+
         }
 
         private void SetForm(PI_BA_Premio premio, PI_BA_Categoria categoria)
@@ -165,9 +168,14 @@ namespace PremiosInstitucionales.WebForms
 
             if (ltRespuestas.Count == preguntas.Count)
             {
-                aplicacionNueva.NombreArchivo = UploadFile();
-                AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
-                Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
+                String sNombreArchivo = UploadFile();
+
+                //if (sNombreArchivo != "Error")
+                //{
+                    aplicacionNueva.NombreArchivo = sNombreArchivo;
+                    AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
+                    Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
+                //}
             }
         }
 
@@ -199,6 +207,25 @@ namespace PremiosInstitucionales.WebForms
                 string sFormat = fname.Substring(startIndex, endIndex);
                 string sName = fname.Substring(0, fname.Length - sFormat.Length);
                 string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
+
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
+                {
+                    ".png",
+                    ".jpg",
+                    ".txt",
+                    ".doc",
+                    ".docx",
+                    ".pdf",
+                    ".xlsx",
+                    ".xls"
+                };
+
+                if (!supportedFormats.Contains(sFormat))
+                {
+                    MasterPage.ShowMessage("Error", "El archivo proporcionado debe ser un archivo de texto, una hoja de cálculo o un imagen.");
+                    return "Error";
+                }
 
                 // Upload image to server
                 file.SaveAs(Server.MapPath(Path.Combine("~/UsersAppsFiles/", sNombreArchivo)));

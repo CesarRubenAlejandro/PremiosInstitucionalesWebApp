@@ -9,6 +9,8 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using PremiosInstitucionales.DBServices.Recuperar;
 using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
+using System.Text;
+using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -22,6 +24,9 @@ namespace PremiosInstitucionales.WebForms
             MasterPage = (MP_Login)Page.Master;
             if (!IsPostBack)
             {
+                // Reset Cookie Inicio
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "setCookieInicio", "setCookie('tab', 'inicio');", true);
+
                 if (Request.QueryString["c"] != null)
                 {
                     String codigoConfirmacion = Request.QueryString["c"].ToString();
@@ -35,6 +40,11 @@ namespace PremiosInstitucionales.WebForms
                     }
                 }
             }
+            else
+            {
+                // Set Selected tab
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "setSelectedTab", "autoChangeTab();", true);
+            }
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -43,7 +53,7 @@ namespace PremiosInstitucionales.WebForms
             String password = passlogin.Text;
 
             //Checar si existe en todas las tablas y compara contrasena
-            var tipoUsuario = LoginService.GetUsuario(user1, password);
+            var tipoUsuario = LoginService.GetUsuario(user1, sha256(password));
 
             //Crear sesion o decir que no existe
             if (tipoUsuario == StringValues.RolIncorrecto)
@@ -61,7 +71,6 @@ namespace PremiosInstitucionales.WebForms
                     var candidato = LoginService.GetCandidato(user1);
                     Session[StringValues.CorreoSesion] = candidato.Correo;
                     Session[StringValues.RolSesion] = StringValues.RolCandidato;
-
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "animacionLogin", "transformToNavBar('Candidato/InicioCandidato.aspx')", true);
                 }
                 else if (tipoUsuario == StringValues.RolJuez)
@@ -97,14 +106,13 @@ namespace PremiosInstitucionales.WebForms
                 Regex regexNumero = new Regex(@".*\d.*");
                 Regex regexLetra = new Regex(@".*[a-zA-z].*");
                 Regex regexCorreo = new Regex(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$");
-
                 Match matchNumero = regexNumero.Match(password1);
                 Match matchLetra = regexLetra.Match(password1);
                 Match matchCorreo = regexCorreo.Match(correo);
 
                 if (!matchCorreo.Success)
                 {
-                    MasterPage.ShowMessage("Error", "Dirección de correo no válida.");
+                    MasterPage.ShowMessage("Error", "Dirección de correo no válida.");   
                 }
                 else
                 { 
@@ -112,7 +120,7 @@ namespace PremiosInstitucionales.WebForms
                     {
                         MasterPage.ShowMessage("Error", "Contraseña debe ser de al menos 6 caracteres y debe contener al menos un número y una letra.");
                     }
-                    else if (RegistroService.RegistraCandidato(email.Text, password1, name.Text, lname.Text, codigoConfirmacion))
+                    else if (RegistroService.RegistraCandidato(email.Text, sha256(password1), name.Text, lname.Text, codigoConfirmacion))
                     {
                         if (EnviarCorreoConfirmacion(codigoConfirmacion))
                         {
@@ -216,8 +224,23 @@ namespace PremiosInstitucionales.WebForms
                     bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoRecuperaPassword.txt"));
                     // formatear contenidos de string
                     bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
-                        InformacionPersonalCandidatoService.GetCandidatoByCorreo(destinatario).Nombre);
+
+                    switch (id[0])
+                    {
+                        case 'c':
+                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
+                            InformacionPersonalCandidatoService.GetCandidatoByCorreo(destinatario).Nombre);
+                            break;
+                        case 'j':
+                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
+                            InformacionPersonalJuezService.GetJuezByCorreo(destinatario).Nombre);
+                            break;
+                        case 'a':
+                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
+                            "Administrador");
+                            break;
+                    }
+                    
                     bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoId, id);
                     mm.Body = bodyContent;
                     // enviar
@@ -237,6 +260,17 @@ namespace PremiosInstitucionales.WebForms
                 Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
                 return false;
             }
+        }
+        static string sha256(string rawPassword)
+        {
+            System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
+            System.Text.StringBuilder hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(rawPassword), 0, Encoding.UTF8.GetByteCount(rawPassword));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }

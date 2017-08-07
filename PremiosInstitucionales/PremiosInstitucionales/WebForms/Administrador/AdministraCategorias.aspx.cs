@@ -25,18 +25,21 @@ namespace PremiosInstitucionales.WebForms
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                    {
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
                 }
+
                 string sConvocatoriaID = Request.QueryString["c"];
                 if (sConvocatoriaID != null)
                 {
                     var convocatoria = ConvocatoriaService.GetConvocatoriaById(sConvocatoriaID);
-                    if(convocatoria != null)
+                    if (convocatoria != null)
                     {
                         var premio = ConvocatoriaService.GetPremioById(convocatoria.cvePremio);
 

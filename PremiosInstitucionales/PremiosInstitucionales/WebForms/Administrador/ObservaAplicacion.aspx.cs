@@ -17,6 +17,20 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
+                if (Session[StringValues.RolSesion] != null)
+                {
+                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                        // si no es admin, redireccionar a inicio general
+                        Response.Redirect("~/WebForms/Login.aspx", false);
+                }
+                else
+                {
+                    Response.Redirect("~/WebForms/Login.aspx", false);
+                }
+            }
             String idApp = Request.QueryString["a"];
             if (idApp != null)
             {
@@ -37,21 +51,6 @@ namespace PremiosInstitucionales.WebForms
 
                         CrearFormulario(sCategoriaID, premio, categoria);
                     }
-                }
-            }
-
-            if (!IsPostBack)
-            {
-                // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
-                if (Session[StringValues.RolSesion] != null)
-                {
-                    if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
-                        // si no es admin, redireccionar a inicio general
-                        Response.Redirect("~/WebForms/Login.aspx", false);
-                }
-                else
-                {
-                    Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
         }

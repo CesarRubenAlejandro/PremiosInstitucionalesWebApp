@@ -1,7 +1,11 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.Values;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace PremiosInstitucionales.WebForms
@@ -30,7 +34,14 @@ namespace PremiosInstitucionales.WebForms
                 MostrarCampos();
                 ResetFields();
             }
+
             CheckPrivacy();
+
+            var status = Request.QueryString["s"];
+            if (status == "success")
+            {
+                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+            }
         }
 
         private void CheckPrivacy()
@@ -79,10 +90,12 @@ namespace PremiosInstitucionales.WebForms
         {
             try
             {
-                ActualizarDatosGenerales();
-                Upload(sender, e);
-                CheckPrivacy();
-                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+                if (Upload(sender, e))
+                {
+                    ActualizarDatosGenerales();
+                    CheckPrivacy();
+                    Response.Redirect("InformacionPersonalCandidato.aspx?s=success", false);
+                }
             }
             catch (Exception Ex)
             {
@@ -109,7 +122,7 @@ namespace PremiosInstitucionales.WebForms
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
 
             string sCurrentPassword = currentPwdTextBox.Text;
-            if (candidato.Password == sCurrentPassword)
+            if (candidato.Password == sha256(sCurrentPassword))
             {
                 if (newPwdTextBox.Text == confirmNewPwdTextBox.Text)
                 {
@@ -122,7 +135,7 @@ namespace PremiosInstitucionales.WebForms
                     {
                         if (candidato != null)
                         {
-                            candidato.Password = newPwdTextBox.Text;
+                            candidato.Password = sha256(newPwdTextBox.Text);
                             if (InformacionPersonalCandidatoService.UpdateCandidato(candidato))
                             {
                                 MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
@@ -154,7 +167,7 @@ namespace PremiosInstitucionales.WebForms
         protected void ActualizarDatosGenerales()
         {
             var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
-            if(candidato != null)
+            if (candidato != null)
             {
                 candidato.Nombre = NombresTextBox.Text;
                 candidato.Apellido = ApellidosTextBox.Text;
@@ -175,36 +188,69 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        protected void Upload(object sender, EventArgs e)
+        protected bool Upload(object sender, EventArgs e)
         {
             if (FileUploadImage.HasFile)
             {
                 // Get filename
                 string fileName = Path.GetFileName(FileUploadImage.PostedFile.FileName);
 
-                // Get logged in candidate
-                var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
-                if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
-                {
-                    // Delete previous image...
-                    File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
-                }
-
-
                 // Get string image format (png, jpg, etc)
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
-                string sFormat = fileName.Substring(startIndex, endIndex);
+                string sFormat = fileName.Substring(startIndex, endIndex).ToLower();
                 string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
 
-                // Upload image to server
-                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
+                {
+                    ".png",
+                    ".bmp",
+                    ".jpg",
+                    ".jpeg"
+                };
 
-                // Update data in database
-                InformacionPersonalCandidatoService.CambiaImagen(null, Session[StringValues.CorreoSesion].ToString(), sNombreImagen);
+                if (supportedFormats.Contains(sFormat))
+                {
+                    using (var image = Image.FromStream(FileUploadImage.PostedFile.InputStream, true, true))
+                    {
+                        using (var newImage = ScaleImage(image, 364, 364))
+                        {
+                            // Get logged in candidate
+                            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+                            if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+                            {
+                                // Delete previous image...
+                                File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
+                            }
 
-                Response.Redirect(Request.Url.AbsoluteUri, false);
+                            // Upload image to server
+                            switch (sFormat)
+                            {
+                                case ".png":
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Png);
+                                    break;
+                                case ".bmp":
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Bmp);
+                                    break;
+                                default:
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Jpeg);
+                                    break;
+                            }
+
+                            // Update data in database
+                            InformacionPersonalCandidatoService.CambiaImagen(null, Session[StringValues.CorreoSesion].ToString(), sNombreImagen);
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG , JPG o BMP.");
+                    return false;
+                }
             }
+            return true;
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
@@ -212,5 +258,35 @@ namespace PremiosInstitucionales.WebForms
             Response.Redirect("InicioCandidato.aspx", false);
         }
 
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(newWidth, newHeight);
+
+            using (var graphics = Graphics.FromImage(newImage))
+            {
+                graphics.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+
+            return newImage;
+        }
+
+        static string sha256(string rawPassword)
+        {
+            System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
+            System.Text.StringBuilder hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(rawPassword), 0, Encoding.UTF8.GetByteCount(rawPassword));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
+        }
     }
 }

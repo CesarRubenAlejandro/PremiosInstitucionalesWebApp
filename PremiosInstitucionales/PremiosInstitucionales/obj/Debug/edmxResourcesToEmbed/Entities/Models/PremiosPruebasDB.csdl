@@ -57,7 +57,6 @@
       <PropertyRef Name="cveConvocatoria" />
     </Key>
     <Property Name="cveConvocatoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="FechaInicio" Type="DateTime" Precision="0" />
     <Property Name="FechaFin" Type="DateTime" Precision="0" />
     <Property Name="cvePremio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -435,7 +434,6 @@
     </FunctionImport>
     <FunctionImport Name="AddConvocatoria">
       <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
       <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
       <Parameter Name="cvePremio" Mode="In" Type="String" />
@@ -567,7 +565,6 @@
     </FunctionImport>
     <FunctionImport Name="UpdateConvocatoria">
       <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
-      <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
       <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
       <Parameter Name="cvePremio" Mode="In" Type="String" />
@@ -578,6 +575,7 @@
       <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
       <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="PI_SE_Configuracion" EntityType="wPremiosInstitucionalesdbModel.PI_SE_Configuracion" />
   </EntityContainer>
   <ComplexType Name="GetAdministrador_Result">
     <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
@@ -697,4 +695,14 @@
     <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
     <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
   </ComplexType>
+  <EntityType Name="PI_SE_Configuracion">
+    <Key>
+      <PropertyRef Name="cveConfiguracion" />
+    </Key>
+    <Property Name="cveConfiguracion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Puerto" Type="Int16" />
+  </EntityType>
 </Schema>

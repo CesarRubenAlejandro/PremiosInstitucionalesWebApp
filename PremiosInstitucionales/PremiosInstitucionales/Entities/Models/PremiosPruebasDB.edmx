@@ -51,7 +51,6 @@
             <PropertyRef Name="cveConvocatoria" />
           </Key>
           <Property Name="cveConvocatoria" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="FechaInicio" Type="date" />
           <Property Name="FechaFin" Type="date" />
           <Property Name="cvePremio" Type="varchar" MaxLength="50" />
@@ -146,6 +145,16 @@
           <Property Name="cveAdministrador" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" />
           <Property Name="Correo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PI_SE_Configuracion">
+          <Key>
+            <PropertyRef Name="cveConfiguracion" />
+          </Key>
+          <Property Name="cveConfiguracion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="Host" Type="varchar" MaxLength="100" />
+          <Property Name="Puerto" Type="smallint" />
         </EntityType>
         <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
           <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
@@ -342,7 +351,6 @@
         </Function>
         <Function Name="AddConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
           <Parameter Name="FechaFin" Type="date" Mode="In" />
           <Parameter Name="cvePremio" Type="varchar" Mode="In" />
@@ -450,7 +458,6 @@
         </Function>
         <Function Name="UpdateConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
-          <Parameter Name="Descripcion" Type="varchar(max)" Mode="In" />
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
           <Parameter Name="FechaFin" Type="date" Mode="In" />
           <Parameter Name="cvePremio" Type="varchar" Mode="In" />
@@ -499,6 +506,7 @@
           <EntitySet Name="PI_BA_Premio" EntityType="Self.PI_BA_Premio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PI_BA_Respuesta" EntityType="Self.PI_BA_Respuesta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PI_SE_Administrador" EntityType="Self.PI_SE_Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_SE_Configuracion" EntityType="Self.PI_SE_Configuracion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_PI_BA_Aplicacion_PI_BA_Candidato" Association="Self.FK_PI_BA_Aplicacion_PI_BA_Candidato">
             <End Role="PI_BA_Candidato" EntitySet="PI_BA_Candidato" />
             <End Role="PI_BA_Aplicacion" EntitySet="PI_BA_Aplicacion" />
@@ -617,7 +625,6 @@
             <PropertyRef Name="cveConvocatoria" />
           </Key>
           <Property Name="cveConvocatoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FechaInicio" Type="DateTime" Precision="0" />
           <Property Name="FechaFin" Type="DateTime" Precision="0" />
           <Property Name="cvePremio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -995,7 +1002,6 @@
           </FunctionImport>
           <FunctionImport Name="AddConvocatoria">
             <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
             <Parameter Name="cvePremio" Mode="In" Type="String" />
@@ -1127,7 +1133,6 @@
           </FunctionImport>
           <FunctionImport Name="UpdateConvocatoria">
             <Parameter Name="cveConvocatoria" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
             <Parameter Name="cvePremio" Mode="In" Type="String" />
@@ -1138,6 +1143,7 @@
             <Parameter Name="FechaEdicion" Mode="In" Type="DateTime" />
             <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="PI_SE_Configuracion" EntityType="wPremiosInstitucionalesdbModel.PI_SE_Configuracion" />
         </EntityContainer>
         <ComplexType Name="GetAdministrador_Result">
           <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
@@ -1257,6 +1263,16 @@
           <Property Type="DateTime" Name="FechaEdicion" Nullable="true" />
           <Property Type="String" Name="UsuarioEdicion" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="PI_SE_Configuracion">
+          <Key>
+            <PropertyRef Name="cveConfiguracion" />
+          </Key>
+          <Property Name="cveConfiguracion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Puerto" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1311,7 +1327,6 @@
             <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
               <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
                 <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
                 <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
@@ -1456,6 +1471,17 @@
           <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
           <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
           <FunctionImportMapping FunctionImportName="UpdateConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateConvocatoria" />
+          <EntitySetMapping Name="PI_SE_Configuracion">
+            <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_SE_Configuracion">
+              <MappingFragment StoreEntitySet="PI_SE_Configuracion">
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="cveConfiguracion" ColumnName="cveConfiguracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

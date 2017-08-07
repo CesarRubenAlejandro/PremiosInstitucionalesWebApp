@@ -2,6 +2,7 @@
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,24 +11,27 @@ namespace PremiosInstitucionales.WebForms
 {
     public partial class AdministraPremios : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                    {
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
-                }
-
-                LoadAwards();
+                } 
             }
+            LoadAwards();
         }
 
         private void ResetFields()
@@ -92,31 +96,31 @@ namespace PremiosInstitucionales.WebForms
         {
             if (tbAwardTitle.Text.Length > 0)
             {
-                CreateAward();
-            }
-            Response.Redirect("AdministraPremios.aspx", false);
+                String sNombreImagen = UploadImage();
 
+                // Crear Premio
+                if (sNombreImagen != "Error")
+                {
+                    PI_BA_Premio premio = new PI_BA_Premio();
+                    premio.cvePremio = Guid.NewGuid().ToString();
+                    premio.Nombre = tbAwardTitle.Text;
+                    premio.Descripcion = tbAwardDescription.Text;
+                    premio.NombreImagen = sNombreImagen;
+                    premio.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+                    premio.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
+                    premio.FechaCreacion = DateTime.Now;
+                    premio.FechaEdicion = DateTime.Now;
+                    ConvocatoriaService.CreatePremio(premio);
+
+                    ResetFields();
+                    Response.Redirect("AdministraPremios.aspx", false);
+                }
+            }
         }
 
         protected void BackBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("InicioAdmin.aspx", false);
-        }
-
-        private void CreateAward()
-        {
-            PI_BA_Premio premio = new PI_BA_Premio();
-            premio.cvePremio = Guid.NewGuid().ToString();
-            premio.Nombre = tbAwardTitle.Text;
-            premio.Descripcion = tbAwardDescription.Text;
-            premio.NombreImagen = UploadImage();
-            premio.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
-            premio.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
-            premio.FechaCreacion = DateTime.Now;
-            premio.FechaEdicion = DateTime.Now;
-            ConvocatoriaService.CreatePremio(premio);
-
-            ResetFields();
         }
 
         private string UploadImage()
@@ -129,8 +133,23 @@ namespace PremiosInstitucionales.WebForms
                 // Get string image format (png, jpg, etc)
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
-                string sFormat = fileName.Substring(startIndex, endIndex);
+                string sFormat = fileName.Substring(startIndex, endIndex).ToLower();
                 string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
+
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
+                {
+                    ".png",
+                    ".bmp",
+                    ".jpeg",
+                    ".jpg"
+                };
+
+                if (!supportedFormats.Contains(sFormat))
+                {
+                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG o JPG.");
+                    return "Error";
+                }
 
                 // Upload image to server
                 FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/AwardPictures/") + sNombreImagen);

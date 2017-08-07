@@ -1,6 +1,6 @@
 ﻿<html>
 <body>
-<img src="http://expresotec.mty.itesm.mx/web/imagenes/logo_ITESM.gif">
+<img src="http://www.pue.itesm.mx/sedes/cancun/img/logo_itesm.png" style="width:250px; height:100px;">
 <p style="text-align:left">%FECHA%</p>
 <p>Hola %NOMBRE%</p>
 <p>La solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey requiere cambios.</p>

@@ -2,8 +2,13 @@
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 using PremiosInstitucionales.Values;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.UI;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -13,14 +18,17 @@ namespace PremiosInstitucionales.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             MasterPage = (MP_Global)Page.Master;
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de admin
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                    {
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
@@ -36,15 +44,26 @@ namespace PremiosInstitucionales.WebForms
                     if (sUserType.Equals("juez"))
                     {
                         LoadJudgeInformation(sUserId);
-                        return;
                     }
                     else if (sUserType.Equals("candidato"))
                     {
                         LoadCandidateInformation(sUserId);
-                        return;
+                    }
+                    else
+                    {
+                        Response.Redirect("InicioAdmin.aspx", false);
                     }
                 }
-                Response.Redirect("InicioAdmin.aspx", false);
+                else
+                {
+                    Response.Redirect("InicioAdmin.aspx", false);
+                }
+            }
+
+            var status = Request.QueryString["s"];
+            if (status == "success")
+            {
+                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
             }
         }
 
@@ -139,9 +158,11 @@ namespace PremiosInstitucionales.WebForms
         {
             try
             {
-                ActualizarDatosGenerales();
-                Upload(sender, e);
-                MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
+                if (Upload(sender, e))
+                {
+                    ActualizarDatosGenerales();
+                    Response.Redirect("AdministraInformacionPersonal.aspx?s=success" + "&t=" + Request.QueryString["t"] + "&id=" + Request.QueryString["id"], false);
+                }
             }
             catch (Exception Ex)
             {
@@ -170,7 +191,7 @@ namespace PremiosInstitucionales.WebForms
                     {
                         if (juez != null)
                         {
-                            juez.Password = newPwdTextBox.Text;
+                            juez.Password = sha256(newPwdTextBox.Text);
                             if (InformacionPersonalJuezService.UpdateJuez(juez))
                             {
                                 MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
@@ -206,7 +227,7 @@ namespace PremiosInstitucionales.WebForms
                     {
                         if (candidato != null)
                         {
-                            candidato.Password = newPwdTextBox.Text;
+                            candidato.Password = sha256(newPwdTextBox.Text);
                             if (InformacionPersonalCandidatoService.UpdateCandidato(candidato))
                             {
                                 MasterPage.ShowMessage("Aviso", "Contraseña cambiada con éxito.");
@@ -274,7 +295,7 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        protected void Upload(object sender, EventArgs e)
+        protected bool Upload(object sender, EventArgs e)
         {
             if (FileUploadImage.HasFile)
             {
@@ -285,52 +306,119 @@ namespace PremiosInstitucionales.WebForms
                 string sUserType = Request.QueryString["t"];
                 string sUserId = Request.QueryString["id"];
 
-                if (sUserType.Equals("juez"))
-                {
-                    var juez = InformacionPersonalJuezService.GetJuezById(sUserId);
-                    if (juez.NombreImagen != null && juez.NombreImagen.Length > 0)
-                    {
-                        // Delete previous image...
-                        File.Delete(Server.MapPath("~/ProfilePictures/") + juez.NombreImagen);
-                    }
-                }
-                else if (sUserType.Equals("candidato"))
-                {
-                    var candidato = InformacionPersonalCandidatoService.GetCandidatoById(sUserId);
-                    if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
-                    {
-                        // Delete previous image...
-                        File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
-                    }
-                }
-
                 // Get string image format (png, jpg, etc)
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
-                string sFormat = fileName.Substring(startIndex, endIndex);
+                string sFormat = fileName.Substring(startIndex, endIndex).ToLower();
                 string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
 
-                // Upload image to server
-                FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/ProfilePictures/") + sNombreImagen);
-
-                // Update data in database
-                if (sUserType.Equals("juez"))
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
                 {
-                    InformacionPersonalJuezService.CambiaImagen(sUserId, null, sNombreImagen);
-                }
-                else if (sUserType.Equals("candidato"))
-                {
-                    InformacionPersonalCandidatoService.CambiaImagen(sUserId, null, sNombreImagen);
-                }
+                    ".png",
+                    ".bmp",
+                    ".jpg",
+                    ".jpeg"
+                };
 
-                Response.Redirect(Request.Url.AbsoluteUri, false);
+                if (supportedFormats.Contains(sFormat))
+                {
+                    using (var image = Image.FromStream(FileUploadImage.PostedFile.InputStream, true, true))
+                    {
+                        using (var newImage = ScaleImage(image, 364, 364))
+                        {
+                            // Get logged in user
+                            if (sUserType.Equals("juez"))
+                            {
+                                var juez = InformacionPersonalJuezService.GetJuezById(sUserId);
+                                if (juez.NombreImagen != null && juez.NombreImagen.Length > 0)
+                                {
+                                    // Delete previous image...
+                                    File.Delete(Server.MapPath("~/ProfilePictures/") + juez.NombreImagen);
+                                }
+                            }
+                            else if (sUserType.Equals("candidato"))
+                            {
+                                var candidato = InformacionPersonalCandidatoService.GetCandidatoById(sUserId);
+                                if (candidato.NombreImagen != null && candidato.NombreImagen.Length > 0)
+                                {
+                                    // Delete previous image...
+                                    File.Delete(Server.MapPath("~/ProfilePictures/") + candidato.NombreImagen);
+                                }
+                            }
+
+                            // Upload image to server
+                            switch (sFormat)
+                            {
+                                case ".png":
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Png);
+                                    break;
+                                case ".bmp":
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Bmp);
+                                    break;
+                                default:
+                                    newImage.Save(Server.MapPath("~/ProfilePictures/") + sNombreImagen, ImageFormat.Jpeg);
+                                    break;
+                            }
+
+                            // Update data in database
+                            if (sUserType.Equals("juez"))
+                            {
+                                InformacionPersonalJuezService.CambiaImagen(sUserId, null, sNombreImagen);
+                            }
+                            else if (sUserType.Equals("candidato"))
+                            {
+                                InformacionPersonalCandidatoService.CambiaImagen(sUserId, null, sNombreImagen);
+                            }
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG , JPG o BMP.");
+                    return false;
+                }
             }
+            return true;
+        }
+
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
+        {
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(newWidth, newHeight);
+
+            using (var graphics = Graphics.FromImage(newImage))
+            {
+                graphics.DrawImage(image, 0, 0, newWidth, newHeight);
+            }
+
+            return newImage;
         }
 
         protected void CloseBtn_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(GetType(), "ReloadParent", "if (window.opener && !window.opener.closed) { window.opener.location.reload(true); }", true);
-            ClientScript.RegisterStartupScript(GetType(), "ClosePage", "window.close();", true);
+            //ScriptManager.RegisterStartupScript(Page, GetType(), "ReloadParent", "", true);
+            //ScriptManager.RegisterStartupScript(Page, this.GetType(), "ClosePage", "window.close();", true);
+            ClientScript.RegisterStartupScript(typeof(Page), "closePage", "<script type='text/JavaScript'>window.close();</script>");
+        }
+
+        static string sha256(string rawPassword)
+        {
+            System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
+            System.Text.StringBuilder hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(rawPassword), 0, Encoding.UTF8.GetByteCount(rawPassword));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }

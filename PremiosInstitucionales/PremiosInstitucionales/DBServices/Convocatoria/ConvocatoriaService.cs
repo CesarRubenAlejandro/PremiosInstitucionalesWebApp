@@ -175,7 +175,7 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             {
                 try
                 {
-                    dbContext.AddConvocatoria(cv.cveConvocatoria, cv.Descripcion, cv.FechaInicio, cv.FechaFin, idPremio, cv.TituloConvocatoria, cv.FechaVeredicto, cv.FechaCreacion, cv.UsuarioCreacion, cv.FechaEdicion, cv.UsuarioEdicion);
+                    dbContext.AddConvocatoria(cv.cveConvocatoria, cv.FechaInicio, cv.FechaFin, idPremio, cv.TituloConvocatoria, cv.FechaVeredicto, cv.FechaCreacion, cv.UsuarioCreacion, cv.FechaEdicion, cv.UsuarioEdicion);
                     dbContext.SaveChanges();
                 }
                 catch (Exception Ex)
@@ -191,7 +191,7 @@ namespace PremiosInstitucionales.DBServices.Convocatoria
             {
                 try
                 {
-                    dbContext.UpdateConvocatoria(cv.cveConvocatoria, cv.Descripcion, cv.FechaInicio, cv.FechaFin, cv.cvePremio, cv.TituloConvocatoria, cv.FechaVeredicto, cv.FechaCreacion, cv.UsuarioCreacion, cv.FechaEdicion, cv.UsuarioEdicion);
+                    dbContext.UpdateConvocatoria(cv.cveConvocatoria, cv.FechaInicio, cv.FechaFin, cv.cvePremio, cv.TituloConvocatoria, cv.FechaVeredicto, cv.FechaCreacion, cv.UsuarioCreacion, cv.FechaEdicion, cv.UsuarioEdicion);
                     dbContext.SaveChanges();
                 }
                 catch (Exception Ex)

@@ -40,6 +40,7 @@ namespace PremiosInstitucionales.Entities.Models
         public virtual DbSet<PI_BA_Premio> PI_BA_Premio { get; set; }
         public virtual DbSet<PI_BA_Respuesta> PI_BA_Respuesta { get; set; }
         public virtual DbSet<PI_SE_Administrador> PI_SE_Administrador { get; set; }
+        public virtual DbSet<PI_SE_Configuracion> PI_SE_Configuracion { get; set; }
     
         public virtual int AddCandidato(string cveCandidato, string password, string nombre, string apellido, Nullable<bool> confirmado, string correo, string codigoConfirmacion, string telefono, string nacionalidad, string rFC, string direccion, string nombreImagen, Nullable<System.DateTime> fechaPrivacidadDatos)
         {
@@ -135,15 +136,11 @@ namespace PremiosInstitucionales.Entities.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddCategoria", cveCategoriaParameter, nombreParameter, cveConvocatoriaParameter, cveAplicacionGanadoraParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
     
-        public virtual int AddConvocatoria(string cveConvocatoria, string descripcion, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string cvePremio, string tituloConvocatoria, Nullable<System.DateTime> fechaVeredicto, Nullable<System.DateTime> fechaCreacion, string usuarioCreacion, Nullable<System.DateTime> fechaEdicion, string usuarioEdicion)
+        public virtual int AddConvocatoria(string cveConvocatoria, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string cvePremio, string tituloConvocatoria, Nullable<System.DateTime> fechaVeredicto, Nullable<System.DateTime> fechaCreacion, string usuarioCreacion, Nullable<System.DateTime> fechaEdicion, string usuarioEdicion)
         {
             var cveConvocatoriaParameter = cveConvocatoria != null ?
                 new ObjectParameter("cveConvocatoria", cveConvocatoria) :
                 new ObjectParameter("cveConvocatoria", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
     
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("FechaInicio", fechaInicio) :
@@ -181,7 +178,7 @@ namespace PremiosInstitucionales.Entities.Models
                 new ObjectParameter("UsuarioEdicion", usuarioEdicion) :
                 new ObjectParameter("UsuarioEdicion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddConvocatoria", cveConvocatoriaParameter, descripcionParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddConvocatoria", cveConvocatoriaParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
     
         public virtual int AddEvaluacion(string cveEvaluacion, Nullable<short> calificacion, string cveAplicacion, string cveJuez)
@@ -726,15 +723,11 @@ namespace PremiosInstitucionales.Entities.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdatePremio", cvePremioParameter, nombreParameter, nombreImagenParameter, descripcionParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
     
-        public virtual int UpdateConvocatoria(string cveConvocatoria, string descripcion, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string cvePremio, string tituloConvocatoria, Nullable<System.DateTime> fechaVeredicto, Nullable<System.DateTime> fechaCreacion, string usuarioCreacion, Nullable<System.DateTime> fechaEdicion, string usuarioEdicion)
+        public virtual int UpdateConvocatoria(string cveConvocatoria, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string cvePremio, string tituloConvocatoria, Nullable<System.DateTime> fechaVeredicto, Nullable<System.DateTime> fechaCreacion, string usuarioCreacion, Nullable<System.DateTime> fechaEdicion, string usuarioEdicion)
         {
             var cveConvocatoriaParameter = cveConvocatoria != null ?
                 new ObjectParameter("cveConvocatoria", cveConvocatoria) :
                 new ObjectParameter("cveConvocatoria", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
     
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("FechaInicio", fechaInicio) :
@@ -772,7 +765,7 @@ namespace PremiosInstitucionales.Entities.Models
                 new ObjectParameter("UsuarioEdicion", usuarioEdicion) :
                 new ObjectParameter("UsuarioEdicion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateConvocatoria", cveConvocatoriaParameter, descripcionParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateConvocatoria", cveConvocatoriaParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
     }
 }

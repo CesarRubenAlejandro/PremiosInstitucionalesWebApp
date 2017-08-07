@@ -2,6 +2,7 @@
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -15,11 +16,11 @@ namespace PremiosInstitucionales.WebForms
         MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            MasterPage = (MP_Global)Page.Master;
+
             // obtener el premio usando el query string de su id
             String idPremio = Request.QueryString["p"];
             premioActual = ConvocatoriaService.GetPremioById(idPremio);
-
-            MasterPage = (MP_Global)Page.Master;
 
             // Mensaje si pude editar los datos del premio
             switch (Request.QueryString["s"])
@@ -38,8 +39,10 @@ namespace PremiosInstitucionales.WebForms
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                    {
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
                 }
                 else
                 {
@@ -79,6 +82,10 @@ namespace PremiosInstitucionales.WebForms
                             "</tr>"
                         ));
                     }
+                }
+                else
+                {
+                    Response.Redirect("inicioAdmin.aspx", false);
                 }
             }
         }
@@ -156,7 +163,7 @@ namespace PremiosInstitucionales.WebForms
             nuevaConvo.cveConvocatoria = Guid.NewGuid().ToString();
             nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
 
-            IFormatProvider FormatProvider = System.Globalization.CultureInfo.InvariantCulture;
+            IFormatProvider FormatProvider = CultureInfo.InvariantCulture;
             String idParam = "{0}";
 
             nuevaConvo.FechaInicio = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaInicioNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
@@ -187,8 +194,30 @@ namespace PremiosInstitucionales.WebForms
                 // Get string image format (png, jpg, etc)
                 var startIndex = fileName.LastIndexOf(".");
                 var endIndex = fileName.Length - startIndex;
-                string sFormat = fileName.Substring(startIndex, endIndex);
+                string sFormat = fileName.Substring(startIndex, endIndex).ToLower();
                 string sNombreImagen = Guid.NewGuid().ToString() + sFormat;
+
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
+                {
+                    ".png",
+                    ".bmp",
+                    ".jpeg",
+                    ".jpg"
+                };
+
+                if (!supportedFormats.Contains(sFormat))
+                {
+                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG o JPG.");
+                    return "Error";
+                }
+
+                // Borrar imagen anterior
+                if (premioActual.NombreImagen != null && premioActual.NombreImagen.Length > 0)
+                {
+                    // Delete previous image...
+                    File.Delete(Server.MapPath("~/AwardPictures/") + premioActual.NombreImagen);
+                }
 
                 // Upload image to server
                 FileUploadImage.PostedFile.SaveAs(Server.MapPath("~/AwardPictures/") + sNombreImagen);
@@ -209,14 +238,17 @@ namespace PremiosInstitucionales.WebForms
             {
                 string imgUrl = UploadImage();
 
-                if (UploadImage() == null)
+                if (imgUrl == null)
                 {
                     imgUrl = premioActual.NombreImagen;
                 }
 
-                string user = Session[StringValues.CorreoSesion].ToString();
-                ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
-                Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "success", false);
+                if (imgUrl != "Error")
+                {
+                    string user = Session[StringValues.CorreoSesion].ToString();
+                    ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
+                    Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "success", false);
+                }
             }
             catch (Exception Ex)
             {

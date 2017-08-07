@@ -21,7 +21,6 @@ namespace PremiosInstitucionales.Entities.Models
         }
     
         public string cveConvocatoria { get; set; }
-        public string Descripcion { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }
         public Nullable<System.DateTime> FechaFin { get; set; }
         public string cvePremio { get; set; }

@@ -13,6 +13,7 @@ namespace PremiosInstitucionales
         public void ShowMessage(String MessageType, String Message)
         {
             // Creamos el titutlo del Modal
+            modalMensajeTitulo.Controls.Clear();
             modalMensajeTitulo.Controls.Add(new LiteralControl(ModalTitle(MessageType)));
 
             // Mensaje del Modal

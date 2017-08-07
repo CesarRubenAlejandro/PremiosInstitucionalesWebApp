@@ -20,11 +20,14 @@ namespace PremiosInstitucionales
                 Response.Redirect("~/WebForms/Login.aspx", false);
             }
 
-            // Cargo el tipo de liga hacia inicio segun el rol de la cuenta
-            navInicioPorRol.Controls.Add(new LiteralControl(InicioPorRolSesion()));
+            else
+            {
+                // Cargo el tipo de liga hacia inicio segun el rol de la cuenta
+                navInicioPorRol.Controls.Add(new LiteralControl(InicioPorRolSesion()));
 
-            // Cargo la imagen de perfil del usuario conectado
-            navProfilePicture.Controls.Add(new LiteralControl(htmlProfilePicture()));
+                // Cargo la imagen de perfil del usuario conectado
+                navProfilePicture.Controls.Add(new LiteralControl(htmlProfilePicture()));
+            }
         }
         protected void Invitar_Candidato(object sender, EventArgs e)
         {
@@ -204,6 +207,7 @@ namespace PremiosInstitucionales
         public void ShowMessage(String MessageType, String Message)
         {
             // Creamos el titutlo del Modal
+            modalMensajeTitulo.Controls.Clear();
             modalMensajeTitulo.Controls.Add(new LiteralControl(ModalTitle(MessageType)));
 
             // Mensaje del Modal

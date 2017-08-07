@@ -1,5 +1,6 @@
 ﻿using PremiosInstitucionales.DBServices.Recuperar;
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
@@ -36,15 +37,15 @@ namespace PremiosInstitucionales.WebForms
                     char tipo = cve[0];
                     if (tipo == 'c')
                     {
-                        sePudo = RecuperarService.CambiarContrasenaCandidato(cve.Substring(1), password1);
+                        sePudo = RecuperarService.CambiarContrasenaCandidato(cve.Substring(1), sha256(password1));
                     }
                     else if (tipo == 'j')
                     {
-                        sePudo = RecuperarService.CambiarContrasenaJuez(cve.Substring(1), password1);
+                        sePudo = RecuperarService.CambiarContrasenaJuez(cve.Substring(1), sha256(password1));
                     }
                     else if (tipo == 'a')
                     {
-                        sePudo = RecuperarService.CambiarContrasenaAdministrador(cve.Substring(1), password1);
+                        sePudo = RecuperarService.CambiarContrasenaAdministrador(cve.Substring(1), sha256(password1));
                     }
                 }      
             }
@@ -60,6 +61,18 @@ namespace PremiosInstitucionales.WebForms
             {
                 MasterPage.ShowMessage("Error", "Error interno.");
             }
+        }
+
+        static string sha256(string rawPassword)
+        {
+            System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
+            System.Text.StringBuilder hash = new System.Text.StringBuilder();
+            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(rawPassword), 0, Encoding.UTF8.GetByteCount(rawPassword));
+            foreach (byte theByte in crypto)
+            {
+                hash.Append(theByte.ToString("x2"));
+            }
+            return hash.ToString();
         }
     }
 }

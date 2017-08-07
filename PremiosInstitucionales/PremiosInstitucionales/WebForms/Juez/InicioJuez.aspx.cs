@@ -15,15 +15,19 @@ namespace PremiosInstitucionales.WebForms
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolJuez)
+                    {
                         // si no es juez, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
+                    else
+                    {
+                        LoadMessage();
+                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
                 }
-
-                LoadMessage();
             }
         }
 

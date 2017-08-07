@@ -7,16 +7,19 @@ using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System.IO;
 using System.Web;
+using System.Collections.Generic;
 
 namespace PremiosInstitucionales.WebForms
 {
     public partial class CorrigeAplicacion : System.Web.UI.Page
     {
+        MP_Global MasterPage = new MP_Global();
         private int iMaxCharacters = NumericValues.iMaxCharactersPerAnswer;
         private string sCharactersRemainingMessage = StringValues.sCharactersRemaining;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            MasterPage = (MP_Global)Page.Master;
+            if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato
                 if (Session[StringValues.RolSesion] != null)
@@ -126,6 +129,20 @@ namespace PremiosInstitucionales.WebForms
 
         protected void EnviarBttn_Click(object sender, EventArgs e)
         {
+            // actualizar archivo
+            string sArchivo = UploadFile();
+            if (sArchivo != null)
+            {
+                if (sArchivo != "Error")
+                {
+                    AplicacionService.UpdateAplicacionArchivo(Request.QueryString["aplicacion"], sArchivo);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             // modificar el texto de las respuestas
             // obtener string con controles en Request
             string[] ctrls = Request.Form.ToString().Split('&');
@@ -148,13 +165,6 @@ namespace PremiosInstitucionales.WebForms
 
             // cambiar status de la aplicacion a Modificado
             AplicacionService.SetAplicacionModificada(Request.QueryString["aplicacion"]);
-
-            // actualizar archivo
-            string sArchivo = UploadFile();
-            if (sArchivo != null)
-            {
-                AplicacionService.UpdateAplicacionArchivo(Request.QueryString["aplicacion"], sArchivo);
-            }
 
             // redireccionar a inicio
             Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
@@ -182,6 +192,32 @@ namespace PremiosInstitucionales.WebForms
             {
                 string fname = Path.GetFileName(file.FileName);
 
+                // Get string image format (png, jpg, etc)
+                var startIndex = fname.LastIndexOf(".");
+                var endIndex = fname.Length - startIndex;
+                string sFormat = fname.Substring(startIndex, endIndex);
+                string sName = fname.Substring(0, fname.Length - sFormat.Length);
+                string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
+
+                // Formatos Validos
+                List<String> supportedFormats = new List<String>()
+                {
+                    ".png",
+                    ".jpg",
+                    ".txt",
+                    ".doc",
+                    ".docx",
+                    ".pdf",
+                    ".xlsx",
+                    ".xls"
+                };
+
+                if (!supportedFormats.Contains(sFormat))
+                {
+                    MasterPage.ShowMessage("Error", "El archivo proporcionado debe ser un archivo de texto, una hoja de cálculo o un imagen.");
+                    return "Error";
+                }
+
                 // Delete previous image...
                 string idApp = Request.QueryString["aplicacion"];
                 string FileName = AplicacionService.GetAplicacionById(idApp).NombreArchivo;
@@ -189,13 +225,6 @@ namespace PremiosInstitucionales.WebForms
                 {
                     File.Delete(Server.MapPath("~/UsersAppsFiles/") + FileName);
                 }
-
-                // Get string image format (png, jpg, etc)
-                var startIndex = fname.LastIndexOf(".");
-                var endIndex = fname.Length - startIndex;
-                string sFormat = fname.Substring(startIndex, endIndex);
-                string sName = fname.Substring(0, fname.Length - sFormat.Length);
-                string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
 
                 // Upload image to server
                 file.SaveAs(Server.MapPath(Path.Combine("~/UsersAppsFiles/", sNombreArchivo)));

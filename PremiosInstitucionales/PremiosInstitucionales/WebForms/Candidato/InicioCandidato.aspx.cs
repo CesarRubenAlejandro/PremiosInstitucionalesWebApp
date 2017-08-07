@@ -14,15 +14,20 @@ namespace PremiosInstitucionales.WebForms
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolCandidato)
+                    {
                         // si no es candidato, redireccionar a login
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
+                    else
+                    {
+                        LoadMessage();
+                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
-                }
 
-                LoadMessage();
+                }
             }
         }
 

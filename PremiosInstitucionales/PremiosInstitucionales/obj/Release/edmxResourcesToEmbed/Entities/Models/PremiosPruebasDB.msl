@@ -49,7 +49,6 @@
       <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_BA_Convocatoria">
         <MappingFragment StoreEntitySet="PI_BA_Convocatoria">
           <ScalarProperty Name="cveConvocatoria" ColumnName="cveConvocatoria" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
           <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
           <ScalarProperty Name="cvePremio" ColumnName="cvePremio" />
@@ -182,5 +181,16 @@
     <FunctionImportMapping FunctionImportName="UpdateJuez" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateJuez" />
     <FunctionImportMapping FunctionImportName="UpdatePremio" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdatePremio" />
     <FunctionImportMapping FunctionImportName="UpdateConvocatoria" FunctionName="wPremiosInstitucionalesdbModel.Store.UpdateConvocatoria" />
+    <EntitySetMapping Name="PI_SE_Configuracion">
+      <EntityTypeMapping TypeName="wPremiosInstitucionalesdbModel.PI_SE_Configuracion">
+        <MappingFragment StoreEntitySet="PI_SE_Configuracion">
+          <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="cveConfiguracion" ColumnName="cveConfiguracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

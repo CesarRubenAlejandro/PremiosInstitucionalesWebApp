@@ -24,16 +24,20 @@ namespace PremiosInstitucionales.WebForms
                 if (Session[StringValues.RolSesion] != null)
                 {
                     if (Session[StringValues.RolSesion].ToString() != StringValues.RolAdmin)
+                    {
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
+                    }
+                    else
+                    {
+                        LoadPendingApplications();
+                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
-
-            LoadPendingApplications();
         }
 
         private void LoadPendingApplications()
