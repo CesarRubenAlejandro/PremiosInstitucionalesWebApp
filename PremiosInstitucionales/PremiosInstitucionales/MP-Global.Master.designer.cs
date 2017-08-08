@@ -49,6 +49,24 @@ namespace PremiosInstitucionales {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder;
         
         /// <summary>
+        /// nombreCandidato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nombreCandidato;
+        
+        /// <summary>
+        /// apellidoCandidato control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox apellidoCandidato;
+        
+        /// <summary>
         /// correoCandidato control.
         /// </summary>
         /// <remarks>

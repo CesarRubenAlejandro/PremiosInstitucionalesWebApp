@@ -64,13 +64,13 @@
 						        <div class="form-group">
 						        <label class="col-lg-3 control-label">Nombre(s):</label>
 						        <div class="col-lg-8">
-							        <input class="form-control"  type="text"/>
+							        <asp:TextBox class="form-control" ID="nombreCandidato" ClientIDMode="Static" runat="server"></asp:TextBox>
 						        </div>
 						        </div>
 						        <div class="form-group">
 						        <label class="col-lg-3 control-label">Apellido(s):</label>
 						        <div class="col-lg-8">
-							        <input class="form-control"  type="text"/>
+							        <asp:TextBox class="form-control" ID="apellidoCandidato" ClientIDMode="Static" runat="server"></asp:TextBox>
 						        </div>
 						        </div>
 						        <div class="form-group">

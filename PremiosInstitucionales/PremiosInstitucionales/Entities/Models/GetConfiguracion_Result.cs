@@ -10,14 +10,13 @@
 namespace PremiosInstitucionales.Entities.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PI_SE_Configuracion
+    public partial class GetConfiguracion_Result
     {
         public string cveConfiguracion { get; set; }
         public string Correo { get; set; }
         public string Password { get; set; }
         public string Host { get; set; }
-        public short Puerto { get; set; }
+        public Nullable<short> Puerto { get; set; }
     }
 }

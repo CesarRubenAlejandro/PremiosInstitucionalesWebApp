@@ -2,15 +2,11 @@
 using PremiosInstitucionales.DBServices.Registro;
 using PremiosInstitucionales.Values;
 using System;
-using System.IO;
 using System.Web.UI;
-using System.Net;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 using PremiosInstitucionales.DBServices.Recuperar;
-using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
+using PremiosInstitucionales.DBServices.Mail;
 using System.Text;
-using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -122,8 +118,11 @@ namespace PremiosInstitucionales.WebForms
                     }
                     else if (RegistroService.RegistraCandidato(email.Text, sha256(password1), name.Text, lname.Text, codigoConfirmacion))
                     {
-                        if (EnviarCorreoConfirmacion(codigoConfirmacion))
+                        var MailService = new MailService();
+                        if (MailService.EnviarCorreoConfirmacion(email.Text.ToString(), codigoConfirmacion))
                         {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "setCookieInicio2", "setCookie('tab', 'inicio');", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "setSelectedTab2", "autoChangeTab();", true);
                             MasterPage.ShowMessage("Aviso", "Se envió un mail al correo registrado. Favor de confirmar cuenta.");
                         }
                         else
@@ -143,59 +142,16 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private bool EnviarCorreoConfirmacion(String codigoConfirmacion)
-        {
-            String correoSender = "empresa.ejemplo.mail@gmail.com";
-            String pswSender = "proyectointegrador";
-            try
-            {
-                using (MailMessage mm = new MailMessage(correoSender, email.Text.ToString()))
-                {
-                    mm.Subject = "Confirma tu cuenta para Premios Institucionales del Tec de Monterrey";
-                    mm.IsBodyHtml = true;
-                    var bodyContent = "";
-                    try
-                    {
-                        bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoConfirmaCuenta.txt"));
-                        // formatear contenidos de string
-                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
-                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoMail, email.Text.ToString());
-                        bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoConfirmacion, codigoConfirmacion);
-                        // enviar
-                        mm.Body = bodyContent;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = NetworkCred;
-                        smtp.Port = 587;
-                        smtp.Send(mm);
-                    }
-                    catch (Exception Ex2)
-                    {
-                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
-                        return false;
-                    }
-
-                }
-                return true;
-            }
-            catch (Exception Ex)
-            {
-                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
-                return false;
-            }
-        }
-
         protected void Recover_Click(object sender, EventArgs e)
         {
             String email = userforgot.Text.ToString();
             String id = RecuperarService.GetID(email);
             if (id != null)
             {
-                if (EnviarCorreoRecuperacion(email, id))
+                var MailService = new MailService();
+                if (MailService.EnviarCorreoRecuperacion(email, id))
                 {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "forgotPassword", "forgotPassword(false);", true);
                     MasterPage.ShowMessage("Aviso", "Se envió un correo para la recuperación de la contraseña.");
                 }
                 else
@@ -209,58 +165,6 @@ namespace PremiosInstitucionales.WebForms
             }
         }
 
-        private bool EnviarCorreoRecuperacion(String destinatario, String id)
-        {
-            String correoSender = "empresa.ejemplo.mail@gmail.com";
-            String pswSender = "proyectointegrador";
-            // enviando correo
-            try
-            {
-                using (MailMessage mm = new MailMessage(correoSender, destinatario))
-                {
-                    mm.Subject = "Recuperación de contraseña para el sistema Premios Institucionales del Tec de Monterrey";
-                    mm.IsBodyHtml = true;
-                    var bodyContent = "";
-                    bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoRecuperaPassword.txt"));
-                    // formatear contenidos de string
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
-
-                    switch (id[0])
-                    {
-                        case 'c':
-                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
-                            InformacionPersonalCandidatoService.GetCandidatoByCorreo(destinatario).Nombre);
-                            break;
-                        case 'j':
-                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
-                            InformacionPersonalJuezService.GetJuezByCorreo(destinatario).Nombre);
-                            break;
-                        case 'a':
-                            bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre,
-                            "Administrador");
-                            break;
-                    }
-                    
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoId, id);
-                    mm.Body = bodyContent;
-                    // enviar
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
-                }
-                return true;
-            }
-            catch (Exception Ex)
-            {
-                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
-                return false;
-            }
-        }
         static string sha256(string rawPassword)
         {
             System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();

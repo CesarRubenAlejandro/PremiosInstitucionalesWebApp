@@ -6,10 +6,9 @@ using PremiosInstitucionales.Values;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PremiosInstitucionales.DBServices.Mail;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -229,43 +228,15 @@ namespace PremiosInstitucionales.WebForms
 
         protected void VeredictoBtn_Click(object sender, EventArgs e)
         {
-            String correoSender = "empresa.ejemplo.mail@gmail.com";
-            String pswSender = "proyectointegrador";
-            String toMails = getMails();
-
-            try
+            var MailService = new MailService();
+            if (MailService.EnviarCorreoVeredictoFinal(getMails()))
             {
-                using (MailMessage mm = new MailMessage(correoSender, toMails))
-                {
-                    mm.Subject = "Veredicto Final.";
-                    mm.IsBodyHtml = true;
-                    var bodyContent = "Ya existe un ganador";
-                    try
-                    {
-                        mm.Body = bodyContent;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = NetworkCred;
-                        smtp.Port = 587;
-                        smtp.Send(mm);
-                    }
-                    catch (Exception Ex2)
-                    {
-                        // No pude enviar el correo a ese destinatario
-                        Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
-                        Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=failed", false);
-                    }
-                }
                 // Ya envie el correo a ese destinatario 
                 Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=success", false);
             }
-            catch (Exception Ex)
+            else
             {
-                // No me pude conectar al servicio del mail
-                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
+                // No pude enviar el correo a ese destinatario
                 Response.Redirect("AdministraGanadorCategoria.aspx?c=" + Request.QueryString["c"] + "&sv=failed", false);
             }
         }

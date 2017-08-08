@@ -205,6 +205,13 @@ $(document).ready(function () {
             recordarUsuario();
         }
     });
+
+    // Preveer la tecla enter
+    $('.no-enter-key').keypress(function (e) {
+        if (e.which == 13) { // Checks for the enter key
+            e.preventDefault(); // Stops IE from triggering the button to be clicked
+        }
+    });
 });
 
 function autoChangeTab() {

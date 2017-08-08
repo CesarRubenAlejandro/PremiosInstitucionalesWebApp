@@ -576,6 +576,9 @@
       <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="PI_SE_Configuracion" EntityType="wPremiosInstitucionalesdbModel.PI_SE_Configuracion" />
+    <FunctionImport Name="GetConfiguracion" EntitySet="PI_SE_Configuracion" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_SE_Configuracion)">
+      <Parameter Name="cveConfiguracion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAdministrador_Result">
     <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
@@ -700,9 +703,16 @@
       <PropertyRef Name="cveConfiguracion" />
     </Key>
     <Property Name="cveConfiguracion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Puerto" Type="Int16" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Puerto" Type="Int16" Nullable="false" />
   </EntityType>
+  <ComplexType Name="GetConfiguracion_Result">
+    <Property Type="String" Name="cveConfiguracion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Host" Nullable="true" MaxLength="100" />
+    <Property Type="Int16" Name="Puerto" Nullable="true" />
+  </ComplexType>
 </Schema>

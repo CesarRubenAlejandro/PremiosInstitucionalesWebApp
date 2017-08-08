@@ -146,10 +146,10 @@
       <PropertyRef Name="cveConfiguracion" />
     </Key>
     <Property Name="cveConfiguracion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Correo" Type="varchar" MaxLength="100" />
-    <Property Name="Password" Type="varchar" MaxLength="100" />
-    <Property Name="Host" Type="varchar" MaxLength="100" />
-    <Property Name="Puerto" Type="smallint" />
+    <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Host" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Puerto" Type="smallint" Nullable="false" />
   </EntityType>
   <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
     <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
@@ -407,6 +407,9 @@
     <Parameter Name="cveJuez" Type="varchar" Mode="In" />
   </Function>
   <Function Name="GetCategoriasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetConfiguracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cveConfiguracion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="GetConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
   </Function>

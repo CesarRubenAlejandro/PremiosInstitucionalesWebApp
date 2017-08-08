@@ -2,13 +2,12 @@
 using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.Values;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI.HtmlControls;
+using PremiosInstitucionales.DBServices.Mail;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -186,8 +185,10 @@ namespace PremiosInstitucionales.WebForms
             AplicacionService.RechazarAplicacion(aplicacionID);
 
             // enviar correo notificando al candidato de la aplicacion
+            var aplicacion = AplicacionService.ObtenerAplicacionDeClave(aplicacionID);
             string razon = razonTB.Text.ToString();
-            EnviarCorreoConfirmacion(razon, aplicacionID);
+            var MailService = new MailService();
+            MailService.EnviarCorreoRechazarAplicacion(aplicacion, razon);
 
             // cargar nuevamente el acordeon de respuestas forzando un postback
             razonTB.Text = "";
@@ -217,46 +218,6 @@ namespace PremiosInstitucionales.WebForms
                 MasterPage.ShowMessage("Error", "El servidor no encontró el archivo.");
             }
 
-        }
-
-        private bool EnviarCorreoConfirmacion(String razon, String claveAplicacion)
-        {
-            var aplicacion = AplicacionService.ObtenerAplicacionDeClave(claveAplicacion);
-
-            String correoSender = "empresa.ejemplo.mail@gmail.com";
-            String pswSender = "proyectointegrador";
-            try
-            {
-                using (MailMessage mm = new MailMessage(correoSender, aplicacion.PI_BA_Candidato.Correo))
-                {
-                    mm.Subject = "Requiere cambios la solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey.";
-                    var bodyContent = "";
-                    bodyContent = File.ReadAllText(Server.MapPath("~/Values/CorreoSolicitudCambio.txt"));
-                    // formatear contenidos de string
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoNombre, aplicacion.PI_BA_Candidato.Nombre);
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoPremio, aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre);
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoCategoria, aplicacion.PI_BA_Categoria.Nombre);
-                    bodyContent = bodyContent.Replace(StringValues.ContenidoCorreoRazon, razon);
-                    // enviar
-                    mm.Body = bodyContent;
-                    mm.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
-                }
-                return true;
-            }
-            catch (Exception Ex)
-            {
-                Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
-                return false;
-            }
         }
 
         protected void bttnAceptarAplicacion_Click(object sender, EventArgs e)

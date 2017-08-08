@@ -1,9 +1,8 @@
 ﻿using PremiosInstitucionales.DBServices.Registro;
 using PremiosInstitucionales.Values;
 using System;
-using System.Net;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
+using PremiosInstitucionales.DBServices.Mail;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -46,44 +45,16 @@ namespace PremiosInstitucionales.WebForms
             string contrasena = System.Web.Security.Membership.GeneratePassword(7, 0);
             if (RegistroService.RegistraJuez(correoInvitar, contrasena))
             {
-                String correoSender = "empresa.ejemplo.mail@gmail.com";
-                String pswSender = "proyectointegrador";
-
-                try
+                var MailService = new MailService();
+                if (MailService.EnviarCorreoInvitacionJuez(correoInvitar, contrasena))
                 {
-                    using (MailMessage mm = new MailMessage(correoSender, correoInvitar))
-                    {
-                        mm.Subject = "Fuiste Asignado como Juez a los premios institucionales.";
-                        mm.IsBodyHtml = true;
-                        var bodyContent = "Tu contrasena es  " + contrasena;
-                        try
-                        {
-                            mm.Body = bodyContent;
-                            SmtpClient smtp = new SmtpClient();
-                            smtp.Host = "smtp.gmail.com";
-                            smtp.EnableSsl = true;
-                            NetworkCredential NetworkCred = new NetworkCredential(correoSender, pswSender);
-                            smtp.UseDefaultCredentials = true;
-                            smtp.Credentials = NetworkCred;
-                            smtp.Port = 587;
-                            smtp.Send(mm);
-                        }
-                        catch (Exception Ex2)
-                        {
-                            // No pude enviar el correo a ese destinatario
-                            Console.WriteLine("Catched Exception: " + Ex2.Message + Environment.NewLine);
-                            MasterPage.ShowMessage("Error", "El correo no pudo enviarse a ese destinatario, verifica que el correo sea el correcto.");
-                        }
-                    }
                     // Ya envie el correo a ese destinatario 
                     MasterPage.ShowMessage("Aviso", "Invitación enviada con éxito.");
                 }
-
-                catch (Exception Ex)
+                else
                 {
-                    // No me pude conectar al servicio del mail
-                    Console.WriteLine("Catched Exception: " + Ex.Message + Environment.NewLine);
-                    MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+                    // No pude enviar el correo a ese destinatario
+                    MasterPage.ShowMessage("Error", "El correo no pudo enviarse a ese destinatario, verifica que el correo sea el correcto.");
                 }
             }
         }

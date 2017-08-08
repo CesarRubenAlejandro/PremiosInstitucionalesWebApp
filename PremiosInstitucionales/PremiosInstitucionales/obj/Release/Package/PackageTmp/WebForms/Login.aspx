@@ -5,7 +5,7 @@
 	<div class="paginasIniciales">
 		<div id="vidtop-content">
 			<div class="login-wrap">
-				<div class="login-html">
+				<div class="login-html no-enter-key">
 					<img id="logoTec" src='<%= ResolveUrl("~/Resources/img/logotec.png")%>' alt="Logo Tec"/>
 					<div class="option-tabs">
 						<input id="tab-1" type="radio" name="tab" class="sign-in" onchange="changeTab(true)" checked="checked"/><label for="tab-1" class="tab">Inicio</label>

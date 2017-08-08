@@ -767,5 +767,23 @@ namespace PremiosInstitucionales.Entities.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateConvocatoria", cveConvocatoriaParameter, fechaInicioParameter, fechaFinParameter, cvePremioParameter, tituloConvocatoriaParameter, fechaVeredictoParameter, fechaCreacionParameter, usuarioCreacionParameter, fechaEdicionParameter, usuarioEdicionParameter);
         }
+    
+        public virtual ObjectResult<PI_SE_Configuracion> GetConfiguracion(string cveConfiguracion)
+        {
+            var cveConfiguracionParameter = cveConfiguracion != null ?
+                new ObjectParameter("cveConfiguracion", cveConfiguracion) :
+                new ObjectParameter("cveConfiguracion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PI_SE_Configuracion>("GetConfiguracion", cveConfiguracionParameter);
+        }
+    
+        public virtual ObjectResult<PI_SE_Configuracion> GetConfiguracion(string cveConfiguracion, MergeOption mergeOption)
+        {
+            var cveConfiguracionParameter = cveConfiguracion != null ?
+                new ObjectParameter("cveConfiguracion", cveConfiguracion) :
+                new ObjectParameter("cveConfiguracion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PI_SE_Configuracion>("GetConfiguracion", mergeOption, cveConfiguracionParameter);
+        }
     }
 }

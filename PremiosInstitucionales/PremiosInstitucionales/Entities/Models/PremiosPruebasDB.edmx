@@ -151,10 +151,10 @@
             <PropertyRef Name="cveConfiguracion" />
           </Key>
           <Property Name="cveConfiguracion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Correo" Type="varchar" MaxLength="100" />
-          <Property Name="Password" Type="varchar" MaxLength="100" />
-          <Property Name="Host" Type="varchar" MaxLength="100" />
-          <Property Name="Puerto" Type="smallint" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Host" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Puerto" Type="smallint" Nullable="false" />
         </EntityType>
         <Association Name="FK_PI_BA_Aplicacion_PI_BA_Candidato">
           <End Role="PI_BA_Candidato" Type="Self.PI_BA_Candidato" Multiplicity="0..1" />
@@ -412,6 +412,9 @@
           <Parameter Name="cveJuez" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetCategoriasPendientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetConfiguracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cveConfiguracion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetConvocatoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cveConvocatoria" Type="varchar" Mode="In" />
         </Function>
@@ -1144,6 +1147,9 @@
             <Parameter Name="UsuarioEdicion" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="PI_SE_Configuracion" EntityType="wPremiosInstitucionalesdbModel.PI_SE_Configuracion" />
+          <FunctionImport Name="GetConfiguracion" EntitySet="PI_SE_Configuracion" ReturnType="Collection(wPremiosInstitucionalesdbModel.PI_SE_Configuracion)">
+          <Parameter Name="cveConfiguracion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAdministrador_Result">
           <Property Type="String" Name="cveAdministrador" Nullable="false" MaxLength="50" />
@@ -1268,11 +1274,18 @@
             <PropertyRef Name="cveConfiguracion" />
           </Key>
           <Property Name="cveConfiguracion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Puerto" Type="Int16" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Host" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Puerto" Type="Int16" Nullable="false" />
         </EntityType>
+        <ComplexType Name="GetConfiguracion_Result">
+          <Property Type="String" Name="cveConfiguracion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Host" Nullable="true" MaxLength="100" />
+          <Property Type="Int16" Name="Puerto" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1482,6 +1495,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetConfiguracion" FunctionName="wPremiosInstitucionalesdbModel.Store.GetConfiguracion">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

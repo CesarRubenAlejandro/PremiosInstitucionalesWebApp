@@ -192,5 +192,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetConfiguracion" FunctionName="wPremiosInstitucionalesdbModel.Store.GetConfiguracion" />
   </EntityContainerMapping>
 </Mapping>
