@@ -19,7 +19,7 @@
 							</div>
 							<div class="int-group">
 								<label for="passlogin" class="int-label">Contraseña<span class="req">*</span></label>
-								<asp:TextBox class="int-input" ID="passlogin" runat="server" type="password" autocomplete="new-password" data-type="password" spellcheck="false"></asp:TextBox>
+								<asp:TextBox class="int-input" ID="passlogin" ClientIDMode="Static" runat="server" type="password" autocomplete="new-password" data-type="password" spellcheck="false"></asp:TextBox>
 							</div>
 							<div class="int-group">
 								<input id="checkBox" type="checkbox" class="check"/>

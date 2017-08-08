@@ -172,11 +172,11 @@ $(document).ready(function () {
 
     // Escribir el correo del usuario si hay alguno guardado en las cookies
     if (getCookie("eMail") != "Null" && getCookie("eMail") != "") {
-        document.getElementsByClassName("int-input")[0].value = getCookie("eMail");
+        document.getElementById("user").value = getCookie("eMail");
     }
     // Escribir la contraseña del usuario si hay alguno guardado en las cookies
     if (getCookie("psw") != "Null" && getCookie("psw") != "") {
-        document.getElementsByClassName("int-input")[1].value = getCookie("psw");
+        document.getElementById("passlogin").value = getCookie("psw");
     }
 
     // Si no estan vacios los inputs, activar los labels
@@ -237,7 +237,9 @@ function autoChangeTab() {
 
 // Cuando termine de cargar la pagina, llamo a datosUsuario()
 $(window).load(function () {
-    datosUsuario();
+    if (document.getElementById("checkBox")) {
+        datosUsuario();
+    }
 });
 
 // Funcion que guarda u olvida los datos del usuario, dependiendo de el checkbox
@@ -254,8 +256,8 @@ function datosUsuario() {
 
 // Funcion que guarda en las cookies los campos de email, password y el checkbox
 function recordarUsuario() {
-    var eMail = document.getElementsByClassName("int-input")[0].value;
-    var psw = document.getElementsByClassName("int-input")[1].value;
+    var eMail = document.getElementById("user").value;
+    var psw = document.getElementById("passlogin").value;
 
     setCookie("eMail", eMail);
     setCookie("psw", psw);

@@ -76,6 +76,7 @@ namespace PremiosInstitucionales.DBServices.Mail
             String cuerpo = "";
             cuerpo = File.ReadAllText(Server.MapPath("~/Values/CorreoRecuperaPassword.txt"));
             cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoId, id);
 
             switch (id[0])
             {

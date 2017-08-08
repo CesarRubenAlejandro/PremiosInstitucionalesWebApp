@@ -12,11 +12,11 @@
 					</div>
 					<div class="login-form">
 						<div class="int-group">
-							<label for="passreg" class="int-label">Contraseña<span class="req">*</span></label>
+							<label for="PasswordTextBox" class="int-label">Contraseña<span class="req">*</span></label>
 							<asp:TextBox class="int-input" ID="PasswordTextBox" runat="server" ClientIDMode="Static" TextMode="Password" autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
-							<label for="passreg2" class="int-label">Confirmar constraseña<span class="req">*</span></label>
+							<label for="ConfirmPasswordTextBox" class="int-label">Confirmar constraseña<span class="req">*</span></label>
 							<asp:TextBox class="int-input" ID="ConfirmPasswordTextBox" runat="server" type="password" ClientIDMode="Static" data-type="password" TextMode="Password"  autocomplete="new-password" spellcheck="false"></asp:TextBox>
 						</div>
 						<div class="int-group">
