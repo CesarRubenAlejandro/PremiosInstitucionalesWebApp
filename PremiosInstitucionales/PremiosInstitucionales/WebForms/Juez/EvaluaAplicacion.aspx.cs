@@ -2,6 +2,7 @@
 using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.DBServices.Evaluacion;
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
+using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
@@ -22,6 +23,12 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             // Load Globals
             MasterPage = (MP_Global)Page.Master;
             cveAplicacion = Request.QueryString["a"];
@@ -97,11 +104,12 @@ namespace PremiosInstitucionales.WebForms
         private void LoadFile()
         {
             var Aplicacion = AplicacionService.GetAplicacionById(cveAplicacion);
+            var Candidato = InformacionPersonalCandidatoService.GetCandidatoById(Aplicacion.cveCandidato);
 
             PanelArchivo.Controls.Add(new LiteralControl("<div class='row text-center'>"+
                 "<div class='col-sm-6'>"+
                     "<h5>"+
-                        "<strong> Candidato: </strong> <br/><br/>" + Aplicacion.PI_BA_Candidato.Nombre + " " + Aplicacion.PI_BA_Candidato.Apellido +
+                        "<strong> Candidato: </strong> <br/><br/>" + Candidato.Nombre + " " + Candidato.Apellido +
                     "</h5>"+
                 "</div>"+
                     "<div class='col-sm-6'>"+

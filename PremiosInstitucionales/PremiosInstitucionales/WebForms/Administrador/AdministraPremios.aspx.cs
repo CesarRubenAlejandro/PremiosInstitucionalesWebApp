@@ -14,6 +14,12 @@ namespace PremiosInstitucionales.WebForms
         MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
@@ -94,7 +100,7 @@ namespace PremiosInstitucionales.WebForms
 
         protected void EnviarBtn_Click(object sender, EventArgs e)
         {
-            if (tbAwardTitle.Text.Length > 0)
+            if (tbAwardTitle.Text.Length > 0 && tbAwardDescription.Text.Length > 0)
             {
                 String sNombreImagen = UploadImage();
 

@@ -2,7 +2,7 @@
 
 namespace PremiosInstitucionales.WebForms
 {
-    public partial class Error404 : System.Web.UI.Page
+    public partial class Error401 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -12,8 +12,8 @@ namespace PremiosInstitucionales.WebForms
 
             // Set status code and message; you could also use the HttpStatusCode enum:
             // System.Net.HttpStatusCode.NotFound
-            Response.StatusCode = 404;
-            Response.StatusDescription = "Page not found";
+            Response.StatusCode = 401;
+            Response.StatusDescription = "Session expired";
         }
     }
 }

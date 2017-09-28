@@ -151,7 +151,7 @@
                         </div>
                         <!-- Texto Corto -->
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam hendrerit massa ut mollis fermentum. Curabitur facilisis nisl et sapien sollicitudin gravida. Vestibulum ac massa non ligula molestie maximus. Sed quis metus tellus.
+                            En el supuesto de que por este medio usted proporcione datos personales sujetos a la normatividad vigente, le informamos que éstos podrían ser tratados por el Instituto Tecnológico y de Estudios Superiores de Monterrey (en adelante ITESM) con domicilio ubicado en Av. Eugenio Garza Sada Sur No. 2501, colonia Tecnológico en Monterrey, Nuevo León. C.P. 64849, en caso de que fuera necesario para cumplir con la finalidad para la cual usted nos ha enviado dicha información.
                         </p>
                         <!-- Ver PDF -->
                         <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" />

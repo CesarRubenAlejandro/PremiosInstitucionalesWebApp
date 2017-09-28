@@ -9,6 +9,12 @@ namespace PremiosInstitucionales.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             if (!IsPostBack)
             {
                 // revisar la primera vez que se carga la pagina que se haya iniciado sesion con cuenta de candidato

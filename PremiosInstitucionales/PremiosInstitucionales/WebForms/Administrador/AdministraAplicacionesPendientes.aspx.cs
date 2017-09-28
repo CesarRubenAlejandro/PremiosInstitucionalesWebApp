@@ -16,6 +16,12 @@ namespace PremiosInstitucionales.WebForms
         MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             MasterPage = (MP_Global)Page.Master;
             if (!IsPostBack)
             {
@@ -27,16 +33,14 @@ namespace PremiosInstitucionales.WebForms
                         // si no es admin, redireccionar a inicio general
                         Response.Redirect("~/WebForms/Login.aspx", false);
                     }
-                    else
-                    {
-                        LoadPendingApplications();
-                    }
                 }
                 else
                 {
                     Response.Redirect("~/WebForms/Login.aspx", false);
                 }
             }
+
+            LoadPendingApplications();
         }
 
         private void LoadPendingApplications()

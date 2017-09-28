@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error404.aspx.cs" Inherits="PremiosInstitucionales.WebForms.Error404" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error401.aspx.cs" Inherits="PremiosInstitucionales.WebForms.Error401" %>
 
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
@@ -49,9 +49,9 @@
 			   <div class="main-content">
 					<div class="row">
 						<div class="col-twelve">
-							<h1 class="kern-this">Error 404.</h1>
+							<h1 class="kern-this">Error 401.</h1>
 							<p style="color: white;">
-								La página solicitada no existe. Trataremos de redirigirte automáticamente a nuestra página de inicio en 5 segundos.
+                                Su sesión ha expirado. Trataremos de redirigirte automáticamente a nuestra página de inicio en 5 segundos.
 							</p>
 						</div> <!-- /twelve --> 		   			
 					</div> <!-- /row -->    		 		

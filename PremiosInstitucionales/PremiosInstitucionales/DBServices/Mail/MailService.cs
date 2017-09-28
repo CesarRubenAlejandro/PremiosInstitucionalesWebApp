@@ -1,5 +1,6 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.DBServices.InformacionPersonalJuez;
+using PremiosInstitucionales.DBServices.Convocatoria;
 using PremiosInstitucionales.Entities.Models;
 using PremiosInstitucionales.Values;
 using System;
@@ -125,14 +126,19 @@ namespace PremiosInstitucionales.DBServices.Mail
 
         public bool EnviarCorreoRechazarAplicacion(PI_BA_Aplicacion aplicacion, String razon)
         {
-            String toMail = aplicacion.PI_BA_Candidato.Correo;
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoById(aplicacion.cveCandidato);
+            var categoria = ConvocatoriaService.GetCategoriaById(aplicacion.cveCategoria);
+            var convocatoria = ConvocatoriaService.GetConvocatoriaById(categoria.cveConvocatoria);
+            var premio = ConvocatoriaService.GetPremioByCategoria(categoria.cveCategoria);
+
+            String toMail = candidato.Correo;
             String titulo = "Requiere cambios la solicitud de registro en el sistema Premios Institucionales del Tec de Monterrey.";
             String cuerpo = "";
             cuerpo = File.ReadAllText(Server.MapPath("~/Values/CorreoSolicitudCambio.txt"));
             cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
-            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoNombre, aplicacion.PI_BA_Candidato.Nombre);
-            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoPremio, aplicacion.PI_BA_Categoria.PI_BA_Convocatoria.PI_BA_Premio.Nombre);
-            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoCategoria, aplicacion.PI_BA_Categoria.Nombre);
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoNombre, candidato.Nombre);
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoPremio, premio.Nombre);
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoCategoria, categoria.Nombre);
             cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoRazon, razon);
 
             return EnviarCorreo(toMail, titulo, cuerpo);

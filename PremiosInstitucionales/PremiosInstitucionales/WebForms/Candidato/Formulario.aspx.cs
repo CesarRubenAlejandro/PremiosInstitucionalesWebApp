@@ -20,6 +20,12 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             MasterPage = (MP_Global)Page.Master;
 
             if (!IsPostBack)
@@ -170,12 +176,12 @@ namespace PremiosInstitucionales.WebForms
             {
                 String sNombreArchivo = UploadFile();
 
-                //if (sNombreArchivo != "Error")
-                //{
+                if (sNombreArchivo != "Error")
+                {
                     aplicacionNueva.NombreArchivo = sNombreArchivo;
                     AplicacionService.CrearAplicacion(aplicacionNueva, respuestas);
                     Response.Redirect("AplicacionesCandidato.aspx?r=true", false);
-                //}
+                }
             }
         }
 
@@ -204,7 +210,7 @@ namespace PremiosInstitucionales.WebForms
                 // Get string image format (png, jpg, etc)
                 var startIndex = fname.LastIndexOf(".");
                 var endIndex = fname.Length - startIndex;
-                string sFormat = fname.Substring(startIndex, endIndex);
+                string sFormat = fname.Substring(startIndex, endIndex).ToLower();
                 string sName = fname.Substring(0, fname.Length - sFormat.Length);
                 string sNombreArchivo = sName + new Random().Next(10000, 99999) + sFormat;
 
@@ -213,12 +219,17 @@ namespace PremiosInstitucionales.WebForms
                 {
                     ".png",
                     ".jpg",
+                    ".jpeg",
+                    ".bmp",
                     ".txt",
                     ".doc",
                     ".docx",
                     ".pdf",
                     ".xlsx",
-                    ".xls"
+                    ".xls",
+                    ".csv",
+                    ".ppt",
+                    ".pptx"
                 };
 
                 if (!supportedFormats.Contains(sFormat))

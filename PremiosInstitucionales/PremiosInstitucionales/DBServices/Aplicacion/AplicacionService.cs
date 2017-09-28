@@ -356,7 +356,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
             {
                 try
                 {
-                    PI_BA_Categoria categoria = GetCategoriaByClaveCategoria(idCategoria);
+                    PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
                     categoria.Nombre = nombre;
                     dbContext.SaveChanges();
                 }
@@ -375,7 +375,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 {
                     if (idCategoria == null || cveApp == null) return;
 
-                    PI_BA_Categoria categoria = GetCategoriaByClaveCategoria(idCategoria);
+                    PI_BA_Categoria categoria = dbContext.PI_BA_Categoria.Where(c => c.cveCategoria.Equals(idCategoria)).FirstOrDefault();
                     categoria.cveAplicacionGanadora = cveApp;
                     dbContext.SaveChanges();
                 }
@@ -411,6 +411,7 @@ namespace PremiosInstitucionales.DBServices.Aplicacion
                 {
                     PI_BA_Aplicacion aplicacion = dbContext.PI_BA_Aplicacion.Where(c => c.cveAplicacion.Equals(claveAplicacion)).FirstOrDefault();
                     aplicacion.Status = Values.StringValues.Aceptado;
+                    dbContext.SaveChanges();
                 }
                 catch (Exception Ex)
                 {

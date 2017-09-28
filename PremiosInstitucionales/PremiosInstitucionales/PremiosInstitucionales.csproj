@@ -278,6 +278,7 @@
     <Content Include="WebForms\Administrador\ObservaAplicacion.aspx" />
     <Content Include="WebForms\Candidato\AplicacionesCandidato.aspx" />
     <Content Include="WebForms\Candidato\CorrigeAplicacion.aspx" />
+    <Content Include="WebForms\Error\Error401.aspx" />
     <Content Include="WebForms\Error\Error500.aspx" />
     <Content Include="WebForms\Error\Error404.aspx" />
     <Content Include="WebForms\Juez\EvaluaAplicacion.aspx" />
@@ -539,6 +540,13 @@
     </Compile>
     <Compile Include="WebForms\Candidato\CorrigeAplicacion.aspx.designer.cs">
       <DependentUpon>CorrigeAplicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Error\Error401.aspx.cs">
+      <DependentUpon>Error401.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Error\Error401.aspx.designer.cs">
+      <DependentUpon>Error401.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Error\Error500.aspx.cs">
       <DependentUpon>Error500.aspx</DependentUpon>

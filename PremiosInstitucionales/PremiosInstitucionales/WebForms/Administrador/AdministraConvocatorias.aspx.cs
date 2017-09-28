@@ -16,6 +16,12 @@ namespace PremiosInstitucionales.WebForms
         MP_Global MasterPage = new MP_Global();
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             MasterPage = (MP_Global)Page.Master;
 
             // obtener el premio usando el query string de su id
@@ -30,6 +36,12 @@ namespace PremiosInstitucionales.WebForms
                     break;
                 case "failed":
                     MasterPage.ShowMessage("Error", "El servidor encontró un error al procesar la solicitud.");
+                    break;
+                case "failed2":
+                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG, BMP o JPG.");
+                    break;
+                case "failed3":
+                    MasterPage.ShowMessage("Error", "Debes llenar todos los campos.");
                     break;
             }
 
@@ -78,7 +90,7 @@ namespace PremiosInstitucionales.WebForms
                                 "<td>" + FormatearStringFecha(convocatoria.FechaInicio.ToString()) + "</td>" +
                                 "<td>" + FormatearStringFecha(convocatoria.FechaFin.ToString()) + "</td>" +
                                 "<td>" + FormatearStringFecha(convocatoria.FechaVeredicto.ToString()) + "</td>" +
-                                ConvocatoriaStatus(convocatoria.FechaVeredicto) +
+                                ConvocatoriaStatus(convocatoria.FechaInicio, convocatoria.FechaVeredicto) +
                             "</tr>"
                         ));
                     }
@@ -132,12 +144,17 @@ namespace PremiosInstitucionales.WebForms
             return sFecha;
         }
 
-        protected String ConvocatoriaStatus(DateTime? fechaVeredicto)
+        protected String ConvocatoriaStatus(DateTime? fechaInicio, DateTime? fechaVeredicto)
         {
             String color;
             String status;
 
-            if(fechaVeredicto > DateTime.Today)
+            if (fechaInicio > DateTime.Today)
+            {
+                color = "#00acc1";
+                status = "Próximamente";
+            }
+            else if (fechaVeredicto > DateTime.Today)
             {
                 color = "#4caf50";
                 status = "Abierta";
@@ -158,30 +175,41 @@ namespace PremiosInstitucionales.WebForms
 
         protected void GuardarNuevaBttn_Click(object sender, EventArgs e)
         {
-            // crear un nuevo objeto convocatoria y guardar sus datos
-            var nuevaConvo = new PI_BA_Convocatoria();
-            nuevaConvo.cveConvocatoria = Guid.NewGuid().ToString();
-            nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
+            // Verificar que todos los campos tengan datos
+            if (TituloNuevaConvocatoriaTB.Text != null          && TituloNuevaConvocatoriaTB.Text !=  "" &&
+                Request.Form["FechaInicioNuevaConvo"] != null   && Request.Form["FechaInicioNuevaConvo"] != "" &&
+                Request.Form["FechaFinNuevaConvo"] != null      && Request.Form["FechaFinNuevaConvo"] != "" &&
+                Request.Form["FechaVeredicto"] != null          && Request.Form["FechaVeredicto"] != "")
+            {
+                // crear un nuevo objeto convocatoria y guardar sus datos
+                var nuevaConvo = new PI_BA_Convocatoria();
+                nuevaConvo.cveConvocatoria = Guid.NewGuid().ToString();
+                nuevaConvo.TituloConvocatoria = TituloNuevaConvocatoriaTB.Text.ToString();
 
-            IFormatProvider FormatProvider = CultureInfo.InvariantCulture;
-            String idParam = "{0}";
+                IFormatProvider FormatProvider = CultureInfo.InvariantCulture;
+                String idParam = "{0}";
 
-            nuevaConvo.FechaInicio = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaInicioNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
-            nuevaConvo.FechaFin = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaFinNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
-            nuevaConvo.FechaVeredicto = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaVeredicto"]), "dd-MM-yyyy", FormatProvider);
+                nuevaConvo.FechaInicio = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaInicioNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+                nuevaConvo.FechaFin = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaFinNuevaConvo"]), "dd-MM-yyyy", FormatProvider);
+                nuevaConvo.FechaVeredicto = DateTime.ParseExact(String.Format(idParam, Request.Form["FechaVeredicto"]), "dd-MM-yyyy", FormatProvider);
 
-            nuevaConvo.FechaCreacion = DateTime.Now;
-            nuevaConvo.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
-            nuevaConvo.FechaEdicion = DateTime.Now;
-            nuevaConvo.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
-            // guardar nueva convocatoria
-            ConvocatoriaService.CreateConvocatoria(premioActual.cvePremio, nuevaConvo);
+                nuevaConvo.FechaCreacion = DateTime.Now;
+                nuevaConvo.UsuarioCreacion = Session[StringValues.CorreoSesion].ToString();
+                nuevaConvo.FechaEdicion = DateTime.Now;
+                nuevaConvo.UsuarioEdicion = Session[StringValues.CorreoSesion].ToString();
+                // guardar nueva convocatoria
+                ConvocatoriaService.CreateConvocatoria(premioActual.cvePremio, nuevaConvo);
 
-            // limpiar campos de nueva convocatoria
-            TituloNuevaConvocatoriaTB.Text = "";
+                // limpiar campos de nueva convocatoria
+                TituloNuevaConvocatoriaTB.Text = "";
 
-            // forzar el refresh de la pagina para traer los cambios
-            Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
+                // forzar el refresh de la pagina para traer los cambios
+                Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio);
+            }
+            else
+            {
+                Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "failed3", false);
+            }
         }
 
         private string UploadImage()
@@ -208,7 +236,7 @@ namespace PremiosInstitucionales.WebForms
 
                 if (!supportedFormats.Contains(sFormat))
                 {
-                    MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG o JPG.");
+                    //MasterPage.ShowMessage("Error", "La imagen proporcionada debe estar en formato PNG, BMP o JPG.");
                     return "Error";
                 }
 
@@ -236,18 +264,31 @@ namespace PremiosInstitucionales.WebForms
         {
             try
             {
-                string imgUrl = UploadImage();
-
-                if (imgUrl == null)
+                // Verificar que todos los campos tengan datos 
+                if (TituloPremioSeleccionado.Text != null      && TituloPremioSeleccionado.Text != "" &&
+                    DescripcionPremioSeleccionado.Text != null && DescripcionPremioSeleccionado.Text != "")
                 {
-                    imgUrl = premioActual.NombreImagen;
+                    string imgUrl = UploadImage();
+
+                    if (imgUrl == null || imgUrl == "")
+                    {
+                        imgUrl = premioActual.NombreImagen;
+                    }
+
+                    if (imgUrl != "Error")
+                    {
+                        string user = Session[StringValues.CorreoSesion].ToString();
+                        ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
+                        Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "success", false);
+                    }
+                    else
+                    {
+                        Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "failed2", false);
+                    }
                 }
-
-                if (imgUrl != "Error")
+                else
                 {
-                    string user = Session[StringValues.CorreoSesion].ToString();
-                    ConvocatoriaService.ActualizarPremio(premioActual.cvePremio, TituloPremioSeleccionado.Text, DescripcionPremioSeleccionado.Text, imgUrl, user);
-                    Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "success", false);
+                    Response.Redirect("AdministraConvocatorias.aspx?p=" + premioActual.cvePremio + "&s=" + "failed3", false);
                 }
             }
             catch (Exception Ex)

@@ -21,6 +21,12 @@ namespace PremiosInstitucionales.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Verificar si ya expiro la sesion
+            if (Session.Contents.Count == 0)
+            {
+                Response.Redirect("~/WebForms/Error/Error401.aspx", false);
+            }
+
             MasterPage = (MP_Global)Page.Master;
 
             if (!IsPostBack)
@@ -67,7 +73,7 @@ namespace PremiosInstitucionales.WebForms
             tbCategoria.CssClass = "form-control";
             tbCategoria.Style.Add("display", "inline-block");
             tbCategoria.Style.Add("font-size", "1.75em");
-            tbCategoria.Style.Add("width", "225px");
+            tbCategoria.Style.Add("width", "570px");
             tbCategoria.Attributes.Add("type", "text");
             tbCategoria.Text = nombreCategoria;
             nombrePremioCategoria.Controls.Add(tbCategoria);

@@ -10,6 +10,6 @@
 namespace PremiosInstitucionales.WebForms {
     
     
-    public partial class Error404 {
+    public partial class Error401 {
     }
 }

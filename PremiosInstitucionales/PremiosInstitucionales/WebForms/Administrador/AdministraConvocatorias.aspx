@@ -2,15 +2,16 @@
     Inherits="PremiosInstitucionales.WebForms.AdministrarConvocatoria" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-
-    <!-- CSS -->
-    <link href='<%= ResolveUrl("~/Resources/css/dataTables.css")%>' rel="stylesheet" type="text/css"/>
-    <link href='<%= ResolveUrl("~/Resources/css/jquery-ui.css")%>' rel="stylesheet" type="text/css"/>
+    
     <!-- JS -->
     <script src='<%= ResolveUrl("~/Resources/js/jquery-ui.js")%>' defer="defer"></script>
     <script src='<%= ResolveUrl("~/Resources/js/jquery-ui.multidatespicker.js")%>' defer="defer"></script>
     <script src='<%= ResolveUrl("~/Resources/js/jquery.dataTables.js")%>' type="text/javascript" defer="defer"></script>
     <script src='<%= ResolveUrl("~/Resources/js/crearConvocatoria.js")%>' type="text/javascript" defer="defer"></script>
+
+    <!-- CSS -->
+    <link href='<%= ResolveUrl("~/Resources/css/jquery-ui.css")%>' rel="stylesheet" type="text/css"/>
+    <link href='<%= ResolveUrl("~/Resources/css/dataTables.css")%>' rel="stylesheet" type="text/css"/>
    
     <!-- Content -->
     <div class="container fadeView">
