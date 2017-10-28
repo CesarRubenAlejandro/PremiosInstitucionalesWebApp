@@ -94,15 +94,6 @@ namespace PremiosInstitucionales.WebForms {
         protected global::System.Web.UI.WebControls.TextBox NacionalidadTextBox;
         
         /// <summary>
-        /// avisoPrivacidad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor avisoPrivacidad;
-        
-        /// <summary>
         /// guardarCambiosBtn control.
         /// </summary>
         /// <remarks>

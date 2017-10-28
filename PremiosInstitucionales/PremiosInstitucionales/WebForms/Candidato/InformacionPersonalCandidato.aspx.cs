@@ -41,27 +41,10 @@ namespace PremiosInstitucionales.WebForms
                 ResetFields();
             }
 
-            CheckPrivacy();
-
             var status = Request.QueryString["s"];
             if (status == "success")
             {
                 MasterPage.ShowMessage("Aviso", "Cambios realizados con éxito.");
-            }
-        }
-
-        private void CheckPrivacy()
-        {
-            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
-            if (!candidato.FechaPrivacidadDatos.HasValue)
-            {
-                guardarCambiosBtn.Style.Add("display", "none");
-                avisoPrivacidad.Style.Add("display", "inline-block");
-            }
-            else
-            {
-                guardarCambiosBtn.Style.Add("display", "inline-block");
-                avisoPrivacidad.Style.Add("display", "none");
             }
         }
 
@@ -99,7 +82,6 @@ namespace PremiosInstitucionales.WebForms
                 if (Upload(sender, e))
                 {
                     ActualizarDatosGenerales();
-                    CheckPrivacy();
                     Response.Redirect("InformacionPersonalCandidato.aspx?s=success", false);
                 }
             }

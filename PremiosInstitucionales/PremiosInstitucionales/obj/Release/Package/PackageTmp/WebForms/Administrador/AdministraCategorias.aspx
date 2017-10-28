@@ -23,7 +23,7 @@
                         <div class="col-md-12">
                             <div>
                                 <label class="col-lg-12 control-label control-title" style="margin-top: 0px">Nombre:</label>
-                                <asp:TextBox runat="server" class="form-control" placeholder="Alumnos" type="text" ID="tbCategoryTitle" />
+                                <asp:TextBox runat="server" class="form-control" type="text" ID="tbCategoryTitle" />
                             </div>
                         </div>
                     </div>

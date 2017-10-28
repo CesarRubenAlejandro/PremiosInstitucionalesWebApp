@@ -100,7 +100,7 @@
       <PropertyRef Name="cvePregunta" />
     </Key>
     <Property Name="cvePregunta" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Texto" Type="varchar" MaxLength="100" />
+    <Property Name="Texto" Type="varchar" MaxLength="1000" />
     <Property Name="Orden" Type="int" />
   </EntityType>
   <EntityType Name="PI_BA_PreguntasPorForma">

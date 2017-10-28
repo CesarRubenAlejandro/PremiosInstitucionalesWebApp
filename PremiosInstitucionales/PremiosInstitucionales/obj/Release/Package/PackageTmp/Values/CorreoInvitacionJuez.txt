@@ -1,0 +1,19 @@
+﻿<html>
+<body>
+<img src="http://www.pue.itesm.mx/sedes/cancun/img/logo_itesm.png" style="width:250px; height:100px;">
+<p style="text-align:left">%FECHA%</p>
+<p>Estimado(a) %CORREO%</p>
+<p>Te damos la más cordial bienvenida a la plataforma de Premios Tec y agradecemos tu apoyo como parte del jurado.</p>
+<p>Utilizando esta misma direccion de correo (%CORREO%) y la contraseña "%PASSWORD%" podras acceder a la <a href="http://10.2.40.125/PremiosInstitucionales/WebForms/Login.aspx">plataforma</a>, donde podras ver los diferentes premios y categorías a los cuales fue asignado(a).
+<br/>
+Por último, le pedimos atentamente si es posible que modifique su contraseña lo antes posible.</p>
+<br>
+<br>
+<hr>
+<div style="text-align:center">
+<p>Premios institucionales</p>
+<p>Tec de Monterrey</p>
+</div>
+<p>AV. EUGENIO GARZA SADA 2501 SUR COL. TECNOLÓGICO C.P. 64849 | MONTERREY, NUEVO LEÓN, MÉXICO | TEL. +52 (81) 8358-2000 D.R.© INSTITUTO TECNOLÓGICO Y DE ESTUDIOS SUPERIORES DE MONTERREY, MÉXICO. 2017</p>
+</body>
+</html>

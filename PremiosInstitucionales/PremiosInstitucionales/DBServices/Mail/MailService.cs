@@ -113,14 +113,21 @@ namespace PremiosInstitucionales.DBServices.Mail
         public bool EnviarCorreoInvitacionCandidato(String toMail, String nombre, String apellido)
         {
             String titulo = "Invitación para unirse a Premios Institucionales del Tec de Monterrey";
-            String cuerpo = "Te están invitando a que participes en uno de los premios institucionales. Entra a INSERTA LINK AQUI";
+            String cuerpo = "";
+            cuerpo = File.ReadAllText(Server.MapPath("~/Values/CorreoInvitacionCandidato.txt"));
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoMail, toMail);
             return EnviarCorreo(toMail, titulo, cuerpo);
         }
 
         public bool EnviarCorreoInvitacionJuez(String toMail, String password)
         {
             String titulo = "Fuiste Asignado como Juez para Premios Institucionales del Tec de Monterrey.";
-            String cuerpo = "Utilizando esta misma direccion de correo ("+toMail+") y la contrasena " + password + ", podras acceder a la plataforma en la liga INSERTA LINK AQUI, donde podras participar como jurado en las categorias que se te asignen. Por último, le pedimos atentamente si es posible que modifique su contraseña lo antes posible.";
+            String cuerpo = "";
+            cuerpo = File.ReadAllText(Server.MapPath("~/Values/CorreoInvitacionJuez.txt"));
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoFecha, DateTime.Today.ToShortDateString());
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoMail, toMail);
+            cuerpo = cuerpo.Replace(StringValues.ContenidoCorreoPassword, password);
             return EnviarCorreo(toMail, titulo, cuerpo);
         }
 

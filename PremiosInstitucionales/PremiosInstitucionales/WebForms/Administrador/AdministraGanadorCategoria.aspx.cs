@@ -225,11 +225,17 @@ namespace PremiosInstitucionales.WebForms
             // Concateno mails usando comas
             foreach (PI_BA_Aplicacion App in AcepApps)
             {
-                Mails += "," + App.PI_BA_Candidato.Correo;
+                var candidato = InformacionPersonalCandidatoService.GetCandidatoById(App.cveCandidato);
+                Mails += "," + candidato.Correo;
             }
 
             // Elimino primer coma
-            return Mails.Substring(1, Mails.Length - 1);
+            var retValue = "";
+            if (Mails.Length > 1)
+            {
+                retValue = Mails.Substring(1, Mails.Length - 1);
+            }
+            return retValue;
         }
 
         protected void VeredictoBtn_Click(object sender, EventArgs e)

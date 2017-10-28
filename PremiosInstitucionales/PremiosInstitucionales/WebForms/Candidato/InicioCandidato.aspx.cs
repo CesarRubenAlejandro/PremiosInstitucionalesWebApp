@@ -1,6 +1,7 @@
 ﻿using PremiosInstitucionales.DBServices.InformacionPersonalCandidato;
 using PremiosInstitucionales.Values;
 using System;
+using System.Web.UI;
 
 namespace PremiosInstitucionales.WebForms
 {
@@ -53,6 +54,33 @@ namespace PremiosInstitucionales.WebForms
             {
                 litBienvenidoUsuario.Text = "<h1> Bienvenido </h1>";
             }
+
+            if (!candidato.FechaPrivacidadDatos.HasValue)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            }
+        }
+
+        protected void EnviarBtn_Click(object sender, EventArgs e)
+        {
+            var candidato = InformacionPersonalCandidatoService.GetCandidatoByCorreo(Session[StringValues.CorreoSesion].ToString());
+            if (candidato != null)
+            {
+                if (!candidato.FechaPrivacidadDatos.HasValue)
+                {
+                    candidato.FechaPrivacidadDatos = DateTime.Today.Date;
+                }
+                InformacionPersonalCandidatoService.UpdateCandidato(candidato);
+            }
+        }
+
+        protected void CancelarBtn_Click(object sender, EventArgs e)
+        {
+            // Cierro la sesion actual
+            Session.Abandon();
+
+            // Redirecciono a la pagina de inicio de sesion
+            Response.Redirect("~/WebForms/Login.aspx", false);
         }
     }
 }

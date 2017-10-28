@@ -98,7 +98,7 @@
                         <div class="modal-header text-center">
                             <span runat="server" id="modalMensajeTitulo"></span>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="text-align:center">
                             <asp:Label ID="Mensaje" runat="server" Text="Label" class="error-msg"></asp:Label>
                         </div>
                         <div class="modal-footer">

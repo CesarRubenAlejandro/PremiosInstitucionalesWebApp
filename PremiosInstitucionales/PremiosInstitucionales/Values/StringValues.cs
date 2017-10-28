@@ -58,6 +58,7 @@ namespace PremiosInstitucionales.Values
         public static readonly String ContenidoCorreoPremio = "%PREMIO%";
         public static readonly String ContenidoCorreoCategoria = "%CATEGORIA%";
         public static readonly String ContenidoCorreoRazon = "%RAZON%";
+        public static readonly String ContenidoCorreoPassword = "%PASSWORD%";
 
         // validacion de formularos
         public static readonly String sCharactersRemaining = "caracteres restantes";

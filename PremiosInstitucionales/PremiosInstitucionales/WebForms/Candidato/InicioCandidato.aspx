@@ -2,6 +2,11 @@
     Inherits="PremiosInstitucionales.WebForms.InicioCandidato" MasterPageFile="~/MP-Global.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
+     <script type="text/javascript">
+        function openModal() {
+            $('#modalAvisoPrivacidad').modal('show');
+        }
+    </script>
     <div class="fadeView">
 		<!-- Welcome message -->
 		<div class="container welcome-box">
@@ -53,4 +58,35 @@
 		    </div>
 	    </div>
 	</div>
+
+        <!-- Modal aviso de privacidad -->
+        <div class="modal fade" id="modalAvisoPrivacidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h3 class="modal-title">Aviso de privacidad</h3>
+                        <hr class="shorthr"/>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Imagen de escudo -->
+                        <div class="text-center" style="margin-bottom: 16px;">
+                            <img src='<%= ResolveUrl("~/Resources/svg/shield.svg") %>' style="width: 96px; height: 96px;" />
+                        </div>
+                        <!-- Texto Corto -->
+                        <p>
+                            En el supuesto de que por este medio usted proporcione datos personales sujetos a la normatividad vigente, le informamos que éstos podrían ser tratados por el Instituto Tecnológico y de Estudios Superiores de Monterrey (en adelante ITESM) con domicilio ubicado en Av. Eugenio Garza Sada Sur No. 2501, colonia Tecnológico en Monterrey, Nuevo León. C.P. 64849, en caso de que fuera necesario para cumplir con la finalidad para la cual usted nos ha enviado dicha información.
+                        </p>
+                        <!-- Ver PDF -->
+                    <input type="checkbox" onchange="document.getElementById('ContentPlaceHolder_toggleCheckboxButton').style.display = this.checked ? '' : 'none';"/>
+                        Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a las
+                            <a target="_blank" type="application/pdf" href='<%= ResolveUrl("~/Document/PoliticasDePrivacidadTec.pdf") %>'> políticas de privacidad </a>
+                        para el uso del sistema.
+                    </div>
+                    <div class="modal-footer">
+                          <asp:Button id="cancelarButton" runat="server" onclick="CancelarBtn_Click" CssClass="btn" Text="Cancelar" />
+                          <asp:Button style="display: none;" id="toggleCheckboxButton" runat="server" onclick="EnviarBtn_Click" CssClass="btn btn-primary" Text="Aceptar" />
+                    </div>
+                </div>
+            </div>
+        </div>
 </asp:Content>

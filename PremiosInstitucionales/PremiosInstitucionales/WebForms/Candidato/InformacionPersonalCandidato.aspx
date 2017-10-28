@@ -84,10 +84,7 @@
                                             Cambiar contraseña
                                         </button>
                                     </a>
-                                    <a runat="server" id="avisoPrivacidad" class="no-underline" data-toggle="modal" data-target="#modalAvisoPrivacidad">
-                                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                                    </a>
-                                    <button type="button" class="btn btn-primary" onclick="sendFormAux();" runat="server" id="guardarCambiosBtn">Guardar Cambios</button>
+                                    <button type="button" class="btn btn-primary" onclick="sendFormAux();" runat="server" id="guardarCambiosBtn" style="display: inline-block;">Guardar Cambios</button>
                                     <asp:Button Style="display: none;" ID="EnviarBtn" runat="server" Text="Guardar Cambios" OnClick="EnviarBtn_Click" />
                                 </div>
                             </div>
@@ -130,38 +127,6 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                             <asp:Button ID="ButtonChangePassword" class="btn btn-primary" runat="server" Text="Cambiar" OnClick="CambiarContrasena_Click" />
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal aviso de privacidad -->
-        <div class="modal fade" id="modalAvisoPrivacidad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title">Aviso de privacidad</h3>
-                        <hr class="shorthr"/>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Imagen de escudo -->
-                        <div class="text-center" style="margin-bottom: 16px;">
-                            <img src='<%= ResolveUrl("~/Resources/svg/shield.svg") %>' style="width: 96px; height: 96px;" />
-                        </div>
-                        <!-- Texto Corto -->
-                        <p>
-                            En el supuesto de que por este medio usted proporcione datos personales sujetos a la normatividad vigente, le informamos que éstos podrían ser tratados por el Instituto Tecnológico y de Estudios Superiores de Monterrey (en adelante ITESM) con domicilio ubicado en Av. Eugenio Garza Sada Sur No. 2501, colonia Tecnológico en Monterrey, Nuevo León. C.P. 64849, en caso de que fuera necesario para cumplir con la finalidad para la cual usted nos ha enviado dicha información.
-                        </p>
-                        <!-- Ver PDF -->
-                        <input type="checkbox" onchange="document.getElementById('toggleCheckboxButton').disabled = !this.checked;" />
-                        Al realizar clic en el botón de aceptar, usted está de acuerdo con compartir su información de acuerdo a las
-                            <a target="_blank" type="application/pdf" href='<%= ResolveUrl("~/Document/PoliticasDePrivacidadTec.pdf") %>'> políticas de privacidad </a>
-                        para el uso del sistema.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="toggleCheckboxButton" onclick="sendFormAux();" disabled>Guardar Cambios</button>
                     </div>
                 </div>
             </div>

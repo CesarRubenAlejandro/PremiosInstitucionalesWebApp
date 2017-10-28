@@ -70,7 +70,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/21/2016 15:35:26</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll">
-      <publishTime>09/17/2017 09:58:35</publishTime>
+      <publishTime>10/28/2017 09:22:08</publishTime>
     </File>
     <File Include="bin/PremiosInstitucionales.dll.config">
       <publishTime>09/17/2017 08:37:35</publishTime>
@@ -145,10 +145,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2017 16:11:18</publishTime>
     </File>
     <File Include="MP-Global.Master">
-      <publishTime>08/07/2017 12:29:58</publishTime>
+      <publishTime>10/28/2017 06:31:50</publishTime>
     </File>
     <File Include="MP-Login.Master">
-      <publishTime>08/04/2017 19:55:44</publishTime>
+      <publishTime>10/28/2017 06:32:13</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/07/2017 11:03:16</publishTime>
@@ -280,7 +280,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2017 02:05:59</publishTime>
     </File>
     <File Include="Resources/css/stylec.css">
-      <publishTime>08/03/2017 09:18:08</publishTime>
+      <publishTime>10/28/2017 08:20:29</publishTime>
     </File>
     <File Include="Resources/css/stylePremios.css">
       <publishTime>08/02/2017 17:25:26</publishTime>
@@ -406,13 +406,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 23:26:48</publishTime>
     </File>
     <File Include="Values/CorreoConfirmaCuenta.txt">
-      <publishTime>08/07/2017 07:52:35</publishTime>
+      <publishTime>10/28/2017 08:51:12</publishTime>
+    </File>
+    <File Include="Values/CorreoInvitacionCandidato.txt">
+      <publishTime>10/28/2017 09:06:02</publishTime>
+    </File>
+    <File Include="Values/CorreoInvitacionJuez.txt">
+      <publishTime>10/28/2017 08:59:05</publishTime>
     </File>
     <File Include="Values/CorreoRecuperaPassword.txt">
-      <publishTime>08/07/2017 07:52:42</publishTime>
+      <publishTime>10/28/2017 08:51:18</publishTime>
     </File>
     <File Include="Values/CorreoSolicitudCambio.txt">
-      <publishTime>08/07/2017 07:49:40</publishTime>
+      <publishTime>10/28/2017 08:51:34</publishTime>
     </File>
     <File Include="Values/POLITICAS_DE_PRIVACIDAD_Tec.pdf">
       <publishTime>08/03/2017 09:32:13</publishTime>
@@ -424,7 +430,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/24/2017 20:19:06</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraCategorias.aspx">
-      <publishTime>07/27/2017 13:24:19</publishTime>
+      <publishTime>10/28/2017 09:16:41</publishTime>
     </File>
     <File Include="WebForms/Administrador/AdministraConvocatorias.aspx">
       <publishTime>08/21/2017 06:11:10</publishTime>
@@ -463,10 +469,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/27/2017 13:18:57</publishTime>
     </File>
     <File Include="WebForms/Candidato/InformacionPersonalCandidato.aspx">
-      <publishTime>09/17/2017 09:50:26</publishTime>
+      <publishTime>10/28/2017 06:46:25</publishTime>
     </File>
     <File Include="WebForms/Candidato/InicioCandidato.aspx">
-      <publishTime>08/03/2017 09:31:20</publishTime>
+      <publishTime>10/28/2017 07:41:42</publishTime>
     </File>
     <File Include="WebForms/Candidato/ListaPremios.aspx">
       <publishTime>08/02/2017 17:00:02</publishTime>
